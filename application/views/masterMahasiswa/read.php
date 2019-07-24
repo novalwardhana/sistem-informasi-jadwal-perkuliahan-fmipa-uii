@@ -32,32 +32,9 @@
   ?>
 
   <div class="content-wrapper">
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">List Mahasiswa</h3>
-                    </div>
-                    <div class="box-body">
-                        <a href="<?php echo base_url('mahasiswa/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
-                        <br><br>
-                        <table id="listMahasiswa" class="table table-bordered table-striped" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">Aksi</th>
-                                    <th>NIM</th>
-                                    <th>Nama</th>
-                                    <th>Semester</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php
+			$this->load->view('masterMahasiswa/readMain');
+		?>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -68,25 +45,9 @@
   </footer>
 </div>
 
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <b>Konfirmasi</b>
-            </div>
-            <div class="modal-body">
-                Apakah anda yakin akan menghapus data ini?
-            </div>
-            <div class="modal-footer" style="text-align: center">
-                <a class="btn btn-danger btn-ok"><i class='fa fa-trash'></i> Hapus</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class='fa fa-times'></i> Batal</button>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+	$this->load->view('masterMahasiswa/readDeleteModal');
+?>
 
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery/dist/jquery.min.js') ?>"></script>
 <!-- Bootstrap 3.3.7 -->

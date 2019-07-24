@@ -13,9 +13,9 @@
             </span>
           </a>
           <ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-            <li><a href="<?php echo base_url('mahasiswa') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
-            <li><a href="<?php echo base_url('matakuliah') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
-            <li><a href="<?php echo base_url('dosen') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
+            <li><a href="<?php echo base_url('Mahasiswa') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
+            <li><a href="<?php echo base_url('MataKuliah') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
+            <li><a href="<?php echo base_url('Dosen') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
             <li><a href="<?php echo base_url('skormaks') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
             <li><a href="<?php echo base_url('klasifikasi') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
             <li><a href="<?php echo base_url('harkat') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
