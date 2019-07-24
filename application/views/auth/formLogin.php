@@ -33,7 +33,7 @@
 	
   </div>
   <div class="login-header-custom">
-  		<h3><b>Sistem Informasi CPMK</b></h3>
+  		<h3><b>Sistem Informasi CPMK 1.0</b></h3>
 		<b style="text-align: center">Capaian Penilaian Mata Kuliah</b>
 		<br><br>
   </div>
