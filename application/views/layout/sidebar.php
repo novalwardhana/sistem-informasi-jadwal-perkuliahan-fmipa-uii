@@ -16,10 +16,10 @@
             <li><a href="<?php echo base_url('Mahasiswa') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
             <li><a href="<?php echo base_url('MataKuliah') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
             <li><a href="<?php echo base_url('Dosen') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
-            <li><a href="<?php echo base_url('skormaks') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
-            <li><a href="<?php echo base_url('klasifikasi') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
-            <li><a href="<?php echo base_url('harkat') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
-            <li><a href="<?php echo base_url('kelas') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
+            <li><a href="<?php echo base_url('SkorMaks') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
+            <li><a href="<?php echo base_url('Klasifikasi') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
+            <li><a href="<?php echo base_url('Harkat') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
+            <li><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
           </ul>
         </li>
         <li><a href="<?php echo base_url('dosenPengampu') ?>"><i class="fa fa-clipboard"></i> <span>Pengampu Mata Kuliah</span></a></li>
