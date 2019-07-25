@@ -22,7 +22,7 @@
             <li><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 0px; color: #555;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
           </ul>
         </li>
-        <li><a href="<?php echo base_url('dosenPengampu') ?>"><i class="fa fa-clipboard"></i> <span>Pengampu Mata Kuliah</span></a></li>
+        <li><a href="<?php echo base_url('DosenPengampu') ?>"><i class="fa fa-clipboard"></i> <span>Pengampu Mata Kuliah</span></a></li>
         <li><a href="<?php echo base_url('mahasiswaPeserta') ?>"><i class="fa fa-users"></i> <span>Jadwal Perkuliahan</span></a></li>
       </ul>
     </section>

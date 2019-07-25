@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sistem Informasi Mahasiswaa</title>
+  <title>Sistem Informasi Mahasiswa</title>
 
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,30 +32,9 @@
   ?>
 
   <div class="content-wrapper">
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Pengampu Mata Kuliah</h3>
-                    </div>
-                    <div class="box-body">
-                        <table id="listDosen" class="table table-bordered table-striped" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">Aksi</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Mata Kuliah yang Diampu</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php
+			$this->load->view('masterDosenPengampu/readMain');
+		?>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -66,25 +45,9 @@
   </footer>
 </div>
 
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <b>Konfirmasi</b>
-            </div>
-            <div class="modal-body">
-                Apakah anda yakin akan menghapus data ini?
-            </div>
-            <div class="modal-footer" style="text-align: center">
-                <a class="btn btn-danger btn-ok"><i class='fa fa-trash'></i> Hapus</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class='fa fa-times'></i> Batal</button>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+	$this->load->view('masterDosenPengampu/readDeleteModal');
+?>
 
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery/dist/jquery.min.js') ?>"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -109,7 +72,7 @@
     });
 
     $(document).ready(function () {
-        var urlGetListDosen = "<?php echo base_url('dosenPengampu/getListDosen') ?>";
+        var urlGetListDosen = "<?php echo base_url('DosenPengampu/getListDosen') ?>";
         $('#listDosen').DataTable({
             "ordering": false,
             "autoWidth": false,
