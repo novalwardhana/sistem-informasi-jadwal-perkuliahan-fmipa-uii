@@ -1,3 +1,4 @@
+AAA
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,7 @@
                         <h3 class="box-title">
                             Detail Informasi Perkuliahan
                             <br><br>
-                            <a href="<?php echo base_url('mahasiswaPeserta') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
+                            <a href="<?php echo base_url('JadwalPerkuliahan') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
                         </h3>
                     </div>
                     <div class="box-body">
@@ -95,7 +96,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button class="btn btn-success" onclick="addMahasiswa()"><i class="fa fa-plus"></i> Mahasiswa Peserta Perkuliahan</button>
-                                <a href="<?php echo base_url('mahasiswaPesertaExport/export?id=').$dataPengampu->id_dosen_pengampu_mata_kuliah ?>"><button class="btn btn-success"><i class="fa fa-file-excel-o"></i></button></a>
+                                <a href="<?php echo base_url('JadwalPerkuliahanExport/export?id=').$dataPengampu->id_dosen_pengampu_mata_kuliah ?>"><button class="btn btn-success"><i class="fa fa-file-excel-o"></i> Export</button></a>
                                 <br><br>
                                 <div class="table-responsive">
                                 <table id="listPeserta" class="table table-bordered table-striped" style="width: 100%">
@@ -181,7 +182,7 @@
             </div>
         </div>
         <?php
-          $this->load->view('mahasiswaPeserta/modalCreate');
+          $this->load->view('jadwalPerkuliahan/modalCreate');
         ?>
     </section>
   </div>
@@ -194,7 +195,7 @@
   </footer>
 
   <?php
-    $this->load->view('mahasiswaPeserta/readConfirmDelete');
+    $this->load->view('jadwalPerkuliahan/readDetailDeleteModal');
   ?>
 </div>
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery/dist/jquery.min.js') ?>"></script>
@@ -233,7 +234,7 @@
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "<?php echo base_url(); ?>mahasiswaPeserta/deleteMahasiswaPeserta",
+            url: "<?php echo base_url(); ?>JadwalPerkuliahan/deleteMahasiswaPeserta",
             type: 'POST',
             data: data,
             async: false,
@@ -289,7 +290,7 @@
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "<?php echo base_url(); ?>mahasiswaPeserta/addMahasiswaPeserta",
+            url: "<?php echo base_url(); ?>JadwalPerkuliahan/addMahasiswaPeserta",
             type: 'POST',
             data: data,
             async: false,
@@ -319,7 +320,7 @@
 
         $('[data-toggle="tooltip"]').tooltip(); 
 
-        var urlGetListMahasiswa = "<?php echo base_url('mahasiswaPeserta/getListMahasiswa') ?>";
+        var urlGetListMahasiswa = "<?php echo base_url('JadwalPerkuliahan/getListMahasiswa') ?>";
         $('#listMahasiswa').DataTable({
             "ordering": false,
             "autoWidth": false,
@@ -347,7 +348,7 @@
             ]  
         });
 
-        var urlGetListPeserta = "<?php echo base_url('mahasiswaPeserta/getListPeserta') ?>";
+        var urlGetListPeserta = "<?php echo base_url('JadwalPerkuliahan/getListPeserta') ?>";
         var listPeserta = $('#listPeserta').DataTable({
             "ordering": false,
             "autoWidth": false,
@@ -477,7 +478,7 @@
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "<?php echo base_url(); ?>mahasiswaPeserta/updateNilai",
+                url: "<?php echo base_url(); ?>JadwalPerkuliahan/updateNilai",
                 method: 'POST',
                 data: data_params,
                 dataType: "json",
