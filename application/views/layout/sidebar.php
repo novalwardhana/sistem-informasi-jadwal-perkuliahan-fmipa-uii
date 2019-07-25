@@ -23,7 +23,7 @@
           </ul>
         </li>
         <li><a href="<?php echo base_url('DosenPengampu') ?>"><i class="fa fa-clipboard"></i> <span>Pengampu Mata Kuliah</span></a></li>
-        <li><a href="<?php echo base_url('mahasiswaPeserta') ?>"><i class="fa fa-users"></i> <span>Jadwal Perkuliahan</span></a></li>
+        <li><a href="<?php echo base_url('JadwalPerkuliahan') ?>"><i class="fa fa-users"></i> <span>Jadwal Perkuliahan</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
