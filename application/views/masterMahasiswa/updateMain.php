@@ -1,9 +1,17 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Master</li>
+				<li class="active">Mahasiswa</li>
+				<li class="active">Edit</li>
+			</ol>
+		</div>
+		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Edit Mahasiswa</h3>
+					<h3 class="box-title">Edit Data Mahasiswa</h3>
 				</div>
 				<form role="form" method="post" action="<?php echo base_url('Mahasiswa/update') ?>">
 					<div class="box-body">

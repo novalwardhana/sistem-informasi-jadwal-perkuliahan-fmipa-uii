@@ -1,6 +1,14 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Master</li>
+				<li class="active">Klasifikasi</li>
+				<li class="active">List</li>
+			</ol>
+		</div>
+		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">List Klasifikasi</h3>
