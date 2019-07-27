@@ -4,7 +4,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menu</li>
         <li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-cubes"></i>
             <span>Master</span>
@@ -22,10 +22,23 @@
             <li><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
           </ul>
         </li>
-				<li class="active treeview">
+				<li class="treeview">
 					<a href="#">
             <i class="fa fa-calendar-check-o"></i>
             <span>Agenda Perkuliahan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+						<li><a href="<?php echo base_url('DosenPengampu') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-address-card"></i> <span>Pengampu Mata Kuliah</span></a></li>
+        		<li><a href="<?php echo base_url('JadwalPerkuliahan') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-calendar"></i> <span>Jadwal Perkuliahan</span></a></li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#">
+            <i class="fa fa-clipboard"></i>
+            <span>Laporan</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
