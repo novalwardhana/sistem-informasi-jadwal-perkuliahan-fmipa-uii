@@ -24,7 +24,8 @@
 								<select class="mahasiswaselect form-control" name="mahasiswa" style="width: 100%;"></select>
 							</div>
 							<div class="form-group">
-							<button type="button" id="proses" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+								<button type="button" id="proses" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+								<a href="<?php echo base_url('NilaiMataKuliah') ?>"><button type="button" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button></a>
 							</div>
 						</div>
 					</div>
@@ -51,6 +52,9 @@
 							<th>Semester</th>
 							<th>:</th>
 							<th><span id="tabel-informasi-semester-mahasiswa"></span></th>
+						</tr>
+						<tr>
+							<th rowspan="3"><button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export</button></th>
 						</tr>
 					</table>
 
