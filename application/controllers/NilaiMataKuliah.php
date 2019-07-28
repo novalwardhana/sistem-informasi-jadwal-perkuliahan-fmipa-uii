@@ -48,7 +48,56 @@ class NilaiMataKuliah extends CI_Controller {
 			5=> 'huruf'
 		);
 
+		if ($_POST['id_mahasiswa']==null || $_POST['id_mahasiswa']=='') {
+			$id_mahasiswa=0;
+		} else {
+			$id_mahasiswa=$_POST['id_mahasiswa'];
+		}
+
+		//Get total data
+		$totalData = $this->nilaiMataKuliahModel->getTotalData($id_mahasiswa);
+
+		$limit = $_POST['length'];
+		$start = $_POST['start'];
+		$order = 'id';
+		$dir = 'desc';
+		$search=$_POST['search']['value'];
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search,
+			'id_mahasiswa' => $id_mahasiswa
+		);
+
+		$getListMahasiswa=$this->nilaiMataKuliahModel->getListNilai($params);
+		$totalFiltered=$this->nilaiMataKuliahModel->getListNilaiCount($params);
+
+		$data = array();
+		if(!empty($getListMahasiswa)) {
+			foreach ($getListMahasiswa as $row) {
+
+				$nestedData['nomor'] = $row->nomor;
+				$nestedData['semester'] = $row->semester;
+				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
+				$nestedData['mata_kuliah'] = $row->mata_kuliah;
+				$nestedData['nilai'] = '99';
+				$nestedData['huruf'] = 'A';
+				
+				$data[] = $nestedData;
+			}
+		}
+
+		$json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
 	
+		echo json_encode($json_data);
 	}
 
 }

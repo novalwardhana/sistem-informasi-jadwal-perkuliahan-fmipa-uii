@@ -71,29 +71,6 @@
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
-		$(document).ready(function () {
-
-			var id_mahasiswa=null;
-			var nama_mahasiswa=null;
-
-			var urlGetListNilai = "<?php echo base_url('NilaiMataKuliah/getListNilai') ?>";
-			$('#listNilaiMahasiswa').DataTable({
-				"ordering": false,
-				"autoWidth": false,
-				"processing": true,
-				"serverSide": true,
-				"ajax":{
-						"url": urlGetListNilai,
-						"dataType": "json",
-						"type": "POST",
-						"data": function(d){
-							d.id_mahasiswa = id_mahasiswa
-						}
-				},
-			});
-			
-		});
-
 		var id_mahasiswa=null;
 		var nama_mahasiswa=null;
 
@@ -103,6 +80,7 @@
 			"autoWidth": false,
 			"processing": true,
 			"serverSide": true,
+			"paging": false,
 			"ajax":{
 					"url": urlGetListNilai,
 					"dataType": "json",
@@ -111,6 +89,18 @@
 						d.id_mahasiswa = id_mahasiswa
 					}
 			},
+			"columns": [
+				{ "data": "nomor", "className": "text-center", "width": "8%",
+						render: function (data, type, row, meta) {
+							return meta.row + meta.settings._iDisplayStart + 1;
+						}
+				},
+				{ "data": "semester" },
+				{ "data": "kode_mata_kuliah" },
+				{ "data": "mata_kuliah" },
+				{ "data": "nilai" },
+				{ "data": "huruf" }
+			]
 		});
 
     $('.mahasiswaselect').select2({
