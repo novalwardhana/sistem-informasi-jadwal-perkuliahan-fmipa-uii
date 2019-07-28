@@ -1,4 +1,4 @@
-    <aside class="main-sidebar">
+<aside class="main-sidebar">
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -44,8 +44,7 @@
             </span>
           </a>
 					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-						<li><a href="<?php echo base_url('DosenPengampu') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-address-card"></i> <span>Pengampu Mata Kuliah</span></a></li>
-        		<li><a href="<?php echo base_url('JadwalPerkuliahan') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-calendar"></i> <span>Jadwal Perkuliahan</span></a></li>
+						<li><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
 					</ul>
 				</li>
       </ul>
