@@ -45,7 +45,7 @@ class NilaiMataKuliah extends CI_Controller {
 			2 =>'kode_mata_kuliah',
 			3=> 'mata_kuliah',
 			4=> 'nilai',
-			5=> 'huruf'
+			5=> 'harkat'
 		);
 
 		if ($_POST['id_mahasiswa']==null || $_POST['id_mahasiswa']=='') {
@@ -77,14 +77,17 @@ class NilaiMataKuliah extends CI_Controller {
 
 		$data = array();
 		if(!empty($getListMahasiswa)) {
+
+			$data_harkat = $this->nilaiMataKuliahModel->getListHarkat();
+
 			foreach ($getListMahasiswa as $row) {
 
-				$nestedData['nomor'] = $row->nomor;
+				$nestedData['nomor'] = '';
 				$nestedData['semester'] = $row->semester;
 				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
 				$nestedData['mata_kuliah'] = $row->mata_kuliah;
-				$nestedData['nilai'] = '99';
-				$nestedData['huruf'] = 'A';
+				$nestedData['nilai'] = $row->nilai;
+				$nestedData['harkat'] = $data_harkat;
 				
 				$data[] = $nestedData;
 			}

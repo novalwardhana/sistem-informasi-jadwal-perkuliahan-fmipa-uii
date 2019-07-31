@@ -54,7 +54,7 @@
 							<th><span id="tabel-informasi-semester-mahasiswa"></span></th>
 						</tr>
 						<tr>
-							<th rowspan="3"><button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export</button></th>
+							<th rowspan="3"><button id="exportButton" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export</button></th>
 						</tr>
 					</table>
 

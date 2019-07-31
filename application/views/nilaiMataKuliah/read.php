@@ -71,6 +71,9 @@
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
+		$(document).ready(function () {
+			$("#exportButton").attr("disabled", true);
+		});
 		var id_mahasiswa=null;
 		var nama_mahasiswa=null;
 
@@ -95,11 +98,33 @@
 							return meta.row + meta.settings._iDisplayStart + 1;
 						}
 				},
-				{ "data": "semester" },
+				{ "data": "semester", "className": "text-center" },
 				{ "data": "kode_mata_kuliah" },
 				{ "data": "mata_kuliah" },
-				{ "data": "nilai" },
-				{ "data": "huruf" }
+				{ "data": "nilai", "className": "cell-nowrap, text-right",
+					render: function (data, type, row, meta) {
+						let nilai = parseFloat(row.nilai);
+						return nilai.toFixed(2).replace(".",",");
+					}
+				},
+				{ "data": "harkat", "className": "cell-nowrap, text-center",
+					render: function (data, type, row, meta) {
+						
+						let nilai_akhir = parseFloat(row.nilai);
+						for(j=0; j<row.harkat.length; j++) {
+							let batas_bawah = parseFloat(row.harkat[j]['batas_bawah']);
+							let batas_atas = parseFloat(row.harkat[j]['batas_atas']);
+							if (nilai_akhir>=batas_bawah && nilai_akhir<batas_atas) {
+								return row.harkat[j]['huruf'];
+							}
+						}
+
+						if (nilai_akhir>=100) {
+								return 'A';
+						}
+						return "--";
+					}
+				}
 			]
 		});
 
@@ -131,8 +156,8 @@
 				return false;
 			}
 			getMahasiswaData();
-
 			$('#listNilaiMahasiswa').DataTable().ajax.reload();
+			$("#exportButton").attr("disabled", false);
 		});
 
 		function getMahasiswaData() {
