@@ -182,6 +182,13 @@
 			
 		}
 
+		$('#exportButton').click(function(){
+			let id_mahasiswa = $(".mahasiswaselect").val();
+			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/export') ?>";
+			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
+			window.open(urlPrint, '_blank');
+		});
+
 </script>
 </body>
 </html>
