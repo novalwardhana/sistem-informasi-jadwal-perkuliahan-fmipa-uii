@@ -22,6 +22,8 @@
 
   <!-- Bootstrap time Picker -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/plugins/timepicker/bootstrap-timepicker.min.css') ?>">
+	<!-- iCheck for checkboxes and radio inputs -->
+	<link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/plugins/iCheck/all.css') ?>">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-purple-light sidebar-mini">
@@ -78,13 +80,23 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js')?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/demo.js')?>"></script>
-
+<!-- Select 2 -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
-
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/plugins/iCheck/icheck.min.js') ?>"></script>
 <script type="text/javascript">
 	$(function() {
-    
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    });
   });
+	$(document).ready(function () {
+		var data_permission=<?php echo $dataRolePermission ?>;
+    for(i=0; i<data_permission.length; i++) {
+      $("#"+data_permission[i].module).prop('checked', true);
+    }
+	});
 </script>
 </body>
 </html>

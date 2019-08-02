@@ -23,6 +23,25 @@
 									<input type="text" name="nama" value="<?php echo $dataRole->nama; ?>" class="form-control" placeholder="Role user" required>
 								</div>
 								<div class="form-group">
+									<label>Permission</label>
+									<div class="row">
+										<?php
+											foreach($checkboxPermission AS $value) {
+										?>
+											<div class="col-md-12">
+												<label>
+													<input type="checkbox" id="<?php echo $value['module']; ?>" name="role_has_permission[]" value="<?php echo $value['id']; ?>">
+													<?php
+														echo $value['nama']." (".$value['module'].")";
+													?>
+												</label>
+											</div>
+										<?php
+											}
+										?>
+									</div>
+								</div>
+								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
 									<a href="<?php echo base_url('UserRole') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>

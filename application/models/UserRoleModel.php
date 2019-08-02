@@ -48,6 +48,20 @@ class UserRoleModel extends CI_Model {
 		return $row;
 	}
 
+	public function getListPermissionById($id) {
+		$sql="SELECT 
+				a.*,
+				b.module AS module
+			FROM user_role_has_permission a
+			LEFT JOIN user_permission b ON a.id_permission = b.id
+			WHERE
+				a.id_role='".$id."'
+		";
+		$query=$this->db->query($sql);
+		$hasil=$query->result_array();
+		return $hasil;
+	}
+
 	public function update($params) {
 		$data = [
 			'nama' => $params['nama']
@@ -59,6 +73,35 @@ class UserRoleModel extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function getListPermissionCheckbox() {
+		$sql="SELECT 
+				a.*
+			FROM user_permission a
+			ORDER BY a.id ASC";
+		$query=$this->db->query($sql);
+		$hasil=$query->result_array();
+		return $hasil;
+	}
+
+	public function deleteRolePermission($id_role) {
+		$this->db->where('id_role', $id_role);
+		$query=$this->db->delete('user_role_has_permission');
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function createRolePermission($id_role, $id_permission) {
+		$params=array(
+			'id_role' => $id_role,
+			'id_permission' => $id_permission
+		);
+		$query=$this->db->insert('user_role_has_permission', $params);
+		return $query;
 	}
 
 	public function delete($params) {

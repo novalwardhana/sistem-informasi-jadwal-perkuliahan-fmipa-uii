@@ -97,13 +97,26 @@ class UserRole extends CI_Controller {
 			$id=$_GET['id'];
 			$data=array();
 			$dataRole=$this->userRoleModel->getListRoleById($id);
+			$checkboxPermission = $this->userRoleModel->getListPermissionCheckbox();
+			$dataRolePermission = $this->userRoleModel->getListPermissionById($id);
 			$data['dataRole'] = $dataRole;
+			$data['checkboxPermission'] = $checkboxPermission;
+			$data['dataRolePermission'] = json_encode($dataRolePermission);
 			$this->load->view('userRole/update', $data);
 		} else {
 			$params=array(
 				'id' => $_POST['id'],
 				'nama' => $_POST['nama']
 			);
+
+			$deleteRolePermission = $this->userRoleModel->deleteRolePermission($_POST['id']);
+			if (isset($_POST['role_has_permission'])) {
+				$role_has_permission = $_POST['role_has_permission'];
+				foreach($role_has_permission AS $value) {
+					$createRolePermission = $this->userRoleModel->createRolePermission($_POST['id'], $value);
+				}
+			}
+			
 			$hasil = $this->userRoleModel->update($params);
 			if ($hasil===TRUE) {
 				$this->session->set_flashdata('imageMsg', 'update_success');
