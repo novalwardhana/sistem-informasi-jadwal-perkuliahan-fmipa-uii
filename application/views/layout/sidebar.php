@@ -47,6 +47,19 @@
 						<li><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
 					</ul>
 				</li>
+				<li class="treeview">
+					<a href="#">
+            <i class="fa fa-users"></i>
+            <span>User Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+						<li><a href="<?php echo base_url('UserManagement') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-user"></i> <span>Users</span></a></li>
+						<li><a href="#" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-toggle-on"></i> <span>Role</span></a></li>
+					</ul>
+				</li>
       </ul>
     </section>
     <!-- /.sidebar -->
