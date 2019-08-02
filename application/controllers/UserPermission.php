@@ -76,4 +76,61 @@ class UserPermission extends CI_Controller {
 		echo json_encode($json_data);
 	}
 
+	public function create() {
+		$data=array();
+		if(!isset($_POST['simpan'])) {
+			$this->load->view('userPermission/create', $data);
+		} else {
+			$params=array();
+			$params['nama']=$_POST['nama'];
+			$params['module']=$_POST['module'];
+			$hasil=$this->userPermissionModel->create($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('imageMsg', 'create_success');
+				redirect(base_url('UserPermission'));
+			} else {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('UserPermission'));
+			}
+		}
+	}
+
+	public function update() {
+		if(!isset($_POST['simpan'])) {
+			$id=$_GET['id'];
+			$data=array();
+			$dataPermission=$this->userPermissionModel->getListPermissionById($id);
+			$data['dataPermission'] = $dataPermission;
+			$this->load->view('userPermission/update', $data);
+		} else {
+			$params=array(
+				'id' => $_POST['id'],
+				'nama' => $_POST['nama'],
+				'module' => $_POST['module']
+			);
+			$hasil = $this->userPermissionModel->update($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserPermission'));
+			} else {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserPermission'));
+			}
+		}
+	}
+
+	public function delete() {
+		$params=[];
+		$id=$_GET['id'];
+		$params['id']=$id;
+		$hapusDataPermission=$this->userPermissionModel->delete($params);
+		if ($hapusDataPermission===TRUE) {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserPermission'));
+		} else {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserPermission'));
+		}
+	}
+
 }

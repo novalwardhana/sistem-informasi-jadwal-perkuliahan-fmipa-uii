@@ -36,4 +36,40 @@ class UserPermissionModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function create($params) {
+		$query=$this->db->insert('user_permission', $params);
+		return $query;
+	}
+
+	public function getListPermissionById($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->get('user_permission');
+		$row=$query->row();
+		return $row;
+	}
+
+	public function update($params) {
+		$data = [
+			'nama' => $params['nama'],
+			'module' => $params['module']
+		];
+		$this->db->where('id', $params['id']);
+		$query=$this->db->update('user_permission', $data);
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function delete($params) {
+		$this->db->where('id', $params['id']);
+		$query=$this->db->delete('user_permission');
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
