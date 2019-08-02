@@ -74,4 +74,59 @@ class UserRole extends CI_Controller {
 		echo json_encode($json_data);
 	}
 
+	public function create() {
+		$data=array();
+		if(!isset($_POST['simpan'])) {
+			$this->load->view('userRole/create', $data);
+		} else {
+			$params=array();
+			$params['nama']=$_POST['nama'];
+			$hasil=$this->userRoleModel->create($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('imageMsg', 'create_success');
+				redirect(base_url('UserRole'));
+			} else {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('UserRole'));
+			}
+		}
+	}
+
+	public function update() {
+		if(!isset($_POST['simpan'])) {
+			$id=$_GET['id'];
+			$data=array();
+			$dataRole=$this->userRoleModel->getListRoleById($id);
+			$data['dataRole'] = $dataRole;
+			$this->load->view('userRole/update', $data);
+		} else {
+			$params=array(
+				'id' => $_POST['id'],
+				'nama' => $_POST['nama']
+			);
+			$hasil = $this->userRoleModel->update($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserRole'));
+			} else {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserRole'));
+			}
+		}
+	}
+
+	public function delete() {
+		$params=[];
+		$id=$_GET['id'];
+		$params['id']=$id;
+		$hapusDataRole=$this->userRoleModel->delete($params);
+		if ($hapusDataRole===TRUE) {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserRole'));
+		} else {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserRole'));
+		}
+	}
+
 }

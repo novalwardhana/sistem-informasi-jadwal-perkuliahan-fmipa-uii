@@ -4,7 +4,7 @@
 			<ol class="breadcrumb">
 				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
 				<li class="active">User Management</li>
-				<li class="active">User</li>
+				<li class="active">Role</li>
 				<li class="active">List</li>
 			</ol>
 		</div>
@@ -14,7 +14,7 @@
 					<h3 class="box-title">List User</h3>
 				</div>
 				<div class="box-body">
-					<a href="<?php echo base_url('UserManagement/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					<a href="<?php echo base_url('UserRole/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
 					<br><br>
 					<table id="listUserRole" class="table table-bordered table-striped" style="width: 100%">
 						<thead>

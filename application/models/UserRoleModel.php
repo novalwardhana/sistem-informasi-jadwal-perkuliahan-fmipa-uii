@@ -36,4 +36,39 @@ class UserRoleModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function create($params) {
+		$query=$this->db->insert('user_role', $params);
+		return $query;
+	}
+
+	public function getListRoleById($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->get('user_role');
+		$row=$query->row();
+		return $row;
+	}
+
+	public function update($params) {
+		$data = [
+			'nama' => $params['nama']
+		];
+		$this->db->where('id', $params['id']);
+		$query=$this->db->update('user_role', $data);
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function delete($params) {
+		$this->db->where('id', $params['id']);
+		$query=$this->db->delete('user_role');
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
