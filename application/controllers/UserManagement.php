@@ -108,6 +108,34 @@ class UserManagement extends CI_Controller {
 		}
 	}
 
+	public function update() {
+		if(!isset($_POST['simpan'])) {
+			$id=$_GET['id'];
+			$dataUser=$this->userManagementModel->getListUserById($id);
+			$dataUserRole = $this->userManagementModel->getListUserRole();
+			$data=[];
+			$data['dataUser']=$dataUser;
+			$data['dataUserRole']=$dataUserRole;
+			$this->load->view('userManagement/update', $data);
+		} else {
+			$params=array(
+				'id' => $_POST['id'],
+				'nama' => $_POST['nama'],
+				'username' => $_POST['username'],
+				'password' => $_POST['password']
+			);
+
+			$hasil = $this->userManagementModel->update($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserManagement'));
+			} else {
+				$this->session->set_flashdata('imageMsg', 'update_success');
+				redirect(base_url('UserManagement'));
+			}
+		}
+	}
+
 	public function delete() {
 		$params=[];
 		$id=$_GET['id'];

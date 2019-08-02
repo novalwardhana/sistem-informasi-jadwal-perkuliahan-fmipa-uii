@@ -25,7 +25,7 @@
 				$data_pengguna=array(
 					"username"=>$params['username'],
 					"password"=>$params['password'],
-					"role_id"=>$role->role_id,
+					"id_role"=>$role->id_role,
 					"status"=>"login"
 				);
 				$this->session->set_userdata($data_pengguna);

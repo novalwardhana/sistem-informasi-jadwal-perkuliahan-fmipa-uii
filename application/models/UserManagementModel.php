@@ -72,4 +72,26 @@ class UserManagementModel extends CI_Model {
 		}
 	}
 
+	public function getListUserById($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->get('user');
+		$row=$query->row();
+		return $row;
+	}
+
+	public function update($params) {
+		$data = [
+			'nama' => $params['nama'],
+			'username' => $params['username'],
+			'password' => $params['password'],
+		];
+		$this->db->where('id', $params['id']);
+		$query=$this->db->update('user', $data);
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
