@@ -62,4 +62,14 @@ class UserManagementModel extends CI_Model {
 		return $query;
 	}
 
+	public function delete($params) {
+		$this->db->where('id', $params['id']);
+		$query=$this->db->delete('user');
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

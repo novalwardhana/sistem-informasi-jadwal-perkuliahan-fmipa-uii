@@ -108,4 +108,18 @@ class UserManagement extends CI_Controller {
 		}
 	}
 
+	public function delete() {
+		$params=[];
+		$id=$_GET['id'];
+		$params['id']=$id;
+		$hapusDataUser=$this->userManagementModel->delete($params);
+		if ($hapusDataUser===TRUE) {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserManagement'));
+		} else {
+			$this->session->set_flashdata('imageMsg', 'delete_success');
+			redirect(base_url('UserManagement'));
+		}
+	}
+
 }
