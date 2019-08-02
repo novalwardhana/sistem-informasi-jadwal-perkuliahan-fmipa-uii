@@ -73,18 +73,15 @@
 						<td><?php echo $value['mata_kuliah'] ?></td>
 						<td class="text-right"><?php echo number_format($value['nilai'],2,",",".") ?></td>
 						<?php
+							$nilai_akhir = (float) $value['nilai'];
+							if ($nilai_akhir>=100) {
+								$huruf="A";
+							}
 							foreach($data_harkat as $value_harkat) {
 								$batas_bawah = (float) $value_harkat['batas_bawah'];
 								$batas_atas = (float) $value_harkat['batas_atas'];
-								$nilai_akhir = (float) $value['nilai'];
 								if ($nilai_akhir>=$batas_bawah && $nilai_akhir<$batas_atas) {
 									$huruf = $value_harkat['huruf'];
-								} else if ($nilai_akhir>=100) {
-									$huruf = "A";
-								} else if ($nilai_akhir==0) {
-									$huruf = "E";
-								} else {
-									$huruf="T";
 								}
 							}
 						?>

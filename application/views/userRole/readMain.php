@@ -11,7 +11,7 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">List User</h3>
+					<h3 class="box-title">List Role</h3>
 				</div>
 				<div class="box-body">
 					<a href="<?php echo base_url('UserRole/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
