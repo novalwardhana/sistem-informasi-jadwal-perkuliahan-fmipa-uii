@@ -79,7 +79,33 @@ class UserManagement extends CI_Controller {
 	}
 
 	public function create() {
-		echo "User Management Create";
+		$data=array();
+		if(!isset($_POST['simpan'])) {
+			$dataUserRole = $this->userManagementModel->getListUserRole();
+			$data['dataUserRole'] = $dataUserRole;
+			$this->load->view('userManagement/create', $data);
+		} else {
+			$params=array();
+			$params['nama']=$_POST['nama'];
+			$params['username']=$_POST['username'];
+			$params['password']=$_POST['password'];
+			$params['id_role']=$_POST['id_role'];
+
+			$validation = $this->userManagementModel->createValidation($_POST['username']);
+			if ($validation >= 1) {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('UserManagement'));
+			} else {
+				$hasil=$this->userManagementModel->create($params);
+				if ($hasil===TRUE) {
+					$this->session->set_flashdata('imageMsg', 'create_success');
+					redirect(base_url('UserManagement'));
+				} else {
+					$this->session->set_flashdata('imageMsg', 'create_failed');
+					redirect(base_url('UserManagement'));
+				}
+			}
+		}
 	}
 
 }

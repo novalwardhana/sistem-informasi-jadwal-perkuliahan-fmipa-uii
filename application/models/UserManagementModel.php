@@ -42,4 +42,24 @@ class UserManagementModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function getListUserRole() {
+		$sql="SELECT 
+				a.*
+			FROM user_role a
+			ORDER BY a.id ASC";
+		$query=$this->db->query($sql);
+		$hasil=$query->result_array();
+		return $hasil;
+	}
+
+	public function createValidation($username) {
+		$hasil = $this->db->where('username',$username)->from("user")->count_all_results();
+		return $hasil;
+	}
+
+	public function create($params) {
+		$query=$this->db->insert('user', $params);
+		return $query;
+	}
+
 }
