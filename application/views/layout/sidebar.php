@@ -58,6 +58,7 @@
 					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
 						<li><a href="<?php echo base_url('UserManagement') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-user"></i> <span>Users</span></a></li>
 						<li><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-toggle-on"></i> <span>Role</span></a></li>
+						<li><a href="<?php echo base_url('UserPermission') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-key"></i> <span>Permission</span></a></li>
 					</ul>
 				</li>
       </ul>
