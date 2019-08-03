@@ -127,12 +127,25 @@ class Dosen extends CI_Controller {
 			$this->load->view('masterDosen/update', $data);
 		} else {
 			$params=$_POST;
+
+			$validationNIK = $this->dosenModel->validationNIK($params['nik'], $_POST['id']);
+			if ($validationNIK>=1) {
+				$this->session->set_flashdata('imageMsg', 'update_failed');
+				redirect(base_url('Dosen'));
+			}
+
+			$validationUsername = $this->dosenModel->validationUsername($params['nik'], $_POST['id']);
+			if ($validationUsername>=1) {
+				$this->session->set_flashdata('imageMsg', 'update_failed');
+				redirect(base_url('Dosen'));
+			}
+
 			$updateDataDosen=$this->dosenModel->update($params);
 			if ($updateDataDosen===TRUE) {
 				$this->session->set_flashdata('imageMsg', 'update_success');
 				redirect(base_url('Dosen'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('imageMsg', 'update_failed');
 				redirect(base_url('Dosen'));
 			}
 		}

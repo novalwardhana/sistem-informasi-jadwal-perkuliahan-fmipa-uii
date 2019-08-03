@@ -45,6 +45,10 @@ class DosenModel extends CI_Model {
 		if ($id==0) {
 			$hasil = $this->db->where('nik',$nik)->from("dosen")->count_all_results();
 		} else {
+
+			$id = (int) $id;
+			$sql = "SELECT a.* FROM dosen a WHERE a.id!=$id AND a.nik='".$nik."' ";
+			$hasil = $this->db->query($sql)->num_rows();
 			
 		}
 		return $hasil;
@@ -52,9 +56,15 @@ class DosenModel extends CI_Model {
 
 	public function validationUsername($nik, $id) {
 		if ($id==0) {
+
 			$hasil = $this->db->where('username',$nik)->from("user")->count_all_results();
+
 		} else {
-			
+
+			$id = (int) $id;
+			$sql = "SELECT a.* FROM user a WHERE a.id_dosen!=$id AND a.username='".$nik."' ";
+			$hasil = $this->db->query($sql)->num_rows();
+
 		}
 		return $hasil;
 	}
@@ -99,6 +109,9 @@ class DosenModel extends CI_Model {
 			
 		$this->db->where('id', $params['id']);
 		$query=$this->db->update('dosen', $data);
+
+		$this->updateUser($params);
+
 		if ($query) {
 			return true;
 		} else {
@@ -106,13 +119,32 @@ class DosenModel extends CI_Model {
 		}
 	}
 
+	private function updateUser($params) {
+		$data = [
+			'username' => $params['nik'],
+			'password' => $params['nik']
+		];
+		
+		$id = (int) $params['id'];
+
+		$this->db->where('id_dosen', $id);
+		$query=$this->db->update('user', $data);
+	}
+
 	public function delete($params) {
 		$this->db->where('id', $params['id']);
 		$query=$this->db->delete('dosen');
+
+		$this->deleteUser($params['id']);
 		if ($query) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	private function deleteUser($id_dosen) {
+		$this->db->where('id_dosen', $id_dosen);
+		$query=$this->db->delete('user');
 	}
 }
