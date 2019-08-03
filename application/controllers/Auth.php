@@ -21,6 +21,7 @@
 			$params['password']=$_POST['password'];
 			$hasil=$this->authModel->aksi_login($params);
 			if ($hasil==1) {
+				
 				$role=$this->authModel->cek_role($params);
 				$data_pengguna=array(
 					"username"=>$params['username'],
@@ -28,6 +29,9 @@
 					"id_role"=>$role->id_role,
 					"status"=>"login"
 				);
+				$data_permission = $this->authModel->getListPermission($data_pengguna['id_role']);
+				$data_pengguna['permission'] = $data_permission;
+
 				$this->session->set_userdata($data_pengguna);
 				redirect(base_url("Dashboard"));
 			} else {

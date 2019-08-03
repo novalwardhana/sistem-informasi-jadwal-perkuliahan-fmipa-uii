@@ -15,4 +15,21 @@
 			return $hasil;
 		}
 
+		public function getListPermission($id_role) {
+			$id_role = (int) $id_role;
+			$sql="SELECT b.module from user_role_has_permission a
+				LEFT JOIN user_permission b ON a.id_permission=b.id
+				WHERE a.id_role=$id_role;
+			";
+			$query=$this->db->query($sql);
+			$data=$query->result_array();
+
+			$hasil=array();
+			foreach($data as $value) {
+				$hasil[$value['module']]=TRUE;
+			}
+			
+			return $hasil;
+		}
+
 	}
