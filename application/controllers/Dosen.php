@@ -85,8 +85,28 @@ class Dosen extends CI_Controller {
 			$params=array();
 			$params['nik']=$_POST['nik'];
 			$params['nama']=$_POST['nama'];
-			$params['password']='1234';
-			$hasil=$this->dosenModel->create($params);
+      $params['password']='1234';
+      
+			$validationNIK = $this->dosenModel->validationNIK($params['nik'], 0);
+			if ($validationNIK>=1) {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('Dosen'));
+			}
+
+			$validationUsername = $this->dosenModel->validationUsername($params['nik'], 0);
+			if ($validationUsername>=1) {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('Dosen'));
+			}
+
+			$role = $this->dosenModel->getRoleId();
+			if (!isset($role['id'])) {
+				$this->session->set_flashdata('imageMsg', 'create_failed');
+				redirect(base_url('Dosen'));
+			}
+
+
+			$hasil=$this->dosenModel->create($params, $role['id']);
 
 			if ($hasil===TRUE) {
 				$this->session->set_flashdata('imageMsg', 'create_success');

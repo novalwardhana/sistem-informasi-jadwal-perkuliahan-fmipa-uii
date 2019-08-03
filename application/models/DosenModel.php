@@ -41,9 +41,47 @@ class DosenModel extends CI_Model {
 		return $hasil;
 	}
 
-	public function create($params) {
+	public function validationNIK($nik, $id) {
+		if ($id==0) {
+			$hasil = $this->db->where('nik',$nik)->from("dosen")->count_all_results();
+		} else {
+			
+		}
+		return $hasil;
+	}
+
+	public function validationUsername($nik, $id) {
+		if ($id==0) {
+			$hasil = $this->db->where('username',$nik)->from("user")->count_all_results();
+		} else {
+			
+		}
+		return $hasil;
+	}
+
+	public function create($params, $id_role) {
 		$query=$this->db->insert('dosen', $params);
+		$id_dosen = $this->db->insert_id();
+		$this->createUser($id_dosen, $params, $id_role);
 		return $query;
+	}
+
+	private function createUser($id_dosen, $data, $id_role) {
+		$params=array(
+			'nama' => $data['nama'],
+			'username' => $data['nik'],
+			'password' => $data['nik'],
+			'id_role' => $id_role,
+			'id_dosen' => $id_dosen
+		);
+		$query=$this->db->insert('user', $params);
+	}
+
+	public function getRoleId() {
+		$sql="SELECT id from user_role WHERE nama='Dosen' ";
+		$query=$this->db->query($sql);
+		$row=$query->first_row('array');
+		return $row;
 	}
 
 	public function getListDosenById($id) {
