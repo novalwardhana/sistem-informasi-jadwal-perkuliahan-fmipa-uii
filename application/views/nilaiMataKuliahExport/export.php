@@ -33,10 +33,13 @@
 	</style>
 </head>
 <body>
+	<h1>
+	Laporan Nilai Mata Kuliah
+	</h1>
 	<table class="tabel-mahasiswa">
 		<thead>
 			<tr>
-				<th>Nama</th>
+				<th>Nama Mahasiswa</th>
 				<th>: <?php echo $data_mahasiswa['nama'] ?></th>
 			</tr>
 			<tr>

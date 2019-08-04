@@ -72,7 +72,8 @@
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
 		$(document).ready(function () {
-			$("#exportButton").attr("disabled", true);
+			$("#exportButtonPDF").attr("disabled", true);
+			$("#exportButtonExcel").attr("disabled", true);
 		});
 		var id_mahasiswa=null;
 		var nama_mahasiswa=null;
@@ -157,7 +158,8 @@
 			}
 			getMahasiswaData();
 			$('#listNilaiMahasiswa').DataTable().ajax.reload();
-			$("#exportButton").attr("disabled", false);
+			$("#exportButtonPDF").attr("disabled", false);
+			$("#exportButtonExcel").attr("disabled", false);
 		});
 
 		function getMahasiswaData() {
@@ -182,9 +184,16 @@
 			
 		}
 
-		$('#exportButton').click(function(){
+		$('#exportButtonPDF').click(function(){
 			let id_mahasiswa = $(".mahasiswaselect").val();
-			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/export') ?>";
+			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportPDF') ?>";
+			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
+			window.open(urlPrint, '_blank');
+		});
+
+		$('#exportButtonExcel').click(function(){
+			let id_mahasiswa = $(".mahasiswaselect").val();
+			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportExcel') ?>";
 			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
 			window.open(urlPrint, '_blank');
 		});
