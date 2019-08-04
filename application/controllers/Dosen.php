@@ -89,19 +89,28 @@ class Dosen extends CI_Controller {
       
 			$validationNIK = $this->dosenModel->validationNIK($params['nik'], 0);
 			if ($validationNIK>=1) {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan, silahkan menggunakan NIK lain');
 				redirect(base_url('Dosen'));
 			}
 
 			$validationUsername = $this->dosenModel->validationUsername($params['nik'], 0);
 			if ($validationUsername>=1) {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan untuk username, silahkan menggunakan NIK lain');
 				redirect(base_url('Dosen'));
 			}
 
 			$role = $this->dosenModel->getRoleId();
 			if (!isset($role['id'])) {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Tidak ada user role Dosen, silahkan buat terlebih dahulu di menu user management / hubungi admin');
 				redirect(base_url('Dosen'));
 			}
 
@@ -109,10 +118,16 @@ class Dosen extends CI_Controller {
 			$hasil=$this->dosenModel->create($params, $role['id']);
 
 			if ($hasil===TRUE) {
-				$this->session->set_flashdata('imageMsg', 'create_success');
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
 				redirect(base_url('Dosen'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
 				redirect(base_url('Dosen'));
 			}
 		}
@@ -130,22 +145,34 @@ class Dosen extends CI_Controller {
 
 			$validationNIK = $this->dosenModel->validationNIK($params['nik'], $_POST['id']);
 			if ($validationNIK>=1) {
-				$this->session->set_flashdata('imageMsg', 'update_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan, silahkan menggunakan NIK lain');
 				redirect(base_url('Dosen'));
 			}
 
 			$validationUsername = $this->dosenModel->validationUsername($params['nik'], $_POST['id']);
 			if ($validationUsername>=1) {
-				$this->session->set_flashdata('imageMsg', 'update_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan untuk username, silahkan menggunakan NIK lain');
 				redirect(base_url('Dosen'));
 			}
 
 			$updateDataDosen=$this->dosenModel->update($params);
 			if ($updateDataDosen===TRUE) {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
 				redirect(base_url('Dosen'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'update_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
 				redirect(base_url('Dosen'));
 			}
 		}
@@ -157,10 +184,16 @@ class Dosen extends CI_Controller {
 		$params['id']=$id;
 		$hapusDataDosen=$this->dosenModel->delete($params);
 		if ($hapusDataDosen===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
 			redirect(base_url('Dosen'));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
 			redirect(base_url('Dosen'));
 		}
 	}
