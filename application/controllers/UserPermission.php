@@ -86,10 +86,16 @@ class UserPermission extends CI_Controller {
 			$params['module']=$_POST['module'];
 			$hasil=$this->userPermissionModel->create($params);
 			if ($hasil===TRUE) {
-				$this->session->set_flashdata('imageMsg', 'create_success');
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
 				redirect(base_url('UserPermission'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
 				redirect(base_url('UserPermission'));
 			}
 		}
@@ -110,10 +116,16 @@ class UserPermission extends CI_Controller {
 			);
 			$hasil = $this->userPermissionModel->update($params);
 			if ($hasil===TRUE) {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
 				redirect(base_url('UserPermission'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
 				redirect(base_url('UserPermission'));
 			}
 		}
@@ -125,10 +137,16 @@ class UserPermission extends CI_Controller {
 		$params['id']=$id;
 		$hapusDataPermission=$this->userPermissionModel->delete($params);
 		if ($hapusDataPermission===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
 			redirect(base_url('UserPermission'));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
 			redirect(base_url('UserPermission'));
 		}
 	}
