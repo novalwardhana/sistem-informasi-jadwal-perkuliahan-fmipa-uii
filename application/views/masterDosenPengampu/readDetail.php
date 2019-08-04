@@ -76,7 +76,7 @@
 
 <script type="text/javascript">
   $('#confirm-delete').on('show.bs.modal', function(e) {
-      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
   });
   function editRow(id) {
     $.ajax({
@@ -133,51 +133,27 @@
     });
   } 
   $(document).ready(function () {
-    var imageMsg="";
-    <?php
-        if ($this->session->flashdata('imageMsg')) {
-    ?>
-            imageMsg="<?php echo $this->session->flashdata('imageMsg') ?>";
-    <?php
-        }
-    ?>
-    if (imageMsg=='update_success') {
-        $.toaster({ 
-            priority : 'success', 
-            title : '<i class="fa fa-check"></i> Info', 
-            message : '<br>Data berhasil diupdate',
-        });
-    } else if (imageMsg=='update_failed') {
-        $.toaster({ 
-            priority : 'danger', 
-            title : '<i class="fa fa-check"></i> Info', 
-            message : '<br>Data gagal diupdate',
-        });
-    } else if (imageMsg=='create_success') {
-        $.toaster({ 
-            priority : 'success', 
-            title : '<i class="fa fa-check"></i> Info', 
-            message : '<br>Data berhasil diinput',
-        });
-    } else if (imageMsg=='create_failed') {
-        $.toaster({ 
-            priority : 'danger', 
-            title : '<i class="fa fa-check"></i> Info', 
-            message : '<br>Data gagal di input',
-        });
-    } else if (imageMsg=='delete_success') {
-        $.toaster({ 
-            priority : 'success', 
-            title : '<i class="fa fa-trash"></i> Info', 
-            message : '<br>Data berhasil dihapus',
-        });
-    } else if (imageMsg=='delete_failed') {
-        $.toaster({ 
-            priority : 'danger', 
-            title : '<i class="fa fa-trash"></i> Info', 
-            message : '<br>Data gagal dihapus',
-        });
-    }
+    var responseModule="";
+		var responseModuleBackground="";
+		var responseModuleMsg="";
+		var responseModuleIcon="";
+		<?php
+		if ($this->session->flashdata('responseModule')) {
+		?>
+			responseModule="<?php echo $this->session->flashdata('responseModule') ?>";
+			responseModuleBackground="<?php echo $this->session->flashdata('responseModuleBackground') ?>";
+			responseModuleMsg="<?php echo $this->session->flashdata('responseModuleMsg') ?>";
+			responseModuleIcon="<?php echo $this->session->flashdata('responseModuleIcon') ?>";
+		<?php
+		}
+		?>
+		if (responseModule!="") {
+			$.toaster({ 
+				priority : responseModuleBackground, 
+				title : '<i class="'+responseModuleIcon+'"></i> Info', 
+				message : responseModuleMsg,
+			});
+		}
 
     var urlGetListDosen = "<?php echo base_url('dosenPengampu/getListDosenPengampu') ?>";
     $('#listDosen').DataTable({

@@ -95,10 +95,16 @@ class DosenPengampu extends CI_Controller {
 		$pathUrl='DosenPengampu/detail?id='.$_POST['id_dosen'];
 		$hasil=$this->dosenPengampuModel->create($params);
 		if ($hasil===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'create_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
 			redirect(base_url($pathUrl));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'create_failed');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
 			redirect(base_url($pathUrl));
 		}
 	}
@@ -178,10 +184,16 @@ class DosenPengampu extends CI_Controller {
 	
 		$hapusDataDosenPengampu=$this->dosenPengampuModel->delete($params);
 		if ($hapusDataDosenPengampu===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
 			redirect(base_url($pathUrl));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
 			redirect(base_url($pathUrl));
 		}
 	}
@@ -196,10 +208,16 @@ class DosenPengampu extends CI_Controller {
 		$pathUrl='DosenPengampu/detail?id='.$_POST['id_dosen'];
 		$hasil=$this->dosenPengampuModel->update($params);
 		if ($hasil===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'update_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
 			redirect(base_url($pathUrl));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'delete_failed');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
 			redirect(base_url($pathUrl));
 		}
 	}
