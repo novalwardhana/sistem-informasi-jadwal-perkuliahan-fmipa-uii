@@ -312,8 +312,8 @@ AAA
                     });
                 } else {
                     $.toaster({ 
-                        priority : 'warning', 
-                        title : '<i class="fa fa-check"></i> Info', 
+                        priority : 'danger', 
+                        title : '<i class="fa fa-times"></i> Info', 
                         message : '<br>'+result.message,
                     });
                 }
@@ -499,8 +499,8 @@ AAA
                         });
                     } else {
                         $.toaster({ 
-                            priority : 'warning', 
-                            title : '<i class="fa fa-check"></i> Info', 
+                            priority : 'danger', 
+                            title : '<i class="fa fa-times"></i> Info', 
                             message : '<br>'+result.message,
                         });
                     }
