@@ -67,86 +67,61 @@
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
+	$('#confirm-delete').on('show.bs.modal', function(e) {
+		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
 
-    $(document).ready(function () {
-        var imageMsg="";
-        <?php
-            if ($this->session->flashdata('imageMsg')) {
-        ?>
-                imageMsg="<?php echo $this->session->flashdata('imageMsg') ?>";
-        <?php
-            }
-        ?>
-        if (imageMsg=='update_success') {
-            $.toaster({ 
-                priority : 'success', 
-                title : '<i class="fa fa-check"></i> Info', 
-                message : '<br>Data berhasil diupdate',
-            });
-        } else if (imageMsg=='update_failed') {
-            $.toaster({ 
-                priority : 'danger', 
-                title : '<i class="fa fa-check"></i> Info', 
-                message : '<br>Data gagal diupdate',
-            });
-        } else if (imageMsg=='create_success') {
-            $.toaster({ 
-                priority : 'success', 
-                title : '<i class="fa fa-check"></i> Info', 
-                message : '<br>Data berhasil diinput',
-            });
-        } else if (imageMsg=='create_failed') {
-            $.toaster({ 
-                priority : 'danger', 
-                title : '<i class="fa fa-check"></i> Info', 
-                message : '<br>Data gagal di input',
-            });
-        } else if (imageMsg=='delete_success') {
-            $.toaster({ 
-                priority : 'success', 
-                title : '<i class="fa fa-trash"></i> Info', 
-                message : '<br>Data berhasil dihapus',
-            });
-        } else if (imageMsg=='delete_failed') {
-            $.toaster({ 
-                priority : 'danger', 
-                title : '<i class="fa fa-trash"></i> Info', 
-                message : '<br>Data gagal dihapus',
-            });
-        }
+	$(document).ready(function () {
+		var responseModule="";
+		var responseModuleBackground="";
+		var responseModuleMsg="";
+		var responseModuleIcon="";
+		<?php
+		if ($this->session->flashdata('responseModule')) {
+		?>
+			responseModule="<?php echo $this->session->flashdata('responseModule') ?>";
+			responseModuleBackground="<?php echo $this->session->flashdata('responseModuleBackground') ?>";
+			responseModuleMsg="<?php echo $this->session->flashdata('responseModuleMsg') ?>";
+			responseModuleIcon="<?php echo $this->session->flashdata('responseModuleIcon') ?>";
+		<?php
+		}
+		?>
+		if (responseModule!="") {
+			$.toaster({ 
+				priority : responseModuleBackground, 
+				title : '<i class="'+responseModuleIcon+'"></i> Info', 
+				message : responseModuleMsg,
+			});
+		}
 
-        var urlGetListUserManagement = "<?php echo base_url('UserManagement/getListUserManagement') ?>";
-        $('#listUserManagement').DataTable({
-            "ordering": false,
-            "autoWidth": false,
-            "processing": true,
-            "serverSide": true,
-            "ajax":{
-                    //"url": "getListMahasiswa",
-                    "url": urlGetListUserManagement,
-                    "dataType": "json",
-                    "type": "POST",
-                    "data":{
-                        
-                    }
-                },
-            "columns": [
-                { "data": "nomor", "className": "text-center", "width": "5%",
-                    render: function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                },
-                { "data": "aksi", "className": "text-center", "width": "8%"},
-                { "data": "nama", "width": "15%" },
-                { "data": "username", "width": "25%" },
-								{ "data": "role", "width": "25%" }
-            ]  
-
-        });
-    });
+		var urlGetListUserManagement = "<?php echo base_url('UserManagement/getListUserManagement') ?>";
+		$('#listUserManagement').DataTable({
+			"ordering": false,
+			"autoWidth": false,
+			"processing": true,
+			"serverSide": true,
+			"ajax":{
+							//"url": "getListMahasiswa",
+							"url": urlGetListUserManagement,
+							"dataType": "json",
+							"type": "POST",
+							"data":{
+									
+							}
+					},
+			"columns": [
+				{ "data": "nomor", "className": "text-center", "width": "5%",
+					render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+					}
+				},
+				{ "data": "aksi", "className": "text-center", "width": "8%"},
+				{ "data": "nama", "width": "15%" },
+				{ "data": "username", "width": "25%" },
+				{ "data": "role", "width": "25%" }
+			]  
+		});
+	});
 </script>
 </body>
 </html>

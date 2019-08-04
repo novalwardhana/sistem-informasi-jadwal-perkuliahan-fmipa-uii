@@ -52,8 +52,15 @@ class UserManagementModel extends CI_Model {
 		return $hasil;
 	}
 
-	public function createValidation($username) {
-		$hasil = $this->db->where('username',$username)->from("user")->count_all_results();
+	public function usernameValidation($username, $id) {
+		if ($id==0) {
+			$hasil = $this->db->where('username',$username)->from("user")->count_all_results();
+		} else {
+			$id = (int) $id;
+			$sql = "SELECT a.* FROM user a WHERE a.id!=$id AND a.username='".$username."' ";
+			$hasil = $this->db->query($sql)->num_rows();
+		}
+		
 		return $hasil;
 	}
 

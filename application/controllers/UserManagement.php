@@ -91,19 +91,28 @@ class UserManagement extends CI_Controller {
 			$params['password']=$_POST['password'];
 			$params['id_role']=$_POST['id_role'];
 
-			$validation = $this->userManagementModel->createValidation($_POST['username']);
+			$validation = $this->userManagementModel->usernameValidation($_POST['username'], 0);
 			if ($validation >= 1) {
-				$this->session->set_flashdata('imageMsg', 'create_failed');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Username sudah pernah digunakan, silahkan menggunakan username lain');
+				redirect(base_url('UserManagement'));
+			}
+
+			$hasil=$this->userManagementModel->create($params);
+			if ($hasil===TRUE) {
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
 				redirect(base_url('UserManagement'));
 			} else {
-				$hasil=$this->userManagementModel->create($params);
-				if ($hasil===TRUE) {
-					$this->session->set_flashdata('imageMsg', 'create_success');
-					redirect(base_url('UserManagement'));
-				} else {
-					$this->session->set_flashdata('imageMsg', 'create_failed');
-					redirect(base_url('UserManagement'));
-				}
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
+				redirect(base_url('UserManagement'));
 			}
 		}
 	}
@@ -125,12 +134,27 @@ class UserManagement extends CI_Controller {
 				'password' => $_POST['password']
 			);
 
+			$validation = $this->userManagementModel->usernameValidation($_POST['username'], $_POST['id']);
+			if ($validation >= 1) {
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Username sudah pernah digunakan, silahkan menggunakan username lain');
+				redirect(base_url('UserManagement'));
+			}
+
 			$hasil = $this->userManagementModel->update($params);
 			if ($hasil===TRUE) {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('responseModule', 'success');
+				$this->session->set_flashdata('responseModuleBackground', 'success');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
 				redirect(base_url('UserManagement'));
 			} else {
-				$this->session->set_flashdata('imageMsg', 'update_success');
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
 				redirect(base_url('UserManagement'));
 			}
 		}
@@ -142,10 +166,16 @@ class UserManagement extends CI_Controller {
 		$params['id']=$id;
 		$hapusDataUser=$this->userManagementModel->delete($params);
 		if ($hapusDataUser===TRUE) {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
 			redirect(base_url('UserManagement'));
 		} else {
-			$this->session->set_flashdata('imageMsg', 'delete_success');
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
 			redirect(base_url('UserManagement'));
 		}
 	}
