@@ -77,6 +77,8 @@
 						<?php
 							}
 						?>
+
+						<li><a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
 					</ul>
         </li>
 				<?php
