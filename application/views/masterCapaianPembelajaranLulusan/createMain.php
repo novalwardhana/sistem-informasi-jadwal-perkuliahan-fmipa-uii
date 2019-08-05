@@ -65,5 +65,9 @@
 			</div>
 		</div>
 	</div>
+
+	<?php
+		$this->load->view('masterCapaianPembelajaranLulusan/createMainModal');
+	?>
 </section>
 

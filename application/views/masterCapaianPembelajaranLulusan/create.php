@@ -73,7 +73,87 @@ AAA
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/plugins/timepicker/bootstrap-timepicker.min.js') ?>"></script>
 
 <script type="text/javascript">
-    
+	function addMataKuliah() {
+		$('#modalCreate').modal('show');
+	}
+
+	function addMataKuliahProcess() {
+		let dataMatkul=[];
+		$('#listMataKuliahModal tbody tr input:checkbox').each(function() {
+			if (this.checked) {
+				dataMatkul.push(parseInt(this.value));
+			}
+		});
+		if (dataMatkul.length==0) {
+			$.toaster({ 
+				priority : 'warning', 
+				title : '<i class="fa fa-exclamation"></i> Info', 
+				message : '<br>Mata kuliah harus dipilih',
+			});
+			return false;
+		}
+		let data = {
+			array_id_mata_kuliah: dataMatkul
+		}
+		$.ajax({
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "<?php echo base_url(); ?>CapaianPembelajaranLulusan/addMataKuliahTemp",
+			type: 'POST',
+			data: data,
+			async: false,
+			success: function(result) {
+				var result = JSON.parse(result);
+				if (result.success) {
+					$.toaster({ 
+						priority : 'success', 
+						title : '<i class="fa fa-check"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				} else {
+					$.toaster({ 
+						priority : 'danger', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				}
+				$('#modalCreate').modal('hide');
+				$('#listMataKuliahModal').DataTable().ajax.reload();
+			}
+		});
+	}
+
+	$(document).ready(function () {
+		var urlGetListMataKuliah = "<?php echo base_url('CapaianPembelajaranLulusan/getListMataKuliah') ?>";
+		$('#listMataKuliahModal').DataTable({
+			"ordering": false,
+			"autoWidth": false,
+			"processing": true,
+			"serverSide": true,
+			"ajax":{
+				//"url": "getListMahasiswa",
+				"url": urlGetListMataKuliah,
+				"dataType": "json",
+				"type": "POST",
+				"data":{
+						
+				}
+			},
+			"columns": [
+				{ "data": "checkbox", "className": "text-center", "width": "5%" },
+				{ "data": "nomor", "className": "text-center", "width": "5%",
+					render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+					}
+				},
+				{ "data": "kode", "width": "15%" },
+				{ "data": "nama", "width": "25%" },
+				{ "data": "semester", "width": "15%" },
+				{ "data": "kontribusi", "width": "15%" }
+			]  
+		});
+	});
 </script>
 </body>
 </html>

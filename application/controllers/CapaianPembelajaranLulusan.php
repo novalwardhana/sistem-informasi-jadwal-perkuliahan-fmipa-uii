@@ -86,4 +86,82 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		}
 	}
 
+	public function getListMataKuliah() {
+		$columns = array( 
+			0 => 'checkbox',
+			1 =>'nomor',
+			2 =>'kode',
+			3 => 'nama',
+			4 => 'semester',
+			5 => 'kontribusi',
+		);
+
+		//Get total data
+		$totalData = $this->capaianPembelajaranLulusanModel->getTotalDataMataKuliah();
+			
+		$limit = $_POST['length'];
+		$start = $_POST['start'];
+		$order = 'id';
+		$dir = 'desc';
+		$search=$_POST['search']['value'];
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search
+		);
+
+		$getListMataKuliah=$this->capaianPembelajaranLulusanModel->getListMataKuliah($params);
+		$totalFiltered=$this->capaianPembelajaranLulusanModel->getListMataKuliahCount($params);
+			
+		$data = array();
+		if(!empty($getListMataKuliah)) {
+			foreach ($getListMataKuliah as $row) {
+				$nestedData['checkbox'] = "<input type='checkbox' class='checkbox1' id='chk' name='check[]' value='".$row->id."'/>";
+				$nestedData['nomor'] = "";
+				$nestedData['kode'] = $row->kode;
+				$nestedData['nama'] = $row->nama;
+				$nestedData['semester'] = $row->semester;
+				$nestedData['kontribusi'] = $row->kontribusi;
+					$data[] = $nestedData;
+			}
+		}
+			
+		$json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
+	
+		echo json_encode($json_data);
+	}
+
+	public function addMataKuliahTemp() {
+		$dataMataKuliah = $_POST['array_id_mata_kuliah'];
+		
+		try {
+			for($i=0; $i<count($dataMataKuliah); $i++) {
+				$id_mata_kuliah = $dataMataKuliah[$i];
+				$params = array(
+					'id_mata_kuliah' => $id_mata_kuliah
+				);
+				$hasil = $this->capaianPembelajaranLulusanModel->addMataKuliah($params);
+			}
+			$data = [
+				'success' => true,
+				'message' => 'Mata kuliah berhasil ditambahkan'
+			];
+			echo json_encode($data);
+		} catch (Exception $e) {
+			$data = [
+				'success' => false,
+				'message' => $e->getMessage()
+			];
+			echo json_encode($data);
+		}
+	}
+
 }
