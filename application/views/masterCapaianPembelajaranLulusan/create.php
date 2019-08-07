@@ -1,4 +1,3 @@
-AAA
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,11 +119,43 @@ AAA
 				}
 				$('#modalCreate').modal('hide');
 				$('#listMataKuliahModal').DataTable().ajax.reload();
+				$('#listMataKuliah').DataTable().ajax.reload();
 			}
 		});
 	}
 
 	$(document).ready(function () {
+		var urlgetMataKuliahCreateCPL = "<?php echo base_url('CapaianPembelajaranLulusan/getMataKuliahCreateCPL') ?>";
+		$('#listMataKuliah').DataTable({
+			"ordering": false,
+			"autoWidth": false,
+			"processing": true,
+			"serverSide": true,
+			"paging": false,
+			"ajax":{
+				//"url": "getListMahasiswa",
+				"url": urlgetMataKuliahCreateCPL,
+				"dataType": "json",
+				"type": "POST",
+				"data":{
+						
+				}
+			},
+			"columns": [
+				{ "data": "nomor", "className": "text-center", "width": "5%",
+					render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+					}
+				},
+				{ "data": "aksi", "width": "5%", "className": "text-center" },
+				{ "data": "kode", "width": "8%", "className": "text-center" },
+				{ "data": "nama", "width": "40%" },
+				{ "data": "semester", "width": "8%", "className": "text-center" },
+				{ "data": "sks", "width": "15%", "className": "text-center" },
+				{ "data": "kontribusi", "width": "15%" },
+			]  
+		});
+
 		var urlGetListMataKuliah = "<?php echo base_url('CapaianPembelajaranLulusan/getListMataKuliah') ?>";
 		$('#listMataKuliahModal').DataTable({
 			"ordering": false,
@@ -154,6 +185,39 @@ AAA
 			]  
 		});
 	});
+
+	function deleteMataKuliah(id) {
+		let data = {
+			id: id
+		}
+
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "<?php echo base_url(); ?>CapaianPembelajaranLulusan/deleteMataKuliahCreateCPL",
+			method: 'POST',
+			data: data,
+			dataType: "json",
+			success: function(result) {
+				if (result.success) {
+					$.toaster({ 
+						priority : 'success', 
+						title : '<i class="fa fa-check"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				} else {
+					$.toaster({ 
+						priority : 'danger', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				}
+				$('#listMataKuliah').DataTable().ajax.reload();
+				$('#listMataKuliahModal').DataTable().ajax.reload();
+			}
+		});
+	}
 </script>
 </body>
 </html>

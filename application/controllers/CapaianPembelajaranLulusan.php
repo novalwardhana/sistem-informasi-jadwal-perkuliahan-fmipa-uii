@@ -164,4 +164,78 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		}
 	}
 
+	public function getMataKuliahCreateCPL() {
+		$columns = array( 
+			0 =>'nomor', 
+			1 =>'kode', 
+			2 =>'nama',
+			3=> 'semester',
+			4=> 'sks',
+			5 => 'kontribusi'
+		);
+
+		$limit = $_POST['length'];
+		$start = $_POST['start'];
+		$order = 'id';
+		$dir = 'desc';
+		$search=$_POST['search']['value'];
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search
+		);
+
+		$totalData=$this->capaianPembelajaranLulusanModel->getMataKuliahCreateCPLTotalData();
+
+		$getMataKuliahCreateCPL=$this->capaianPembelajaranLulusanModel->getMataKuliahCreateCPL($params);
+		$totalFiltered=count($getMataKuliahCreateCPL);
+
+		$data = array();
+		if(!empty($getMataKuliahCreateCPL)) {
+			foreach ($getMataKuliahCreateCPL as $row) {
+				$nestedData['nomor'] = "";
+				$nestedData['aksi'] = "	
+				<button class='btn btn-sm btn-danger' onclick='deleteMataKuliah($row->id)' data-href='".base_url('CapaianPembelajaranLulusan/delete?id=').$row->id."'>
+						<i class='fa fa-trash'></i>
+				</button>
+				";
+				$nestedData['kode'] = $row->kode;
+				$nestedData['nama'] = $row->nama;
+				$nestedData['semester'] = $row->semester;
+				$nestedData['sks'] = $row->sks;
+				$nestedData['kontribusi'] = " ";
+				$data[] = $nestedData;
+			}
+		}
+
+		$json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
+	
+		echo json_encode($json_data);
+
+	}
+
+	public function deleteMataKuliahCreateCPL() {
+		$hapus = $this->capaianPembelajaranLulusanModel->deleteMataKuliahCreateCPL($_POST['id']);
+		if ($hapus) {
+			$data = [
+				'success' => true,
+				'message' => 'Data berhasil di hapus'
+			];
+		} else {
+			$data = [
+				'success' => false,
+				'message' => 'Data gagal di hapus'
+			];
+		}
+		echo json_encode($data);
+	}
+
 }

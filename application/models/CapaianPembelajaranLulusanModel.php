@@ -64,4 +64,41 @@ class CapaianPembelajaranLulusanModel extends CI_Model {
 		return $query;
 	}
 
+	public function getMataKuliahCreateCPLTotalData() {
+		$hasil=$this->db->count_all('capaian_pembelajaran_lulusan_temp');
+		return $hasil;
+	}
+
+	public function getMataKuliahCreateCPL($params) {
+		$sql="SELECT
+				a.id,
+				b.kode,
+				b.nama,
+				b.semester,
+				b.kontribusi AS sks
+			FROM capaian_pembelajaran_lulusan_temp a
+			LEFT JOIN mata_kuliah b ON a.id_mata_kuliah=b.id
+			WHERE b.kode like '%".$params['search']."%' OR
+				b.nama like '%".$params['search']."%' OR
+				b.semester like '%".$params['search']."%' OR
+				b.kontribusi like '%".$params['search']."%'
+			ORDER BY a.id DESC
+		";
+		$query=$this->db->query($sql);
+		$hasil=$query->result();
+		return $hasil;
+	}
+
+	public function deleteMataKuliahCreateCPL($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->delete('capaian_pembelajaran_lulusan_temp');
+
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
 }

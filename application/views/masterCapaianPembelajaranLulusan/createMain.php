@@ -42,6 +42,7 @@
 												<th>Aksi</th>
 												<th>Kode</th>
 												<th>Mata Kuliah</th>
+												<th>Semester</th>
 												<th>SKS</th>
 												<th>Kontribusi</th>
 											</tr>
