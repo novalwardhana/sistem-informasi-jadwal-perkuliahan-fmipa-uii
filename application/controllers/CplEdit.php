@@ -184,4 +184,46 @@ class CplEdit extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	/* Simpan Cpl */
+	public function simpanCpl() {
+		try {
+
+			$params_header = array(
+				'id' => $_POST['id'],
+				'nama' => $_POST['nama_cpl'],
+				'deskripsi' => $_POST['deskripsi_cpl']
+			);
+			$hasil = $this->cplEditModel->simpanCpl($params_header);
+			if (!$hasil) {
+				throw new Exception("Terjadi error saat menyimpan CPL");
+			}
+
+			$cpl_detail = json_decode($_POST['cpl_detail'], true);
+			for($i=0; $i<count($cpl_detail); $i++) {
+				$params_detail = array(
+					'id' => (int) $cpl_detail[$i]['id_capaian_pembelajaran_lulusan_detail'],
+					'kontribusi' => (float) $cpl_detail[$i]['kontribusi']
+				);
+				$hasil_detail = $this->cplEditModel->simpanCplDetail($params_detail);
+				if (!$hasil_detail) {
+					throw new Exception("Terjadi error saat menyimpan CPL detail");
+				}
+			}
+
+			$data = [
+				'success' => true,
+				'message' => 'Mata kuliah berhasil ditambahkan'
+			];
+			echo json_encode($data);
+
+		} catch (Exception $e) {
+			$data = [
+				'success' => false,
+				'message' => $e->getMessage()
+			];
+			echo json_encode($data);
+		}
+
+	}
+
 }

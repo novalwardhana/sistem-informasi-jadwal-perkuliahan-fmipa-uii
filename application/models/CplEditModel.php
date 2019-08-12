@@ -128,5 +128,35 @@ class CplEditModel extends CI_Model {
 			return false;
 		}
 	}
+
+	/*
+		Used in function Controlller simpanCpl
+	*/
+	public function simpanCpl($params) {
+		$data = array(
+			'nama' => $params['nama'],
+			'deskripsi' => $params['deskripsi']
+		);
+		$this->db->where('id', $params['id']);
+		$query=$this->db->update('capaian_pembelajaran_lulusan', $data);
+		if ($query) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function simpanCplDetail($params) {
+		$data = array(
+			'kontribusi' => $params['kontribusi']
+		);
+		$this->db->where('id', $params['id']);
+		$query=$this->db->update('capaian_pembelajaran_lulusan_detail', $data);
+		if ($query) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 	
 }

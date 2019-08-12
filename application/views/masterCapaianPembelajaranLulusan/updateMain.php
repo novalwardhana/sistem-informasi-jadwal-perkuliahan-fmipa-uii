@@ -58,7 +58,7 @@
 							<div class="col-md-12">
 								<center>
 									<button class="btn btn-success" id="saveCpl"><i class="fa fa-floppy-o"></i> Simpan</button>
-									<a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Tutup</button></a>
 								</center>
 								
 							</div>

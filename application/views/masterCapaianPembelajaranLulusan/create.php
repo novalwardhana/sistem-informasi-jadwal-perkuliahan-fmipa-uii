@@ -279,8 +279,7 @@
 					$('#listMataKuliahModal').DataTable().ajax.reload();
 					$('#ListCplDetail').DataTable().ajax.reload();
 				}
-		});
-			
+			});
 		});
 	});
 

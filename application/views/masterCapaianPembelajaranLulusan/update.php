@@ -199,6 +199,98 @@
 			]  
 		});
 
+		$('#saveCpl').click( function() {
+			let id = parseInt("<?php echo $data_cpl->id; ?>");
+
+			let nama_cpl = $("#nama-cpl").val();
+			if (nama_cpl==null || nama_cpl=='') {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Nama CPL harus diisi',
+				});
+				return false;
+			}
+
+			let deskripsi_cpl = $("#deskripsi-cpl").val();
+			if (deskripsi_cpl==null || deskripsi_cpl=='') {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Deskripsi CPL harus diisi',
+				});
+				return false;
+			}
+
+			let data = cplDetail.column(7).data();
+			let data_mata_kuliah = cplDetail.column(8).data();
+			let cpl_detail = [];
+
+			if (data.length==0) {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Detail Cpl harus diisi',
+				});
+				return false;
+			}
+
+			for(i=0; i<data.length; i++) {
+				let kontribusi = ($("#kontribusi-"+data[i]).val() != "") ? parseFloat($("#kontribusi-"+data[i]).val()) : null;
+				if (kontribusi==null || kontribusi=='') {
+					$.toaster({ 
+						priority : 'warning', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+'Kolom kontribusi harus di isi',
+					});
+					return false;
+				}
+
+				cpl_detail[i] = {
+					'id_capaian_pembelajaran_lulusan_detail': parseInt(data[i]),
+					'kontribusi': kontribusi,
+				}
+			}
+
+			let data_params = {
+				'id' : id,
+				'nama_cpl' : nama_cpl,
+				'deskripsi_cpl' : deskripsi_cpl,
+				'cpl_detail': JSON.stringify(cpl_detail)
+			}
+
+			$.ajax({
+				headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				url: "<?php echo base_url(); ?>CplEdit/simpanCpl",
+				method: 'POST',
+				data: data_params,
+				dataType: "json",
+				success: function(result) {
+					if (result.success) {
+						$.toaster({ 
+							priority : 'success', 
+							title : '<i class="fa fa-check"></i> Info', 
+							message : '<br>'+result.message,
+						});
+						setTimeout(() => {
+							location.replace("<?php echo base_url(); ?>CapaianPembelajaranLulusan");
+						}, 1000);
+					} else {
+						$.toaster({ 
+							priority : 'danger', 
+							title : '<i class="fa fa-times"></i> Info', 
+							message : '<br>'+result.message,
+						});
+					}
+					$('#listMataKuliahModal').DataTable().ajax.reload();
+					$('#ListCplDetail').DataTable().ajax.reload();
+				}
+			});
+
+		});
+
 	});
 
 	function deleteCplDetail(id) {
