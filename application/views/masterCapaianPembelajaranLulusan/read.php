@@ -46,7 +46,7 @@
 </div>
 
 <?php
-	$this->load->view('masterDosen/readDeleteModal');
+	$this->load->view('masterCapaianPembelajaranLulusan/readDeleteModal');
 ?>
 
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery/dist/jquery.min.js') ?>"></script>

@@ -18,6 +18,13 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		$this->load->view('masterCapaianPembelajaranLulusan/read');
 	}
 
+	/* Create Cpl */
+	public function create() {
+		$data=array();
+		$this->load->view('masterCapaianPembelajaranLulusan/create', $data);
+	}
+
+	/* Get list Cpl */
 	public function getListCapaianPembelajaranLulusan() {
 		$columns = array( 
 			0 =>'nomor', 
@@ -26,7 +33,6 @@ class CapaianPembelajaranLulusan extends CI_controller {
 			3=> 'deskripsi',
 		);
 			
-		//Get total data
 		$totalData = $this->capaianPembelajaranLulusanModel->getTotalData();
 			
 		$limit = $_POST['length'];
@@ -43,8 +49,8 @@ class CapaianPembelajaranLulusan extends CI_controller {
 			'search' => $search
 		);
 
-		$getListCapaianPembelajaranLulusan=$this->capaianPembelajaranLulusanModel->getListCapaianPembelajaranLulusan($params);
-		$totalFiltered=count($getListCapaianPembelajaranLulusan);
+		$getListCapaianPembelajaranLulusan=$this->capaianPembelajaranLulusanModel->getListCpl($params);
+		$totalFiltered=$this->capaianPembelajaranLulusanModel->getListCplCount($params);
 			
 		$data = array();
 		if(!empty($getListCapaianPembelajaranLulusan)) {
@@ -56,7 +62,7 @@ class CapaianPembelajaranLulusan extends CI_controller {
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
 						
-					<button class='btn btn-sm btn-danger' data-href='".base_url('Dosen/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('CapaianPembelajaranLulusan/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 							<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -76,14 +82,37 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		echo json_encode($json_data);
 	}
 
-	public function create() {
-		$data=array();
-		if(!isset($_POST['simpan'])) {
-			$data=array();
-			$this->load->view('masterCapaianPembelajaranLulusan/create', $data);
-		} else {
+	/* Delete Cpl */
+	public function delete() {
+		$params=[];
+		$id = $_GET['id'];
+		$params['id']=$id;
 
+		try {
+			$hapusDetail = $this->capaianPembelajaranLulusanModel->deleteCplDetail($params);
+			if (!$hapusDetail) {
+				throw new Exception("Data gagal dihapus.");
+			}
+
+			$hapus = $this->capaianPembelajaranLulusanModel->deleteCpl($params);
+			if (!$hapus) {
+				throw new Exception("Data gagal dihapus.");
+			}
+			
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
+			redirect(base_url('CapaianPembelajaranLulusan'));
+
+		} catch (Exception $e) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
+			redirect(base_url('CapaianPembelajaranLulusan'));
 		}
+		
 	}
 
 }
