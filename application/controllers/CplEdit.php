@@ -167,4 +167,21 @@ class CplEdit extends CI_Controller {
 
 	}
 
+	/* Delete Cpl Detail*/
+	public function deleteCplDetail() {
+		$hapus = $this->cplEditModel->deleteCplDetail($_POST['id']);
+		if ($hapus) {
+			$data = [
+				'success' => true,
+				'message' => 'Data berhasil di hapus'
+			];
+		} else {
+			$data = [
+				'success' => false,
+				'message' => 'Data gagal di hapus'
+			];
+		}
+		echo json_encode($data);
+	}
+
 }

@@ -114,5 +114,19 @@ class CplEditModel extends CI_Model {
 		$hasil=$query->result();
 		return $hasil;
 	}
+
+	/*
+		Used in function Controlller deleteCplDetail
+	*/
+	public function deleteCplDetail($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->delete('capaian_pembelajaran_lulusan_detail');
+
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

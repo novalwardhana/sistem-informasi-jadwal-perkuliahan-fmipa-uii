@@ -200,6 +200,39 @@
 		});
 
 	});
+
+	function deleteCplDetail(id) {
+		let data = {
+			id: id
+		}
+
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "<?php echo base_url(); ?>CplEdit/deleteCplDetail",
+			method: 'POST',
+			data: data,
+			dataType: "json",
+			success: function(result) {
+				if (result.success) {
+					$.toaster({ 
+						priority : 'success', 
+						title : '<i class="fa fa-check"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				} else {
+					$.toaster({ 
+						priority : 'danger', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				}
+				$('#listMataKuliahModal').DataTable().ajax.reload();
+				$('#ListCplDetail').DataTable().ajax.reload();
+			}
+		});
+	}
 </script>
 </body>
 </html>
