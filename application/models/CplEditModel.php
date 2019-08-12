@@ -70,6 +70,18 @@ class CplEditModel extends CI_Model {
 	}
 
 	/*
+		Used in function Controlller addCplDetail
+	*/
+	public function addCplDetail($params) {
+		$query=$this->db->insert('capaian_pembelajaran_lulusan_detail', $params);
+		if ($query) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/*
 		Used in function Controlller getListCplDetail
 	*/
 	public function getTotalDataCplDetail($id) {

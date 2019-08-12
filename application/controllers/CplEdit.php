@@ -70,6 +70,38 @@ class CplEdit extends CI_Controller {
 		echo json_encode($json_data);
 	}
 
+	/* Add Cpl detail */
+	public function addCplDetail() {
+		$id = $_POST['id_capaian_pembelajaran_lulusan'];
+		$dataMataKuliah = $_POST['array_id_mata_kuliah'];
+		
+		try {
+			for($i=0; $i<count($dataMataKuliah); $i++) {
+				$id_mata_kuliah = $dataMataKuliah[$i];
+				$params = array(
+					'id_capaian_pembelajaran_lulusan' => $id,
+					'id_mata_kuliah' => $id_mata_kuliah,
+					'kontribusi' => NULL
+				);
+				$hasil = $this->cplEditModel->addCplDetail($params);
+				if (!$hasil) {
+					throw new Exception("Terjadi error saat menyimpan CPL detail");
+				}
+			}
+			$data = [
+				'success' => true,
+				'message' => 'Mata kuliah berhasil ditambahkan'
+			];
+			echo json_encode($data);
+		} catch (Exception $e) {
+			$data = [
+				'success' => false,
+				'message' => $e->getMessage()
+			];
+			echo json_encode($data);
+		}
+	}
+
 	/* Get list CPL Detail*/
 	public function getListCplDetail() {
 		$columns = array( 

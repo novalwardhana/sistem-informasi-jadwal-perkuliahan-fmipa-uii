@@ -75,6 +75,59 @@
 	function addMataKuliah() {
 		$('#modalCreate').modal('show');
 	}
+
+	function addCplDetail() {
+		let dataMatkul=[];
+
+		$('#listMataKuliahModal tbody tr input:checkbox').each(function() {
+			if (this.checked) {
+				dataMatkul.push(parseInt(this.value));
+			}
+		});
+
+		if (dataMatkul.length==0) {
+			$.toaster({ 
+				priority : 'warning', 
+				title : '<i class="fa fa-exclamation"></i> Info', 
+				message : '<br>Mata kuliah harus dipilih',
+			});
+			return false;
+		}
+
+		let data = {
+      id_capaian_pembelajaran_lulusan: parseInt("<?php echo $data_cpl->id; ?>"),
+			array_id_mata_kuliah: dataMatkul
+		}
+		$.ajax({
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "<?php echo base_url(); ?>CplEdit/addCplDetail",
+			type: 'POST',
+			data: data,
+			async: false,
+			success: function(result) {
+				var result = JSON.parse(result);
+				if (result.success) {
+					$.toaster({ 
+						priority : 'success', 
+						title : '<i class="fa fa-check"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				} else {
+					$.toaster({ 
+						priority : 'danger', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+result.message,
+					});
+				}
+				$('#modalCreate').modal('hide');
+				$('#listMataKuliahModal').DataTable().ajax.reload();
+				$('#ListCplDetail').DataTable().ajax.reload();
+			}
+		});
+	}
+
 	$(document).ready(function () {
 		$('#deskripsi-cpl').val("<?php echo $data_cpl->deskripsi; ?>");
 
