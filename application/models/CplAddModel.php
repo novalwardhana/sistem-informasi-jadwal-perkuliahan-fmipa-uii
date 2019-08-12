@@ -119,6 +119,21 @@ class CplAddModel extends CI_Model {
 		}
 	}
 
+	/*
+		Used in function Controlller simpanCpl
+	*/
+	public function simpanCpl($params) {
+		$query=$this->db->insert('capaian_pembelajaran_lulusan', $params);
+		$id_cpl = $this->db->insert_id();
+		return $id_cpl;
+	}
+
+	public function simpanCplDetail($params) {
+		$query=$this->db->insert('capaian_pembelajaran_lulusan_detail', $params);
+		return $query;
+	}
+
+
 
 	
 }

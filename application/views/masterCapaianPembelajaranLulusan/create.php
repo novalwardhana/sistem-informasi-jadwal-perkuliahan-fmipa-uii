@@ -266,6 +266,8 @@
 							title : '<i class="fa fa-check"></i> Info', 
 							message : '<br>'+result.message,
 						});
+						//window.open("<?php echo base_url(); ?>CapaianPembelajaranLulusan");
+						location.replace("<?php echo base_url(); ?>CapaianPembelajaranLulusan");
 					} else {
 						$.toaster({ 
 							priority : 'danger', 

@@ -181,6 +181,41 @@ class CplAdd extends CI_Controller {
 		$nama = $_POST['nama_cpl'];
 		$deskirpsi = $_POST['deskripsi_cpl'];
 
+		$params_header = array(
+			'nama' => $nama,
+			'deskripsi' => $deskirpsi
+		);
+		$id_cpl = $this->cplAddModel->simpanCpl($params_header);
+
+		try {
+			$cpl_detail = json_decode($_POST['cpl_detail'], true);
+			for($i=0; $i<count($cpl_detail); $i++) {
+				$params_detail = array(
+					'id_capaian_pembelajaran_lulusan' => $id_cpl,
+					'id_mata_kuliah' => $cpl_detail[$i]['id_mata_kuliah'],
+					'kontribusi' => $cpl_detail[$i]['kontribusi']
+				);
+				$hasil = $this->cplAddModel->simpanCplDetail($params_detail);
+				if (!$hasil) {
+					throw new Exception("Terjadi error saat menyimpan CPL detail");
+				}
+			}
+			$this->session->set_flashdata('responseModule', 'success');
+			$this->session->set_flashdata('responseModuleBackground', 'success');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
+			$data = [
+				'success' => true,
+				'message' => 'Data berhasil diinput'
+			];
+			echo json_encode($data);
+		} catch (Exception $e) {
+			$data = [
+				'success' => false,
+				'message' => $e->getMessage()
+			];
+			echo json_encode($data);
+		}
 		
 	}
 
