@@ -72,6 +72,9 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/plugins/timepicker/bootstrap-timepicker.min.js') ?>"></script>
 
 <script type="text/javascript">
+	function addMataKuliah() {
+		$('#modalCreate').modal('show');
+	}
 	$(document).ready(function () {
 		$('#deskripsi-cpl').val("<?php echo $data_cpl->deskripsi; ?>");
 
@@ -115,6 +118,33 @@
 			]  
 		});
 
+		var urlGetListMatkul = "<?php echo base_url('CplEdit/getListMataKuliah') ?>";
+		$('#listMataKuliahModal').DataTable({
+			"ordering": false,
+			"autoWidth": false,
+			"processing": true,
+			"serverSide": true,
+			"ajax":{
+				"url": urlGetListMatkul,
+				"dataType": "json",
+				"type": "POST",
+				"data":{
+					"id": "<?php echo $data_cpl->id; ?>"
+				}
+			},
+			"columns": [
+				{ "data": "checkbox", "className": "text-center", "width": "5%" },
+				{ "data": "nomor", "className": "text-center", "width": "5%",
+					render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+					}
+				},
+				{ "data": "kode", "width": "15%" },
+				{ "data": "nama", "width": "25%" },
+				{ "data": "semester", "width": "15%" },
+				{ "data": "kontribusi", "width": "15%" }
+			]  
+		});
 
 	});
 </script>

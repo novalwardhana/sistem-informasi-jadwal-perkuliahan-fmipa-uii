@@ -14,6 +14,62 @@ class CplEdit extends CI_Controller {
 		$this->cplEditModel=$this->CplEditModel;
 	}
 
+	/*
+		Get list mata kuliah
+	*/
+	public function getListMataKuliah() {
+		$columns = array( 
+			0 => 'checkbox',
+			1 =>'nomor',
+			2 =>'kode',
+			3 => 'nama',
+			4 => 'semester',
+			5 => 'kontribusi',
+		);
+
+		$totalData = $this->cplEditModel->getTotalDataMataKuliah($_POST['id']);
+			
+		$limit = $_POST['length'];
+		$start = $_POST['start'];
+		$order = 'id';
+		$dir = 'desc';
+		$search=$_POST['search']['value'];
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search,
+			'id' => $_POST['id']
+		);
+
+		$getListMataKuliah=$this->cplEditModel->getListMataKuliah($params);
+		$totalFiltered=$this->cplEditModel->getListMataKuliahCount($params);
+			
+		$data = array();
+		if(!empty($getListMataKuliah)) {
+			foreach ($getListMataKuliah as $row) {
+				$nestedData['checkbox'] = "<input type='checkbox' class='checkbox1' id='chk' name='check[]' value='".$row->id."'/>";
+				$nestedData['nomor'] = "";
+				$nestedData['kode'] = $row->kode;
+				$nestedData['nama'] = $row->nama;
+				$nestedData['semester'] = $row->semester;
+				$nestedData['kontribusi'] = $row->kontribusi;
+					$data[] = $nestedData;
+			}
+		}
+			
+		$json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
+	
+		echo json_encode($json_data);
+	}
+
 	/* Get list CPL Detail*/
 	public function getListCplDetail() {
 		$columns = array( 
