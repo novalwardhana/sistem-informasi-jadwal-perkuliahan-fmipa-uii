@@ -20,11 +20,11 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Nama</label>
-									<input type="text" name="nama" class="form-control" placeholder="Nama CPL">
+									<input type="text" id="nama-cpl" name="nama" class="form-control" placeholder="Nama CPL">
 								</div>
 								<div class="form-group">
 									<label>Deskripsi</label>
-									<textarea class="form-control" name="deskripsi" rows="3" placeholder="Deskripsi capaian pembelajaran lulusan"></textarea>
+									<textarea class="form-control" id="deskripsi-cpl" name="deskripsi" rows="3" placeholder="Deskripsi capaian pembelajaran lulusan"></textarea>
 								</div>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 							<div class="col-md-12">
 								<button class="btn btn-success" onclick="addMataKuliah()"><i class="fa fa-plus"></i> Mata Kuliah</button>
 								<div class="table-responsive">
-									<table id="listMataKuliah" class="table table-bordered table-striped" style="width: 100%">
+									<table id="ListCplDetail" class="table table-bordered table-striped" style="width: 100%">
 										<thead>
 											<tr>
 												<th>Nomor</th>
@@ -45,6 +45,8 @@
 												<th>Semester</th>
 												<th>SKS</th>
 												<th>Kontribusi</th>
+												<th>ID</th>
+												<th>ID Matkul</th>
 											</tr>
 										</thead>
 									</table>
@@ -55,8 +57,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<center>
-									<button class="btn btn-success" onclick="save()"><i class="fa fa-floppy-o"></i> Simpan</button>
-									<a href="<?php echo base_url('Dosen') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<button class="btn btn-success" id="saveCpl"><i class="fa fa-floppy-o"></i> Simpan</button>
+									<a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</center>
 								
 							</div>

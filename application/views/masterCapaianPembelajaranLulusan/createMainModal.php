@@ -30,7 +30,7 @@
       <div class="modal-footer" style="border-top:none">
         <div class="row">
 					<center>
-					<button type="button" onclick="addMataKuliahProcess()" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>                             
+					<button type="button" onclick="addCplDetail()" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>                             
 					<button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal">Cancel</button>
 					</center>
         </div>

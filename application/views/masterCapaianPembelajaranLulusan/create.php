@@ -76,7 +76,7 @@
 		$('#modalCreate').modal('show');
 	}
 
-	function addMataKuliahProcess() {
+	function addCplDetail() {
 		let dataMatkul=[];
 		$('#listMataKuliahModal tbody tr input:checkbox').each(function() {
 			if (this.checked) {
@@ -98,7 +98,7 @@
 			headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
-			url: "<?php echo base_url(); ?>CapaianPembelajaranLulusan/addMataKuliahTemp",
+			url: "<?php echo base_url(); ?>CplAdd/addCplDetail",
 			type: 'POST',
 			data: data,
 			async: false,
@@ -119,19 +119,26 @@
 				}
 				$('#modalCreate').modal('hide');
 				$('#listMataKuliahModal').DataTable().ajax.reload();
-				$('#listMataKuliah').DataTable().ajax.reload();
+				$('#ListCplDetail').DataTable().ajax.reload();
 			}
 		});
 	}
 
 	$(document).ready(function () {
-		var urlgetMataKuliahCreateCPL = "<?php echo base_url('CapaianPembelajaranLulusan/getMataKuliahCreateCPL') ?>";
-		$('#listMataKuliah').DataTable({
+		var urlgetMataKuliahCreateCPL = "<?php echo base_url('CplAdd/getListCplDetail') ?>";
+		var cplDetail = $('#ListCplDetail').DataTable({
 			"ordering": false,
 			"autoWidth": false,
 			"processing": true,
 			"serverSide": true,
 			"paging": false,
+			"columnDefs" : [
+				{
+					"targets" : [7, 8],
+					"visible" : false,
+					"searchable" : false
+				}
+			],
 			"ajax":{
 				//"url": "getListMahasiswa",
 				"url": urlgetMataKuliahCreateCPL,
@@ -139,7 +146,7 @@
 				"type": "POST",
 				"data":{
 						
-				}
+				},
 			},
 			"columns": [
 				{ "data": "nomor", "className": "text-center", "width": "5%",
@@ -153,18 +160,19 @@
 				{ "data": "semester", "width": "8%", "className": "text-center" },
 				{ "data": "sks", "width": "15%", "className": "text-center" },
 				{ "data": "kontribusi", "width": "15%" },
+				{ "data": "id" },
+				{ "data": "id_mata_kuliah" },
 			]  
 		});
 
-		var urlGetListMataKuliah = "<?php echo base_url('CapaianPembelajaranLulusan/getListMataKuliah') ?>";
+		var urlGetListMatkul = "<?php echo base_url('CplAdd/getListMataKuliah') ?>";
 		$('#listMataKuliahModal').DataTable({
 			"ordering": false,
 			"autoWidth": false,
 			"processing": true,
 			"serverSide": true,
 			"ajax":{
-				//"url": "getListMahasiswa",
-				"url": urlGetListMataKuliah,
+				"url": urlGetListMatkul,
 				"dataType": "json",
 				"type": "POST",
 				"data":{
@@ -184,9 +192,96 @@
 				{ "data": "kontribusi", "width": "15%" }
 			]  
 		});
+
+		$('#saveCpl').click( function() {
+			let nama_cpl = $("#nama-cpl").val();
+			if (nama_cpl==null || nama_cpl=='') {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Nama CPL harus diisi',
+				});
+				return false;
+			}
+
+			let deskripsi_cpl = $("#deskripsi-cpl").val();
+			if (deskripsi_cpl==null || deskripsi_cpl=='') {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Deskripsi CPL harus diisi',
+				});
+				return false;
+			}
+
+			let data = cplDetail.column(7).data();
+			let data_mata_kuliah = cplDetail.column(8).data();
+	
+			let cpl_detail = [];
+
+			if (data.length==0) {
+				$.toaster({ 
+					priority : 'warning', 
+					title : '<i class="fa fa-times"></i> Info', 
+					message : '<br>'+'Detail Cpl harus diisi',
+				});
+				return false;
+			}
+
+			for(i=0; i<data.length; i++) {
+				let kontribusi = ($("#kontribusi-"+data[i]).val() != "") ? parseFloat($("#kontribusi-"+data[i]).val()) : null;
+				if (kontribusi==null || kontribusi=='') {
+					$.toaster({ 
+						priority : 'warning', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+'Kolom kontribusi harus di isi',
+					});
+					return false;
+				}
+
+				cpl_detail[i] = {
+					'id_mata_kuliah': parseInt(data_mata_kuliah[i]),
+					'kontribusi': kontribusi,
+				}
+			}
+
+			let data_params = {
+				'nama_cpl' : nama_cpl,
+				'deskripsi_cpl' : deskripsi_cpl,
+				'cpl_detail': JSON.stringify(cpl_detail)
+			}
+
+			$.ajax({
+				headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				url: "<?php echo base_url(); ?>CplAdd/simpanCpl",
+				method: 'POST',
+				data: data_params,
+				dataType: "json",
+				success: function(result) {
+					if (result.success) {
+						$.toaster({ 
+							priority : 'success', 
+							title : '<i class="fa fa-check"></i> Info', 
+							message : '<br>'+result.message,
+						});
+					} else {
+						$.toaster({ 
+							priority : 'danger', 
+							title : '<i class="fa fa-times"></i> Info', 
+							message : '<br>'+result.message,
+						});
+					}
+					$('#listMataKuliahModal').DataTable().ajax.reload();
+					$('#ListCplDetail').DataTable().ajax.reload();
+				}
+		});
+			
+		});
 	});
 
-	function deleteMataKuliah(id) {
+	function deleteCplDetail(id) {
 		let data = {
 			id: id
 		}
@@ -195,7 +290,7 @@
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
-			url: "<?php echo base_url(); ?>CapaianPembelajaranLulusan/deleteMataKuliahCreateCPL",
+			url: "<?php echo base_url(); ?>CplAdd/deleteCplDetail",
 			method: 'POST',
 			data: data,
 			dataType: "json",
@@ -213,8 +308,8 @@
 						message : '<br>'+result.message,
 					});
 				}
-				$('#listMataKuliah').DataTable().ajax.reload();
 				$('#listMataKuliahModal').DataTable().ajax.reload();
+				$('#ListCplDetail').DataTable().ajax.reload();
 			}
 		});
 	}
