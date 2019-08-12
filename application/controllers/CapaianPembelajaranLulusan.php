@@ -21,6 +21,7 @@ class CapaianPembelajaranLulusan extends CI_controller {
 	/* Create Cpl */
 	public function create() {
 		$data=array();
+		$this->capaianPembelajaranLulusanModel->deleteTempCpl();
 		$this->load->view('masterCapaianPembelajaranLulusan/create', $data);
 	}
 
@@ -58,7 +59,7 @@ class CapaianPembelajaranLulusan extends CI_controller {
 
 				$nestedData['nomor'] = "";
 				$nestedData['aksi'] = "
-					<a href='".base_url('Dosen/update?id=').$row->id."'>
+					<a href='".base_url('CapaianPembelajaranLulusan/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
 						
@@ -80,6 +81,18 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		);
 	
 		echo json_encode($json_data);
+	}
+
+	/*
+		Form update
+	*/
+	public function update() {
+		$id = $_GET['id'];
+		$data_cpl = $this->capaianPembelajaranLulusanModel->getCplById($id);
+		$data = array(
+			'data_cpl' => $data_cpl
+		);
+		$this->load->view('masterCapaianPembelajaranLulusan/update', $data);
 	}
 
 	/* Delete Cpl */

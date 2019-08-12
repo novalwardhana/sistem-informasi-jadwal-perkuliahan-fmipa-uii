@@ -1,0 +1,82 @@
+<?php
+
+class CplEdit extends CI_Controller {
+
+	private $cplEditModel;
+
+	public function __construct() {
+		parent::__construct();
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("Auth"));
+		}
+		$this->load->library('session');
+		$this->load->model('CplEditModel');
+		$this->cplEditModel=$this->CplEditModel;
+	}
+
+	/* Get list CPL Detail*/
+	public function getListCplDetail() {
+		$columns = array( 
+			0 => 'nomor', 
+			1 => 'aksi', 
+			2 => 'kode', 
+			3 => 'nama',
+			4 => 'semester',
+			5 => 'sks',
+			6 => 'kontribusi',
+			7 => 'id',
+			8 => 'id_mata_kuliah'
+		);
+
+		$limit = $_POST['length'];
+		$start = $_POST['start'];
+		$order = 'id';
+		$dir = 'desc';
+		$search=$_POST['search']['value'];
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search,
+			'id' => $_POST['id']
+		);
+
+		$totalData=$this->cplEditModel->getTotalDataCplDetail($_POST['id']);
+
+		$getMataKuliahCreateCPL=$this->cplEditModel->getListCplDetail($params);
+		$totalFiltered=count($getMataKuliahCreateCPL);
+
+		$data = array();
+		if(!empty($getMataKuliahCreateCPL)) {
+			foreach ($getMataKuliahCreateCPL as $row) {
+				$nestedData['nomor'] = "";
+				$nestedData['aksi'] = "	
+				<button class='btn btn-sm btn-danger' onclick='deleteCplDetail($row->id)' data-href='".base_url('CapaianPembelajaranLulusan/delete?id=').$row->id."'>
+						<i class='fa fa-trash'></i>
+				</button>
+				";
+				$nestedData['kode'] = $row->kode;
+				$nestedData['nama'] = $row->nama;
+				$nestedData['semester'] = $row->semester;
+				$nestedData['sks'] = $row->sks;
+				$nestedData['kontribusi'] = "<input type='number' id='kontribusi-$row->id' name='kontribusi-$row->id' value='$row->kontribusi' class='form-control' style='text-align:right; width: 100%' >";;
+				$nestedData['id'] = $row->id;
+				$nestedData['id_mata_kuliah'] = $row->id_mata_kuliah;
+				$data[] = $nestedData;
+			}
+		}
+
+		$json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
+	
+		echo json_encode($json_data);
+
+	}
+
+}

@@ -7,6 +7,23 @@ class CapaianPembelajaranLulusanModel extends CI_Model {
 	}
 
 	/*
+		Used in function Controlller create
+	*/
+	public function deleteTempCpl() {
+		$this->db->empty_table('capaian_pembelajaran_lulusan_temp');
+	}
+
+	/*
+		Used in function Controlller update
+	*/
+	public function getCplById($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->get('capaian_pembelajaran_lulusan');
+		$row=$query->row();
+		return $row;
+	}
+
+	/*
 		Used in function Controlller getListCapaianPembelajaranLulusan
 	*/
 	public function getTotalData() {
