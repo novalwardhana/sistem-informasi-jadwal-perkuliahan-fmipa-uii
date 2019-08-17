@@ -133,6 +133,9 @@
     });
   } 
   $(document).ready(function () {
+		$(".menu-sidebar-agenda-perkuliahan").addClass('active');
+		$(".menu-sidebar-agenda-perkuliahan-pengampu").addClass('active');
+
     var responseModule="";
 		var responseModuleBackground="";
 		var responseModuleMsg="";

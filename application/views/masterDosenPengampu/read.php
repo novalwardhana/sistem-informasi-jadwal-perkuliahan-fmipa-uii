@@ -72,6 +72,9 @@
     });
 
     $(document).ready(function () {
+			$(".menu-sidebar-agenda-perkuliahan").addClass('active');
+			$(".menu-sidebar-agenda-perkuliahan-pengampu").addClass('active');
+
         var urlGetListDosen = "<?php echo base_url('DosenPengampu/getListDosen') ?>";
         $('#listDosen').DataTable({
             "ordering": false,

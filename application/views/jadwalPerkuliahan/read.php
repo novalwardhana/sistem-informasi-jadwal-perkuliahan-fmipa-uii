@@ -77,6 +77,9 @@
   });
  
   $(document).ready(function () {
+		$(".menu-sidebar-agenda-perkuliahan").addClass('active');
+		$(".menu-sidebar-agenda-perkuliahan-jadwal").addClass('active');
+
     var imageMsg="";
     <?php
         if ($this->session->flashdata('imageMsg')) {
