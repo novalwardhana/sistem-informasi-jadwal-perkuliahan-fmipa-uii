@@ -125,6 +125,9 @@
 	}
 
 	$(document).ready(function () {
+		$(".menu-sidebar-master").addClass('active');
+		$(".menu-sidebar-master-cpl").addClass('active');
+
 		var urlgetMataKuliahCreateCPL = "<?php echo base_url('CplAdd/getListCplDetail') ?>";
 		var cplDetail = $('#ListCplDetail').DataTable({
 			"ordering": false,

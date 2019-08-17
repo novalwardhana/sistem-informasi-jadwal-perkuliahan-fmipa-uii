@@ -60,5 +60,11 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/chart.js/Chart.js') ?>"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".menu-sidebar-dashboard").addClass('active');
+	});
+</script>
 </body>
 </html>

@@ -6,13 +6,13 @@
 
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menu</li>
-        <li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="menu-sidebar-dashboard"><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
 				<!-- Treeview Master Data -->
 				<?php
 					if (isset($dataSessionPermission['Mahasiswa']) || isset($dataSessionPermission['MataKuliah']) || isset($dataSessionPermission['Dosen']) || isset($dataSessionPermission['SkorMaks']) || isset($dataSessionPermission['Klasifikasi']) || isset($dataSessionPermission['Harkat']) || isset($dataSessionPermission['Kelas'])) {
 				?>
-				<li class="treeview">
+				<li class="treeview menu-sidebar-master">
           <a href="#">
             <i class="fa fa-cubes"></i>
             <span>Master</span>
@@ -25,7 +25,7 @@
 						<?php
 							if (isset($dataSessionPermission['Mahasiswa'])) {
 						?>
-						<li><a href="<?php echo base_url('Mahasiswa') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
+						<li class="menu-sidebar-master-mahasiswa"><a href="<?php echo base_url('Mahasiswa') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
 						<?php
 							}
 						?>
@@ -33,7 +33,7 @@
 						<?php
 							if (isset($dataSessionPermission['MataKuliah'])) {
 						?>
-            <li><a href="<?php echo base_url('MataKuliah') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
+            <li class="menu-sidebar-master-mata-kuliah"><a href="<?php echo base_url('MataKuliah') ?>" style="margin: 12px 5px;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
 						<?php
 							}
 						?>
@@ -41,7 +41,7 @@
 						<?php
 							if (isset($dataSessionPermission['Dosen'])) {
 						?>
-						<li><a href="<?php echo base_url('Dosen') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
+						<li class="menu-sidebar-master-dosen"><a href="<?php echo base_url('Dosen') ?>" style="margin: 12px 5px;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
             <?php
 							}
 						?>
@@ -49,7 +49,7 @@
 						<?php
 							if (isset($dataSessionPermission['SkorMaks'])) {
 						?>
-						<li><a href="<?php echo base_url('SkorMaks') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
+						<li class="menu-sidebar-master-skor-maks"><a href="<?php echo base_url('SkorMaks') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
 						<?php
 							}
 						?>
@@ -57,7 +57,7 @@
 						<?php
 							if (isset($dataSessionPermission['Klasifikasi'])) {
 						?>
-						<li><a href="<?php echo base_url('Klasifikasi') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
+						<li class="menu-sidebar-master-klasifikasi"><a href="<?php echo base_url('Klasifikasi') ?>" style="margin: 12px 5px;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
             <?php
 							}
 						?>
@@ -65,7 +65,7 @@
 						<?php
 							if (isset($dataSessionPermission['Harkat'])) {
 						?>
-						<li><a href="<?php echo base_url('Harkat') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
+						<li class="menu-sidebar-master-harkat"><a href="<?php echo base_url('Harkat') ?>" style="margin: 12px 5px;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
 						<?php
 							}
 						?>
@@ -73,12 +73,12 @@
 						<?php
 							if (isset($dataSessionPermission['Kelas'])) {
 						?>
-						<li><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
+						<li class="menu-sidebar-master-kelas"><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 5px;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
 						<?php
 							}
 						?>
 
-						<li><a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>" style="margin: 12px 5px; color: #555;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
+						<li class="menu-sidebar-master-cpl"><a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
 					</ul>
         </li>
 				<?php

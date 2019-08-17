@@ -72,6 +72,9 @@
 	});
 
   $(document).ready(function () {
+		$(".menu-sidebar-master").addClass('active');
+		$(".menu-sidebar-master-mahasiswa").addClass('active');
+
 		var responseModule="";
 		var responseModuleBackground="";
 		var responseModuleMsg="";

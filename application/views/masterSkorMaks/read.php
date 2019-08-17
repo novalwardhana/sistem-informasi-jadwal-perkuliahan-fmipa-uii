@@ -72,6 +72,9 @@
 	});
 
   $(document).ready(function () {
+		$(".menu-sidebar-master").addClass('active');
+		$(".menu-sidebar-master-skor-maks").addClass('active');
+
     var responseModule="";
 		var responseModuleBackground="";
 		var responseModuleMsg="";

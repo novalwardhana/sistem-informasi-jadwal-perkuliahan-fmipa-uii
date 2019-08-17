@@ -129,6 +129,9 @@
 	}
 
 	$(document).ready(function () {
+		$(".menu-sidebar-master").addClass('active');
+		$(".menu-sidebar-master-cpl").addClass('active');
+
 		$('#deskripsi-cpl').val("<?php echo $data_cpl->deskripsi; ?>");
 
 		var urlgetMataKuliahCreateCPL = "<?php echo base_url('CplEdit/getListCplDetail') ?>";

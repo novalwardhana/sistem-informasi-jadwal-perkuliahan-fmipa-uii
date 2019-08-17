@@ -71,6 +71,9 @@
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
   $(document).ready(function () {
+		$(".menu-sidebar-master").addClass('active');
+		$(".menu-sidebar-master-kelas").addClass('active');
+
     var responseModule="";
 		var responseModuleBackground="";
 		var responseModuleMsg="";
