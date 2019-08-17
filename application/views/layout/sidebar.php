@@ -126,7 +126,7 @@
 				<?php
 					if (isset($dataSessionPermission['NilaiMataKuliah'])) {
 				?>
-				<li class="treeview">
+				<li class="treeview menu-sidebar-laporan">
 					<a href="#">
             <i class="fa fa-clipboard"></i>
             <span>Laporan</span>
@@ -138,7 +138,7 @@
 						<?php
 							if (isset($dataSessionPermission['NilaiMataKuliah'])) {
 						?>
-						<li><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
+						<li class="menu-sidebar-laporan-nilai-matkul"><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
 						<?php
 							}
 						?>

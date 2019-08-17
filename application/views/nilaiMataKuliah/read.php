@@ -72,6 +72,9 @@
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
 		$(document).ready(function () {
+			$(".menu-sidebar-laporan").addClass('active');
+			$(".menu-sidebar-laporan-nilai-matkul").addClass('active');
+
 			$("#exportButtonPDF").attr("disabled", true);
 			$("#exportButtonExcel").attr("disabled", true);
 		});
