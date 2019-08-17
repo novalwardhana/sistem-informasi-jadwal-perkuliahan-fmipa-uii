@@ -22,8 +22,15 @@
 								<th class="text-center">No</th>
 								<th class="text-center">Aksi</th>
 								<th>Semester</th>
-								<th>CPL</th>
-								<th>Skor Maks</th>
+								<th>CPL 1</th>
+								<th>CPL 2</th>
+								<th>CPL 3</th>
+								<th>CPL 4</th>
+								<th>CPL 5</th>
+								<th>CPL 6</th>
+								<th>CPL 7</th>
+								<th>CPL 8</th>
+								<th>CPL 9</th>
 							</tr>
 						</thead>
 					</table>

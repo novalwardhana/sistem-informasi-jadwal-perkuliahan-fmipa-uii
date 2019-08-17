@@ -19,9 +19,7 @@ class SkorMaksModel extends CI_Model {
 				a.*
 			FROM skor_maks_per_semester a, 
 			(SELECT @rownum := 0) r
-			WHERE a.semester LIKE '%".$params['search']."%' OR
-				a.cpl LIKE '%".$params['search']."%' OR
-				a.skor_maks LIKE '%".$params['search']."%'
+			WHERE a.semester LIKE '%".$params['search']."%'
 			ORDER BY a.id DESC
 			LIMIT $limit OFFSET $start ";
 		$query=$this->db->query($sql);
@@ -35,9 +33,7 @@ class SkorMaksModel extends CI_Model {
 				a.*
 			FROM skor_maks_per_semester a, 
 			(SELECT @rownum := 0) r
-			WHERE a.semester LIKE '%".$params['search']."%' OR
-					a.cpl LIKE '%".$params['search']."%' OR
-					a.skor_maks LIKE '%".$params['search']."%'
+			WHERE a.semester LIKE '%".$params['search']."%'
 			";
 		$query=$this->db->query($sql);
 		$hasil=$query->num_rows();
@@ -45,8 +41,25 @@ class SkorMaksModel extends CI_Model {
 	}
 
 	public function create($params) {
-		$query=$this->db->insert('skor_maks_per_semester', $params);
-		return $query;
+		//$query=$this->db->insert('skor_maks_per_semester', $params);
+		$sql ="INSERT INTO skor_maks_per_semester (semester, skor_maks_cpl_1, skor_maks_cpl_2, skor_maks_cpl_3, skor_maks_cpl_4, skor_maks_cpl_5, skor_maks_cpl_6, skor_maks_cpl_7, skor_maks_cpl_8, skor_maks_cpl_9) VALUES(
+			'".$params['semester']."',
+			'".$params['skor_maks_cpl_1']."',
+			'".$params['skor_maks_cpl_2']."',
+			'".$params['skor_maks_cpl_3']."',
+			'".$params['skor_maks_cpl_4']."',
+			'".$params['skor_maks_cpl_5']."',
+			'".$params['skor_maks_cpl_6']."',
+			'".$params['skor_maks_cpl_7']."',
+			'".$params['skor_maks_cpl_8']."',
+			'".$params['skor_maks_cpl_9']."'
+			)";
+		$query = $this->db->query($sql);
+		if ($query) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 
 	public function getListSkorMaksById($id) {
@@ -59,8 +72,15 @@ class SkorMaksModel extends CI_Model {
 	public function update($params) {
 		$data = [
 			'semester' => $params['semester'],
-			'cpl' => $params['cpl'],
-			'skor_maks' => $params['skor_maks']
+			'skor_maks_cpl_1' => $params['skor_maks_cpl_1'],
+			'skor_maks_cpl_2' => $params['skor_maks_cpl_2'],
+			'skor_maks_cpl_3' => $params['skor_maks_cpl_3'],
+			'skor_maks_cpl_4' => $params['skor_maks_cpl_4'],
+			'skor_maks_cpl_5' => $params['skor_maks_cpl_5'],
+			'skor_maks_cpl_6' => $params['skor_maks_cpl_6'],
+			'skor_maks_cpl_7' => $params['skor_maks_cpl_7'],
+			'skor_maks_cpl_8' => $params['skor_maks_cpl_8'],
+			'skor_maks_cpl_9' => $params['skor_maks_cpl_9'],
 		];
 			
 		$this->db->where('id', $params['id']);

@@ -18,18 +18,58 @@
 						<div class="row">
 							<div class="col-md-6">
 								<input type="hidden" value="<?php echo $dataSkorMaks->id ?>" name="id" class="form-control" required>
+								
 								<div class="form-group">
 									<label>Semester</label>
-									<input type="number" value="<?php echo $dataSkorMaks->semester ?>" name="semester" class="form-control" placeholder="Semester" required>
+									<input type="number" min="0" max="8" value="<?php echo $dataSkorMaks->semester ?>" name="semester" class="form-control" placeholder="Semester" required>
 								</div>
+
 								<div class="form-group">
-									<label>CPL</label>
-									<input type="number" value="<?php echo $dataSkorMaks->cpl ?>" name="cpl" class="form-control" placeholder="Capaian Pembelajaran Per Semester" required>
+									<label>CPL 1</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_1 ?>" step="0.01" name="skor_maks_cpl_1" class="form-control" placeholder="Skor maksimum CPL 1" required>
 								</div>
+
 								<div class="form-group">
-									<label>Skor Maksimum</label>
-									<input type="number" value="<?php echo $dataSkorMaks->skor_maks ?>" step="0.01" name="skor_maks" class="form-control" placeholder="Skor Maksimum" required>
+									<label>CPL 2</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_2 ?>" step="0.01" name="skor_maks_cpl_2" class="form-control" placeholder="Skor maksimum CPL 2" required>
 								</div>
+
+								<div class="form-group">
+									<label>CPL 3</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_3 ?>" step="0.01" name="skor_maks_cpl_3" class="form-control" placeholder="Skor maksimum CPL 3" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 4</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_4 ?>" step="0.01" name="skor_maks_cpl_4" class="form-control" placeholder="Skor maksimum CPL 4" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 5</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_5 ?>" step="0.01" name="skor_maks_cpl_5" class="form-control" placeholder="Skor maksimum CPL 5" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 6</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_6 ?>" step="0.01" name="skor_maks_cpl_6" class="form-control" placeholder="Skor maksimum CPL 6" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 7</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_7 ?>" step="0.01" name="skor_maks_cpl_7" class="form-control" placeholder="Skor maksimum CPL 7" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 8</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_8 ?>" step="0.01" name="skor_maks_cpl_8" class="form-control" placeholder="Skor maksimum CPL 8" required>
+								</div>
+
+								<div class="form-group">
+									<label>CPL 9</label>
+									<input type="number" min="0" max="100" value="<?php echo $dataSkorMaks->skor_maks_cpl_9 ?>" step="0.01" name="skor_maks_cpl_9" class="form-control" placeholder="Skor maksimum CPL 9" required>
+								</div>
+
+
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
 									<a href="<?php echo base_url('SkorMaks') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>

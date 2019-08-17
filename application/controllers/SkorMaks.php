@@ -20,11 +20,18 @@ class SkorMaks extends CI_Controller {
 
 	public function getListSkorMaks() {
 		$columns = array( 
-			0 =>'nomor', 
-			1 =>'aksi', 
-			2 =>'semester',
-			3=> 'cpl',
-			4=> 'skor_maks'
+			0  => 'nomor', 
+			1  => 'aksi', 
+			2  => 'semester',
+			3  => 'skor_maks_cpl_1',
+			4  => 'skor_maks_cpl_2',
+			5  => 'skor_maks_cpl_3',
+			6  => 'skor_maks_cpl_4',
+			7  => 'skor_maks_cpl_5',
+			8  => 'skor_maks_cpl_6',
+			9  => 'skor_maks_cpl_7',
+			10 => 'skor_maks_cpl_8',
+			11 => 'skor_maks_cpl_9',
 		);
 
 		//Get total data
@@ -60,8 +67,15 @@ class SkorMaks extends CI_Controller {
 					</button>
 					";
 				$nestedData['semester'] = $row->semester;
-				$nestedData['cpl'] = $row->cpl;
-				$nestedData['skor_maks'] = $row->skor_maks;
+				$nestedData['skor_maks_cpl_1'] = $row->skor_maks_cpl_1;
+				$nestedData['skor_maks_cpl_2'] = $row->skor_maks_cpl_2;
+				$nestedData['skor_maks_cpl_3'] = $row->skor_maks_cpl_3;
+				$nestedData['skor_maks_cpl_4'] = $row->skor_maks_cpl_4;
+				$nestedData['skor_maks_cpl_5'] = $row->skor_maks_cpl_5;
+				$nestedData['skor_maks_cpl_6'] = $row->skor_maks_cpl_6;
+				$nestedData['skor_maks_cpl_7'] = $row->skor_maks_cpl_7;
+				$nestedData['skor_maks_cpl_8'] = $row->skor_maks_cpl_8;
+				$nestedData['skor_maks_cpl_9'] = $row->skor_maks_cpl_9;
 				$data[] = $nestedData;
 			}
 		}
@@ -82,18 +96,32 @@ class SkorMaks extends CI_Controller {
 			$data=array();
 			$this->load->view('masterSkorMaks/create', $data);
 		} else {
-			$params=array();
-			$params['semester']=$_POST['semester'];
-			$params['cpl']=$_POST['cpl'];
-			$params['skor_maks']=$_POST['skor_maks'];
-			$hasil=$this->skorMaksModel->create($params);
-			if ($hasil===TRUE) {
+	
+			try {
+				$params=array();
+				$params['semester']=$_POST['semester'];
+				$params['skor_maks_cpl_1']=$_POST['skor_maks_cpl_1'];
+				$params['skor_maks_cpl_2']=$_POST['skor_maks_cpl_2'];
+				$params['skor_maks_cpl_3']=$_POST['skor_maks_cpl_3'];
+				$params['skor_maks_cpl_4']=$_POST['skor_maks_cpl_4'];
+				$params['skor_maks_cpl_5']=$_POST['skor_maks_cpl_5'];
+				$params['skor_maks_cpl_6']=$_POST['skor_maks_cpl_6'];
+				$params['skor_maks_cpl_7']=$_POST['skor_maks_cpl_7'];
+				$params['skor_maks_cpl_8']=$_POST['skor_maks_cpl_8'];
+				$params['skor_maks_cpl_9']=$_POST['skor_maks_cpl_9'];
+
+				$hasil=$this->skorMaksModel->create($params);
+				if (!hasil) {
+					throw new Exception("Data gagal dihapus.");
+				}
+
 				$this->session->set_flashdata('responseModule', 'success');
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
 				redirect(base_url('SkorMaks'));
-			} else {
+
+			} catch (Exception $e) {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');

@@ -116,9 +116,16 @@
 					}
 				},
 				{ "data": "aksi", "className": "text-center", "width": "8%"},
-				{ "data": "semester", "width": "15%" },
-				{ "data": "cpl", "width": "25%" },
-				{ "data": "skor_maks", "width": "15%" }
+				{ "data": "semester", "className": "text-center", "width": "10%" },
+				{ "data": "skor_maks_cpl_1", "className": "text-right" },
+				{ "data": "skor_maks_cpl_2", "className": "text-right" },
+				{ "data": "skor_maks_cpl_3", "className": "text-right" },
+				{ "data": "skor_maks_cpl_4", "className": "text-right" },
+				{ "data": "skor_maks_cpl_5", "className": "text-right" },
+				{ "data": "skor_maks_cpl_6", "className": "text-right" },
+				{ "data": "skor_maks_cpl_7", "className": "text-right" },
+				{ "data": "skor_maks_cpl_8", "className": "text-right" },
+				{ "data": "skor_maks_cpl_9", "className": "text-right" },
 			]  
 		});
   });

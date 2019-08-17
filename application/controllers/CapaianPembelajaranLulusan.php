@@ -109,7 +109,9 @@ class CapaianPembelajaranLulusan extends CI_controller {
 
 			$hapus = $this->capaianPembelajaranLulusanModel->deleteCpl($params);
 			if (!$hapus) {
+				echo "aaa";
 				throw new Exception("Data gagal dihapus.");
+				exit();
 			}
 			
 			$this->session->set_flashdata('responseModule', 'success');
