@@ -92,6 +92,9 @@
     });
   });
 	$(document).ready(function () {
+		$(".menu-sidebar-user-management").addClass('active');
+		$(".menu-sidebar-user-management-role").addClass('active');
+
 		var data_permission=<?php echo $dataRolePermission ?>;
     for(i=0; i<data_permission.length; i++) {
       $("#"+data_permission[i].module).prop('checked', true);

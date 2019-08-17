@@ -83,6 +83,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
+		$(".menu-sidebar-user-management").addClass('active');
+		$(".menu-sidebar-user-management-user").addClass('active');
+
 		var id_role = "<?php echo $dataUser->id_role; ?>";
 		id_role = parseInt(id_role);
 		$(".selectUserRole").val(id_role).trigger("change");

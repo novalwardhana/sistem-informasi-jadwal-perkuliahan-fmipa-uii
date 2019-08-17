@@ -152,7 +152,7 @@
 				<?php
 					if (isset($dataSessionPermission['UserManagement']) || isset($dataSessionPermission['UserRole']) || isset($dataSessionPermission['UserPermission'])) {
 				?>
-				<li class="treeview">
+				<li class="treeview menu-sidebar-user-management">
 					<a href="#">
             <i class="fa fa-users"></i>
             <span>User Management</span>
@@ -164,7 +164,7 @@
 						<?php
 							if (isset($dataSessionPermission['UserManagement'])) {
 						?>
-						<li><a href="<?php echo base_url('UserManagement') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-user"></i> <span>Users</span></a></li>
+						<li class="menu-sidebar-user-management-user"><a href="<?php echo base_url('UserManagement') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-user"></i> <span>Users</span></a></li>
 						<?php
 							}
 						?>
@@ -172,7 +172,7 @@
 						<?php
 							if (isset($dataSessionPermission['UserRole'])) {
 						?>
-						<li><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-toggle-on"></i> <span>Role</span></a></li>
+						<li class="menu-sidebar-user-management-role"><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-toggle-on"></i> <span>Role</span></a></li>
 						<?php
 							}
 						?>
@@ -180,7 +180,7 @@
 						<?php
 							if (isset($dataSessionPermission['UserPermission'])) {
 						?>
-						<li><a href="<?php echo base_url('UserPermission') ?>" style="margin: 1px 5px 12px 5px; color: #555;"><i class="fa fa-key"></i> <span>Permission</span></a></li>
+						<li class="menu-sidebar-user-management-permission"><a href="<?php echo base_url('UserPermission') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-key"></i> <span>Permission</span></a></li>
 						<?php
 							}
 						?>

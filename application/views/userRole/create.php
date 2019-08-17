@@ -82,6 +82,11 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
 
 <script type="text/javascript">
+	$(document).ready(function () {
+		$(".menu-sidebar-user-management").addClass('active');
+		$(".menu-sidebar-user-management-role").addClass('active');
+	});
+
 	$(function() {
     
   });

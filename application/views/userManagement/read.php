@@ -72,6 +72,9 @@
 	});
 
 	$(document).ready(function () {
+		$(".menu-sidebar-user-management").addClass('active');
+		$(".menu-sidebar-user-management-user").addClass('active');
+
 		var responseModule="";
 		var responseModuleBackground="";
 		var responseModuleMsg="";
