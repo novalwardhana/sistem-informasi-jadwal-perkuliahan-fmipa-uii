@@ -19,6 +19,10 @@ class DosenPengampu extends CI_Controller {
 	}
 
 	public function index() {
+		if ($this->session->userdata('role_user')==='Dosen') {
+			$pathUrl = base_url('DosenPengampu/detail?id=').$this->session->userdata('id_dosen');
+			redirect($pathUrl);
+		}
 		$this->load->view('masterDosenPengampu/read');
 	}
 
@@ -77,7 +81,12 @@ class DosenPengampu extends CI_Controller {
 	}
 
 	public function detail() {
-		$id=$_GET['id'];
+		if ($this->session->userdata('role_user')==='Dosen') {
+			$id = $this->session->userdata('id_dosen');
+		} else {
+			$id=$_GET['id'];
+		}
+
 		$dataDosen=$this->dosenModel->getListDosenById($id);
 		$dataMataKuliah=$this->dosenPengampuModel->getListMataKuliah();
 		$dataKelas=$this->dosenPengampuModel->getListKelas();

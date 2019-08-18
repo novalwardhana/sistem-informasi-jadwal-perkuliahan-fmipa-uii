@@ -6,13 +6,26 @@ class JadwalPerkuliahanModel extends CI_Model {
 	}
 
 	public function getTotalDataDosenPengampu() {
-		$hasil = $this->db->from("dosen_pengampu_mata_kuliah")->count_all_results();
+		if ($this->session->userdata('role_user')==='Dosen') {
+			$id_dosen = $this->session->userdata('id_dosen');
+			$hasil = $this->db->where('id_dosen',$id_dosen)->from("dosen_pengampu_mata_kuliah")->count_all_results();
+		} else {
+			$hasil = $this->db->from("dosen_pengampu_mata_kuliah")->count_all_results();
+		}
+
 		return $hasil;
 	}
 
 	public function getListDosenPengampu($params) {
 		$limit=(int)$params['limit'];
 		$start=(int)$params['start'];
+
+		if ($this->session->userdata('role_user')==='Dosen') {
+			$id_dosen = $this->session->userdata('id_dosen');
+			$search_dosen = " a.id_dosen='".$id_dosen."' ";
+		} else {
+			$search_dosen = " 1=1 ";
+		}
 
 		$sql="SELECT 
 				@rownum := @rownum + 1 AS nomor,
@@ -33,14 +46,16 @@ class JadwalPerkuliahanModel extends CI_Model {
 			LEFT join dosen d ON a.id_dosen=d.id,
 			(SELECT @rownum := 0) r
 			WHERE
-			d.nik like '%".$params['search']."%' OR
+			$search_dosen
+			AND
+			(d.nik like '%".$params['search']."%' OR
 			d.nama like '%".$params['search']."%' OR
 			b.kode like '%".$params['search']."%' OR
 			b.nama like '%".$params['search']."%' OR
 			c.kode like '%".$params['search']."%' OR
 			a.jam_mulai like '%".$params['search']."%' OR
 			a.jam_selesai like '%".$params['search']."%' OR
-			a.ruang like '%".$params['search']."%'
+			a.ruang like '%".$params['search']."%')
 			ORDER BY id DESC
 			LIMIT $limit OFFSET $start ";
 
@@ -50,33 +65,30 @@ class JadwalPerkuliahanModel extends CI_Model {
 	}
 
 	public function getListDosenPengampuCount($params) {
+		if ($this->session->userdata('role_user')==='Dosen') {
+			$id_dosen = $this->session->userdata('id_dosen');
+			$search_dosen = " a.id_dosen='".$id_dosen."' ";
+		} else {
+			$search_dosen = " 1=1 ";
+		}
 		$sql="SELECT 
-				@rownum := @rownum + 1 AS nomor,
-				a.id,
-				a.id_dosen,
-				a.id_kelas,
-				d.nik,
-				d.nama AS dosen,
-				b.kode as kode_mata_kuliah,
-				b.nama as mata_kuliah,
-				c.kode as kelas,
-				a.jam_mulai,
-				a.jam_selesai,
-				a.ruang
+				a.id
 			FROM dosen_pengampu_mata_kuliah a
 			LEFT join mata_kuliah b on a.id_mata_kuliah=b.id
 			LEFT join kelas c on a.id_kelas=c.id
 			LEFT join dosen d ON a.id_dosen=d.id,
 			(SELECT @rownum := 0) r
 			WHERE 
-				d.nik like '%".$params['search']."%' OR
+				$search_dosen
+				AND
+				(d.nik like '%".$params['search']."%' OR
 				d.nama like '%".$params['search']."%' OR
 				b.kode like '%".$params['search']."%' OR
 				b.nama like '%".$params['search']."%' OR
 				c.kode like '%".$params['search']."%' OR
 				a.jam_mulai like '%".$params['search']."%' OR
 				a.jam_selesai like '%".$params['search']."%' OR
-				a.ruang like '%".$params['search']."%'
+				a.ruang like '%".$params['search']."%')
 			";
 
 		$query=$this->db->query($sql);

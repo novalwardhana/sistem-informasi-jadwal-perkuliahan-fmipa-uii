@@ -8,8 +8,16 @@
 			return $hasil;
 		}
 
-		public function cek_role($params) {
-			$sql="SELECT a.id_role FROM user a WHERE a.username='".$params['username']."' AND a.password='".$params['password']."' ";
+		public function dataUser($params) {
+			$sql="SELECT 
+					a.id_role, 
+					a.id_dosen, 
+					a.id_mahasiswa,
+					b.nama as role_user
+				FROM user a 
+				LEFT JOIN user_role b ON a.id_role=b.id
+				WHERE a.username='".$params['username']."' AND 
+					a.password='".$params['password']."' ";
 			$query=$this->db->query($sql);
 			$hasil=$query->first_row();
 			return $hasil;

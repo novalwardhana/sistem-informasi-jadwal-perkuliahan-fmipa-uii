@@ -22,11 +22,14 @@
 			$hasil=$this->authModel->aksi_login($params);
 			if ($hasil==1) {
 				
-				$role=$this->authModel->cek_role($params);
+				$dataUser=$this->authModel->dataUser($params);
 				$data_pengguna=array(
 					"username"=>$params['username'],
 					"password"=>$params['password'],
-					"id_role"=>$role->id_role,
+					"id_role"=>$dataUser->id_role,
+					"id_dosen" => $dataUser->id_dosen,
+					"id_mahasiswa" => $dataUser->id_mahasiswa,
+					"role_user" => $dataUser->role_user,
 					"status"=>"login"
 				);
 				$data_permission = $this->authModel->getListPermission($data_pengguna['id_role']);

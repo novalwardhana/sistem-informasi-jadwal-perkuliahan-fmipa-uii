@@ -85,9 +85,21 @@ class JadwalPerkuliahan extends CI_controller {
 
 	public function detail() {
 		$dataPengampu = $this->jadwalPerkuliahanModel->getListDosenPengampuById($_GET['id']);
-		
+
+		//Validasi role user dosen
+		if ($this->session->userdata('role_user')==='Dosen') {
+			if (isset($dataPengampu->id_dosen)) {
+				if ($dataPengampu->id_dosen != $this->session->userdata('id_dosen')) {
+					redirect(base_url("JadwalPerkuliahan"));
+				}
+			} else {
+				redirect(base_url("JadwalPerkuliahan"));
+			}
+		}
+
 		$data=[];
 		$data['dataPengampu'] = $dataPengampu;
+	
 		$this->load->view('jadwalPerkuliahan/readDetail', $data);
 	}
 
