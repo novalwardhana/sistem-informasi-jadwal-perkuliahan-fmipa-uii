@@ -41,31 +41,13 @@ class DosenModel extends CI_Model {
 		return $hasil;
 	}
 
-	public function validationNIK($nik, $id) {
-		if ($id==0) {
-			$hasil = $this->db->where('nik',$nik)->from("dosen")->count_all_results();
-		} else {
-
-			$id = (int) $id;
-			$sql = "SELECT a.* FROM dosen a WHERE a.id!=$id AND a.nik='".$nik."' ";
-			$hasil = $this->db->query($sql)->num_rows();
-			
-		}
+	public function validationNIK($nik) {
+		$hasil = $this->db->where('nik',$nik)->from("dosen")->count_all_results();
 		return $hasil;
 	}
 
-	public function validationUsername($nik, $id) {
-		if ($id==0) {
-
-			$hasil = $this->db->where('username',$nik)->from("user")->count_all_results();
-
-		} else {
-
-			$id = (int) $id;
-			$sql = "SELECT a.* FROM user a WHERE a.id_dosen!=$id AND a.username='".$nik."' ";
-			$hasil = $this->db->query($sql)->num_rows();
-
-		}
+	public function validationUsername($nik) {
+		$hasil = $this->db->where('username',$nik)->from("user")->count_all_results();
 		return $hasil;
 	}
 
@@ -110,7 +92,7 @@ class DosenModel extends CI_Model {
 		$this->db->where('id', $params['id']);
 		$query=$this->db->update('dosen', $data);
 
-		$this->updateUser($params);
+		$this->updateUser($params['id'], $params['nama']);
 
 		if ($query) {
 			return true;
@@ -119,15 +101,11 @@ class DosenModel extends CI_Model {
 		}
 	}
 
-	private function updateUser($params) {
+	private function updateUser($id_dosen, $nama) {
 		$data = [
-			'username' => $params['nik'],
-			'password' => $params['nik']
+			'nama' => $nama
 		];
-		
-		$id = (int) $params['id'];
-
-		$this->db->where('id_dosen', $id);
+		$this->db->where('id_dosen', $id_dosen);
 		$query=$this->db->update('user', $data);
 	}
 

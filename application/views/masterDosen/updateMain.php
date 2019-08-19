@@ -20,7 +20,7 @@
 								<input type="hidden" value="<?php echo $dataDosen->id ?>" name="id" class="form-control" required>
 								<div class="form-group">
 									<label>NIK</label>
-									<input type="number" value="<?php echo $dataDosen->nik ?>" name="nik" class="form-control" placeholder="Nomor induk pegawai" required>
+									<input type="number" value="<?php echo $dataDosen->nik ?>" name="nik" class="form-control" placeholder="Nomor induk pegawai" readonly required>
 								</div>
 								<div class="form-group">
 									<label>Nama</label>

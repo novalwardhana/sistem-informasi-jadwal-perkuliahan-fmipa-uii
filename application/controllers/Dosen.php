@@ -87,7 +87,7 @@ class Dosen extends CI_Controller {
 			$params['nama']=$_POST['nama'];
       $params['password']='1234';
       
-			$validationNIK = $this->dosenModel->validationNIK($params['nik'], 0);
+			$validationNIK = $this->dosenModel->validationNIK($params['nik']);
 			if ($validationNIK>=1) {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
@@ -96,7 +96,7 @@ class Dosen extends CI_Controller {
 				redirect(base_url('Dosen'));
 			}
 
-			$validationUsername = $this->dosenModel->validationUsername($params['nik'], 0);
+			$validationUsername = $this->dosenModel->validationUsername($params['nik']);
 			if ($validationUsername>=1) {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
@@ -142,24 +142,6 @@ class Dosen extends CI_Controller {
 			$this->load->view('masterDosen/update', $data);
 		} else {
 			$params=$_POST;
-
-			$validationNIK = $this->dosenModel->validationNIK($params['nik'], $_POST['id']);
-			if ($validationNIK>=1) {
-				$this->session->set_flashdata('responseModule', 'failed');
-				$this->session->set_flashdata('responseModuleBackground', 'danger');
-				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan, silahkan menggunakan NIK lain');
-				redirect(base_url('Dosen'));
-			}
-
-			$validationUsername = $this->dosenModel->validationUsername($params['nik'], $_POST['id']);
-			if ($validationUsername>=1) {
-				$this->session->set_flashdata('responseModule', 'failed');
-				$this->session->set_flashdata('responseModuleBackground', 'danger');
-				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				$this->session->set_flashdata('responseModuleMsg', '<br>NIK sudah digunakan untuk username, silahkan menggunakan NIK lain');
-				redirect(base_url('Dosen'));
-			}
 
 			$updateDataDosen=$this->dosenModel->update($params);
 			if ($updateDataDosen===TRUE) {
