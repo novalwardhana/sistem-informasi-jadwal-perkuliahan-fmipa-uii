@@ -3,9 +3,19 @@
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
-
+			
+			<div class="user-panel">
+        <div class="pull-left image">
+          <img src="https://placehold.it/160x160/00a65a/ffffff/&text=<?php echo substr($this->session->userdata('nama_user'), 0, 1); ?>" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><?php echo $this->session->userdata('nama_user'); ?></p>
+					<a href="#"><i class="fa fa-user text-success"></i> <?php echo $this->session->userdata('username'); ?></a>
+					<a href="#"><i class="fa fa-toggle-on text-success"></i> <?php echo $this->session->userdata('role_user'); ?></a>
+				</div>
+			</div>
+			
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menu</li>
         <li class="menu-sidebar-dashboard"><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
 				<!-- Treeview Master Data -->

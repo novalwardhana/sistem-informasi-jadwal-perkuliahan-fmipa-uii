@@ -13,7 +13,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li>
-            <a href="<?php echo base_url('Auth/logout') ?>"><i class="fa fa-sign-in"></i></a>
+            <a href="<?php echo base_url('Auth/logout') ?>"><i class="fa fa-sign-in"></i> Logout</a>
           </li>
         </ul>
       </div>

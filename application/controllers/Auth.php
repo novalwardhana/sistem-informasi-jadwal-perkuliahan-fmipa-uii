@@ -26,6 +26,7 @@
 				$data_pengguna=array(
 					"username"=>$params['username'],
 					"password"=>$params['password'],
+					"nama_user"=>$dataUser->nama_user,
 					"id_role"=>$dataUser->id_role,
 					"id_dosen" => $dataUser->id_dosen,
 					"id_mahasiswa" => $dataUser->id_mahasiswa,
