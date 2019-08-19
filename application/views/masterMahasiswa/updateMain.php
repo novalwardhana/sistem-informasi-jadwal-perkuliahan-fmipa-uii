@@ -24,7 +24,7 @@
 								</div>
 								<div class="form-group">
 									<label>NIM</label>
-									<input type="number" value="<?php echo $dataMahasiswa->nim ?>" name="nim" class="form-control" placeholder="Nomor induk mahasiswa" required>
+									<input type="number" value="<?php echo $dataMahasiswa->nim ?>" name="nim" class="form-control" placeholder="Nomor induk mahasiswa" readonly required>
 								</div>
 								<div class="form-group">
 									<label>Semester</label>

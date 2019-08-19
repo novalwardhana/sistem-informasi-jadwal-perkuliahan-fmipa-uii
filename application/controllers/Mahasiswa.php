@@ -89,7 +89,35 @@ class Mahasiswa extends CI_Controller {
 			$params['nim']=$_POST['nim'];
 			$params['password']=$_POST['password'];
 			$params['semester']=$_POST['semester'];
-			$hasil=$this->mahasiswaModel->create($params);
+
+			$validationNIM = $this->mahasiswaModel->validationNIM($params['nim']);
+			if ($validationNIM>=1) {
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM sudah digunakan');
+				redirect(base_url('Mahasiswa'));
+			}
+
+			$validationUsername = $this->mahasiswaModel->validationUsername($params['nim']);
+			if ($validationUsername>=1) {
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIM sudah digunakan untuk username, silahkan menggunakan NIM lain');
+				redirect(base_url('Mahasiswa'));
+			}
+
+			$role = $this->mahasiswaModel->getRoleId();
+			if (!isset($role['id'])) {
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Tidak ada user role Mahasiswa, silahkan buat terlebih dahulu di menu user management / hubungi admin');
+				redirect(base_url('Dosen'));
+			}
+
+			$hasil=$this->mahasiswaModel->create($params, $role['id']);
 			if ($hasil===TRUE) {
 				$this->session->set_flashdata('responseModule', 'success');
 				$this->session->set_flashdata('responseModuleBackground', 'success');
@@ -119,6 +147,7 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('masterMahasiswa/update', $data);
 		} else {
 			$params=$_POST;
+
 			$updateDataMahasiswa=$this->mahasiswaModel->update($params);
 			if ($updateDataMahasiswa===TRUE) {
 				$this->session->set_flashdata('responseModule', 'success');
