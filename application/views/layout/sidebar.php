@@ -135,7 +135,7 @@
 
 				<!-- Treeview Laporan -->
 				<?php
-					if (isset($dataSessionPermission['NilaiMataKuliah'])) {
+					if (isset($dataSessionPermission['NilaiMataKuliah']) || isset($dataSessionPermission['NilaiMataKuliahByMahasiswa'])) {
 				?>
 				<li class="treeview menu-sidebar-laporan">
 					<a href="#">
@@ -150,6 +150,14 @@
 							if (isset($dataSessionPermission['NilaiMataKuliah'])) {
 						?>
 						<li class="menu-sidebar-laporan-nilai-matkul"><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
+						<?php
+							}
+						?>
+
+						<?php
+							if (isset($dataSessionPermission['NilaiMataKuliahByMahasiswa'])) {
+						?>
+						<li class="menu-sidebar-laporan-nilai-matkul-by-mahasiswa"><a href="<?php echo base_url('nilai-mata-kuliah-by-mahasiswa') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
 						<?php
 							}
 						?>

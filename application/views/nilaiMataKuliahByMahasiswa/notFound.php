@@ -38,9 +38,28 @@
   ?>
 
   <div class="content-wrapper">
-    <?php
-			$this->load->view('nilaiMataKuliahByMahasiswa/readMain');
-		?>
+		<section class="content">
+			<div class="row">
+				<!-- Breadcrumbs -->
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li class="active">Laporan</li>
+						<li class="active">Nilai Mahasiswa</li>
+						<li class="active">List</li>
+					</ol>
+				</div>
+
+				<div class="col-md-12">
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<h4><i class="icon fa fa-ban"></i> Alert!</h4>
+						Data nilai mahasiswa tidak ditemukan atau role user anda buka sebagai mahasiswa.
+					</div>
+				</div>
+				
+			</div>
+		</section>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -70,76 +89,5 @@
 <!-- page script -->
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$(".menu-sidebar-laporan").addClass('active');
-		$(".menu-sidebar-laporan-nilai-matkul-by-mahasiswa").addClass('active');
-
-		var id_mahasiswa = parseInt("<?php echo $data_mahasiswa->id ?>");
-		var urlGetListNilai = "<?php echo base_url('NilaiMataKuliahByMahasiswa/getListNilai') ?>";
-		$('#listNilaiMahasiswa').DataTable({
-			"ordering": false,
-			"autoWidth": false,
-			"processing": true,
-			"serverSide": true,
-			"paging": false,
-			"ajax":{
-					"url": urlGetListNilai,
-					"dataType": "json",
-					"type": "POST",
-					"data": function(d){
-						d.id_mahasiswa = id_mahasiswa
-					}
-			},
-			"columns": [
-				{ "data": "nomor", "className": "text-center", "width": "8%",
-						render: function (data, type, row, meta) {
-							return meta.row + meta.settings._iDisplayStart + 1;
-						}
-				},
-				{ "data": "semester", "className": "text-center" },
-				{ "data": "kode_mata_kuliah" },
-				{ "data": "mata_kuliah" },
-				{ "data": "nilai", "className": "cell-nowrap, text-right",
-					render: function (data, type, row, meta) {
-						let nilai = parseFloat(row.nilai);
-						return nilai.toFixed(2).replace(".",",");
-					}
-				},
-				{ "data": "harkat", "className": "cell-nowrap, text-center",
-					render: function (data, type, row, meta) {
-						
-						let nilai_akhir = parseFloat(row.nilai);
-						for(j=0; j<row.harkat.length; j++) {
-							let batas_bawah = parseFloat(row.harkat[j]['batas_bawah']);
-							let batas_atas = parseFloat(row.harkat[j]['batas_atas']);
-							if (nilai_akhir>=batas_bawah && nilai_akhir<batas_atas) {
-								return row.harkat[j]['huruf'];
-							}
-						}
-
-						if (nilai_akhir>=100) {
-								return 'A';
-						}
-						return "--";
-					}
-				}
-			]
-		});
-
-		$('#exportButtonPDF').click(function(){
-			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportPDF') ?>";
-			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
-			window.open(urlPrint, '_blank');
-			//window.location.assign(urlPrint);
-		});
-
-		$('#exportButtonExcel').click(function(){
-			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportExcel') ?>";
-			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
-			window.open(urlPrint, '_blank');
-		});
-	});
-</script>
 </body>
 </html>

@@ -11,6 +11,7 @@ class NilaiMataKuliahByMahasiswa extends CI_Controller {
 			redirect(base_url("Auth"));
 		}
 		$this->id_mahasiswa = $this->session->userdata('id_mahasiswa');
+
 		$this->load->library('session');
 
 		$this->load->model('NilaiMataKuliahByMahasiswaModel');
@@ -18,7 +19,14 @@ class NilaiMataKuliahByMahasiswa extends CI_Controller {
 	}
 
 	public function index() {
+		if ($this->id_mahasiswa==null || $this->id_mahasiswa=='') {
+			return $this->load->view('nilaiMataKuliahByMahasiswa/notFound');
+		}
+
 		$data_mahasiswa = $this->nilaiMatkulByMhsModel->getListMahasiswaById($this->id_mahasiswa);
+		if ($data_mahasiswa==null) {
+			return $this->load->view('nilaiMataKuliahByMahasiswa/notFound');
+		}
 
 		$data = array(
 			'data_mahasiswa' => $data_mahasiswa
