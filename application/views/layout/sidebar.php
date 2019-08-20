@@ -16,6 +16,7 @@
 			</div>
 			
       <ul class="sidebar-menu" data-widget="tree">
+				
         <li class="menu-sidebar-dashboard"><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
 				<!-- Treeview Master Data -->

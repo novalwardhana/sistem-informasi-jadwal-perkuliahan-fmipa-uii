@@ -1,23 +1,9 @@
 <?php
-class NilaiMataKuliahModel extends CI_Model {
-	
+
+class NilaiMataKuliahByMahasiswaModel extends CI_Model {
+
 	public function __construct() {
 		parent::__construct();
-	}
-
-	public function comboMahasiswa($search) {
-		$sql="SELECT 
-				a.id,
-				CONCAT(a.nim,' - ',a.nama) AS name
-			FROM mahasiswa a
-			WHERE a.nama LIKE '%".$search."%' OR
-				a.nim LIKE '%".$search."%'
-			ORDER BY a.nama ASC, a.nim ASC
-			LIMIT 20
-			";
-		$query=$this->db->query($sql);
-		$hasil=$query->result_array();
-		return $hasil;
 	}
 
 	public function getListMahasiswaById($id) {
@@ -71,33 +57,6 @@ class NilaiMataKuliahModel extends CI_Model {
 
 		$query=$this->db->query($sql);
 		$hasil=$query->result();
-		return $hasil;
-	}
-
-	public function getListNilaiCount($params) {
-		$limit=(int)$params['limit'];
-		$start=(int)$params['start'];
-		$id_mahasiswa = (int)$params['id_mahasiswa'];
-
-		$sql="SELECT 
-        a.id
-      FROM mahasiswa_peserta_mata_kuliah a
-      LEFT join mahasiswa b on a.id_mahasiswa=b.id
-      LEFT join dosen_pengampu_mata_kuliah c ON a.id_dosen_pengampu_mata_kuliah=c.id
-      LEFT join mata_kuliah d ON c.id_mata_kuliah=d.id
-      WHERE 
-        a.id_mahasiswa=$id_mahasiswa AND 
-        (
-					d.nama like '%".$params['search']."%' OR
-					d.kode like '%".$params['search']."%' OR
-					b.semester like '%".$params['search']."%'
-				)
-      group by d.semester, d.kode, d.nama
-      ORDER BY d.semester ASC, d.nama ASC
-      ";
-
-		$query=$this->db->query($sql);
-		$hasil=$query->num_rows();
 		return $hasil;
 	}
 
