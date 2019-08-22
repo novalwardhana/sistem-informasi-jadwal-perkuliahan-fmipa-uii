@@ -9,6 +9,10 @@ class Kelas extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 				redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['Kelas'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 		$this->load->model('KelasModel');
 		$this->kelasModel=$this->KelasModel;

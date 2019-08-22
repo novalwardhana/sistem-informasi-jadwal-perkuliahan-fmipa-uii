@@ -8,6 +8,10 @@ class Mahasiswa extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['Mahasiswa'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 		$this->load->model('MahasiswaModel');
 		$this->mahasiswaModel=$this->MahasiswaModel;
