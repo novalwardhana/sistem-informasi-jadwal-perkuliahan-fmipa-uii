@@ -8,6 +8,10 @@ class JadwalPerkuliahan extends CI_controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['JadwalPerkuliahan'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 
 		$this->load->model('JadwalPerkuliahanModel');

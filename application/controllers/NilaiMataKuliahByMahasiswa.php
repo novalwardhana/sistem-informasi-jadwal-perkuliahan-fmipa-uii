@@ -10,6 +10,10 @@ class NilaiMataKuliahByMahasiswa extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['NilaiMataKuliahByMahasiswa'])) {
+			redirect(base_url());
+		}
 		$this->id_mahasiswa = $this->session->userdata('id_mahasiswa');
 
 		$this->load->library('session');

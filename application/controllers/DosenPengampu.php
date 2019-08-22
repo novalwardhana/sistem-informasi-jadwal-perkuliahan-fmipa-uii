@@ -9,6 +9,10 @@ class DosenPengampu extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['DosenPengampu'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 
 		$this->load->model('DosenPengampuModel');
