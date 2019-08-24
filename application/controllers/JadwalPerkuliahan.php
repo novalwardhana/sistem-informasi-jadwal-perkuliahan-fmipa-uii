@@ -61,7 +61,7 @@ class JadwalPerkuliahan extends CI_controller {
 			foreach ($getListDosenPengampu as $row) {
 				$nestedData['nomor'] = " ";
 				$nestedData['aksi'] = "
-					<a href='".base_url('JadwalPerkuliahan/detail?id=').$row->id."'>
+					<a href='".base_url('jadwal-perkuliahan/detail?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-search-plus'></i></button>
 					</a>
 				";
@@ -94,10 +94,10 @@ class JadwalPerkuliahan extends CI_controller {
 		if ($this->session->userdata('role_user')==='Dosen') {
 			if (isset($dataPengampu->id_dosen)) {
 				if ($dataPengampu->id_dosen != $this->session->userdata('id_dosen')) {
-					redirect(base_url("JadwalPerkuliahan"));
+					redirect(base_url("jadwal-perkuliahan"));
 				}
 			} else {
-				redirect(base_url("JadwalPerkuliahan"));
+				redirect(base_url("jadwal-perkuliahan"));
 			}
 		}
 

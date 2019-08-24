@@ -1,11 +1,11 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-3">
-            <label>Kode CPMK 5</label>
+            <label>Kode CPMK 5 *</label>
             <input type="text" placeholder="Komponen penilaian 1" class="form-control" name="cpmk_5_kode" required/>
         </div>
         <div class="col-md-3">
-            <label>Persentase</label>
+            <label>Persentase *</label>
             <div class="input-group">
             <input type="number" placeholder="20" class="form-control" name="cpmk_5_persentase" style="text-align:right;" required/>
             <div class="input-group-addon">
@@ -18,7 +18,7 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-12">
-            <label>Keterangan</label>
+            <label>Keterangan *</label>
             <textarea class="form-control" name="cpmk_5_keterangan" rows="3" placeholder="Enter ..."></textarea>
         </div>
     </div>

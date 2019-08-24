@@ -13,13 +13,13 @@
             <div class="col-md-12">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#modalNavCreateDataPerkuliahan" data-toggle="tab">Data Perkuliahan</a></li>
-                  <li><a href="#modalNavCreateCPMK1" data-toggle="tab">CPMK 1</a></li>
-                  <li><a href="#modalNavCreateCPMK2" data-toggle="tab">CPMK 2</a></li>
-                  <li><a href="#modalNavCreateCPMK3" data-toggle="tab">CPMK 3</a></li>
-                  <li><a href="#modalNavCreateCPMK4" data-toggle="tab">CPMK 4</a></li>
-                  <li><a href="#modalNavCreateCPMK5" data-toggle="tab">CPMK 5</a></li>
-                  <li><a href="#modalNavCreateCPMK6" data-toggle="tab">CPMK 6</a></li>
+                  <li class="active"><a href="#modalNavCreateDataPerkuliahan" data-toggle="tab">Data Perkuliahan *</a></li>
+                  <li><a href="#modalNavCreateCPMK1" data-toggle="tab">CPMK 1 *</a></li>
+                  <li><a href="#modalNavCreateCPMK2" data-toggle="tab">CPMK 2 *</a></li>
+                  <li><a href="#modalNavCreateCPMK3" data-toggle="tab">CPMK 3 *</a></li>
+                  <li><a href="#modalNavCreateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
+                  <li><a href="#modalNavCreateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
+                  <li><a href="#modalNavCreateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavCreateDataPerkuliahan">
@@ -66,7 +66,7 @@
         <div class="row">
             <center>
             <button type="submit" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>                             
-            <button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button>
             </center>
         </div>
       </div>

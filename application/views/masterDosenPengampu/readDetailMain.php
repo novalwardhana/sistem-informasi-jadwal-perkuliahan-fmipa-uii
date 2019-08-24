@@ -14,7 +14,7 @@
 					<h3 class="box-title">
 					Detail Informasi Pengampu Mata Kuliah
 					<br><br>
-					<a href="<?php echo base_url('DosenPengampu') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
+					<a href="<?php echo base_url('dosen-pengampu') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
 					</h3>
 				</div>
 				<div class="box-body">

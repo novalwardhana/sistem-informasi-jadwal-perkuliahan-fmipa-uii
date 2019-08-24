@@ -30,7 +30,7 @@
         <div class="row">
 					<center>
 					<button type="button" onclick="addMahasiswaProcess()" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>                             
-					<button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button>
 					</center>
         </div>
       </div>

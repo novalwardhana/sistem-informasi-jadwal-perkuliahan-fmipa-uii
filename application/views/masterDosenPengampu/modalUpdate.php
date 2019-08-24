@@ -13,13 +13,13 @@
             <div class="col-md-12">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#modalNavUpdateDataPerkuliahan" data-toggle="tab">Data Perkuliahan</a></li>
-                  <li><a href="#modalNavUpdateCPMK1" data-toggle="tab">CPMK 1</a></li>
-                  <li><a href="#modalNavUpdateCPMK2" data-toggle="tab">CPMK 2</a></li>
-                  <li><a href="#modalNavUpdateCPMK3" data-toggle="tab">CPMK 3</a></li>
-                  <li><a href="#modalNavUpdateCPMK4" data-toggle="tab">CPMK 4</a></li>
-                  <li><a href="#modalNavUpdateCPMK5" data-toggle="tab">CPMK 5</a></li>
-                  <li><a href="#modalNavUpdateCPMK6" data-toggle="tab">CPMK 6</a></li>
+                  <li class="active"><a href="#modalNavUpdateDataPerkuliahan" data-toggle="tab">Data Perkuliahan *</a></li>
+                  <li><a href="#modalNavUpdateCPMK1" data-toggle="tab">CPMK 1 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK2" data-toggle="tab">CPMK 2 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK3" data-toggle="tab">CPMK 3 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavUpdateDataPerkuliahan">
@@ -73,8 +73,8 @@
       <div class="modal-footer" style="border-top:none">
         <div class="row">
             <center>
-            <button type="submit" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>                             
-            <button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Simpan</button>                             
+            <button type="button" class="btn btn-default closeApproveForm" data-dismiss="modal"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button>
             </center>
         </div>
       </div>

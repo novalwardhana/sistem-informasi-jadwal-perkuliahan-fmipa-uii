@@ -103,3 +103,12 @@ $route['capaian-pembelajaran-lulusan/create'] = 'CapaianPembelajaranLulusan/crea
 $route['capaian-pembelajaran-lulusan/update'] = 'CapaianPembelajaranLulusan/update';
 $route['capaian-pembelajaran-lulusan/delete'] = 'CapaianPembelajaranLulusan/delete';
 
+/* Router Dosen Pengampu */
+$route['dosen-pengampu'] = 'DosenPengampu';
+$route['dosen-pengampu/detail'] = 'DosenPengampu/detail';
+
+/* Router Jadwal Perkuliahan */
+$route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';
+$route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
+
+

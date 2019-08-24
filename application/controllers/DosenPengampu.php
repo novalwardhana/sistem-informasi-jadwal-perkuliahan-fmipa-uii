@@ -24,7 +24,7 @@ class DosenPengampu extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('role_user')==='Dosen') {
-			$pathUrl = base_url('DosenPengampu/detail?id=').$this->session->userdata('id_dosen');
+			$pathUrl = base_url('dosen-pengampu/detail?id=').$this->session->userdata('id_dosen');
 			redirect($pathUrl);
 		}
 		$this->load->view('masterDosenPengampu/read');
@@ -63,7 +63,7 @@ class DosenPengampu extends CI_Controller {
 			foreach ($getListDosen as $row){
 				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<a href='".base_url('DosenPengampu/detail?id=').$row->id."'>
+					<a href='".base_url('dosen-pengampu/detail?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-search-plus'></i></button>
 						</a>
 					";
@@ -105,7 +105,7 @@ class DosenPengampu extends CI_Controller {
 
 	public function create() {
 		$params=$_POST;
-		$pathUrl='DosenPengampu/detail?id='.$_POST['id_dosen'];
+		$pathUrl='dosen-pengampu/detail?id='.$_POST['id_dosen'];
 		$hasil=$this->dosenPengampuModel->create($params);
 		if ($hasil===TRUE) {
 			$this->session->set_flashdata('responseModule', 'success');
@@ -193,7 +193,7 @@ class DosenPengampu extends CI_Controller {
 		$params['id']=$id;
 
 		$dosen=$this->dosenPengampuModel->getDosenId($id);
-		$pathUrl='DosenPengampu/detail?id='.$dosen->id_dosen;
+		$pathUrl='dosen-pengampu/detail?id='.$dosen->id_dosen;
 	
 		$hapusDataDosenPengampu=$this->dosenPengampuModel->delete($params);
 		if ($hapusDataDosenPengampu===TRUE) {
@@ -218,7 +218,7 @@ class DosenPengampu extends CI_Controller {
 
 	public function update() {
 		$params=$_POST;
-		$pathUrl='DosenPengampu/detail?id='.$_POST['id_dosen'];
+		$pathUrl='dosen-pengampu/detail?id='.$_POST['id_dosen'];
 		$hasil=$this->dosenPengampuModel->update($params);
 		if ($hasil===TRUE) {
 			$this->session->set_flashdata('responseModule', 'success');

@@ -65,7 +65,7 @@
                         <h3 class="box-title">
                             Detail Informasi Perkuliahan
                             <br><br>
-                            <a href="<?php echo base_url('JadwalPerkuliahan') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
+                            <a href="<?php echo base_url('jadwal-perkuliahan') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-reply"></i> Kembali</button></a>
                         </h3>
                     </div>
                     <div class="box-body">
@@ -179,7 +179,11 @@
                                 </table>
                                 </div>
                                 <br>
-                                <button id="updateNilai" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+																<center>
+																	<button id="updateNilai" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+																	<a href="<?php echo base_url('jadwal-perkuliahan') ?>"><button class="btn btn-default"><i class="fa fa-reply"></i> Kembali</button></a>
+																</center>
+                               
                                 
                             </div>
                         </div>

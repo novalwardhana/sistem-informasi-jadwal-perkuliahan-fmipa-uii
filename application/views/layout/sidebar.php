@@ -113,7 +113,7 @@
 						<?php
 							if (isset($dataSessionPermission['DosenPengampu'])) {
 						?>
-						<li class="menu-sidebar-agenda-perkuliahan-pengampu"><a href="<?php echo base_url('DosenPengampu') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-address-card"></i> <span>Pengampu Mata Kuliah</span></a></li>
+						<li class="menu-sidebar-agenda-perkuliahan-pengampu"><a href="<?php echo base_url('dosen-pengampu') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-address-card"></i> <span>Pengampu Mata Kuliah</span></a></li>
 						<?php
 							}
 						?>
@@ -121,7 +121,7 @@
 						<?php
 							if (isset($dataSessionPermission['JadwalPerkuliahan'])) {
 						?>
-						<li class="menu-sidebar-agenda-perkuliahan-jadwal"><a href="<?php echo base_url('JadwalPerkuliahan') ?>" style="margin: 12px 5px;"><i class="fa fa-calendar"></i> <span>Jadwal Perkuliahan</span></a></li>
+						<li class="menu-sidebar-agenda-perkuliahan-jadwal"><a href="<?php echo base_url('jadwal-perkuliahan') ?>" style="margin: 12px 5px;"><i class="fa fa-calendar"></i> <span>Jadwal Perkuliahan</span></a></li>
 						<?php
 							}
 						?>
