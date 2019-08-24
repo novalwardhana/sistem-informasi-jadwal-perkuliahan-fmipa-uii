@@ -19,12 +19,12 @@
 							<div class="col-md-6">
 									<input type="hidden" value="<?php echo $dataKelas->id ?>" name="id" class="form-control" required>
 								<div class="form-group">
-									<label>Kode</label>
+									<label>Kode *</label>
 									<input type="text" value="<?php echo $dataKelas->kode ?>" name="kode"  class="form-control" placeholder="Kode kelas" required>
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('Kelas') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('kelas') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

@@ -278,7 +278,7 @@
 							message : '<br>'+result.message,
 						});
 						setTimeout(() => {
-							location.replace("<?php echo base_url(); ?>CapaianPembelajaranLulusan");
+							location.replace("<?php echo base_url(); ?>capaian-pembelajaran-lulusan");
 						}, 1000);
 					} else {
 						$.toaster({ 

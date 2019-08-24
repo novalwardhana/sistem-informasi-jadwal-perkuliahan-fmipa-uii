@@ -212,7 +212,7 @@ class CplEdit extends CI_Controller {
 
 			$data = [
 				'success' => true,
-				'message' => 'Mata kuliah berhasil ditambahkan'
+				'message' => 'Data berhasil disimpan'
 			];
 			echo json_encode($data);
 

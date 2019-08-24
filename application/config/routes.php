@@ -78,3 +78,28 @@ $route['skor-maks'] = 'SkorMaks';
 $route['skor-maks/create'] = 'SkorMaks/create';
 $route['skor-maks/update'] = 'SkorMaks/update';
 $route['skor-maks/delete'] = 'SkorMaks/delete';
+
+/* Router Master Klasifikasi */
+$route['klasifikasi'] = 'Klasifikasi';
+$route['klasifikasi/create'] = 'Klasifikasi/create';
+$route['klasifikasi/update'] = 'Klasifikasi/update';
+$route['klasifikasi/delete'] = 'Klasifikasi/delete';
+
+/* Router Master Harkat */
+$route['harkat'] = 'Harkat';
+$route['harkat/create'] = 'Harkat/create';
+$route['harkat/update'] = 'Harkat/update';
+$route['harkat/delete'] = 'Harkat/delete';
+
+/* Router Master Kelas */
+$route['kelas'] = 'Kelas';
+$route['kelas/create'] = 'Kelas/create';
+$route['kelas/update'] = 'Kelas/update';
+$route['kelas/delete'] = 'Kelas/delete';
+
+/* Router Master Capaian Pembelajaran Lulusan */
+$route['capaian-pembelajaran-lulusan'] = 'CapaianPembelajaranLulusan';
+$route['capaian-pembelajaran-lulusan/create'] = 'CapaianPembelajaranLulusan/create';
+$route['capaian-pembelajaran-lulusan/update'] = 'CapaianPembelajaranLulusan/update';
+$route['capaian-pembelajaran-lulusan/delete'] = 'CapaianPembelajaranLulusan/delete';
+

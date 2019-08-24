@@ -68,7 +68,7 @@
 						<?php
 							if (isset($dataSessionPermission['Klasifikasi'])) {
 						?>
-						<li class="menu-sidebar-master-klasifikasi"><a href="<?php echo base_url('Klasifikasi') ?>" style="margin: 12px 5px;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
+						<li class="menu-sidebar-master-klasifikasi"><a href="<?php echo base_url('klasifikasi') ?>" style="margin: 12px 5px;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
             <?php
 							}
 						?>
@@ -76,7 +76,7 @@
 						<?php
 							if (isset($dataSessionPermission['Harkat'])) {
 						?>
-						<li class="menu-sidebar-master-harkat"><a href="<?php echo base_url('Harkat') ?>" style="margin: 12px 5px;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
+						<li class="menu-sidebar-master-harkat"><a href="<?php echo base_url('harkat') ?>" style="margin: 12px 5px;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
 						<?php
 							}
 						?>
@@ -84,12 +84,12 @@
 						<?php
 							if (isset($dataSessionPermission['Kelas'])) {
 						?>
-						<li class="menu-sidebar-master-kelas"><a href="<?php echo base_url('Kelas') ?>" style="margin: 12px 5px;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
+						<li class="menu-sidebar-master-kelas"><a href="<?php echo base_url('kelas') ?>" style="margin: 12px 5px;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
 						<?php
 							}
 						?>
 
-						<li class="menu-sidebar-master-cpl"><a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
+						<li class="menu-sidebar-master-cpl"><a href="<?php echo base_url('capaian-pembelajaran-lulusan') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
 					</ul>
         </li>
 				<?php

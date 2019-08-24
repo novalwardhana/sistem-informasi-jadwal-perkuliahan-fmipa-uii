@@ -14,7 +14,7 @@
 					<h3 class="box-title">List Capaian Pembelajaran Lulusan (CPL)</h3>
 				</div>
 				<div class="box-body">
-					<a href="<?php echo base_url('CapaianPembelajaranLulusan/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					<a href="<?php echo base_url('capaian-pembelajaran-lulusan/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
 					<br><br>
 					<table id="listCapaianPembelajaranLulusan" class="table table-bordered table-striped" style="width: 100%">
 						<thead>

@@ -54,11 +54,11 @@ class Kelas extends CI_Controller {
 			foreach ($getListKelas as $row){
 				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<a href='".base_url('Kelas/update?id=').$row->id."'>
+					<a href='".base_url('kelas/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
 					
-					<button class='btn btn-sm btn-danger' data-href='".base_url('Kelas/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('kelas/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 						<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -91,13 +91,13 @@ class Kelas extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
-				redirect(base_url('Kelas'));
+				redirect(base_url('kelas'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
-				redirect(base_url('Kelas'));
+				redirect(base_url('kelas'));
 			}
 		}
 	}
@@ -117,13 +117,13 @@ class Kelas extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
-				redirect(base_url('Kelas'));
+				redirect(base_url('kelas'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
-				redirect(base_url('Kelas'));
+				redirect(base_url('kelas'));
 			}
 		}
 	}
@@ -138,13 +138,13 @@ class Kelas extends CI_Controller {
 			$this->session->set_flashdata('responseModuleBackground', 'success');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
-			redirect(base_url('Kelas'));
+			redirect(base_url('kelas'));
 		} else {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
-			redirect(base_url('Kelas'));
+			redirect(base_url('kelas'));
 		}
 	}
 

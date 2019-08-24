@@ -19,11 +19,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama *</label>
 									<input type="text" id="nama-cpl" value="<?php echo $data_cpl->nama ?>" name="nama" class="form-control" placeholder="Nama CPL">
 								</div>
 								<div class="form-group">
-									<label>Deskripsi</label>
+									<label>Deskripsi *</label>
 									<textarea class="form-control" id="deskripsi-cpl" name="deskripsi" rows="3" placeholder="Deskripsi capaian pembelajaran lulusan"></textarea>
 								</div>
 							</div>
@@ -58,7 +58,7 @@
 							<div class="col-md-12">
 								<center>
 									<button class="btn btn-success" id="saveCpl"><i class="fa fa-floppy-o"></i> Simpan</button>
-									<a href="<?php echo base_url('CapaianPembelajaranLulusan') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Tutup</button></a>
+									<a href="<?php echo base_url('capaian-pembelajaran-lulusan') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Tutup</button></a>
 								</center>
 								
 							</div>

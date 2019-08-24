@@ -59,11 +59,11 @@ class CapaianPembelajaranLulusan extends CI_controller {
 
 				$nestedData['nomor'] = "";
 				$nestedData['aksi'] = "
-					<a href='".base_url('CapaianPembelajaranLulusan/update?id=').$row->id."'>
+					<a href='".base_url('capaian-pembelajaran-lulusan/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
 						
-					<button class='btn btn-sm btn-danger' data-href='".base_url('CapaianPembelajaranLulusan/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('capaian-pembelajaran-lulusan/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 							<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -118,14 +118,14 @@ class CapaianPembelajaranLulusan extends CI_controller {
 			$this->session->set_flashdata('responseModuleBackground', 'success');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
-			redirect(base_url('CapaianPembelajaranLulusan'));
+			redirect(base_url('capaian-pembelajaran-lulusan'));
 
 		} catch (Exception $e) {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
-			redirect(base_url('CapaianPembelajaranLulusan'));
+			redirect(base_url('capaian-pembelajaran-lulusan'));
 		}
 		
 	}
