@@ -27,11 +27,11 @@
 								</div>
 								<div class="form-group">
 									<label>Semester *</label>
-									<input type="number" name="semester" class="form-control" placeholder="Nama mata kuliah" required>
+									<input type="number" min="0" max="8" name="semester" class="form-control" placeholder="Nama mata kuliah" required>
 								</div>
 								<div class="form-group">
 									<label>Kontribusi *</label>
-									<input type="number" name="kontribusi" class="form-control" placeholder="Kontribusi mata kuliah dalam SKS" required>
+									<input type="number" min="0" max="10" name="kontribusi" class="form-control" placeholder="Kontribusi mata kuliah dalam SKS" required>
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>

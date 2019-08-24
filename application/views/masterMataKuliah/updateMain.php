@@ -28,11 +28,11 @@
 								</div>
 								<div class="form-group">
 									<label>Semester *</label>
-									<input type="number" value="<?php echo $dataMataKuliah->semester ?>" name="semester" class="form-control" placeholder="Semester" required>
+									<input type="number" min="0" max="8" value="<?php echo $dataMataKuliah->semester ?>" name="semester" class="form-control" placeholder="Semester" required>
 								</div>
 								<div class="form-group">
 									<label>Kontribusi *</label>
-									<input type="number" value="<?php echo $dataMataKuliah->kontribusi ?>" name="kontribusi" class="form-control" placeholder="Kontribusi" required>
+									<input type="number" min="0" max="10" value="<?php echo $dataMataKuliah->kontribusi ?>" name="kontribusi" class="form-control" placeholder="Kontribusi" required>
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>

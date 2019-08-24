@@ -249,6 +249,15 @@
 					return false;
 				}
 
+				if (kontribusi<=0 || kontribusi>100) {
+					$.toaster({ 
+						priority : 'warning', 
+						title : '<i class="fa fa-times"></i> Info', 
+						message : '<br>'+'Rentang kontribusi 0 - 100',
+					});
+					return false;
+				}
+
 				cpl_detail[i] = {
 					'id_capaian_pembelajaran_lulusan_detail': parseInt(data[i]),
 					'kontribusi': kontribusi,

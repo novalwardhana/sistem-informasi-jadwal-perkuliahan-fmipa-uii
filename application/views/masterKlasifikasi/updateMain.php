@@ -20,11 +20,11 @@
 								<input type="hidden" value="<?php echo $dataKlasifikasi->id ?>" name="id" class="form-control" required>
 								<div class="form-group">
 									<label>Batas Bawah *</label>
-									<input type="number" value="<?php echo $dataKlasifikasi->batas_bawah ?>" name="batas_bawah" step="0.01" class="form-control" placeholder="Batas bawah rentang nilai" required>
+									<input type="number" value="<?php echo $dataKlasifikasi->batas_bawah ?>" name="batas_bawah" step="0.01" min="0" max="100" class="form-control" placeholder="Batas bawah rentang nilai" required>
 								</div>
 								<div class="form-group">
 									<label>Batas Atas *</label>
-									<input type="number" value="<?php echo $dataKlasifikasi->batas_atas ?>" name="batas_atas" step="0.01" class="form-control" placeholder="Batas atas rentang nilai" required>
+									<input type="number" value="<?php echo $dataKlasifikasi->batas_atas ?>" name="batas_atas" step="0.01" min="0" max="100" class="form-control" placeholder="Batas atas rentang nilai" required>
 								</div>
 								<div class="form-group">
 									<label>Keterangan *</label>

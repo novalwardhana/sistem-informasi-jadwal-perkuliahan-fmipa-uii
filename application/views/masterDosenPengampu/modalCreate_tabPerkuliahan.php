@@ -62,7 +62,7 @@
         </div>
         <div class="col-md-3">
             <label>Maks Peserta *</label>
-            <input type="number" class="form-control" name="maks_peserta" required/>
+            <input type="number" min="1" max="100" class="form-control" name="maks_peserta" required/>
         </div>
     </div>
 </div>

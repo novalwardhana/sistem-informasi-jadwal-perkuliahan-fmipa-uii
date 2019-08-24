@@ -149,7 +149,7 @@ class CplEdit extends CI_Controller {
 				$nestedData['nama'] = $row->nama;
 				$nestedData['semester'] = $row->semester;
 				$nestedData['sks'] = $row->sks;
-				$nestedData['kontribusi'] = "<input type='number' id='kontribusi-$row->id' name='kontribusi-$row->id' value='$row->kontribusi' class='form-control' style='text-align:right; width: 100%' >";;
+				$nestedData['kontribusi'] = "<input type='number' step='0.01' min='0' max='100' id='kontribusi-$row->id' name='kontribusi-$row->id' value='$row->kontribusi' class='form-control' style='text-align:right; width: 100%' >";;
 				$nestedData['id'] = $row->id;
 				$nestedData['id_mata_kuliah'] = $row->id_mata_kuliah;
 				$data[] = $nestedData;

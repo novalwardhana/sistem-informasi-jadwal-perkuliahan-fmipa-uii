@@ -19,15 +19,15 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Harkat *</label>
-									<input type="number" name="harkat" step="0.01" class="form-control" placeholder="Harkat" required>
+									<input type="number" name="harkat" step="0.01" min="0" max="100" class="form-control" placeholder="Harkat" required>
 								</div>
 								<div class="form-group">
 									<label>Batas Bawah *</label>
-									<input type="number" name="batas_bawah" step="0.01" class="form-control" placeholder="Batas bawah rentang nilai" required>
+									<input type="number" name="batas_bawah" step="0.01" min="0" max="100" class="form-control" placeholder="Batas bawah rentang nilai" required>
 								</div>
 								<div class="form-group">
 									<label>Batas Atas *</label>
-									<input type="number" name="batas_atas" step="0.01" class="form-control" placeholder="Batas atas rentang nilai" required>
+									<input type="number" name="batas_atas" step="0.01" min="0" max="100" class="form-control" placeholder="Batas atas rentang nilai" required>
 								</div>
 								<div class="form-group">
 									<label>Keterangan *</label>

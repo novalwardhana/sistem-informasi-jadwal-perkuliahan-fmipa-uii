@@ -7,7 +7,7 @@
         <div class="col-md-3">
             <label>Persentase *</label>
             <div class="input-group">
-            <input type="number" id="modalUpdateCPMK3Persentase" placeholder="20" class="form-control" name="cpmk_3_persentase" style="text-align:right;" required/>
+            <input type="number" id="modalUpdateCPMK3Persentase" step="0.01" min="0" max="100" placeholder="1 - 100" class="form-control" name="cpmk_3_persentase" style="text-align:right;" required/>
             <div class="input-group-addon">
                 <i class="fa fa-percent"></i>
             </div>
