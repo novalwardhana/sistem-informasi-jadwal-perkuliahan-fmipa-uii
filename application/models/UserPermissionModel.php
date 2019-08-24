@@ -32,7 +32,7 @@ class UserPermissionModel extends CI_Model {
 			FROM user_permission a
 			WHERE a.nama LIKE '%".$params['search']."%' ";
 		$query=$this->db->query($sql);
-		$hasil=$query->result();
+		$hasil=$query->num_rows();
 		return $hasil;
 	}
 

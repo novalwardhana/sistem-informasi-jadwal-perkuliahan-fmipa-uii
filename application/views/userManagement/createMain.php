@@ -18,19 +18,19 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama *</label>
 									<input type="text" name="nama" class="form-control" placeholder="Nama lengkap pengguna" required>
 								</div>
 								<div class="form-group">
-									<label>Username</label>
+									<label>Username *</label>
 									<input type="text" name="username" class="form-control" placeholder="Username" required>
 								</div>
 								<div class="form-group">
-									<label>Password</label>
+									<label>Password *</label>
 									<input type="password" name="password" class="form-control" placeholder="Password" required>
 								</div>
 								<div class="form-group">
-									<label>Role</label>
+									<label>Role *</label>
 									<select class="selectUserRole form-control" style="width: 100%;" name="id_role" required>
 										<option></option>
 										<?php
@@ -44,7 +44,7 @@
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('UserManagement') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('user-management') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

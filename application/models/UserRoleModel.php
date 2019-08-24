@@ -32,7 +32,7 @@ class UserRoleModel extends CI_Model {
 			FROM user_role a
 			WHERE a.nama LIKE '%".$params['search']."%' ";
 		$query=$this->db->query($sql);
-		$hasil=$query->result();
+		$hasil=$query->num_rows();
 		return $hasil;
 	}
 

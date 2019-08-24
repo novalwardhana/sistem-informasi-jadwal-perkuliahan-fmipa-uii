@@ -111,4 +111,25 @@ $route['dosen-pengampu/detail'] = 'DosenPengampu/detail';
 $route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';
 $route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
 
+/* Router Nilai Mata Kuliah */
+$route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
+
+/* Router Master User Management */
+$route['user-management'] = 'UserManagement';
+$route['user-management/create'] = 'UserManagement/create';
+$route['user-management/update'] = 'UserManagement/update';
+$route['user-management/delete'] = 'UserManagement/delete';
+
+/* Router Master User Role */
+$route['user-role'] = 'UserRole';
+$route['user-role/create'] = 'UserRole/create';
+$route['user-role/update'] = 'UserRole/update';
+$route['user-role/delete'] = 'UserRole/delete';
+
+/* Router Master User Permission */
+$route['user-permission'] = 'UserPermission';
+$route['user-permission/create'] = 'UserPermission/create';
+$route['user-permission/update'] = 'UserPermission/update';
+$route['user-permission/delete'] = 'UserPermission/delete';
+
 

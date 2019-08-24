@@ -56,10 +56,10 @@ class UserRole extends CI_Controller {
 
 				$nestedData['nomor'] = "";
 				$nestedData['aksi'] = "
-					<a href='".base_url('UserRole/update?id=').$row->id."'>
+					<a href='".base_url('user-role/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
-					<button class='btn btn-sm btn-danger' data-href='".base_url('UserRole/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('user-role/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 						<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -91,13 +91,13 @@ class UserRole extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
-				redirect(base_url('UserRole'));
+				redirect(base_url('user-role'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
-				redirect(base_url('UserRole'));
+				redirect(base_url('user-role'));
 			}
 		}
 	}
@@ -133,13 +133,13 @@ class UserRole extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
-				redirect(base_url('UserRole'));
+				redirect(base_url('user-role'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
-				redirect(base_url('UserRole'));
+				redirect(base_url('user-role'));
 			}
 		}
 	}
@@ -154,13 +154,13 @@ class UserRole extends CI_Controller {
 			$this->session->set_flashdata('responseModuleBackground', 'success');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
-			redirect(base_url('UserRole'));
+			redirect(base_url('user-role'));
 		} else {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
-			redirect(base_url('UserRole'));
+			redirect(base_url('user-role'));
 		}
 	}
 

@@ -18,16 +18,16 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama *</label>
 									<input type="text" name="nama" class="form-control" placeholder="Nama permission" required>
 								</div>
 								<div class="form-group">
-									<label>Module</label>
+									<label>Module *</label>
 									<input type="text" name="module" class="form-control" placeholder="Module" required>
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('UserPermission') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('user-permission') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

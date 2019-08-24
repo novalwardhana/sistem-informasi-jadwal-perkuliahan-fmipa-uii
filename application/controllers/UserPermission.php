@@ -57,10 +57,10 @@ class UserPermission extends CI_Controller {
 
 				$nestedData['nomor'] = "";
 				$nestedData['aksi'] = "
-					<a href='".base_url('UserPermission/update?id=').$row->id."'>
+					<a href='".base_url('user-permission/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
-					<button class='btn btn-sm btn-danger' data-href='".base_url('UserPermission/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('user-permission/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 						<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -94,13 +94,13 @@ class UserPermission extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
-				redirect(base_url('UserPermission'));
+				redirect(base_url('user-permission'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
-				redirect(base_url('UserPermission'));
+				redirect(base_url('user-permission'));
 			}
 		}
 	}
@@ -124,13 +124,13 @@ class UserPermission extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
-				redirect(base_url('UserPermission'));
+				redirect(base_url('user-permission'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
-				redirect(base_url('UserPermission'));
+				redirect(base_url('user-permission'));
 			}
 		}
 	}
@@ -145,13 +145,13 @@ class UserPermission extends CI_Controller {
 			$this->session->set_flashdata('responseModuleBackground', 'success');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
-			redirect(base_url('UserPermission'));
+			redirect(base_url('user-permission'));
 		} else {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
-			redirect(base_url('UserPermission'));
+			redirect(base_url('user-permission'));
 		}
 	}
 

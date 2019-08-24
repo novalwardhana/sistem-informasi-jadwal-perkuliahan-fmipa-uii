@@ -149,7 +149,7 @@
 						<?php
 							if (isset($dataSessionPermission['NilaiMataKuliah'])) {
 						?>
-						<li class="menu-sidebar-laporan-nilai-matkul"><a href="<?php echo base_url('NilaiMataKuliah') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
+						<li class="menu-sidebar-laporan-nilai-matkul"><a href="<?php echo base_url('nilai-mata-kuliah') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
 						<?php
 							}
 						?>
@@ -183,7 +183,7 @@
 						<?php
 							if (isset($dataSessionPermission['UserManagement'])) {
 						?>
-						<li class="menu-sidebar-user-management-user"><a href="<?php echo base_url('UserManagement') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-user"></i> <span>Users</span></a></li>
+						<li class="menu-sidebar-user-management-user"><a href="<?php echo base_url('user-management') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-user"></i> <span>Users</span></a></li>
 						<?php
 							}
 						?>

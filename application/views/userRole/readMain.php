@@ -14,7 +14,7 @@
 					<h3 class="box-title">List Role</h3>
 				</div>
 				<div class="box-body">
-					<a href="<?php echo base_url('UserRole/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					<a href="<?php echo base_url('user-role/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
 					<br><br>
 					<table id="listUserRole" class="table table-bordered table-striped" style="width: 100%">
 						<thead>
