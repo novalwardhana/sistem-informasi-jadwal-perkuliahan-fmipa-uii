@@ -36,7 +36,7 @@
 						<?php
 							if (isset($dataSessionPermission['Mahasiswa'])) {
 						?>
-						<li class="menu-sidebar-master-mahasiswa"><a href="<?php echo base_url('Mahasiswa') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
+						<li class="menu-sidebar-master-mahasiswa"><a href="<?php echo base_url('mahasiswa') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
 						<?php
 							}
 						?>
@@ -44,7 +44,7 @@
 						<?php
 							if (isset($dataSessionPermission['MataKuliah'])) {
 						?>
-            <li class="menu-sidebar-master-mata-kuliah"><a href="<?php echo base_url('MataKuliah') ?>" style="margin: 12px 5px;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
+            <li class="menu-sidebar-master-mata-kuliah"><a href="<?php echo base_url('mata-kuliah') ?>" style="margin: 12px 5px;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
 						<?php
 							}
 						?>
@@ -52,7 +52,7 @@
 						<?php
 							if (isset($dataSessionPermission['Dosen'])) {
 						?>
-						<li class="menu-sidebar-master-dosen"><a href="<?php echo base_url('Dosen') ?>" style="margin: 12px 5px;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
+						<li class="menu-sidebar-master-dosen"><a href="<?php echo base_url('dosen') ?>" style="margin: 12px 5px;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
             <?php
 							}
 						?>
@@ -60,7 +60,7 @@
 						<?php
 							if (isset($dataSessionPermission['SkorMaks'])) {
 						?>
-						<li class="menu-sidebar-master-skor-maks"><a href="<?php echo base_url('SkorMaks') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
+						<li class="menu-sidebar-master-skor-maks"><a href="<?php echo base_url('skor-maks') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
 						<?php
 							}
 						?>

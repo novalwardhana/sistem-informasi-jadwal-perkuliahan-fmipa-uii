@@ -19,20 +19,20 @@
 							<div class="col-md-6">
 								<input type="hidden" value="<?php echo $dataMahasiswa->id ?>" name="id" class="form-control" required>
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama *</label>
 									<input type="text" value="<?php echo $dataMahasiswa->nama ?>" name="nama" class="form-control" placeholder="Nama lengkap mahasiswa" required>
 								</div>
 								<div class="form-group">
-									<label>NIM</label>
+									<label>NIM *</label>
 									<input type="number" value="<?php echo $dataMahasiswa->nim ?>" name="nim" class="form-control" placeholder="Nomor induk mahasiswa" readonly required>
 								</div>
 								<div class="form-group">
-									<label>Semester</label>
+									<label>Semester *</label>
 									<input type="number" value="<?php echo $dataMahasiswa->semester ?>" name="semester" class="form-control" placeholder="Semester saat ini" required>
 								</div>
-								<div class="form-group">
+								<div class="form-group">Batal
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('Mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

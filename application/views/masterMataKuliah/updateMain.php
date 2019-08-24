@@ -19,24 +19,24 @@
 							<div class="col-md-6">
 								<input type="hidden" value="<?php echo $dataMataKuliah->id ?>" name="id" class="form-control" required>
 								<div class="form-group">
-									<label>Kode</label>
+									<label>Kode *</label>
 									<input type="text" value="<?php echo $dataMataKuliah->kode ?>" name="kode" class="form-control" placeholder="Kode mata kuliah" required>
 								</div>
 								<div class="form-group">
-									<label>Nama</label>
+									<label>Nama *</label>
 									<input type="text" value="<?php echo $dataMataKuliah->nama ?>" name="nama" class="form-control" placeholder="Nama mata kuliah" required>
 								</div>
 								<div class="form-group">
-									<label>Semester</label>
+									<label>Semester *</label>
 									<input type="number" value="<?php echo $dataMataKuliah->semester ?>" name="semester" class="form-control" placeholder="Semester" required>
 								</div>
 								<div class="form-group">
-									<label>Kontribusi</label>
+									<label>Kontribusi *</label>
 									<input type="number" value="<?php echo $dataMataKuliah->kontribusi ?>" name="kontribusi" class="form-control" placeholder="Kontribusi" required>
 								</div>
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('MataKuliah') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('mata-kuliah') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

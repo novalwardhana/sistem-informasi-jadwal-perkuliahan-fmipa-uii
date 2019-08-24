@@ -56,11 +56,11 @@ class Mahasiswa extends CI_Controller {
 
 				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<a href='".base_url('Mahasiswa/update?id=').$row->id."'>
+					<a href='".base_url('mahasiswa/update?id=').$row->id."'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
 						
-					<button class='btn btn-sm btn-danger' data-href='".base_url('Mahasiswa/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+					<button class='btn btn-sm btn-danger' data-href='".base_url('mahasiswa/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
 						<i class='fa fa-trash'></i>
 					</button>
 					";
@@ -100,7 +100,7 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM sudah digunakan');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			}
 
 			$validationUsername = $this->mahasiswaModel->validationUsername($params['nim']);
@@ -109,7 +109,7 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>NIM sudah digunakan untuk username, silahkan menggunakan NIM lain');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			}
 
 			$role = $this->mahasiswaModel->getRoleId();
@@ -118,7 +118,7 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Tidak ada user role Mahasiswa, silahkan buat terlebih dahulu di menu user management / hubungi admin');
-				redirect(base_url('Dosen'));
+				redirect(base_url('mahasiswa'));
 			}
 
 			$hasil=$this->mahasiswaModel->create($params, $role['id']);
@@ -127,13 +127,13 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			}
 		}
 	}
@@ -158,13 +158,13 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('responseModuleBackground', 'success');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupdate');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			} else {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupdate');
-				redirect(base_url('Mahasiswa'));
+				redirect(base_url('mahasiswa'));
 			}
 		}
 	}
@@ -179,13 +179,13 @@ class Mahasiswa extends CI_Controller {
 			$this->session->set_flashdata('responseModuleBackground', 'success');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil dihapus');
-			redirect(base_url('Mahasiswa'));
+			redirect(base_url('mahasiswa'));
 		} else {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
 			$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal dihapus');
-			redirect(base_url('Mahasiswa'));
+			redirect(base_url('mahasiswa'));
 		}
 	}
 

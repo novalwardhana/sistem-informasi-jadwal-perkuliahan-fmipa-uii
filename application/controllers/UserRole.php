@@ -9,6 +9,10 @@ class UserRole extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['UserRole'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 		$this->load->model('UserRoleModel');
 		$this->userRoleModel=$this->UserRoleModel;

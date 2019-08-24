@@ -18,58 +18,58 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Semester</label>
+									<label>Semester *</label>
 									<input type="number" min="0" max="8" name="semester" class="form-control" placeholder="Semester" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 1</label>
+									<label>CPL 1 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_1" class="form-control" placeholder="Skor maksimum CPL 1" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 2</label>
+									<label>CPL 2 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_2" class="form-control" placeholder="Skor maksimum CPL 2" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 3</label>
+									<label>CPL 3 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_3" class="form-control" placeholder="Skor maksimum CPL 3" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 4</label>
+									<label>CPL 4 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_4" class="form-control" placeholder="Skor maksimum CPL 4" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 5</label>
+									<label>CPL 5 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_5" class="form-control" placeholder="Skor maksimum CPL 5" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 6</label>
+									<label>CPL 6 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_6" class="form-control" placeholder="Skor maksimum CPL 6" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 7</label>
+									<label>CPL 7 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_7" class="form-control" placeholder="Skor maksimum CPL 7" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 8</label>
+									<label>CPL 8 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_8" class="form-control" placeholder="Skor maksimum CPL 8" required>
 								</div>
 
 								<div class="form-group">
-									<label>CPL 9</label>
+									<label>CPL 9 *</label>
 									<input type="number" step="0.01" min="0" max="100" name="skor_maks_cpl_9" class="form-control" placeholder="Skor maksimum CPL 9" required>
 								</div>
 
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-									<a href="<?php echo base_url('SkorMaks') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('skor-maks') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 								</div>
 							</div>
 						</div>

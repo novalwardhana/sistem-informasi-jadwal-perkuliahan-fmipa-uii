@@ -18,24 +18,24 @@
 						<div class="row">
 							<div class="col-md-6">
 									<div class="form-group">
-											<label>Nama</label>
+											<label>Nama *</label>
 											<input type="text" name="nama" class="form-control" placeholder="Nama lengkap mahasiswa" required>
 										</div>
 										<div class="form-group">
-											<label>NIM</label>
+											<label>NIM *</label>
 											<input type="text" name="nim" class="form-control" placeholder="Nomor induk mahasiswa" required>
 										</div>
 										<div class="form-group">
-											<label>Password</label>
+											<label>Password *</label>
 											<input type="password" name="password" class="form-control" placeholder="Password akun untuk mahasiswa" required>
 										</div>
 										<div class="form-group">
-											<label>Semester</label>
+											<label>Semester *</label>
 											<input type="number" name="semester" class="form-control" placeholder="Semester saat ini" required>
 										</div>
 										<div class="form-group">
 											<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
-											<a href="<?php echo base_url('Mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+											<a href="<?php echo base_url('mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 										</div>
 								</div>
 						</div>

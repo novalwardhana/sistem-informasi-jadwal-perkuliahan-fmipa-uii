@@ -9,6 +9,10 @@ class UserManagement extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$dataSessionPermission = $this->session->userdata('permission');
+		if (!isset($dataSessionPermission['UserManagement'])) {
+			redirect(base_url());
+		}
 		$this->load->library('session');
 		$this->load->model('UserManagementModel');
 		$this->userManagementModel=$this->UserManagementModel;

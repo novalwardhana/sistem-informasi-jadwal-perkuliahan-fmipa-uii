@@ -54,3 +54,27 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['nilai-mata-kuliah-by-mahasiswa'] = 'NilaiMataKuliahByMahasiswa/index';
+
+/* Router Master Mahasiswa */
+$route['mahasiswa'] = 'Mahasiswa';
+$route['mahasiswa/create'] = 'Mahasiswa/create';
+$route['mahasiswa/update'] = 'Mahasiswa/update';
+$route['mahasiswa/delete'] = 'Mahasiswa/delete';
+
+/* Router Master Matakuliah */
+$route['mata-kuliah'] = 'MataKuliah';
+$route['mata-kuliah/create'] = 'MataKuliah/create';
+$route['mata-kuliah/update'] = 'MataKuliah/update';
+$route['mata-kuliah/delete'] = 'MataKuliah/delete';
+
+/* Router Master Dosen */
+$route['dosen'] = 'Dosen';
+$route['dosen/create'] = 'Dosen/create';
+$route['dosen/update'] = 'Dosen/update';
+$route['dosen/delete'] = 'Dosen/delete';
+
+/* Router Master Skor Maks */
+$route['skor-maks'] = 'SkorMaks';
+$route['skor-maks/create'] = 'SkorMaks/create';
+$route['skor-maks/update'] = 'SkorMaks/update';
+$route['skor-maks/delete'] = 'SkorMaks/delete';
