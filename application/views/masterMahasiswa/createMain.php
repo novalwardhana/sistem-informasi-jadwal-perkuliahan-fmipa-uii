@@ -31,7 +31,7 @@
 										</div>
 										<div class="form-group">
 											<label>Semester *</label>
-											<input type="number" name="semester" class="form-control" placeholder="Semester saat ini" required>
+											<input type="number" min="1" max="8" name="semester" class="form-control" placeholder="Semester saat ini" required>
 										</div>
 										<div class="form-group">
 											<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>

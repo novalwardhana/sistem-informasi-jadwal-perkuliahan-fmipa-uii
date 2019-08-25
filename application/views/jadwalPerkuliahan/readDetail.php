@@ -472,6 +472,22 @@
                 let cpmk_5 = ($("#input-penilaian-cpmk5-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk5-"+data[i]).val()) : null;
                 let cpmk_6 = ($("#input-penilaian-cpmk6-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk6-"+data[i]).val()) : null;
 
+								if (
+									(cpmk_1<0 || cpmk_1>100) ||
+									(cpmk_2<0 || cpmk_2>100) ||
+									(cpmk_3<0 || cpmk_3>100) ||
+									(cpmk_4<0 || cpmk_4>100) ||
+									(cpmk_5<0 || cpmk_5>100) ||
+									(cpmk_6<0 || cpmk_6>100)
+								) {
+									$.toaster({ 
+										priority : 'warning', 
+										title : '<i class="fa fa-times"></i> Info', 
+										message : '<br>'+'Rentang nilai cpmk 0 - 100',
+									});
+									return false;
+								}
+
                 data_peserta[i]={
                     "id_peserta" : parseInt(data[i]),
                     "cpmk_1" : cpmk_1,

@@ -28,7 +28,7 @@
 								</div>
 								<div class="form-group">
 									<label>Semester *</label>
-									<input type="number" value="<?php echo $dataMahasiswa->semester ?>" name="semester" class="form-control" placeholder="Semester saat ini" required>
+									<input type="number" min="1" max="8" value="<?php echo $dataMahasiswa->semester ?>" name="semester" class="form-control" placeholder="Semester saat ini" required>
 								</div>
 								<div class="form-group">Batal
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
