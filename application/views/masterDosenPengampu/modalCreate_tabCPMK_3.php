@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <label>Kode CPMK 3 *</label>
-            <input type="text" placeholder="Komponen penilaian 1" class="form-control" name="cpmk_3_kode" required/>
+            <input type="text" placeholder="Komponen penilaian 3" class="form-control" name="cpmk_3_kode" required/>
         </div>
         <div class="col-md-3">
             <label>Persentase *</label>

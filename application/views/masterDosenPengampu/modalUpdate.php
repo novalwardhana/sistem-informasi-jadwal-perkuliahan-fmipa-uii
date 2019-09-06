@@ -20,6 +20,10 @@
                   <li><a href="#modalNavUpdateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
                   <li><a href="#modalNavUpdateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
                   <li><a href="#modalNavUpdateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
+									<li><a href="#modalNavUpdateCPMK7" data-toggle="tab">CPMK 7 *</a></li>
+									<li><a href="#modalNavUpdateCPMK8" data-toggle="tab">CPMK 8 *</a></li>
+									<li><a href="#modalNavUpdateCPMK9" data-toggle="tab">CPMK 9 *</a></li>
+									<li><a href="#modalNavUpdateCPMK10" data-toggle="tab">CPMK 10 *</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavUpdateDataPerkuliahan">
@@ -61,6 +65,30 @@
                   <div class="tab-pane" id="modalNavUpdateCPMK6">
                     <?php
                       $this->load->view('masterDosenPengampu/modalUpdate_tabCPMK_6');
+                    ?>
+                  </div>
+
+									<div class="tab-pane" id="modalNavUpdateCPMK7">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalUpdate_tabCPMK_7');
+                    ?>
+                  </div>
+
+									<div class="tab-pane" id="modalNavUpdateCPMK8">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalUpdate_tabCPMK_8');
+                    ?>
+                  </div>
+
+									<div class="tab-pane" id="modalNavUpdateCPMK9">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalUpdate_tabCPMK_9');
+                    ?>
+                  </div>
+
+									<div class="tab-pane" id="modalNavUpdateCPMK10">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalUpdate_tabCPMK_10');
                     ?>
                   </div>
                   

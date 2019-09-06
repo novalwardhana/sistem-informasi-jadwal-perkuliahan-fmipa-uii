@@ -127,6 +127,22 @@
         $("#modalUpdateCPMK6Kode").val(data.cpmk_6_kode);
         $("#modalUpdateCPMK6Persentase").val(data.cpmk_6_persentase);
         $("#modalUpdateCPMK6Keterangan").val(data.cpmk_6_keterangan);
+
+				$("#modalUpdateCPMK7Kode").val(data.cpmk_7_kode);
+        $("#modalUpdateCPMK7Persentase").val(data.cpmk_7_persentase);
+        $("#modalUpdateCPMK7Keterangan").val(data.cpmk_7_keterangan);
+
+				$("#modalUpdateCPMK8Kode").val(data.cpmk_8_kode);
+        $("#modalUpdateCPMK8Persentase").val(data.cpmk_8_persentase);
+        $("#modalUpdateCPMK8Keterangan").val(data.cpmk_8_keterangan);
+
+				$("#modalUpdateCPMK9Kode").val(data.cpmk_9_kode);
+        $("#modalUpdateCPMK9Persentase").val(data.cpmk_9_persentase);
+        $("#modalUpdateCPMK9Keterangan").val(data.cpmk_9_keterangan);
+
+				$("#modalUpdateCPMK10Kode").val(data.cpmk_10_kode);
+        $("#modalUpdateCPMK10Persentase").val(data.cpmk_10_persentase);
+        $("#modalUpdateCPMK10Keterangan").val(data.cpmk_10_keterangan);
     
         $('#modalUpdate').modal('show');
       },

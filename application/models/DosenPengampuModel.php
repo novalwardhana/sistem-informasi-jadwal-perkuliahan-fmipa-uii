@@ -190,7 +190,19 @@ class DosenPengampuModel extends CI_Model {
 				a.cpmk_5_keterangan,
 				a.cpmk_6_kode,
 				COALESCE(a.cpmk_6_persentase, 0) AS cpmk_6_persentase,
-				a.cpmk_6_keterangan
+				a.cpmk_6_keterangan,
+				a.cpmk_7_kode,
+				COALESCE(a.cpmk_7_persentase, 0) AS cpmk_7_persentase,
+				a.cpmk_7_keterangan,
+				a.cpmk_8_kode,
+				COALESCE(a.cpmk_8_persentase, 0) AS cpmk_8_persentase,
+				a.cpmk_8_keterangan,
+				a.cpmk_9_kode,
+				COALESCE(a.cpmk_9_persentase, 0) AS cpmk_9_persentase,
+				a.cpmk_9_keterangan,
+				a.cpmk_10_kode,
+				COALESCE(a.cpmk_10_persentase, 0) AS cpmk_10_persentase,
+				a.cpmk_10_keterangan
 			FROM dosen_pengampu_mata_kuliah a
 			LEFT join mata_kuliah b on a.id_mata_kuliah=b.id
 			LEFT join kelas c on a.id_kelas=c.id
@@ -229,6 +241,18 @@ class DosenPengampuModel extends CI_Model {
 				'cpmk_6_kode' => $params['cpmk_6_kode'],
 				'cpmk_6_persentase' => $params['cpmk_6_persentase'],
 				'cpmk_6_keterangan' => $params['cpmk_6_keterangan'],
+				'cpmk_7_kode' => $params['cpmk_7_kode'],
+				'cpmk_7_persentase' => $params['cpmk_7_persentase'],
+				'cpmk_7_keterangan' => $params['cpmk_7_keterangan'],
+				'cpmk_8_kode' => $params['cpmk_8_kode'],
+				'cpmk_8_persentase' => $params['cpmk_8_persentase'],
+				'cpmk_8_keterangan' => $params['cpmk_8_keterangan'],
+				'cpmk_9_kode' => $params['cpmk_9_kode'],
+				'cpmk_9_persentase' => $params['cpmk_9_persentase'],
+				'cpmk_9_keterangan' => $params['cpmk_9_keterangan'],
+				'cpmk_10_kode' => $params['cpmk_10_kode'],
+				'cpmk_10_persentase' => $params['cpmk_10_persentase'],
+				'cpmk_10_keterangan' => $params['cpmk_10_keterangan'],
 			];
 		$this->db->where('id', $params['id']);
 		$query=$this->db->update('dosen_pengampu_mata_kuliah', $data);

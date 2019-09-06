@@ -20,6 +20,10 @@
                   <li><a href="#modalNavCreateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
                   <li><a href="#modalNavCreateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
                   <li><a href="#modalNavCreateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
+									<li><a href="#modalNavCreateCPMK7" data-toggle="tab">CPMK 7 *</a></li>
+									<li><a href="#modalNavCreateCPMK8" data-toggle="tab">CPMK 8 *</a></li>
+									<li><a href="#modalNavCreateCPMK9" data-toggle="tab">CPMK 9 *</a></li>
+									<li><a href="#modalNavCreateCPMK10" data-toggle="tab">CPMK 10 *</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavCreateDataPerkuliahan">
@@ -55,6 +59,26 @@
                   <div class="tab-pane" id="modalNavCreateCPMK6">
                     <?php
                       $this->load->view('masterDosenPengampu/modalCreate_tabCPMK_6');
+                    ?>
+                  </div>
+									<div class="tab-pane" id="modalNavCreateCPMK7">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalCreate_tabCPMK_7');
+                    ?>
+                  </div>
+									<div class="tab-pane" id="modalNavCreateCPMK8">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalCreate_tabCPMK_8');
+                    ?>
+                  </div>
+									<div class="tab-pane" id="modalNavCreateCPMK9">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalCreate_tabCPMK_9');
+                    ?>
+                  </div>
+									<div class="tab-pane" id="modalNavCreateCPMK10">
+                    <?php
+                      $this->load->view('masterDosenPengampu/modalCreate_tabCPMK_10');
                     ?>
                   </div>
                 </div>
