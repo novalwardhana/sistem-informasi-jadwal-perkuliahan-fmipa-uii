@@ -15,6 +15,7 @@
 				</div>
 				<div class="box-body">
 					<a href="<?php echo base_url('mahasiswa/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					<a href="<?php echo base_url('mahasiswa/upload') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-file-excel-o'></i> Import Data Excel</button></a>
 					<br><br>
 					<table id="listMahasiswa" class="table table-bordered table-striped" style="width: 100%">
 						<thead>

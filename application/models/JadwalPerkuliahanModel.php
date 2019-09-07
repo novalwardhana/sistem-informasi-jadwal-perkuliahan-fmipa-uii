@@ -128,7 +128,19 @@ class JadwalPerkuliahanModel extends CI_Model {
 				a.cpmk_5_keterangan,
 				a.cpmk_6_kode,
 				COALESCE(a.cpmk_6_persentase, 0) AS cpmk_6_persentase,
-				a.cpmk_6_keterangan
+				a.cpmk_6_keterangan,
+				a.cpmk_7_kode,
+				COALESCE(a.cpmk_7_persentase, 0) AS cpmk_7_persentase,
+				a.cpmk_7_keterangan,
+				a.cpmk_8_kode,
+				COALESCE(a.cpmk_8_persentase, 0) AS cpmk_8_persentase,
+				a.cpmk_8_keterangan,
+				a.cpmk_9_kode,
+				COALESCE(a.cpmk_9_persentase, 0) AS cpmk_9_persentase,
+				a.cpmk_9_keterangan,
+				a.cpmk_10_kode,
+				COALESCE(a.cpmk_10_persentase, 0) AS cpmk_10_persentase,
+				a.cpmk_10_keterangan
 			FROM dosen_pengampu_mata_kuliah a
 			LEFT join mata_kuliah b on a.id_mata_kuliah=b.id
 			LEFT join kelas c on a.id_kelas=c.id

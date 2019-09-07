@@ -58,6 +58,8 @@ $route['nilai-mata-kuliah-by-mahasiswa'] = 'NilaiMataKuliahByMahasiswa/index';
 /* Router Master Mahasiswa */
 $route['mahasiswa'] = 'Mahasiswa';
 $route['mahasiswa/create'] = 'Mahasiswa/create';
+$route['mahasiswa/upload'] = 'MahasiswaUpload';
+$route['mahasiswa/upload-process'] = 'MahasiswaUpload/create';
 $route['mahasiswa/update'] = 'Mahasiswa/update';
 $route['mahasiswa/delete'] = 'Mahasiswa/delete';
 
