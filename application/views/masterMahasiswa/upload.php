@@ -84,6 +84,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/demo.js')?>"></script>
 
+<script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$(".menu-sidebar-master").addClass('active');

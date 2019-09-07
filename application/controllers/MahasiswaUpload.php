@@ -2,7 +2,7 @@
 
 class MahasiswaUpload extends CI_Controller {
 
-	private $mahasiswaModel;
+	private $mahasiswaUploadModel;
 
 	public function __construct() {
 		parent::__construct();
@@ -14,8 +14,8 @@ class MahasiswaUpload extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->library('session');
-		$this->load->model('MahasiswaModel');
-		$this->mahasiswaModel=$this->MahasiswaModel;
+		$this->load->model('MahasiswaUploadModel');
+		$this->mahasiswaUploadModel=$this->MahasiswaUploadModel;
 	}
 
 	public function index() {
@@ -42,9 +42,20 @@ class MahasiswaUpload extends CI_Controller {
 		$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
 		$data = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
 
+		// Get role ID
+		$role = $this->mahasiswaUploadModel->getRoleId();
+		if (!isset($role['id'])) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Tidak ada user role Mahasiswa, silahkan buat terlebih dahulu di menu user management / hubungi admin');
+			redirect(base_url('mahasiswa/upload'));
+		}
+
     // insert data
     $hasil = TRUE;
 		$jumlah_data = count($data);
+		$data_mahasiswa = array();
 		for($i=2; $i<=$jumlah_data; $i++) {
 			$params=array();
 			$params['nama'] = $data[$i]['C'];
@@ -52,50 +63,43 @@ class MahasiswaUpload extends CI_Controller {
 			$params['password'] = $data[$i]['B'];
 			$params['semester'] = $data[$i]['D'];
 
-			$validationNIM = $this->mahasiswaModel->validationNIM($params['nim']);
+			$validationNIM = $this->mahasiswaUploadModel->validationNIM($params['nim']);
 			if ($validationNIM>=1) {
 				$this->session->set_flashdata('responseModule', 'failed');
 				$this->session->set_flashdata('responseModuleBackground', 'danger');
 				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM sudah digunakan');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM '.$params['nim'].' sudah digunakan');
 				redirect(base_url('mahasiswa/upload'));
 			}
 
-			$validationUsername = $this->mahasiswaModel->validationUsername($params['nim']);
+			$validationUsername = $this->mahasiswaUploadModel->validationUsername($params['nim']);
 			if ($validationUsername>=1) {
-				// $this->session->set_flashdata('responseModule', 'failed');
-				// $this->session->set_flashdata('responseModuleBackground', 'danger');
-				// $this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				// $this->session->set_flashdata('responseModuleMsg', '<br>NIM sudah digunakan untuk username, silahkan menggunakan NIM lain');
-				// redirect(base_url('mahasiswa/upload'));
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>NIM '.$params['nim'].' sudah digunakan untuk username, silahkan menggunakan NIM lain');
+				redirect(base_url('mahasiswa/upload'));
 			}
+			$data_mahasiswa[] = $params;
+		}
+		
+		foreach($data_mahasiswa as $row) {
+			$hasil=$this->mahasiswaUploadModel->create($row, $role['id']);
+		}
 
-			$role = $this->mahasiswaModel->getRoleId();
-			if (!isset($role['id'])) {
-				// $this->session->set_flashdata('responseModule', 'failed');
-				// $this->session->set_flashdata('responseModuleBackground', 'danger');
-				// $this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				// $this->session->set_flashdata('responseModuleMsg', '<br>Tidak ada user role Mahasiswa, silahkan buat terlebih dahulu di menu user management / hubungi admin');
-				// redirect(base_url('mahasiswa/upload'));
-			}
-
-      print_r($params);
-			//$hasil=$this->mahasiswaModel->create($params, $role['id']);
+    if ($hasil===TRUE) {
+      $this->session->set_flashdata('responseModule', 'success');
+      $this->session->set_flashdata('responseModuleBackground', 'success');
+      $this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+      $this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput, silahkan cek di menu master data Mahasiswa');
+      redirect(base_url('mahasiswa/upload'));
+    } else {
+      $this->session->set_flashdata('responseModule', 'failed');
+      $this->session->set_flashdata('responseModuleBackground', 'danger');
+      $this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+      $this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
+			redirect(base_url('mahasiswa/upload'));
     }
-    
-    // if ($hasil===TRUE) {
-    //   $this->session->set_flashdata('responseModule', 'success');
-    //   $this->session->set_flashdata('responseModuleBackground', 'success');
-    //   $this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
-    //   $this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diinput, silahkan cek di menu master data Mahasiswa');
-    //   redirect(base_url('mahasiswa/upload'));
-    // } else {
-    //   $this->session->set_flashdata('responseModule', 'failed');
-    //   $this->session->set_flashdata('responseModuleBackground', 'danger');
-    //   $this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-    //   $this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput');
-    //   redirect(base_url('mahasiswa/upload'));
-    // }
 		
 	}
 
