@@ -63,24 +63,42 @@ class MahasiswaUpload extends CI_Controller {
 			$params['password'] = $data[$i]['B'];
 			$params['semester'] = $data[$i]['D'];
 
-			$validationNIM = $this->mahasiswaUploadModel->validationNIM($params['nim']);
-			if ($validationNIM>=1) {
-				$this->session->set_flashdata('responseModule', 'failed');
-				$this->session->set_flashdata('responseModuleBackground', 'danger');
-				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM '.$params['nim'].' sudah digunakan');
-				redirect(base_url('mahasiswa/upload'));
+			if ($params['nama']!=null && $params['nim'] != null && $params['password'] != null && $params['semester'] != null) {
+				$validationNIM = $this->mahasiswaUploadModel->validationNIM($params['nim']);
+				if ($validationNIM>=1) {
+					$this->session->set_flashdata('responseModule', 'failed');
+					$this->session->set_flashdata('responseModuleBackground', 'danger');
+					$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+					$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diinput karena NIM '.$params['nim'].' sudah digunakan');
+					redirect(base_url('mahasiswa/upload'));
+				}
+	
+				$validationUsername = $this->mahasiswaUploadModel->validationUsername($params['nim']);
+				if ($validationUsername>=1) {
+					$this->session->set_flashdata('responseModule', 'failed');
+					$this->session->set_flashdata('responseModuleBackground', 'danger');
+					$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+					$this->session->set_flashdata('responseModuleMsg', '<br>NIM '.$params['nim'].' sudah digunakan untuk username, silahkan menggunakan NIM lain');
+					redirect(base_url('mahasiswa/upload'));
+				}
+				$data_mahasiswa[] = $params;
 			}
+		}
 
-			$validationUsername = $this->mahasiswaUploadModel->validationUsername($params['nim']);
-			if ($validationUsername>=1) {
-				$this->session->set_flashdata('responseModule', 'failed');
-				$this->session->set_flashdata('responseModuleBackground', 'danger');
-				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-				$this->session->set_flashdata('responseModuleMsg', '<br>NIM '.$params['nim'].' sudah digunakan untuk username, silahkan menggunakan NIM lain');
-				redirect(base_url('mahasiswa/upload'));
-			}
-			$data_mahasiswa[] = $params;
+		if (count($data_mahasiswa)==0) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data tidak ditemukan');
+			redirect(base_url('mahasiswa/upload'));
+		}
+
+		if (count($data_mahasiswa)>40) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Maksimal 40 data');
+			redirect(base_url('mahasiswa/upload'));
 		}
 		
 		foreach($data_mahasiswa as $row) {
