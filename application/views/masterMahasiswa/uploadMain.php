@@ -24,6 +24,7 @@
 										<div class="form-group">
 											<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
 											<a href="<?php echo base_url('mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+											<a href="<?php echo base_url('assets/template/template_upload_mahasiswa.xlsx') ?>"><button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i> Template</button></a>
 										</div>
 								</div>
 						</div>
