@@ -104,6 +104,7 @@
                             <div class="col-md-12">
                                 <button class="btn btn-success" onclick="addMahasiswa()"><i class="fa fa-plus"></i> Mahasiswa Peserta Perkuliahan</button>
                                 <a href="<?php echo base_url('JadwalPerkuliahanExport/export?id=').$dataPengampu->id_dosen_pengampu_mata_kuliah ?>"><button class="btn btn-success"><i class="fa fa-file-excel-o"></i> Export</button></a>
+																<a href="<?php echo base_url('jadwal-perkuliahan/upload-peserta?id=').$dataPengampu->id_dosen_pengampu_mata_kuliah ?>"><button class="btn btn-success"><i class="fa fa-file-excel-o"></i> Import</button></a>
                                 <br><br>
                                 <div class="table-responsive">
                                 <table id="listPeserta" class="table table-bordered table-striped" style="width: 100%">
