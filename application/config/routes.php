@@ -118,6 +118,10 @@ $route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNila
 /* Router Nilai Mata Kuliah */
 $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
 
+/* Laporan Evaluasi Mandiri */
+$route['evaluasi-mandiri'] = 'EvaluasiMandiri';
+$route['evaluasi-mandiri/laporan'] = 'EvaluasiMandiri/laporan';
+
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';
 $route['user-management/create'] = 'UserManagement/create';

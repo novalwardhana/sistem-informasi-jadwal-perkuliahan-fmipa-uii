@@ -129,9 +129,6 @@ class DosenPengampu extends CI_Controller {
 			2 =>'kode_mata_kuliah',
 			3 => 'mata_kuliah',
 			4 => 'kelas',
-			5 => 'jam_mulai',
-			6 => 'jam_selesai',
-			7 => 'ruang',
 		);
 
 		//Get total data
@@ -170,9 +167,6 @@ class DosenPengampu extends CI_Controller {
 				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
 				$nestedData['mata_kuliah'] = $row->mata_kuliah;
 				$nestedData['kelas'] = $row->kelas;
-				$nestedData['jam_mulai'] = $row->jam_mulai;
-				$nestedData['jam_selesai'] = $row->jam_selesai;
-				$nestedData['ruang'] = $row->ruang;
 				$data[] = $nestedData;
 			}
 		}

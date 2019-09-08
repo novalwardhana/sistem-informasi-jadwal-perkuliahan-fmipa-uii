@@ -198,9 +198,6 @@
           { "data": "kode_mata_kuliah", "width": "15%" },
           { "data": "mata_kuliah", "width": "25%" },
           { "data": "kelas" },
-          { "data": "jam_mulai" },
-          { "data": "jam_selesai" },
-          { "data": "ruang" },
       ]  
     });
   });
