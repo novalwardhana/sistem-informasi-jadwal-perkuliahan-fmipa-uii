@@ -11,7 +11,7 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Upload data mahasiswa</h3>
+					<h3 class="box-title">Upload Data Mahasiswa</h3>
 				</div>
 				<form role="form" method="post" action="<?php echo base_url('mahasiswa/upload-process') ?>" enctype="multipart/form-data">
 					<div class="box-body">
@@ -22,7 +22,7 @@
 											<input type="file" name="file" required>
 										</div>
 										<div class="form-group">
-											<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
+											<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
 											<a href="<?php echo base_url('mahasiswa') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
 											<a href="<?php echo base_url('assets/template/template_upload_mahasiswa.xlsx') ?>"><button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i> Template</button></a>
 										</div>

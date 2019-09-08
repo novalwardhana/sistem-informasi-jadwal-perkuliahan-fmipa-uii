@@ -112,7 +112,8 @@ $route['dosen-pengampu/detail'] = 'DosenPengampu/detail';
 /* Router Jadwal Perkuliahan */
 $route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';
 $route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
-$route['jadwal-perkuliahan/upload-peserta'] = 'JadwalPerkuliahanUploadNilai';
+$route['jadwal-perkuliahan/upload-nilai'] = 'JadwalPerkuliahanUploadNilai';
+$route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNilai/create';
 
 /* Router Nilai Mata Kuliah */
 $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
