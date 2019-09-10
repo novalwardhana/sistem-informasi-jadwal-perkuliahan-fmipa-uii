@@ -33,7 +33,7 @@ class EvaluasiMandiriModel extends CI_Model {
 		$sql = "SELECT
 					cpl.nama AS nama_cpl,
 					cpl.deskripsi AS deskripsi,
-					mk.kode AS mk_kuliah_kode,
+					mk.kode AS mk_kode,
 					mk.nama AS mk_nama,
 					mk.kontribusi AS mk_sks,
 					CAST(COALESCE(capaian.nilai_max, 0) AS DECIMAL(6,2)) as capaian_nilai_max,
@@ -79,7 +79,7 @@ class EvaluasiMandiriModel extends CI_Model {
 	}
 
 	public function getListHarkat() {
-		$sql="SELECT batas_bawah, batas_atas, huruf from harkat order by batas_bawah asc";
+		$sql="SELECT batas_bawah, batas_atas, huruf, harkat from harkat order by batas_bawah asc";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
