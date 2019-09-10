@@ -21,6 +21,13 @@ class EvaluasiMandiriModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function getListMahasiswaById($id) {
+		$this->db->where('id', $id);
+		$query=$this->db->get('mahasiswa');
+		$row=$query->row();
+		return $row;
+	}
+
 	public function getListCpl($id_mahasiswa, $cpl) {
 
 		$sql = "SELECT
@@ -69,6 +76,12 @@ class EvaluasiMandiriModel extends CI_Model {
 		$query = $this->db->query($sql);
 		$hasil = $query->result_array();
 		return $hasil;
+	}
+
+	public function getListHarkat() {
+		$sql="SELECT batas_bawah, batas_atas, huruf from harkat order by batas_bawah asc";
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 
 }

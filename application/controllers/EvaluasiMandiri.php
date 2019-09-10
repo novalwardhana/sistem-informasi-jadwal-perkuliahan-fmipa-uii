@@ -38,12 +38,19 @@ class EvaluasiMandiri extends CI_Controller {
 	public function laporan() {
 		$id_mahasiswa = $_POST['id_mahasiswa'];
 
+		$data_laporan = array();
 		$data_cpl1 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 1');
 		$data_cpl2 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 2');
-		
-		$data_laporan = array();
 		$data_laporan[] = $data_cpl1;
 		$data_laporan[] = $data_cpl2;
+
+		$data = array();
+		$data['title'] = 'Laporan | Evaluasi Mandiri';
+		$data['data_mahasiswa'] = $this->evaluasiMandiriModel->getListMahasiswaById($id_mahasiswa);
+		$data['data_laporan'] = $data_laporan;
+		$data['data_harkat'] = $this->evaluasiMandiriModel->getListHarkat();;
+
+		$this->load->view('evaluasiMandiri/read', $data);
 
 	}
 
