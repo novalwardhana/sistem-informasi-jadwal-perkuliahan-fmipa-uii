@@ -44,7 +44,10 @@
         $data_laporan_detail = $data_laporan[$i];
         $cpl_nama = (isset($data_laporan_detail[0]['nama_cpl'])) ? $data_laporan_detail[0]['nama_cpl'] : ' ';
         $cpl_deskripsi = (isset($data_laporan_detail[0]['deskripsi'])) ? $data_laporan_detail[0]['deskripsi'] : ' ';
-    ?>
+				
+				$cpl_nama_low = 'skor_maks_'.str_replace(' ','_',strtolower($cpl_nama));
+				$skor_maks = (isset($data_skor_maks[$cpl_nama_low])) ? $data_skor_maks[$cpl_nama_low] : 0;
+		?>
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-body">
@@ -78,6 +81,8 @@
                 <tbody>
                   <?php
                   $nomor = 1;
+                  $total_harkat = 0;
+                  $total_sks = 0;
                   for($j=0; $j<count($data_laporan_detail); $j++) {
 										 //print_r($data_laporan_detail[$j]);
 										
@@ -93,7 +98,11 @@
 												$nilai = $data_harkat[$k]['huruf'];
 												$harkat = $data_harkat[$k]['harkat'];
 											}
-										}
+                    }
+                    
+                    $subtotal_harkat = $harkat*$data_laporan_detail[$j]['cpld_kontribusi'];
+                    $total_harkat += $subtotal_harkat;
+                    $total_sks += $data_laporan_detail[$j]['mk_sks'];
                   ?>
                     <tr>
                       <td><?php echo $nomor ?></td>
@@ -105,12 +114,42 @@
 											<td class="text-center"><?php echo $nilai; ?></td>
 											<td class="text-right"><?php echo $harkat; ?></td>
 											<td class="text-right"><?php echo $data_laporan_detail[$j]['cpld_kontribusi'] ?></td>
-											<td class="text-right"><?php echo $harkat*$data_laporan_detail[$j]['cpld_kontribusi'] ?></td>
+											<td class="text-right"><?php echo $subtotal_harkat; ?></td>
                     </tr>
                   <?php
                     $nomor++;
                   }
                   ?>
+                  <tr>
+                    <td colspan="3"></td>
+                    <td class="text-right"><?php echo $total_sks; ?></td>
+                    <td colspan="5" class="text-right"><b>Jumlah</b></td>
+                    <td class="text-right"><?php echo $total_harkat; ?></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"></td>
+                    <td class="text-right"></td>
+                    <td colspan="5" class="text-right"><b>Skor Mahasiswa</b></td>
+										<?php
+											$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
+										?>
+                    <td class="text-right"><?php echo $skor_mahasiswa ?></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"></td>
+                    <td class="text-right"></td>
+                    <td colspan="5" class="text-right"><b>Skor Maksimum</b></td>
+                    <td class="text-right"><?php echo $skor_maks ?></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"></td>
+                    <td class="text-right"></td>
+                    <td colspan="5" class="text-right"><b>Capaian Kompetensi</b></td>
+										<?php
+											$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
+										?>
+                    <td class="text-right"><?php echo $capaian.'%' ?></td>
+                  </tr>
                 </tbody>
               </table>
             </div>

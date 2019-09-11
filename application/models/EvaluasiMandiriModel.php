@@ -84,4 +84,11 @@ class EvaluasiMandiriModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getSkorMaks($semester) {
+		$sql="SELECT * from skor_maks_per_semester WHERE semester=$semester ";
+		$query=$this->db->query($sql);
+		$row=$query->first_row('array');
+		return $row;
+	}
+
 }
