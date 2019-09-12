@@ -122,6 +122,10 @@ $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
 $route['evaluasi-mandiri'] = 'EvaluasiMandiri';
 $route['evaluasi-mandiri/laporan'] = 'EvaluasiMandiri/laporan';
 
+/* Laporan Hasil Evaluasi Mandiri */
+$route['hasil-evaluasi-mandiri'] = 'EvaluasiMandiriHasil';
+$route['hasil-evaluasi-mandiri/laporan'] = 'EvaluasiMandiriHasil/laporan';
+
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';
 $route['user-management/create'] = 'UserManagement/create';

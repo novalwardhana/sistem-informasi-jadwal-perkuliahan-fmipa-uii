@@ -163,6 +163,8 @@
 						?>
 
 						<li class="menu-sidebar-laporan-evaluasi-mandiri"><a href="<?php echo base_url('evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Evaluasi Mandiri</span></a></li>
+
+						<li class="menu-sidebar-laporan-evaluasi-mandiri-hasil"><a href="<?php echo base_url('hasil-evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Hasil Evaluasi Mandiri</span></a></li>
 					</ul>
 				</li>
 				<?php

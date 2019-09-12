@@ -14,7 +14,10 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Data Mahasiswa</h3>
+					<h3 class="box-title">
+					FORMULIR EVALUASI MANDIRI PENGUKURAN CAPAIAN PEMBELAJARAN
+					Data Mahasiswa
+					</h3>
 				</div>
 				<div class="box-body">
 					<table class="tabel-informasi">
