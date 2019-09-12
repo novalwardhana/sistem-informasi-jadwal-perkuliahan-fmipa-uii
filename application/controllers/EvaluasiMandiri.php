@@ -48,7 +48,6 @@ class EvaluasiMandiri extends CI_Controller {
 		$data_cpl7 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 7');
 		$data_cpl8 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 8');
 		$data_cpl9 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 9');
-		$data_cpl10 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 10');
 		$data_laporan[] = $data_cpl1;
 		$data_laporan[] = $data_cpl2;
 		$data_laporan[] = $data_cpl3;
@@ -58,14 +57,13 @@ class EvaluasiMandiri extends CI_Controller {
 		$data_laporan[] = $data_cpl7;
 		$data_laporan[] = $data_cpl8;
 		$data_laporan[] = $data_cpl9;
-		$data_laporan[] = $data_cpl10;
 
 		$data = array();
 		$data['title'] = 'Laporan | Evaluasi Mandiri';
 		$data['data_mahasiswa'] = $this->evaluasiMandiriModel->getListMahasiswaById($id_mahasiswa);
 		$data['data_skor_maks'] = $this->evaluasiMandiriModel->getSkorMaks($data['data_mahasiswa']->semester);
 		$data['data_laporan'] = $data_laporan;
-		$data['data_harkat'] = $this->evaluasiMandiriModel->getListHarkat();;
+		$data['data_harkat'] = $this->evaluasiMandiriModel->getListHarkat();
 
 		$this->load->view('evaluasiMandiri/read', $data);
 
