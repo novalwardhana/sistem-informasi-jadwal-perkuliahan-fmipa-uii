@@ -39,7 +39,7 @@
 
   <div class="content-wrapper">
     <?php
-			$this->load->view('evaluasiMandiri/readMain');
+			$this->load->view('evaluasiMandiriHasil/readMain');
 		?>
   </div>
   <footer class="main-footer">
