@@ -91,4 +91,10 @@ class EvaluasiMandiriHasilModel extends CI_Model {
 		return $row;
 	}
 
+	public function getListKlasifikasi() {
+		$sql="SELECT a.* from klasifikasi a order by a.batas_bawah asc";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+
 }

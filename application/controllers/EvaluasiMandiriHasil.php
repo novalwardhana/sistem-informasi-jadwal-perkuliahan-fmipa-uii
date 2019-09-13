@@ -64,7 +64,7 @@ class EvaluasiMandiriHasil extends CI_Controller {
 		$data['data_skor_maks'] = $this->evaluasiMandiriHasilModel->getSkorMaks($data['data_mahasiswa']->semester);
 		$data['data_laporan'] = $data_laporan;
 		$data['data_harkat'] = $this->evaluasiMandiriHasilModel->getListHarkat();
-
+		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
 
 		$this->load->view('evaluasiMandiriHasil/read', $data);
 	}

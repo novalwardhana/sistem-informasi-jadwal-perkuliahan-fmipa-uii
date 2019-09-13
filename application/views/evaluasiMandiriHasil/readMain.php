@@ -57,7 +57,7 @@
 								<th class="text-center">Skor<br>Mahasiswa</th>
 								<th class="text-center">Skor<br>Maksimum</th>
 								<th class="text-center">Capaian<br>Kompetensi</th>
-								<th>Keterangan</th>
+								<th class="text-center">Keterangan</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,13 +95,25 @@
 										}
 										$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
 										$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
+										
+										$capaian_keterangan = '';
+										for($l=0; $l<count($data_klasifikasi); $l++) {
+											$batas_bawah = $data_klasifikasi[$l]['batas_bawah'];
+											$batas_atas = $data_klasifikasi[$l]['batas_atas'];
+											if ($capaian>=$batas_bawah 
+												&& 
+												$capaian<=$batas_atas
+											) {
+												$capaian_keterangan = $data_klasifikasi[$l]['predikat'];
+											}
+										}
 									?>
 									<td class="text-center"><?php echo $nomor; ?></td>
 									<td><?php echo $cpl_deskripsi; ?></td>
 									<td class="text-center"><?php echo $skor_mahasiswa; ?></td>
 									<td class="text-center"><?php echo $skor_maks; ?></td>
 									<td class="text-center"><?php echo $capaian; ?></td>
-									<td></td>
+									<td class="text-center"><b><?php echo $capaian_keterangan; ?></b></td>
 								</tr>
 						<?php
 								$nomor++;
