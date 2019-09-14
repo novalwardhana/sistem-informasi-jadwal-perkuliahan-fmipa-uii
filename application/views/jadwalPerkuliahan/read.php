@@ -146,15 +146,12 @@
                 return meta.row + meta.settings._iDisplayStart + 1;
               }
           },
-          { "data": "aksi", "className": "text-center", "width": "12%"},
+          { "data": "aksi", "className": "text-center"},
           { "data": "nik" },
           { "data": "dosen" },
           { "data": "kode_mata_kuliah" },
           { "data": "mata_kuliah" },
-          { "data": "kelas" },
-          { "data": "jam_mulai" },
-          { "data": "jam_selesai" },
-          { "data": "ruang" },
+          { "data": "kelas", "className": "text-center" },
       ]  
     });
   });

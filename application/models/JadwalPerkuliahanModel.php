@@ -235,7 +235,7 @@ class JadwalPerkuliahanModel extends CI_Model {
 				a.id,
 				a.id_dosen_pengampu_mata_kuliah,
 				a.id_mahasiswa,
-				a.cpmk_1_nilai,a.cpmk_2_nilai,a.cpmk_3_nilai,a.cpmk_4_nilai,a.cpmk_5_nilai,a.cpmk_6_nilai,
+				a.cpmk_1_nilai,a.cpmk_2_nilai,a.cpmk_3_nilai,a.cpmk_4_nilai,a.cpmk_5_nilai,a.cpmk_6_nilai,a.cpmk_7_nilai,a.cpmk_8_nilai,a.cpmk_9_nilai,a.cpmk_10_nilai,
 				b.nama AS mahasiswa,
 				b.nim, 
 				b.semester

@@ -26,10 +26,7 @@
 									<th>Dosen</th>
 									<th>Kode Mata Kuliah</th>
 									<th>Mata Kuliah</th>
-									<th>Kelas</th>
-									<th>Jam Mulai</th>
-									<th>Jam Selesai</th>
-									<th>Ruang</th>
+									<th class="text-center">Kelas</th>
 								</tr>
 							</thead>
 						</table>

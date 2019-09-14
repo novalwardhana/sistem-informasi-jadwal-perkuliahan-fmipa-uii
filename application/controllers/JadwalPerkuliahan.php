@@ -30,10 +30,7 @@ class JadwalPerkuliahan extends CI_controller {
 			3 => 'dosen',
 			4 => 'kode_mata_kuliah',
 			5 => 'mata_kuliah',
-			6 => 'kelas',
-			7 => 'jam_mulai',
-			8 => 'jam_selesai',
-			9 => 'ruang',
+			6 => 'kelas'
 		);
 
 		//Get total data
@@ -209,10 +206,14 @@ class JadwalPerkuliahan extends CI_controller {
 			7 =>    'kp_komponen_penilaian_2',
 			8 =>    'kp_komponen_penilaian_3',
 			9 =>    'kp_komponen_penilaian_4',
-			10 =>    'kp_komponen_penilaian_5',
+			10 =>   'kp_komponen_penilaian_5',
 			11 =>   'kp_komponen_penilaian_6',
-			12 =>   'nilai_akhir',
-			13 =>   'harkat'
+			12 =>   'kp_komponen_penilaian_7',
+			13 =>   'kp_komponen_penilaian_8',
+			14 =>   'kp_komponen_penilaian_9',
+			15 =>   'kp_komponen_penilaian_10',
+			16 =>   'nilai_akhir',
+			17 =>   'harkat'
 		);
 
 		//Get total data
@@ -257,6 +258,10 @@ class JadwalPerkuliahan extends CI_controller {
 				$nestedData['kp_komponen_penilaian_4'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk4-$row->id' name='input-penilaian-cpmk4-$row->id' value='$row->cpmk_4_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
 				$nestedData['kp_komponen_penilaian_5'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk5-$row->id' name='input-penilaian-cpmk5-$row->id' value='$row->cpmk_5_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
 				$nestedData['kp_komponen_penilaian_6'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk6-$row->id' name='input-penilaian-cpmk6-$row->id' value='$row->cpmk_6_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
+				$nestedData['kp_komponen_penilaian_7'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk7-$row->id' name='input-penilaian-cpmk7-$row->id' value='$row->cpmk_7_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
+				$nestedData['kp_komponen_penilaian_8'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk8-$row->id' name='input-penilaian-cpmk8-$row->id' value='$row->cpmk_8_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
+				$nestedData['kp_komponen_penilaian_9'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk9-$row->id' name='input-penilaian-cpmk9-$row->id' value='$row->cpmk_9_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
+				$nestedData['kp_komponen_penilaian_10'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk10-$row->id' name='input-penilaian-cpmk10-$row->id' value='$row->cpmk_10_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
 				$nestedData['nilai_akhir'] = [$row->cpmk_1_nilai, $row->cpmk_2_nilai, $row->cpmk_3_nilai, $row->cpmk_4_nilai, $row->cpmk_5_nilai, $row->cpmk_6_nilai];
 				$nestedData['harkat'] = $data_harkat;
 

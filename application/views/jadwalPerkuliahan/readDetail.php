@@ -79,10 +79,6 @@
                                     <label>Mata Kuliah</label>
                                     <input type="text" value="<?php echo $dataPengampu->mata_kuliah ?>" name="nama" class="form-control" placeholder="Nama lengkap Dosen" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label>Jam Mulai</label>
-                                    <input type="text" value="<?php echo $dataPengampu->jam_mulai ?>" name="nama" class="form-control" placeholder="Nama lengkap Dosen" readonly>
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -92,10 +88,6 @@
                                 <div class="form-group">
                                     <label>Kelas</label>
                                     <input type="text" value="<?php echo $dataPengampu->kelas ?>" name="nik" class="form-control" placeholder="Nomor induk pegawai" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label>Jam Selesai</label>
-                                    <input type="text" value="<?php echo $dataPengampu->jam_selesai ?>" name="nama" class="form-control" placeholder="Nama lengkap Dosen" readonly>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +108,7 @@
                                             <th rowspan="2" >NIM</th>
                                             <th rowspan="2" nowrap>Nama</th>
                                             <th rowspan="2" nowrap>Semester</th>
-                                            <th colspan="6" class="text-center">Penilaian</th>
+                                            <th colspan="10" class="text-center">Penilaian</th>
                                             <th rowspan="2" nowrap>Nilai Akhir</th>
                                             <th rowspan="2" nowrap class="text-center">Harkat</th>
                                         </tr>
@@ -172,6 +164,42 @@
                                                 </a>
                                                 <br>
                                                 [<?php echo $dataPengampu->cpmk_6_persentase ?> %]
+                                                <br>
+                                                <b>Rentang: </b>1 - 100
+                                            </th>
+																						<th nowrap class="text-center">
+                                                <a href="#" data-toggle="tooltip" title="<?php echo $dataPengampu->cpmk_7_keterangan ?>">
+                                                    <?php echo $dataPengampu->cpmk_7_kode ?>
+                                                </a>
+                                                <br>
+                                                [<?php echo $dataPengampu->cpmk_7_persentase ?> %]
+                                                <br>
+                                                <b>Rentang: </b>1 - 100
+                                            </th>
+																						<th nowrap class="text-center">
+                                                <a href="#" data-toggle="tooltip" title="<?php echo $dataPengampu->cpmk_8_keterangan ?>">
+                                                    <?php echo $dataPengampu->cpmk_8_kode ?>
+                                                </a>
+                                                <br>
+                                                [<?php echo $dataPengampu->cpmk_8_persentase ?> %]
+                                                <br>
+                                                <b>Rentang: </b>1 - 100
+                                            </th>
+																						<th nowrap class="text-center">
+                                                <a href="#" data-toggle="tooltip" title="<?php echo $dataPengampu->cpmk_9_keterangan ?>">
+                                                    <?php echo $dataPengampu->cpmk_9_kode ?>
+                                                </a>
+                                                <br>
+                                                [<?php echo $dataPengampu->cpmk_9_persentase ?> %]
+                                                <br>
+                                                <b>Rentang: </b>1 - 100
+                                            </th>
+																						<th nowrap class="text-center">
+                                                <a href="#" data-toggle="tooltip" title="<?php echo $dataPengampu->cpmk_10_keterangan ?>">
+                                                    <?php echo $dataPengampu->cpmk_10_kode ?>
+                                                </a>
+                                                <br>
+                                                [<?php echo $dataPengampu->cpmk_10_persentase ?> %]
                                                 <br>
                                                 <b>Rentang: </b>1 - 100
                                             </th>
@@ -401,6 +429,10 @@
                 { "data": "kp_komponen_penilaian_4", className: 'cell-nowrap' },
                 { "data": "kp_komponen_penilaian_5", className: 'cell-nowrap' },
                 { "data": "kp_komponen_penilaian_6", className: 'cell-nowrap' },
+								{ "data": "kp_komponen_penilaian_7", className: 'cell-nowrap' },
+								{ "data": "kp_komponen_penilaian_8", className: 'cell-nowrap' },
+								{ "data": "kp_komponen_penilaian_9", className: 'cell-nowrap' },
+								{ "data": "kp_komponen_penilaian_10", className: 'cell-nowrap' },
                 { "data": "nilai_akhir", 
                     "className": 'cell-nowrap, text-right',
                     render: function (data, type, row, meta) {
@@ -410,6 +442,10 @@
                         let cpmk_4_persentase=<?php echo $dataPengampu->cpmk_4_persentase/100 ?>;
                         let cpmk_5_persentase=<?php echo $dataPengampu->cpmk_5_persentase/100 ?>;
                         let cpmk_6_persentase=<?php echo $dataPengampu->cpmk_6_persentase/100 ?>;
+												let cpmk_7_persentase=<?php echo $dataPengampu->cpmk_7_persentase/100 ?>;
+												let cpmk_8_persentase=<?php echo $dataPengampu->cpmk_8_persentase/100 ?>;
+												let cpmk_9_persentase=<?php echo $dataPengampu->cpmk_9_persentase/100 ?>;
+												let cpmk_10_persentase=<?php echo $dataPengampu->cpmk_10_persentase/100 ?>;
 
                         let cpmk_1_nilai = (row.nilai_akhir[0] != null) ? parseFloat(row.nilai_akhir[0]) : null;
                         let cpmk_2_nilai = (row.nilai_akhir[1] != null) ? parseFloat(row.nilai_akhir[1]) : null;
@@ -417,8 +453,22 @@
                         let cpmk_4_nilai = (row.nilai_akhir[3] != null) ? parseFloat(row.nilai_akhir[3]) : null;
                         let cpmk_5_nilai = (row.nilai_akhir[4] != null) ? parseFloat(row.nilai_akhir[4]) : null;
                         let cpmk_6_nilai = (row.nilai_akhir[5] != null) ? parseFloat(row.nilai_akhir[5]) : null;
+												let cpmk_7_nilai = (row.nilai_akhir[6] != null) ? parseFloat(row.nilai_akhir[6]) : null;
+												let cpmk_8_nilai = (row.nilai_akhir[7] != null) ? parseFloat(row.nilai_akhir[7]) : null;
+												let cpmk_9_nilai = (row.nilai_akhir[8] != null) ? parseFloat(row.nilai_akhir[8]) : null;
+												let cpmk_10_nilai = (row.nilai_akhir[9] != null) ? parseFloat(row.nilai_akhir[9]) : null;
 
-                        let nilai_akhir = (cpmk_1_persentase*cpmk_1_nilai) + (cpmk_2_persentase*cpmk_2_nilai) + (cpmk_3_persentase*cpmk_3_nilai) + (cpmk_4_persentase*cpmk_4_nilai) + (cpmk_5_persentase*cpmk_5_nilai) + (cpmk_6_persentase*cpmk_6_nilai);
+                        let nilai_akhir = (cpmk_1_persentase*cpmk_1_nilai) + 
+																					(cpmk_2_persentase*cpmk_2_nilai) + 
+																					(cpmk_3_persentase*cpmk_3_nilai) + 
+																					(cpmk_4_persentase*cpmk_4_nilai) + 
+																					(cpmk_5_persentase*cpmk_5_nilai) + 
+																					(cpmk_6_persentase*cpmk_6_nilai) +
+																					(cpmk_7_persentase*cpmk_7_nilai) +
+																					(cpmk_8_persentase*cpmk_8_nilai) +
+																					(cpmk_9_persentase*cpmk_9_nilai) +
+																					(cpmk_10_persentase*cpmk_10_nilai)
+																					;
                         let nilai_akhir_f = nilai_akhir.toFixed(2);
                         let nilai_akhir_dec = nilai_akhir_f.replace(".",",");
                         return nilai_akhir_dec;
@@ -434,6 +484,10 @@
                         let cpmk_4_persentase=<?php echo $dataPengampu->cpmk_4_persentase/100 ?>;
                         let cpmk_5_persentase=<?php echo $dataPengampu->cpmk_5_persentase/100 ?>;
                         let cpmk_6_persentase=<?php echo $dataPengampu->cpmk_6_persentase/100 ?>;
+												let cpmk_7_persentase=<?php echo $dataPengampu->cpmk_7_persentase/100 ?>;
+												let cpmk_8_persentase=<?php echo $dataPengampu->cpmk_8_persentase/100 ?>;
+												let cpmk_9_persentase=<?php echo $dataPengampu->cpmk_9_persentase/100 ?>;
+												let cpmk_10_persentase=<?php echo $dataPengampu->cpmk_10_persentase/100 ?>;
 
                         let cpmk_1_nilai = (row.nilai_akhir[0] != null) ? parseFloat(row.nilai_akhir[0]) : null;
                         let cpmk_2_nilai = (row.nilai_akhir[1] != null) ? parseFloat(row.nilai_akhir[1]) : null;
@@ -441,8 +495,22 @@
                         let cpmk_4_nilai = (row.nilai_akhir[3] != null) ? parseFloat(row.nilai_akhir[3]) : null;
                         let cpmk_5_nilai = (row.nilai_akhir[4] != null) ? parseFloat(row.nilai_akhir[4]) : null;
                         let cpmk_6_nilai = (row.nilai_akhir[5] != null) ? parseFloat(row.nilai_akhir[5]) : null;
+												let cpmk_7_nilai = (row.nilai_akhir[6] != null) ? parseFloat(row.nilai_akhir[6]) : null;
+												let cpmk_8_nilai = (row.nilai_akhir[7] != null) ? parseFloat(row.nilai_akhir[7]) : null;
+												let cpmk_9_nilai = (row.nilai_akhir[8] != null) ? parseFloat(row.nilai_akhir[8]) : null;
+												let cpmk_10_nilai = (row.nilai_akhir[9] != null) ? parseFloat(row.nilai_akhir[9]) : null;
                         
-                        let nilai_akhir = (cpmk_1_persentase*cpmk_1_nilai) + (cpmk_2_persentase*cpmk_2_nilai) + (cpmk_3_persentase*cpmk_3_nilai) + (cpmk_4_persentase*cpmk_4_nilai) + (cpmk_5_persentase*cpmk_5_nilai) + (cpmk_6_persentase*cpmk_6_nilai);
+                        let nilai_akhir = (cpmk_1_persentase*cpmk_1_nilai) + 
+																					(cpmk_2_persentase*cpmk_2_nilai) + 
+																					(cpmk_3_persentase*cpmk_3_nilai) + 
+																					(cpmk_4_persentase*cpmk_4_nilai) + 
+																					(cpmk_5_persentase*cpmk_5_nilai) + 
+																					(cpmk_6_persentase*cpmk_6_nilai) +
+																					(cpmk_7_persentase*cpmk_7_nilai) +
+																					(cpmk_8_persentase*cpmk_8_nilai) +
+																					(cpmk_9_persentase*cpmk_9_nilai) +
+																					(cpmk_10_persentase*cpmk_10_nilai)
+																				;
                         
                         for(j=0; j<row.harkat.length; j++) {
                             let batas_bawah = parseFloat(row.harkat[j]['batas_bawah']);
