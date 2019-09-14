@@ -14,16 +14,16 @@
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#modalNavUpdateDataPerkuliahan" data-toggle="tab">Data Perkuliahan *</a></li>
-                  <li><a href="#modalNavUpdateCPMK1" data-toggle="tab">CPMK 1 *</a></li>
-                  <li><a href="#modalNavUpdateCPMK2" data-toggle="tab">CPMK 2 *</a></li>
-                  <li><a href="#modalNavUpdateCPMK3" data-toggle="tab">CPMK 3 *</a></li>
-                  <li><a href="#modalNavUpdateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
-                  <li><a href="#modalNavUpdateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
-                  <li><a href="#modalNavUpdateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
-									<li><a href="#modalNavUpdateCPMK7" data-toggle="tab">CPMK 7 *</a></li>
-									<li><a href="#modalNavUpdateCPMK8" data-toggle="tab">CPMK 8 *</a></li>
-									<li><a href="#modalNavUpdateCPMK9" data-toggle="tab">CPMK 9 *</a></li>
-									<li><a href="#modalNavUpdateCPMK10" data-toggle="tab">CPMK 10 *</a></li>
+                  <li><a href="#modalNavUpdateCPMK1" data-toggle="tab">CPMK 1</a></li>
+                  <li><a href="#modalNavUpdateCPMK2" data-toggle="tab">CPMK 2</a></li>
+                  <li><a href="#modalNavUpdateCPMK3" data-toggle="tab">CPMK 3</a></li>
+                  <li><a href="#modalNavUpdateCPMK4" data-toggle="tab">CPMK 4</a></li>
+                  <li><a href="#modalNavUpdateCPMK5" data-toggle="tab">CPMK 5</a></li>
+                  <li><a href="#modalNavUpdateCPMK6" data-toggle="tab">CPMK 6</a></li>
+									<li><a href="#modalNavUpdateCPMK7" data-toggle="tab">CPMK 7</a></li>
+									<li><a href="#modalNavUpdateCPMK8" data-toggle="tab">CPMK 8</a></li>
+									<li><a href="#modalNavUpdateCPMK9" data-toggle="tab">CPMK 9</a></li>
+									<li><a href="#modalNavUpdateCPMK10" data-toggle="tab">CPMK 10</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavUpdateDataPerkuliahan">

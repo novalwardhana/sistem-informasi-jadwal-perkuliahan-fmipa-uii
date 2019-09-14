@@ -14,16 +14,16 @@
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#modalNavCreateDataPerkuliahan" data-toggle="tab">Data Perkuliahan *</a></li>
-                  <li><a href="#modalNavCreateCPMK1" data-toggle="tab">CPMK 1 *</a></li>
-                  <li><a href="#modalNavCreateCPMK2" data-toggle="tab">CPMK 2 *</a></li>
-                  <li><a href="#modalNavCreateCPMK3" data-toggle="tab">CPMK 3 *</a></li>
-                  <li><a href="#modalNavCreateCPMK4" data-toggle="tab">CPMK 4 *</a></li>
-                  <li><a href="#modalNavCreateCPMK5" data-toggle="tab">CPMK 5 *</a></li>
-                  <li><a href="#modalNavCreateCPMK6" data-toggle="tab">CPMK 6 *</a></li>
-									<li><a href="#modalNavCreateCPMK7" data-toggle="tab">CPMK 7 *</a></li>
-									<li><a href="#modalNavCreateCPMK8" data-toggle="tab">CPMK 8 *</a></li>
-									<li><a href="#modalNavCreateCPMK9" data-toggle="tab">CPMK 9 *</a></li>
-									<li><a href="#modalNavCreateCPMK10" data-toggle="tab">CPMK 10 *</a></li>
+                  <li><a href="#modalNavCreateCPMK1" data-toggle="tab">CPMK 1</a></li>
+                  <li><a href="#modalNavCreateCPMK2" data-toggle="tab">CPMK 2</a></li>
+                  <li><a href="#modalNavCreateCPMK3" data-toggle="tab">CPMK 3</a></li>
+                  <li><a href="#modalNavCreateCPMK4" data-toggle="tab">CPMK 4</a></li>
+                  <li><a href="#modalNavCreateCPMK5" data-toggle="tab">CPMK 5</a></li>
+                  <li><a href="#modalNavCreateCPMK6" data-toggle="tab">CPMK 6</a></li>
+									<li><a href="#modalNavCreateCPMK7" data-toggle="tab">CPMK 7</a></li>
+									<li><a href="#modalNavCreateCPMK8" data-toggle="tab">CPMK 8</a></li>
+									<li><a href="#modalNavCreateCPMK9" data-toggle="tab">CPMK 9</a></li>
+									<li><a href="#modalNavCreateCPMK10" data-toggle="tab">CPMK 10</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="modalNavCreateDataPerkuliahan">

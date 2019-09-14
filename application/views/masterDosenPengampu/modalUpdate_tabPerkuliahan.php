@@ -38,7 +38,7 @@
 
 <div class="form-group">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <label>Kelas *</label>
             <select id="modalUpdateKelas" class="selectKelas form-control" style="width: 100%;" name="id_kelas" required>
             <option></option>
@@ -51,21 +51,21 @@
             ?>
             </select>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <label>Jam Mulai *</label>
             <input id="modalUpdateJamMulai" type="text" class="form-control timepicker" name="jam_mulai" required/>
         </div>
         <div class="col-md-3">
             <label>Jam Selesai *</label>
             <input id="modalUpdateJamSelesai" type="text" class="form-control timepicker" name="jam_selesai" required/>
-        </div>
-        <div class="col-md-3">
+        </div> -->
+        <div class="col-md-6">
             <label>Maks Peserta *</label>
-            <input id="modalUpdateMaksPeserta" type="number" min="1" max="100" class="form-control" name="maks_peserta" required/>
+            <input id="modalUpdateMaksPeserta" type="number" min="1" max="100" style="text-align: right;" class="form-control" name="maks_peserta" required/>
         </div>
     </div>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <label>Ruang *</label>
     <input id="modalUpdateRuang" type="text" class="form-control" placeholder="Ruang" name="ruang" required/>
-</div>
+</div> -->
