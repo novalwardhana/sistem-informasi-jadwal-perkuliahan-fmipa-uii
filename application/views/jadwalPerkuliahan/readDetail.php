@@ -540,6 +540,10 @@
                 let cpmk_4 = ($("#input-penilaian-cpmk4-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk4-"+data[i]).val()) : null;
                 let cpmk_5 = ($("#input-penilaian-cpmk5-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk5-"+data[i]).val()) : null;
                 let cpmk_6 = ($("#input-penilaian-cpmk6-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk6-"+data[i]).val()) : null;
+								let cpmk_7 = ($("#input-penilaian-cpmk7-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk7-"+data[i]).val()) : null;
+								let cpmk_8 = ($("#input-penilaian-cpmk8-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk8-"+data[i]).val()) : null;
+								let cpmk_9 = ($("#input-penilaian-cpmk9-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk9-"+data[i]).val()) : null;
+								let cpmk_10 = ($("#input-penilaian-cpmk10-"+data[i]).val() != "") ? parseFloat($("#input-penilaian-cpmk10-"+data[i]).val()) : null;
 
 								if (
 									(cpmk_1<0 || cpmk_1>100) ||
@@ -547,7 +551,11 @@
 									(cpmk_3<0 || cpmk_3>100) ||
 									(cpmk_4<0 || cpmk_4>100) ||
 									(cpmk_5<0 || cpmk_5>100) ||
-									(cpmk_6<0 || cpmk_6>100)
+									(cpmk_6<0 || cpmk_6>100) ||
+									(cpmk_7<0 || cpmk_7>100) ||
+									(cpmk_8<0 || cpmk_8>100) ||
+									(cpmk_9<0 || cpmk_9>100) ||
+									(cpmk_10<0 || cpmk_10>100)
 								) {
 									$.toaster({ 
 										priority : 'warning', 
@@ -565,6 +573,10 @@
                     "cpmk_4" : cpmk_4,
                     "cpmk_5" : cpmk_5,
                     "cpmk_6" : cpmk_6,
+										"cpmk_7" : cpmk_7,
+										"cpmk_8" : cpmk_8,
+										"cpmk_9" : cpmk_9,
+										"cpmk_10" : cpmk_10,
                 };
             }
 

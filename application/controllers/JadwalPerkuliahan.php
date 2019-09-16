@@ -262,7 +262,7 @@ class JadwalPerkuliahan extends CI_controller {
 				$nestedData['kp_komponen_penilaian_8'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk8-$row->id' name='input-penilaian-cpmk8-$row->id' value='$row->cpmk_8_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
 				$nestedData['kp_komponen_penilaian_9'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk9-$row->id' name='input-penilaian-cpmk9-$row->id' value='$row->cpmk_9_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
 				$nestedData['kp_komponen_penilaian_10'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk10-$row->id' name='input-penilaian-cpmk10-$row->id' value='$row->cpmk_10_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['nilai_akhir'] = [$row->cpmk_1_nilai, $row->cpmk_2_nilai, $row->cpmk_3_nilai, $row->cpmk_4_nilai, $row->cpmk_5_nilai, $row->cpmk_6_nilai];
+				$nestedData['nilai_akhir'] = [$row->cpmk_1_nilai, $row->cpmk_2_nilai, $row->cpmk_3_nilai, $row->cpmk_4_nilai, $row->cpmk_5_nilai, $row->cpmk_6_nilai, $row->cpmk_7_nilai, $row->cpmk_8_nilai, $row->cpmk_9_nilai, $row->cpmk_10_nilai];
 				$nestedData['harkat'] = $data_harkat;
 
 					$data[] = $nestedData;
@@ -310,6 +310,10 @@ class JadwalPerkuliahan extends CI_controller {
 					'cpmk_4_nilai' => ($data_peserta[$i]['cpmk_4']!=null) ? $data_peserta[$i]['cpmk_4'] : NULL,
 					'cpmk_5_nilai' => ($data_peserta[$i]['cpmk_5']!=null) ? $data_peserta[$i]['cpmk_5'] : NULL,
 					'cpmk_6_nilai' => ($data_peserta[$i]['cpmk_6']!=null) ? $data_peserta[$i]['cpmk_6'] : NULL,
+					'cpmk_7_nilai' => ($data_peserta[$i]['cpmk_7']!=null) ? $data_peserta[$i]['cpmk_7'] : NULL,
+					'cpmk_8_nilai' => ($data_peserta[$i]['cpmk_8']!=null) ? $data_peserta[$i]['cpmk_8'] : NULL,
+					'cpmk_9_nilai' => ($data_peserta[$i]['cpmk_9']!=null) ? $data_peserta[$i]['cpmk_9'] : NULL,
+					'cpmk_10_nilai' => ($data_peserta[$i]['cpmk_10']!=null) ? $data_peserta[$i]['cpmk_10'] : NULL,
 				);
 				$params = array(
 					"id_peserta" => $data_peserta[$i]['id_peserta'],

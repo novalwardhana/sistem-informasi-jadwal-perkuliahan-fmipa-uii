@@ -33,14 +33,18 @@ class JadwalPerkuliahanExport extends CI_Controller {
 		$spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(15);
 		$spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(15);
 		$spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(15);
-		$spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(20);
-		$spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(20);
+		$spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+		$spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(15);
+		$spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(15);
+		$spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(15);
+		$spreadsheet->getActiveSheet()->getColumnDimension('O')->setWidth(20);
+		$spreadsheet->getActiveSheet()->getColumnDimension('P')->setWidth(20);
 
 		$sheet->setCellValue('A1', 'Laporan Mahasiwa Peserta Mata Kuliah');
 		$sheet->getStyle("A1")->getFont()->setBold(true);
 		$sheet->getStyle("A1")->getFont()->setSize(14);
 		$sheet->getStyle("A1")->getFont()->setName('times');
-		$sheet->mergeCells('A1:L1');
+		$sheet->mergeCells('A1:P1');
 
 		$sheet->setCellValue('A3', 'Nama Dosen');
 		$sheet->setCellValue('C3', $dataPengampu->dosen);
@@ -123,7 +127,7 @@ class JadwalPerkuliahanExport extends CI_Controller {
 		$sheet->getStyle("E10:J10")->getFont()->setSize(12);
 		$sheet->getStyle('E10')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 		$sheet->getStyle("E10:J10")->getFont()->setName('times');
-		$sheet->mergeCells('E10:J10');
+		$sheet->mergeCells('E10:N10');
 
 		$sheet->setCellValue('E11', $dataPengampu->cpmk_1_kode);
 		$sheet->setCellValue('F11', $dataPengampu->cpmk_2_kode);
@@ -131,10 +135,14 @@ class JadwalPerkuliahanExport extends CI_Controller {
 		$sheet->setCellValue('H11', $dataPengampu->cpmk_4_kode);
 		$sheet->setCellValue('I11', $dataPengampu->cpmk_5_kode);
 		$sheet->setCellValue('J11', $dataPengampu->cpmk_6_kode);
-		$sheet->getStyle("E11:J11")->getFont()->setBold(true);
-		$sheet->getStyle("E11:J11")->getFont()->setSize(10);
-		$sheet->getStyle('E11:J11')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-		$sheet->getStyle("E11:J11")->getFont()->setName('times');
+		$sheet->setCellValue('K11', $dataPengampu->cpmk_7_kode);
+		$sheet->setCellValue('L11', $dataPengampu->cpmk_8_kode);
+		$sheet->setCellValue('M11', $dataPengampu->cpmk_9_kode);
+		$sheet->setCellValue('N11', $dataPengampu->cpmk_10_kode);
+		$sheet->getStyle("E11:N11")->getFont()->setBold(true);
+		$sheet->getStyle("E11:N11")->getFont()->setSize(10);
+		$sheet->getStyle('E11:N11')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("E11:N11")->getFont()->setName('times');
 
 		$sheet->setCellValue('E12', "[ ".number_format($dataPengampu->cpmk_1_persentase,2,",",".")."% ]");
 		$sheet->setCellValue('F12', "[ ".number_format($dataPengampu->cpmk_2_persentase,2,",",".")."% ]");
@@ -142,34 +150,38 @@ class JadwalPerkuliahanExport extends CI_Controller {
 		$sheet->setCellValue('H12', "[ ".number_format($dataPengampu->cpmk_4_persentase,2,",",".")."% ]");
 		$sheet->setCellValue('I12', "[ ".number_format($dataPengampu->cpmk_5_persentase,2,",",".")."% ]");
 		$sheet->setCellValue('J12', "[ ".number_format($dataPengampu->cpmk_6_persentase,2,",",".")."% ]");
-		$sheet->getStyle("E12:J12")->getFont()->setBold(true);
-		$sheet->getStyle("E12:J12")->getFont()->setSize(10);
-		$sheet->getStyle('E12:J12')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-		$sheet->getStyle("E12:J12")->getFont()->setName('times');
+		$sheet->setCellValue('K12', "[ ".number_format($dataPengampu->cpmk_7_persentase,2,",",".")."% ]");
+		$sheet->setCellValue('L12', "[ ".number_format($dataPengampu->cpmk_8_persentase,2,",",".")."% ]");
+		$sheet->setCellValue('M12', "[ ".number_format($dataPengampu->cpmk_9_persentase,2,",",".")."% ]");
+		$sheet->setCellValue('N12', "[ ".number_format($dataPengampu->cpmk_10_persentase,2,",",".")."% ]");
+		$sheet->getStyle("E12:N12")->getFont()->setBold(true);
+		$sheet->getStyle("E12:N12")->getFont()->setSize(10);
+		$sheet->getStyle('E12:N12')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("E12:N12")->getFont()->setName('times');
 
-		$sheet->setCellValue('K10', 'Nilai Akhir');
-		$sheet->getStyle("K10")->getFont()->setBold(true);
-		$sheet->getStyle("K10")->getFont()->setSize(12);
-		$sheet->getStyle('K10')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-		$sheet->getStyle("K10")->getFont()->setName('times');
-		$sheet->mergeCells('K10:K12');
+		$sheet->setCellValue('O10', 'Nilai Akhir');
+		$sheet->getStyle("O10")->getFont()->setBold(true);
+		$sheet->getStyle("O10")->getFont()->setSize(12);
+		$sheet->getStyle('O10')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("O10")->getFont()->setName('times');
+		$sheet->mergeCells('O10:O12');
 
-		$sheet->setCellValue('L10', 'Harkat');
-		$sheet->getStyle("L10")->getFont()->setBold(true);
-		$sheet->getStyle("L10")->getFont()->setSize(12);
-		$sheet->getStyle('L10')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-		$sheet->getStyle("L10")->getFont()->setName('times');
-		$sheet->mergeCells('L10:L12');
+		$sheet->setCellValue('P10', 'Harkat');
+		$sheet->getStyle("P10")->getFont()->setBold(true);
+		$sheet->getStyle("P10")->getFont()->setSize(12);
+		$sheet->getStyle('P10')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("P10")->getFont()->setName('times');
+		$sheet->mergeCells('P10:P12');
 
-		$spreadsheet->getActiveSheet()->getStyle('A10:L10')->getFill()
+		$spreadsheet->getActiveSheet()->getStyle('A10:P10')->getFill()
 			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 			->getStartColor()->setARGB('FFD2D2D2');
 
-		$spreadsheet->getActiveSheet()->getStyle('E11:J11')->getFill()
+		$spreadsheet->getActiveSheet()->getStyle('E11:N11')->getFill()
 			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 			->getStartColor()->setARGB('FFE2E2E2');
 			
-		$spreadsheet->getActiveSheet()->getStyle('E12:J12')->getFill()
+		$spreadsheet->getActiveSheet()->getStyle('E12:N12')->getFill()
 			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
 			->getStartColor()->setARGB('FFE2E2E2');
 
@@ -228,12 +240,42 @@ class JadwalPerkuliahanExport extends CI_Controller {
 			$sheet->getStyle('J'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
 			$sheet->getStyle('J'.$index)->getFont()->setName('times');
 
-			$nilai_akhir=(($dataPengampu->cpmk_1_persentase/100) * $row['cpmk_1_nilai']) + (($dataPengampu->cpmk_2_persentase/100) * $row['cpmk_2_nilai']) + (($dataPengampu->cpmk_3_persentase/100) * $row['cpmk_3_nilai']) + (($dataPengampu->cpmk_4_persentase/100) * $row['cpmk_4_nilai']) + (($dataPengampu->cpmk_5_persentase/100) * $row['cpmk_5_nilai']) + (($dataPengampu->cpmk_6_persentase/100) * $row['cpmk_6_nilai']);
-	
-			$sheet->setCellValue('K'.$index, number_format($nilai_akhir,2,".",","));
+			$sheet->setCellValue('K'.$index, $row['cpmk_7_nilai']);
 			$sheet->getStyle('K'.$index)->getFont()->setSize(12);
 			$sheet->getStyle('K'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
 			$sheet->getStyle('K'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('L'.$index, $row['cpmk_8_nilai']);
+			$sheet->getStyle('L'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('L'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+			$sheet->getStyle('L'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('M'.$index, $row['cpmk_9_nilai']);
+			$sheet->getStyle('M'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('M'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+			$sheet->getStyle('M'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('N'.$index, $row['cpmk_10_nilai']);
+			$sheet->getStyle('N'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('N'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+			$sheet->getStyle('N'.$index)->getFont()->setName('times');
+
+			$nilai_akhir = 	(($dataPengampu->cpmk_1_persentase/100) * $row['cpmk_1_nilai']) + 
+											(($dataPengampu->cpmk_2_persentase/100) * $row['cpmk_2_nilai']) + 
+											(($dataPengampu->cpmk_3_persentase/100) * $row['cpmk_3_nilai']) + 
+											(($dataPengampu->cpmk_4_persentase/100) * $row['cpmk_4_nilai']) + 
+											(($dataPengampu->cpmk_5_persentase/100) * $row['cpmk_5_nilai']) + 
+											(($dataPengampu->cpmk_6_persentase/100) * $row['cpmk_6_nilai']) +
+											(($dataPengampu->cpmk_7_persentase/100) * $row['cpmk_7_nilai']) +
+											(($dataPengampu->cpmk_8_persentase/100) * $row['cpmk_8_nilai']) +
+											(($dataPengampu->cpmk_9_persentase/100) * $row['cpmk_9_nilai']) +
+											(($dataPengampu->cpmk_10_persentase/100) * $row['cpmk_10_nilai'])
+										;
+	
+			$sheet->setCellValue('O'.$index, number_format($nilai_akhir,2,".",","));
+			$sheet->getStyle('O'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('O'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+			$sheet->getStyle('O'.$index)->getFont()->setName('times');
 
 			$harkat="-";
 			foreach($dataHarkat as $row) {
@@ -247,10 +289,10 @@ class JadwalPerkuliahanExport extends CI_Controller {
 				$harkat="A";
 			}
 
-			$sheet->setCellValue('L'.$index, $harkat);
-			$sheet->getStyle('L'.$index)->getFont()->setSize(12);
-			$sheet->getStyle('L'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-			$sheet->getStyle('L'.$index)->getFont()->setName('times');
+			$sheet->setCellValue('P'.$index, $harkat);
+			$sheet->getStyle('P'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('P'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+			$sheet->getStyle('P'.$index)->getFont()->setName('times');
 		}
 
 		$j=$index+2;
@@ -338,7 +380,59 @@ class JadwalPerkuliahanExport extends CI_Controller {
 		$sheet->getStyle('C'.$j)->getFont()->setSize(10);
 		$sheet->getStyle('C'.$j)->getFont()->setName('times');
 		$sheet->mergeCells('C'.$j.':'.'L'.$j);
+
+		$j++;
+		$sheet->setCellValue('A'.$j, $dataPengampu->cpmk_7_kode);
+		$sheet->getStyle('A'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('A'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('A'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('A'.$j.':'.'B'.$j);
+
+		$sheet->setCellValue('C'.$j, $dataPengampu->cpmk_7_keterangan);
+		$sheet->getStyle('C'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('C'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('C'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('C'.$j.':'.'L'.$j);
 			
+		$j++;
+		$sheet->setCellValue('A'.$j, $dataPengampu->cpmk_8_kode);
+		$sheet->getStyle('A'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('A'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('A'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('A'.$j.':'.'B'.$j);
+
+		$sheet->setCellValue('C'.$j, $dataPengampu->cpmk_8_keterangan);
+		$sheet->getStyle('C'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('C'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('C'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('C'.$j.':'.'L'.$j);
+
+		$j++;
+		$sheet->setCellValue('A'.$j, $dataPengampu->cpmk_9_kode);
+		$sheet->getStyle('A'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('A'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('A'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('A'.$j.':'.'B'.$j);
+
+		$sheet->setCellValue('C'.$j, $dataPengampu->cpmk_9_keterangan);
+		$sheet->getStyle('C'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('C'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('C'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('C'.$j.':'.'L'.$j);
+
+		$j++;
+		$sheet->setCellValue('A'.$j, $dataPengampu->cpmk_10_kode);
+		$sheet->getStyle('A'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('A'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('A'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('A'.$j.':'.'B'.$j);
+
+		$sheet->setCellValue('C'.$j, $dataPengampu->cpmk_10_keterangan);
+		$sheet->getStyle('C'.$j)->getFont()->setBold(true);
+		$sheet->getStyle('C'.$j)->getFont()->setSize(10);
+		$sheet->getStyle('C'.$j)->getFont()->setName('times');
+		$sheet->mergeCells('C'.$j.':'.'L'.$j);
+
 		$writer = new Xlsx($spreadsheet);
 		
 		$filename = 'Laporan Mahasiswa Peserta Perkuliahan';

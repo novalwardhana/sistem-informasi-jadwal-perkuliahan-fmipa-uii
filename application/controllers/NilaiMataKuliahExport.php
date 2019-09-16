@@ -34,7 +34,7 @@ class NilaiMataKuliahExport extends CI_Controller {
 
 		$this->load->library('Pdf');
 		$this->pdf->setPaper('A4', 'landscape');
-		$this->pdf->filename = "Image3X4.pdf";
+		$this->pdf->filename = "Nilai_Mahasiswa.pdf";
 		$this->pdf->load_view('nilaiMataKuliahExport/export', $data);
 		
 	}

@@ -32,6 +32,14 @@ class NilaiMataKuliahExportModel extends CI_Model {
           (COALESCE(a.cpmk_5_nilai, 0)*COALESCE(c.cpmk_5_persentase, 0)/100)
           +
           (COALESCE(a.cpmk_6_nilai, 0)*COALESCE(c.cpmk_6_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_7_nilai, 0)*COALESCE(c.cpmk_7_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_8_nilai, 0)*COALESCE(c.cpmk_8_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_9_nilai, 0)*COALESCE(c.cpmk_9_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_10_nilai, 0)*COALESCE(c.cpmk_10_persentase, 0)/100)
         ) AS nilai
       FROM mahasiswa_peserta_mata_kuliah a
       LEFT join mahasiswa b on a.id_mahasiswa=b.id
