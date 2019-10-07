@@ -115,7 +115,11 @@ $route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
 $route['jadwal-perkuliahan/upload-nilai'] = 'JadwalPerkuliahanUploadNilai';
 $route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNilai/create';
 
-/* Router Nilai Mata Kuliah */
+/* Router Laporan Upload Nilai */
+$route['upload-nilai'] = 'UploadNilai';
+$route['upload-nilai/process'] = 'UploadNilai/upload';
+
+/* Router Laporan Nilai Mata Kuliah */
 $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
 
 /* Laporan Evaluasi Mandiri */
