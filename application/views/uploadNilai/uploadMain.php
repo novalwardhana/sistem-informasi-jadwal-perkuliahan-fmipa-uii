@@ -20,7 +20,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Mahasiswa *</label>
-									<select class="mahasiswaselect form-control" name="mahasiswa" style="width: 100%;" required></select>
+									<select class="mahasiswaselect form-control" name="id_mahasiswa" style="width: 100%;" required></select>
 								</div>
 								<div class="form-group">
 									<label>File *</label>
