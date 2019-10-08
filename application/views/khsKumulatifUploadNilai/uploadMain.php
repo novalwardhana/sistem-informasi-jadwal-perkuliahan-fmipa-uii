@@ -30,8 +30,8 @@
 								</div>
 								<div class="form-group">
 									<button type="submit" id="proses" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
-									<a href="<?php echo base_url('upload-nilai') ?>"><button type="button" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button></a>
-									<a href="<?php echo base_url('assets/template/template_upload_mahasiswa.xlsx') ?>"><button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i> Template</button></a>
+									<a href="<?php echo base_url('khs-kumulatif') ?>"><button type="button" class="btn btn-default"><i class="fa fa-minus-circle" aria-hidden="true"></i> Batal</button></a>
+									<a href="<?php echo base_url('assets/template/template_upload_khs_mahasiswa.xlsx') ?>"><button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i> Template</button></a>
 								</div>
 							</div>
 						</div>
