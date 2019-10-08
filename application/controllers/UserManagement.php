@@ -20,6 +20,7 @@ class UserManagement extends CI_Controller {
 
 	public function index() {
 		$data=array();
+		$data['title'] = 'CPL - User Management';
 		$this->load->view('userManagement/read', $data);
 	}
 
@@ -87,6 +88,7 @@ class UserManagement extends CI_Controller {
 		if(!isset($_POST['simpan'])) {
 			$dataUserRole = $this->userManagementModel->getListUserRole();
 			$data['dataUserRole'] = $dataUserRole;
+			$data['title'] = 'CPL - User Management Create';
 			$this->load->view('userManagement/create', $data);
 		} else {
 			$params=array();
@@ -129,6 +131,7 @@ class UserManagement extends CI_Controller {
 			$data=[];
 			$data['dataUser']=$dataUser;
 			$data['dataUserRole']=$dataUserRole;
+			$data['title'] = 'CPL - User Management Update';
 			$this->load->view('userManagement/update', $data);
 		} else {
 			$params=array(

@@ -20,6 +20,7 @@ class UserRole extends CI_Controller {
 
 	public function index() {
 		$data=array();
+		$data['title'] = 'CPL - User Role';
 		$this->load->view('userRole/read', $data);
 	}
 
@@ -81,6 +82,7 @@ class UserRole extends CI_Controller {
 	public function create() {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
+			$data['title'] = 'CPL - User Role Create';
 			$this->load->view('userRole/create', $data);
 		} else {
 			$params=array();
@@ -112,6 +114,7 @@ class UserRole extends CI_Controller {
 			$data['dataRole'] = $dataRole;
 			$data['checkboxPermission'] = $checkboxPermission;
 			$data['dataRolePermission'] = json_encode($dataRolePermission);
+			$data['title'] = 'CPL - User Role Update';
 			$this->load->view('userRole/update', $data);
 		} else {
 			$params=array(
