@@ -115,7 +115,10 @@ $route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
 $route['jadwal-perkuliahan/upload-nilai'] = 'JadwalPerkuliahanUploadNilai';
 $route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNilai/create';
 
-/* Router Laporan Upload Nilai */
+/* Router Khs Kumulatif */
+$route['khs-kumulatif'] = 'KhsKumulatif';
+
+/* Router Khs Kumulatif Upload Nilai */
 $route['khs-kumulatif-upload-nilai'] = 'KhsKumulatifUploadNilai';
 $route['khs-kumulatif-upload-nilai/process'] = 'KhsKumulatifUploadNilai/upload';
 

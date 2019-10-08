@@ -20,7 +20,7 @@ class KhsKumulatifUploadNilai extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'CPL - Upload Nilai';
+		$data['title'] = 'CPL - KHS Kumulatif Upload Nilai';
 		$this->load->view('khsKumulatifUploadNilai/upload', $data);
 	}
 
