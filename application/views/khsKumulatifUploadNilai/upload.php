@@ -72,6 +72,7 @@
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
 		$(document).ready(function () {
+			$(".menu-sidebar-khs-kumulatif").addClass('active');
 			$(".menu-sidebar-khs-kumulatif-upload-nilai").addClass('active');
 		});
 

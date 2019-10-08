@@ -133,9 +133,27 @@
 				?>
 				<!-- End Treeview Agenda Perkuliahan -->
 
-				<!-- Upload Nilai -->
-				<li class="menu-sidebar-khs-kumulatif-upload-nilai"><a href="<?php echo base_url('khs-kumulatif-upload-nilai') ?>"><i class="fa fa-upload"></i> <span>Upload Nilai</span></a></li>
-				<!-- End Upload Nilai -->
+				<!-- Treeview KHS Kumulatif -->
+				<?php
+					if (isset($dataSessionPermission['KhsKumulatif']) || isset($dataSessionPermission['KhsKumulatifUploadNilai'])) {
+				?>
+				<li class="treeview menu-sidebar-khs-kumulatif">
+					<a href="#">
+            <i class="fa fa-file-text"></i>
+            <span>KHS Kumulatif</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+						<li class="menu-sidebar-khs-kumulatif-list"><a href="<?php echo base_url('khs-kumulatif') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file"></i> <span>KHS Kumulatif</span></a></li>
+						<li class="menu-sidebar-khs-kumulatif-upload-nilai"><a href="<?php echo base_url('khs-kumulatif-upload-nilai') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-upload"></i> <span>Upload Nilai</span></a></li>
+					</ul>
+				</li>
+				<?php
+					}
+				?>
+				<!-- End Treeview KHS Kumulatif -->
 
 				<!-- Treeview Laporan -->
 				<?php
