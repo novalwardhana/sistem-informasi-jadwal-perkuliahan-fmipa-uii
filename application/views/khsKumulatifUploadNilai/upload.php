@@ -72,8 +72,30 @@
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
 		$(document).ready(function () {
-			$(".menu-sidebar-upload-nilai").addClass('active');
+			$(".menu-sidebar-khs-kumulatif-upload-nilai").addClass('active');
 		});
+
+		var responseModule="";
+		var responseModuleBackground="";
+		var responseModuleMsg="";
+		var responseModuleIcon="";
+		<?php
+		if ($this->session->flashdata('responseModule')) {
+		?>
+			responseModule="<?php echo $this->session->flashdata('responseModule') ?>";
+			responseModuleBackground="<?php echo $this->session->flashdata('responseModuleBackground') ?>";
+			responseModuleMsg="<?php echo $this->session->flashdata('responseModuleMsg') ?>";
+			responseModuleIcon="<?php echo $this->session->flashdata('responseModuleIcon') ?>";
+		<?php
+		}
+		?>
+		if (responseModule!="") {
+			$.toaster({ 
+				priority : responseModuleBackground, 
+				title : '<i class="'+responseModuleIcon+'"></i> Info', 
+				message : responseModuleMsg,
+			});
+		}
 
 		$('.mahasiswaselect').select2({
       placeholder: 'Select an item',

@@ -21,4 +21,13 @@ class KhsKumulatifUploadNilaiModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function addKhsMahasiswa($params) {
+		$query=$this->db->insert('khs_kumulatif', $params);
+		if ($query) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
 }

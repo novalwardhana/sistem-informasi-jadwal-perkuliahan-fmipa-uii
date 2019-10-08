@@ -73,7 +73,38 @@ class KhsKumulatifUploadNilai extends CI_Controller {
 			$data_nilai[] = $params;
 		}
 
-		print_r($data_nilai);
+		if (count($data_nilai)==0) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Data tidak ditemukan');
+			redirect($pathUrl);
+		}
+
+		if (count($data_nilai)>50) {
+			$this->session->set_flashdata('responseModule', 'failed');
+			$this->session->set_flashdata('responseModuleBackground', 'danger');
+			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Maksimal 50 data');
+			redirect($pathUrl);
+		}
+
+		foreach($data_nilai as $row) {
+			$hasil = $this->khsKumulatifUploadNilaiModel->addKhsMahasiswa($row);
+			if (!$hasil) {
+				$this->session->set_flashdata('responseModule', 'failed');
+				$this->session->set_flashdata('responseModuleBackground', 'danger');
+				$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
+				$this->session->set_flashdata('responseModuleMsg', '<br>Data gagal diupload');
+				redirect($pathUrl);
+			}
+		}
+
+		$this->session->set_flashdata('responseModule', 'success');
+		$this->session->set_flashdata('responseModuleBackground', 'success');
+		$this->session->set_flashdata('responseModuleIcon', 'fa fa-check');
+		$this->session->set_flashdata('responseModuleMsg', '<br>Data berhasil diupload, silahkan cek di menu Khs Kumulatif');
+		redirect($pathUrl);
 	}
 
 	private function getIdMataKuliah($kode) {
