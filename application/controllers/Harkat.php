@@ -19,7 +19,9 @@ class Harkat extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterHarkat/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Harkat';
+		$this->load->view('masterHarkat/read', $data);
 	}
 
 	public function getListHarkat() {
@@ -86,6 +88,7 @@ class Harkat extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Harkat Create';
 			$this->load->view('masterHarkat/create', $data);
 		} else {
 			$params=array();
@@ -117,6 +120,7 @@ class Harkat extends CI_Controller {
 			$dataHarkat=$this->harkatModel->getListHarkatById($id);
 			$data=[];
 			$data['dataHarkat']=$dataHarkat;
+			$data['title'] = 'CPL - Master Harkat Update';
 			$this->load->view('masterHarkat/update', $data);
 		} else {
 			$params=$_POST;

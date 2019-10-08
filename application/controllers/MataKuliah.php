@@ -19,7 +19,9 @@ class MataKuliah extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterMataKuliah/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Mata Kuliah';
+		$this->load->view('masterMataKuliah/read', $data);
 	}
 
 	public function getListMataKuliah() {
@@ -86,7 +88,8 @@ class MataKuliah extends CI_Controller {
 	public function create() {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
-			$data=array();
+			$data = array();
+			$data['title'] = 'CPL - Master Mata Kuliah Create';
 			$this->load->view('masterMataKuliah/create', $data);
 		} else {
 			$params=array();
@@ -119,6 +122,7 @@ class MataKuliah extends CI_Controller {
 			$dataMataKuliah=$this->mataKuliahModel->getListMataKuliahById($id);
 			$data=[];
 			$data['dataMataKuliah']=$dataMataKuliah;
+			$data['title'] = 'CPL - Master Mata Kuliah Update';
 			$this->load->view('masterMataKuliah/update', $data);
 		} else {
 			$params=$_POST;

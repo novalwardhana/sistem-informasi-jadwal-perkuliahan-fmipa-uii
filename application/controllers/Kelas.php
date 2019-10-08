@@ -19,7 +19,9 @@ class Kelas extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterKelas/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Kelas';
+		$this->load->view('masterKelas/read', $data);
 	}
 
 	public function getListKelas() {
@@ -81,6 +83,7 @@ class Kelas extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Kelas Create';
 			$this->load->view('masterKelas/create', $data);
 		} else {
 			$params=array();
@@ -108,6 +111,7 @@ class Kelas extends CI_Controller {
 			$dataKelas=$this->kelasModel->getListKelasById($id);
 			$data=[];
 			$data['dataKelas']=$dataKelas;
+			$data['title'] = 'CPL - Master Kelas Update';
 			$this->load->view('masterKelas/update', $data);
 		} else {
 			$params=$_POST;

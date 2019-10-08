@@ -11,7 +11,9 @@
 
 		public function index() {
 			if($this->session->userdata('status') != "login"){
-				$this->load->view('auth/formLogin.php');
+				$data = array();
+				$data['title'] = 'CPL - Login';
+				$this->load->view('auth/formLogin.php', $data);
 			}
 		}
 

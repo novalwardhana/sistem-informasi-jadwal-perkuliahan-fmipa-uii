@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SI-CPMK</title>
+  <title><?php echo $title; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,8 +33,8 @@
 	
   </div>
   <div class="login-header-custom">
-  		<h3><b>Sistem Informasi CPMK 1.0</b></h3>
-		<b style="text-align: center">Capaian Penilaian Mata Kuliah</b>
+  		<h3><b>Sistem Informasi CPL</b></h3>
+		<b style="text-align: center">Capaian Pembelajaran Lulusan</b>
 		<br><br>
   </div>
   <!-- /.login-logo -->

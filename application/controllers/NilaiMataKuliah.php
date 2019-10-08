@@ -18,7 +18,9 @@ class NilaiMataKuliah extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('nilaiMataKuliah/read');
+		$data = array();
+		$data['title'] = 'CPL - Laporan Nilai Mahasiswa';
+		$this->load->view('nilaiMataKuliah/read', $data);
 	}
 
 	public function comboMahasiswa() {

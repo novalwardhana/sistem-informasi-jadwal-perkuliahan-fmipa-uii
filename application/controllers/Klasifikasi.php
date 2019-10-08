@@ -19,7 +19,9 @@ class Klasifikasi extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterKlasifikasi/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Klasifikasi';
+		$this->load->view('masterKlasifikasi/read', $data);
 	}
 
 	public function getListKlasifikasi() {
@@ -85,6 +87,7 @@ class Klasifikasi extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Klasifikasi Create';
 			$this->load->view('masterKlasifikasi/create', $data);
 		} else {
 			$params=array();
@@ -116,6 +119,7 @@ class Klasifikasi extends CI_Controller {
 			$dataKlasifikasi=$this->klasifikasiModel->getListKlasifikasiById($id);
 			$data=[];
 			$data['dataKlasifikasi']=$dataKlasifikasi;
+			$data['title'] = 'CPL - Master Klasifikasi Update';
 			$this->load->view('masterKlasifikasi/update', $data);
 		} else {
 			$params=$_POST;

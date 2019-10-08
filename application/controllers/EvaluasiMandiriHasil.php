@@ -30,7 +30,7 @@ class EvaluasiMandiriHasil extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'Laporan | Hasil Evaluasi Mandiri';
+		$data['title'] = 'CPL - Laporan Hasil Evaluasi Mandiri';
 
 		$this->load->view('evaluasiMandiriHasil/index', $data);
 	}
@@ -59,7 +59,7 @@ class EvaluasiMandiriHasil extends CI_Controller {
 		$data_laporan[] = $data_cpl9;
 
 		$data = array();
-		$data['title'] = 'Laporan | Evaluasi Mandiri';
+		$data['title'] = 'CPL - Laporan Hasil Evaluasi Mandiri Detail';
 		$data['data_mahasiswa'] = $this->evaluasiMandiriHasilModel->getListMahasiswaById($id_mahasiswa);
 		$data['data_skor_maks'] = $this->evaluasiMandiriHasilModel->getSkorMaks($data['data_mahasiswa']->semester);
 		$data['data_laporan'] = $data_laporan;

@@ -18,7 +18,9 @@ class Mahasiswa extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterMahasiswa/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Mahasiswa';
+		$this->load->view('masterMahasiswa/read', $data);
 	}
 
 	public function getListMahasiswa() {
@@ -86,6 +88,7 @@ class Mahasiswa extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Mahasiswa Create';
 			$this->load->view('masterMahasiswa/create', $data);
 		} else {
 			$params=array();
@@ -148,6 +151,7 @@ class Mahasiswa extends CI_Controller {
 			$dataMahasiswa=$this->mahasiswaModel->getListMahasiswaById($id);
 			$data=[];
 			$data['dataMahasiswa']=$dataMahasiswa;
+			$data['title'] = 'CPL - Master Mahasiswa Update';
 			$this->load->view('masterMahasiswa/update', $data);
 		} else {
 			$params=$_POST;

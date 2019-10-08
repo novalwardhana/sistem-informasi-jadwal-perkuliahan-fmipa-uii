@@ -109,7 +109,7 @@
 <script>
 		$(document).ready(function () {
 			$(".menu-sidebar-laporan").addClass('active');
-			$(".menu-sidebar-laporan-evaluasi-mandiri").addClass('active');
+			$(".menu-sidebar-laporan-hasil-evaluasi-mandiri").addClass('active');
 		});
 
     $('.mahasiswaselect').select2({

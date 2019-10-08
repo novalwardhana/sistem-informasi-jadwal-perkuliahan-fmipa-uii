@@ -19,7 +19,9 @@ class JadwalPerkuliahan extends CI_controller {
 	}
 
 	public function index() {
-		$this->load->view('jadwalPerkuliahan/read');
+		$data = array();
+		$data['title'] = 'CPL - Jadwal Perkuliahan';
+		$this->load->view('jadwalPerkuliahan/read', $data);
 	}
 
 	public function getListDosenPengampu() {
@@ -100,6 +102,7 @@ class JadwalPerkuliahan extends CI_controller {
 
 		$data=[];
 		$data['dataPengampu'] = $dataPengampu;
+		$data['title'] = 'CPL - Jadwal Perkuliahan Detail';
 	
 		$this->load->view('jadwalPerkuliahan/readDetail', $data);
 	}

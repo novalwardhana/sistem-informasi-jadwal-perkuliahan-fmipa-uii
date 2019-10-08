@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
 		$totalKelas = $this->dashboardModel->getTotalKelas();
 
 		$data=array(
+			'title' => 'CPL - Dashboard',
 			'totalMahasiswa' => $totalMahasiswa,
 			'totalDosen'=> $totalDosen,
 			'totalMataKuliah' => $totalMataKuliah,

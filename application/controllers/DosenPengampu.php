@@ -27,7 +27,9 @@ class DosenPengampu extends CI_Controller {
 			$pathUrl = base_url('dosen-pengampu/detail?id=').$this->session->userdata('id_dosen');
 			redirect($pathUrl);
 		}
-		$this->load->view('masterDosenPengampu/read');
+		$data = array();
+		$data['title'] = 'CPL - Dosen Pengampu';
+		$this->load->view('masterDosenPengampu/read', $data);
 	}
 
 	public function getListDosen() {
@@ -99,6 +101,7 @@ class DosenPengampu extends CI_Controller {
 		$data['dataDosen']=$dataDosen;
 		$data['dataMataKuliah']=$dataMataKuliah;
 		$data['dataKelas']=$dataKelas;
+		$data['title'] = 'CPL - Dosen Pengampu Detail';
 
 		$this->load->view('masterDosenPengampu/readDetail', $data);
 	}

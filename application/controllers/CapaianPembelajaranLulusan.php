@@ -15,12 +15,15 @@ class CapaianPembelajaranLulusan extends CI_controller {
 	}
 
 	public function index() {
-		$this->load->view('masterCapaianPembelajaranLulusan/read');
+		$data = array();
+		$data['title'] = 'CPL - Master CPL';
+		$this->load->view('masterCapaianPembelajaranLulusan/read', $data);
 	}
 
 	/* Create Cpl */
 	public function create() {
 		$data=array();
+		$data['title'] = 'CPL - Master CPL Create';
 		$this->capaianPembelajaranLulusanModel->deleteTempCpl();
 		$this->load->view('masterCapaianPembelajaranLulusan/create', $data);
 	}
@@ -90,7 +93,8 @@ class CapaianPembelajaranLulusan extends CI_controller {
 		$id = $_GET['id'];
 		$data_cpl = $this->capaianPembelajaranLulusanModel->getCplById($id);
 		$data = array(
-			'data_cpl' => $data_cpl
+			'data_cpl' => $data_cpl,
+			'title' => 'CPL - Master CPL Update'
 		);
 		$this->load->view('masterCapaianPembelajaranLulusan/update', $data);
 	}

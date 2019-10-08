@@ -20,7 +20,7 @@ class MahasiswaUpload extends CI_Controller {
 
 	public function index() {
 		$data = array(
-			'title' => 'Mahasiswa | Upload'
+			'title' => 'CPL - Master Mahasiswa Upload'
 		);
 		$this->load->view('masterMahasiswa/upload', $data);
 	}

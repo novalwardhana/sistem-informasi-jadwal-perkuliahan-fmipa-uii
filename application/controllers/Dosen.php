@@ -19,7 +19,9 @@ class Dosen extends CI_Controller {
   }
 
 	public function index() {
-		$this->load->view('masterDosen/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Dosen';
+		$this->load->view('masterDosen/read', $data);
 	}
 
 	public function getListDosen() {
@@ -84,6 +86,7 @@ class Dosen extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Dosen Create';
 			$this->load->view('masterDosen/create', $data);
 		} else {
 			$params=array();
@@ -143,6 +146,7 @@ class Dosen extends CI_Controller {
 			$dataDosen=$this->dosenModel->getListDosenById($id);
 			$data=[];
 			$data['dataDosen']=$dataDosen;
+			$data['title'] = 'CPL - Master Dosen Update';
 			$this->load->view('masterDosen/update', $data);
 		} else {
 			$params=$_POST;

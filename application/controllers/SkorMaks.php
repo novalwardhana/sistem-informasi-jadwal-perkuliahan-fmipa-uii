@@ -19,7 +19,9 @@ class SkorMaks extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('masterSkorMaks/read');
+		$data = array();
+		$data['title'] = 'CPL - Master Skor Maks';
+		$this->load->view('masterSkorMaks/read', $data);
 	}
 
 	public function getListSkorMaks() {
@@ -98,6 +100,7 @@ class SkorMaks extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
+			$data['title'] = 'CPL - Master Skor Maks Create';
 			$this->load->view('masterSkorMaks/create', $data);
 		} else {
 	
@@ -141,6 +144,7 @@ class SkorMaks extends CI_Controller {
 			$dataSkorMaks=$this->skorMaksModel->getListSkorMaksById($id);
 			$data=[];
 			$data['dataSkorMaks']=$dataSkorMaks;
+			$data['title'] = 'CPL - Master Skor Maks Update';
 			$this->load->view('masterSkorMaks/update', $data);
 		} else {
 			$params=$_POST;
