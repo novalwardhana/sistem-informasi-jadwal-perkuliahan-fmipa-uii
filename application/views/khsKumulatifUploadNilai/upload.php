@@ -39,7 +39,7 @@
 
   <div class="content-wrapper">
 		<?php
-			$this->load->view('uploadNilai/uploadMain');
+			$this->load->view('khsKumulatifUploadNilai/uploadMain');
 		?>
   </div>
   <footer class="main-footer">
@@ -79,7 +79,7 @@
       placeholder: 'Select an item',
       width: 'resolve',
       ajax: {
-        url: "<?php echo base_url(); ?>UploadNilai/comboMahasiswa",
+        url: "<?php echo base_url(); ?>KhsKumulatifUploadNilai/comboMahasiswa",
         dataType: 'json',
         processResults: function (data) {
           return {

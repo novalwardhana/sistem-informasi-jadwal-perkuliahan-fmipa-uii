@@ -1,6 +1,6 @@
 <?php
 
-class UploadNilaiModel extends CI_Model {
+class KhsKumulatifUploadNilaiModel extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();

@@ -4,7 +4,9 @@
 		<div class="col-md-12">
 			<ol class="breadcrumb">
 				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">KHS Kumulatif</li>
 				<li class="active">Upload Nilai</li>
+				<li class="active">Upload</li>
 			</ol>
 		</div>
 
@@ -12,9 +14,9 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Upload Nilai Mahasiswa</h3>
+					<h3 class="box-title">Upload Nilai KHS Mahasiswa</h3>
 				</div>
-				<form role="form" method="post" action="<?php echo base_url('upload-nilai/process') ?>" enctype="multipart/form-data">
+				<form role="form" method="post" action="<?php echo base_url('khs-kumulatif-upload-nilai/process') ?>" enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="row">
 							<div class="col-md-6">

@@ -116,8 +116,8 @@ $route['jadwal-perkuliahan/upload-nilai'] = 'JadwalPerkuliahanUploadNilai';
 $route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNilai/create';
 
 /* Router Laporan Upload Nilai */
-$route['upload-nilai'] = 'UploadNilai';
-$route['upload-nilai/process'] = 'UploadNilai/upload';
+$route['khs-kumulatif-upload-nilai'] = 'KhsKumulatifUploadNilai';
+$route['khs-kumulatif-upload-nilai/process'] = 'KhsKumulatifUploadNilai/upload';
 
 /* Router Laporan Nilai Mata Kuliah */
 $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';

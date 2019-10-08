@@ -1,8 +1,8 @@
 <?php
 
-class UploadNilai extends CI_Controller {
+class KhsKumulatifUploadNilai extends CI_Controller {
 
-	private $uploadNilaiModel;
+	private $khsKumulatifUploadNilaiModel;
 
 	public function __construct() {
 		parent::__construct();
@@ -10,14 +10,14 @@ class UploadNilai extends CI_Controller {
 			redirect(base_url("Auth"));
 		}
 		$this->load->library('session');
-		$this->load->model('UploadNilaiModel');
-		$this->uploadNilaiModel=$this->UploadNilaiModel;
+		$this->load->model('KhsKumulatifUploadNilaiModel');
+		$this->khsKumulatifUploadNilaiModel=$this->KhsKumulatifUploadNilaiModel;
 	}
 
 	public function index() {
 		$data = array();
 		$data['title'] = 'CPL - Upload Nilai';
-		$this->load->view('uploadNilai/upload', $data);
+		$this->load->view('khsKumulatifUploadNilai/upload', $data);
 	}
 
 	public function comboMahasiswa() {
@@ -26,7 +26,7 @@ class UploadNilai extends CI_Controller {
 		} else {
 			$search='';
 		}
-		$data = $this->uploadNilaiModel->comboMahasiswa($search);
+		$data = $this->khsKumulatifUploadNilaiModel->comboMahasiswa($search);
 		echo json_encode($data);
 	}
 
@@ -35,7 +35,7 @@ class UploadNilai extends CI_Controller {
 		$id_mahasiswa = $_POST['id_mahasiswa'];
 
 		// Redirect url
-		$pathUrl = base_url('upload-nilai');
+		$pathUrl = base_url('khs-kumulatif-upload-nilai');
 		
 		// Memilih ekstensi file
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);

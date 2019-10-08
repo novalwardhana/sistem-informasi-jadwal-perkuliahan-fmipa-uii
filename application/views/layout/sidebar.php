@@ -134,7 +134,7 @@
 				<!-- End Treeview Agenda Perkuliahan -->
 
 				<!-- Upload Nilai -->
-				<li class="menu-sidebar-upload-nilai"><a href="<?php echo base_url('upload-nilai') ?>"><i class="fa fa-upload"></i> <span>Upload Nilai</span></a></li>
+				<li class="menu-sidebar-khs-kumulatif-upload-nilai"><a href="<?php echo base_url('khs-kumulatif-upload-nilai') ?>"><i class="fa fa-upload"></i> <span>Upload Nilai</span></a></li>
 				<!-- End Upload Nilai -->
 
 				<!-- Treeview Laporan -->
