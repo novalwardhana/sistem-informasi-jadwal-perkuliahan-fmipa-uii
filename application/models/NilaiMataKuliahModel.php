@@ -28,7 +28,9 @@ class NilaiMataKuliahModel extends CI_Model {
 	}
 
 	public function getTotalData($id_mahasiswa) {
-		$hasil = $this->db->where('id_mahasiswa',$id_mahasiswa)->from("mahasiswa_peserta_mata_kuliah")->count_all_results();
+		$hasil1 = $this->db->where('id_mahasiswa',$id_mahasiswa)->from("mahasiswa_peserta_mata_kuliah")->count_all_results();
+		$hasil2 = $this->db->where('id_mahasiswa',$id_mahasiswa)->from("khs_kumulatif")->count_all_results();
+		$hasil = $hasil1 + $hasil2;
 		return $hasil;
 	}
 

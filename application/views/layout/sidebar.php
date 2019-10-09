@@ -184,9 +184,21 @@
 							}
 						?>
 
+						<?php
+							if (isset($dataSessionPermission['EvaluasiMandiri'])) {
+						?>
 						<li class="menu-sidebar-laporan-evaluasi-mandiri"><a href="<?php echo base_url('evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Evaluasi Mandiri</span></a></li>
+						<?php
+							}
+						?>
 
+						<?php
+							if (isset($dataSessionPermission['EvaluasiMandiriHasil'])) {
+						?>
 						<li class="menu-sidebar-laporan-hasil-evaluasi-mandiri"><a href="<?php echo base_url('hasil-evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Hasil Evaluasi Mandiri</span></a></li>
+						<?php
+							}
+						?>
 					</ul>
 				</li>
 				<?php

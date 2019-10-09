@@ -33,7 +33,8 @@ class NilaiMataKuliahByMahasiswa extends CI_Controller {
 		}
 
 		$data = array(
-			'data_mahasiswa' => $data_mahasiswa
+			'data_mahasiswa' => $data_mahasiswa,
+			'title' => 'CPL - Laporan Nilai Mahasiswa'
 		);
 		$this->load->view('nilaiMataKuliahByMahasiswa/read', $data);
 	}
