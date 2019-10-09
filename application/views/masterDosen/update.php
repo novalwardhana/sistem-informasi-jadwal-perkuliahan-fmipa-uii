@@ -44,13 +44,9 @@
 			$this->load->view('masterDosen/updateMain');
 		?>
   </div>
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0
-    </div>
-    <strong>Copyright &copy; 2019 <a href="#">WardhanaCode</a>.</strong> All rights
-    reserved.
-  </footer>
+  <?php
+		$this->load->view('layout/footer');
+  ?>
 
 </div>
 <!-- jQuery 3 -->

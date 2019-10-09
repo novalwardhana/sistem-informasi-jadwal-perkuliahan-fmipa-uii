@@ -37,7 +37,7 @@ class JadwalPerkuliahanUploadNilai extends CI_Controller {
 		}
 
 		$data=[];
-		$data['title'] = 'Jadwal Perkuliahan | Upload Nilai';
+		$data['title'] = 'CPL - Jadwal Perkuliahan Upload Nilai';
 		$data['dataPengampu'] = $dataPengampu;
 		$this->load->view('jadwalPerkuliahanUploadNilai/upload', $data);
 	}

@@ -11,7 +11,7 @@
         <div class="pull-left info">
           <p><?php echo $this->session->userdata('nama_user'); ?></p>
 					<a href="#"><i class="fa fa-user text-success"></i> <?php echo $this->session->userdata('username'); ?></a>
-					<a href="#"><i class="fa fa-toggle-on text-success"></i> <?php echo $this->session->userdata('role_user'); ?></a>
+					<a href="#"><i class="fa fa-certificate text-success"></i> <?php echo $this->session->userdata('role_user'); ?></a>
 				</div>
 			</div>
 			
@@ -217,7 +217,7 @@
 						<?php
 							if (isset($dataSessionPermission['UserRole'])) {
 						?>
-						<li class="menu-sidebar-user-management-role"><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-toggle-on"></i> <span>Role</span></a></li>
+						<li class="menu-sidebar-user-management-role"><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-certificate"></i> <span>Role</span></a></li>
 						<?php
 							}
 						?>

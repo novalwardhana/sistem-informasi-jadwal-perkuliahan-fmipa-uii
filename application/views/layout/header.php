@@ -1,7 +1,7 @@
 <header class="main-header">
     <a href="index2.html" class="logo">
       <span class="logo-mini"><b><i class="fa fa-get-pocket"></i></b></span>
-      <span class="logo-lg"><b><i class="fa fa-get-pocket"></i></b> SICPMK</span>
+      <span class="logo-lg"><b><i class="fa fa-get-pocket"></i></b> CPL</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
