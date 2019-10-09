@@ -43,7 +43,7 @@ class KhsKumulatifModel extends CI_Model {
         d.semester,
         d.kode AS kode_mata_kuliah,
 	      d.nama AS mata_kuliah,
-        a.nilai as nilai
+        max(COALESCE(a.nilai, 0)) as nilai
       FROM khs_kumulatif a
       LEFT join mahasiswa b on a.id_mahasiswa=b.id
       LEFT join mata_kuliah d ON a.id_mata_kuliah=d.id
@@ -54,7 +54,7 @@ class KhsKumulatifModel extends CI_Model {
 					d.kode like '%".$params['search']."%' OR
 					b.semester like '%".$params['search']."%'
 				)
-      group by d.semester, d.kode, d.nama
+      group by a.id, d.semester, d.kode, d.nama
       ORDER BY d.semester ASC, d.nama ASC
       ";
 
@@ -80,7 +80,7 @@ class KhsKumulatifModel extends CI_Model {
 					d.kode like '%".$params['search']."%' OR
 					b.semester like '%".$params['search']."%'
 				)
-      group by d.semester, d.kode, d.nama
+      group by a.id, d.semester, d.kode, d.nama
       ORDER BY d.semester ASC, d.nama ASC
       ";
 
