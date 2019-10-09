@@ -42,33 +42,48 @@ class EvaluasiMandiriHasilModel extends CI_Model {
 				INNER JOIN capaian_pembelajaran_lulusan AS cpl ON cpld.id_capaian_pembelajaran_lulusan=cpl.id
 				LEFT JOIN mata_kuliah AS mk ON cpld.id_mata_kuliah=mk.id
 				LEFT JOIN (
-					SELECT
-						dpmk.id_mata_kuliah,
-						max(
-							(COALESCE(mpmk.cpmk_1_nilai, 0)*COALESCE(dpmk.cpmk_1_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_2_nilai, 0)*COALESCE(dpmk.cpmk_2_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_3_nilai, 0)*COALESCE(dpmk.cpmk_3_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_4_nilai, 0)*COALESCE(dpmk.cpmk_4_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_5_nilai, 0)*COALESCE(dpmk.cpmk_5_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_6_nilai, 0)*COALESCE(dpmk.cpmk_6_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_7_nilai, 0)*COALESCE(dpmk.cpmk_7_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_8_nilai, 0)*COALESCE(dpmk.cpmk_8_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_9_nilai, 0)*COALESCE(dpmk.cpmk_9_persentase, 0)/100)
-							+
-							(COALESCE(mpmk.cpmk_10_nilai, 0)*COALESCE(dpmk.cpmk_10_persentase, 0)/100)
-						) AS nilai_max
-					FROM mahasiswa_peserta_mata_kuliah mpmk
-					INNER JOIN dosen_pengampu_mata_kuliah dpmk ON mpmk.id_dosen_pengampu_mata_kuliah=dpmk.id
-					WHERE mpmk.id_mahasiswa=$id_mahasiswa
-					GROUP BY dpmk.id_mata_kuliah
+					SELECT 
+          nilai_matkul.id_mata_kuliah, 
+          max(COALESCE(nilai_matkul.nilai_max, 0)) AS nilai_max
+          FROM (
+            SELECT 
+              kk.id_mata_kuliah,
+              max(COALESCE(kk.nilai, 0)) AS nilai_max
+            FROM khs_kumulatif kk
+						WHERE kk.id_mahasiswa=$id_mahasiswa
+            group by kk.id_mata_kuliah
+
+            UNION ALL
+
+            SELECT
+              dpmk.id_mata_kuliah,
+              max(
+                (COALESCE(mpmk.cpmk_1_nilai, 0)*COALESCE(dpmk.cpmk_1_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_2_nilai, 0)*COALESCE(dpmk.cpmk_2_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_3_nilai, 0)*COALESCE(dpmk.cpmk_3_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_4_nilai, 0)*COALESCE(dpmk.cpmk_4_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_5_nilai, 0)*COALESCE(dpmk.cpmk_5_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_6_nilai, 0)*COALESCE(dpmk.cpmk_6_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_7_nilai, 0)*COALESCE(dpmk.cpmk_7_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_8_nilai, 0)*COALESCE(dpmk.cpmk_8_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_9_nilai, 0)*COALESCE(dpmk.cpmk_9_persentase, 0)/100)
+                +
+                (COALESCE(mpmk.cpmk_10_nilai, 0)*COALESCE(dpmk.cpmk_10_persentase, 0)/100)
+              ) AS nilai_max
+            FROM mahasiswa_peserta_mata_kuliah mpmk
+            INNER JOIN dosen_pengampu_mata_kuliah dpmk ON mpmk.id_dosen_pengampu_mata_kuliah=dpmk.id
+            WHERE mpmk.id_mahasiswa=$id_mahasiswa
+            GROUP BY dpmk.id_mata_kuliah
+          ) as nilai_matkul
+					GROUP BY nilai_matkul.id_mata_kuliah
 				) AS capaian ON cpld.id_mata_kuliah=capaian.id_mata_kuliah
 				WHERE cpl.nama='".$cpl."'
 			";
