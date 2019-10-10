@@ -13,10 +13,13 @@
 		<!-- Data Mahasiswa -->
 		<div class="col-md-12">
 			<div class="box box-primary">
-				<div class="box-header with-border">
+				<div class="box-header with-border text-center">
 					<h3 class="box-title">
-					FORMULIR EVALUASI MANDIRI PENGUKURAN CAPAIAN PEMBELAJARAN
-					Data Mahasiswa
+						<b>Formulir Evaluasi Mandiri Pengukuran Capaian Pembelajaran</b>
+					</h3>
+					<br>
+					<h3 class="box-title">
+						<b>Program Studi DIII Analisis Kimia – FMIPA UII</b>
 					</h3>
 				</div>
 				<div class="box-body">
@@ -87,23 +90,32 @@
                   $total_harkat = 0;
                   $total_sks = 0;
                   for($j=0; $j<count($data_laporan_detail); $j++) {
-										 //print_r($data_laporan_detail[$j]);
 										
 										$nilai='';
 										$harkat=0;
-										for($k=0; $k<count($data_harkat); $k++) {
-											$batas_bawah = $data_harkat[$k]['batas_bawah'];
-											$batas_atas = $data_harkat[$k]['batas_atas'];
-											if ($data_laporan_detail[$j]['capaian_nilai_max']>=$batas_bawah 
-												&& 
-												$data_laporan_detail[$j]['capaian_nilai_max']<$batas_atas
-											) {
-												$nilai = $data_harkat[$k]['huruf'];
-												$harkat = $data_harkat[$k]['harkat'];
+										
+										if ($data_laporan_detail[$j]['capaian_nilai_max']>=100) {
+
+											$nilai = 'A';
+											$harkat = 100;
+
+										} else {
+
+											for($k=0; $k<count($data_harkat); $k++) {
+												$batas_bawah = $data_harkat[$k]['batas_bawah'];
+												$batas_atas = $data_harkat[$k]['batas_atas'];
+												if ($data_laporan_detail[$j]['capaian_nilai_max']>=$batas_bawah 
+													&& 
+													$data_laporan_detail[$j]['capaian_nilai_max']<$batas_atas
+												) {
+													$nilai = $data_harkat[$k]['huruf'];
+													$harkat = $data_harkat[$k]['harkat'];
+												}
 											}
-                    }
+											
+										}
                     
-                    $subtotal_harkat = $harkat*$data_laporan_detail[$j]['cpld_kontribusi'];
+                    $subtotal_harkat = $data_laporan_detail[$j]['mk_sks'] * $harkat * $data_laporan_detail[$j]['cpld_kontribusi'];
                     $total_harkat += $subtotal_harkat;
                     $total_sks += $data_laporan_detail[$j]['mk_sks'];
                   ?>

@@ -2,6 +2,9 @@
 <html>
 <head>
 	<style type="text/css">
+		.tabel-mahasiswa {
+			width: 100%
+		}
 		.tabel-mahasiswa thead th{
 			padding: 10px 10px;
 		}
@@ -33,13 +36,17 @@
 	</style>
 </head>
 <body>
-	<h1>
-	Laporan Nilai Mata Kuliah
-	</h1>
 	<table class="tabel-mahasiswa">
 		<thead>
 			<tr>
-				<th>Nama Mahasiswa</th>
+				<th colspan="2" class="text-center">
+					<h2>
+						Laporan Nilai Mata Kuliah
+					</h2>
+				</th>
+			</tr>
+			<tr>
+				<th style="width: 15%">Nama Mahasiswa</th>
 				<th>: <?php echo $data_mahasiswa['nama'] ?></th>
 			</tr>
 			<tr>
@@ -58,9 +65,9 @@
 			<tr>
 				<th width="30" class="text-center">No</th>
 				<th width="50" class="text-center">Semester</th>
-				<th width="100">Kode</th>
+				<th width="100" class="text-center">Kode</th>
 				<th>Mata Kuliah</th>
-				<th width="100">Nilai</th>
+				<th width="100" class="text-center">Nilai</th>
 				<th width="50" class="text-center">Huruf</th>
 			</tr>
 		</thead>
@@ -72,9 +79,9 @@
 					<tr>
 						<td class="text-center"><?php echo $nomor; ?></td>
 						<td class="text-center"><?php echo $value['semester'] ?></td>
-						<td><?php echo $value['kode_mata_kuliah'] ?></td>
+						<td class="text-center"><?php echo $value['kode_mata_kuliah'] ?></td>
 						<td><?php echo $value['mata_kuliah'] ?></td>
-						<td class="text-right"><?php echo number_format($value['nilai'],2,",",".") ?></td>
+						<td class="text-center"><?php echo number_format($value['nilai'],2,",",".") ?></td>
 						<?php
 							$nilai_akhir = (float) $value['nilai'];
 							if ($nilai_akhir>=100) {

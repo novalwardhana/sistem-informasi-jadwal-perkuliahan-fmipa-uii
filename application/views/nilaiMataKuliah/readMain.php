@@ -67,7 +67,7 @@
 								<tr>
 									<th class="text-center">No</th>
 									<th class="text-center">Semester</th>
-									<th>Kode</th>
+									<th class="text-center">Kode</th>
 									<th>Mata Kuliah</th>
 									<th>Nilai</th>
 									<th>Huruf</th>

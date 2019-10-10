@@ -99,7 +99,7 @@
 						}
 				},
 				{ "data": "semester", "className": "text-center" },
-				{ "data": "kode_mata_kuliah" },
+				{ "data": "kode_mata_kuliah", "className": "text-center" },
 				{ "data": "mata_kuliah" },
 				{ "data": "nilai", "className": "cell-nowrap, text-right",
 					render: function (data, type, row, meta) {

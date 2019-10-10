@@ -115,7 +115,7 @@ class NilaiMataKuliahExport extends CI_Controller {
 		$sheet->setCellValue('C7', 'Kode');
 		$sheet->getStyle("C7")->getFont()->setBold(true);
 		$sheet->getStyle("C7")->getFont()->setSize(12);
-		$sheet->getStyle('C7')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+		$sheet->getStyle('C7')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 		$sheet->getStyle("C7")->getFont()->setName('times');
 
 		$sheet->setCellValue('D7', 'Mata Kuliah');
@@ -154,7 +154,7 @@ class NilaiMataKuliahExport extends CI_Controller {
 
 			$sheet->setCellValue('C'.$index, $row['kode_mata_kuliah']);
 			$sheet->getStyle('C'.$index)->getFont()->setSize(12);
-			$sheet->getStyle('C'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+			$sheet->getStyle('C'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 			$sheet->getStyle('C'.$index)->getFont()->setName('times');
 
 			$sheet->setCellValue('D'.$index, $row['mata_kuliah']);
