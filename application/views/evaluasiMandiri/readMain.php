@@ -17,7 +17,6 @@
 					<h3 class="box-title">
 						<b>Formulir Evaluasi Mandiri Pengukuran Capaian Pembelajaran</b>
 					</h3>
-					<br>
 					<h3 class="box-title">
 						<b>Program Studi DIII Analisis Kimia – FMIPA UII</b>
 					</h3>
@@ -42,6 +41,12 @@
 					</table>
 				</div>
 			</div>
+		</div>
+
+		<!-- Export PDF -->
+		<div class="col-md-12">
+			<button id="exportButtonPDF" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export PDF</button>
+			<br><br>
 		</div>
 
 		<!-- Tabel nilai CPL -->

@@ -71,6 +71,13 @@
 		$(".menu-sidebar-laporan").addClass('active');
 		$(".menu-sidebar-laporan-evaluasi-mandiri").addClass('active');
 	});
+
+	$('#exportButtonPDF').click(function(){
+		let id_mahasiswa = "<?php echo $data_mahasiswa->id ?>";
+		let urlPrint = "<?php echo base_url('EvaluasiMandiri/exportPDF') ?>";
+		urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
+		window.open(urlPrint, '_blank');
+	});
 </script>
 </body>
 </html>

@@ -69,4 +69,40 @@ class EvaluasiMandiri extends CI_Controller {
 
 	}
 
+	public function exportPDF() {
+		$id_mahasiswa = $_GET['id_mahasiswa'];
+
+		$data_laporan = array();
+		$data_cpl1 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 1');
+		$data_cpl2 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 2');
+		$data_cpl3 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 3');
+		$data_cpl4 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 4');
+		$data_cpl5 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 5');
+		$data_cpl6 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 6');
+		$data_cpl7 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 7');
+		$data_cpl8 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 8');
+		$data_cpl9 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 9');
+		$data_laporan[] = $data_cpl1;
+		$data_laporan[] = $data_cpl2;
+		$data_laporan[] = $data_cpl3;
+		$data_laporan[] = $data_cpl4;
+		$data_laporan[] = $data_cpl5;
+		$data_laporan[] = $data_cpl6;
+		$data_laporan[] = $data_cpl7;
+		$data_laporan[] = $data_cpl8;
+		$data_laporan[] = $data_cpl9;
+
+		$data = array();
+		$data['title'] = 'CPL - Laporan Evaluasi Mandiri Detail';
+		$data['data_mahasiswa'] = $this->evaluasiMandiriModel->getListMahasiswaById($id_mahasiswa);
+		$data['data_skor_maks'] = $this->evaluasiMandiriModel->getSkorMaks($data['data_mahasiswa']->semester);
+		$data['data_laporan'] = $data_laporan;
+		$data['data_harkat'] = $this->evaluasiMandiriModel->getListHarkat();
+
+		$this->load->library('Pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "Evaluasi_Mandiri.pdf";
+		$this->pdf->load_view('evaluasiMandiriExport/export', $data);
+	}
+
 }
