@@ -66,6 +66,9 @@
 <!-- page script -->
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
+
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
 <script>
 	$(document).ready(function () {
 		$(".menu-sidebar-laporan").addClass('active');

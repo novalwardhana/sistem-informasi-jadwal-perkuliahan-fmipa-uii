@@ -1,37 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 	<style type="text/css">
-		.tabel-mahasiswa {
-			width: 100%
-		}
-		.tabel-mahasiswa thead th{
-			padding: 10px 10px;
-		}
+		body { font-family: Times !important; color: #222; }
+		.bagan-cpl { border: 1px solid #789; padding: 10px;margin-top: 5px; margin-bottom: 20px;width: 100% }
+		.tabel-mahasiswa { width: 100% }
+		.tabel-mahasiswa thead th{ padding: 10px 10px; font-size: 12px; vertical-align: top; line-height: 1.8; text-align: justify; }
+   	.tabel-mahasiswa tbody td{ padding: 10px 10px; font-size: 11px; vertical-align: top; line-height: 1.8; text-align: justify; }
 
-		.tabel-mahasiswa tbody td{
-			font-size: 12px;
-		}
-
-		.tabel-mahasiswa thead th{
-			font-size: 12px;
-		}
-
-		.tabel-mahasiswa-nilai {
-			width: 100%;
-			border: 1px solid #333;
-		}
-
-		.tabel-mahasiswa-nilai thead th {
-			padding: 10px;
-			background: #f2f2f2;
-			border: 1px solid #333;
-		}
-
-		.tabel-mahasiswa-nilai tbody td {
-			padding: 10px;
-			border: 1px solid #333;
-		}
+		.tabel-cpl-detail { width: 100%; border: 1px solid #789 }
+		.tabel-cpl-detail thead { display: table-row-group; }
+		.tabel-cpl-detail thead th{ border: 0.5px solid #789; padding: 8px 6px; font-size: 12px; vertical-align: top; background: #d2d6de; line-height: 1.8; }
+   	.tabel-cpl-detail tbody td{ border: 0.5px solid #789; padding: 8px 6px; font-size: 11px; vertical-align: top; line-height: 1.8; }
 
 		.text-center {
 			text-align: center;
@@ -40,6 +22,8 @@
 		.text-right {
 			text-align: right;
 		}
+
+		.page-break { page-break-before: always; }
 	</style>
 </head>
 <body>
@@ -53,7 +37,7 @@
 				</th>
 			</tr>
 			<tr>
-				<th style="width: 15%">Nama</th>
+				<th style="width: 12%">Nama</th>
 				<th>: <?php echo $data_mahasiswa->nama ?></th>
 			</tr>
 			<tr>
@@ -75,12 +59,13 @@
 			
 			$cpl_nama_low = 'skor_maks_'.str_replace(' ','_',strtolower($cpl_nama));
 			$skor_maks = (isset($data_skor_maks[$cpl_nama_low])) ? $data_skor_maks[$cpl_nama_low] : 0;
+			$page_break_class = ($i==0) ? '' : 'page-break';
 	?>
-			<div style="border: 2px solid #C7CFD4; padding: 10px;margin-top: 5px; margin-bottom: 20px;">
+			<div class="bagan-cpl <?php echo $page_break_class ?>">
 			<table class="tabel-mahasiswa">
 				<thead>
 					<tr>
-						<th style="width: 15%">Nama</th>
+						<th style="width: 11%">Nama</th>
 						<th>: <span><?php echo $cpl_nama ?></span></th>
 					</tr>
 					<tr>
@@ -89,19 +74,19 @@
 					</tr>
 				</thead>
 			</table>
-			<table class="tabel-mahasiswa" cellspacing="0" border="1">
+			<table class="tabel-cpl-detail" cellspacing="0">
 				<thead>
 					<tr>
-						<th class="text-right">No</th>
-						<th class="text-right">Kode</th>
-						<th>Mata Kuliah</th>
-						<th class="text-right">SKS</th>
-						<th>Keterangan</th>
-						<th style="text-align: right">Nilai (Angka)</th>
-						<th class="text-center">Nilai</th>
-						<th style="text-align: right">Harkat</th>
-						<th style="text-align: right">Kontribusi</th>
-						<th style="text-align: right">Earned</th>
+						<th class="text-center" style="width: 5%">No</th>
+						<th class="text-center" style="width: 10%">Kode</th>
+						<th style="width: 20%">Mata Kuliah</th>
+						<th class="text-right" style="width: 8%">SKS</th>
+						<th class="text-center" style="width: 8%">Ket</th>
+						<th class="text-right" style="width: 10%">Nilai (Angka)</th>
+						<th class="text-center" style="width: 8%">Nilai</th>
+						<th class="text-right" style="width: 8%">Harkat</th>
+						<th class="text-right" style="width: 11%">Kontribusi</th>
+						<th class="text-right" style="width: 11%">Earned</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -140,16 +125,16 @@
 							$total_sks += $data_laporan_detail[$j]['mk_sks'];
 						?>
 							<tr>
-								<td style="text-align: center;"><?php echo $nomor ?></td>
-								<td style="text-align: center;"><?php echo $data_laporan_detail[$j]['mk_kode'] ?></td>
+								<td class="text-center"><?php echo $nomor ?></td>
+								<td class="text-center"><?php echo $data_laporan_detail[$j]['mk_kode'] ?></td>
 								<td><?php echo $data_laporan_detail[$j]['mk_nama'] ?></td>
-								<td style="text-align: center;"><?php echo $data_laporan_detail[$j]['mk_sks'] ?></td>
+								<td class="text-right"><?php echo number_format($data_laporan_detail[$j]['mk_sks'],2,".",","); ?></td>
 								<td></td>
-								<td class="text-right"><?php echo $data_laporan_detail[$j]['capaian_nilai_max'] ?></td>
+								<td class="text-right"><?php echo number_format($data_laporan_detail[$j]['capaian_nilai_max'],2,".",","); ?></td>
 								<td class="text-center"><?php echo $nilai; ?></td>
-								<td class="text-right"><?php echo $harkat; ?></td>
-								<td class="text-right"><?php echo $data_laporan_detail[$j]['cpld_kontribusi'] ?></td>
-								<td class="text-right"><?php echo $subtotal_harkat; ?></td>
+								<td class="text-right"><?php echo number_format($harkat,2,".",","); ?></td>
+								<td class="text-right"><?php echo number_format($data_laporan_detail[$j]['cpld_kontribusi'],2,".",","); ?></td>
+								<td class="text-right"><?php echo number_format($subtotal_harkat,2,".",","); ?></td>
 							</tr>
 					<?php
 						$nomor++;
@@ -157,33 +142,27 @@
 					?>
 					<tr>
 						<td colspan="3"></td>
-						<td class="text-right"><?php echo $total_sks; ?></td>
+						<td class="text-right"><?php echo number_format($total_sks,2,".",","); ?></td>
 						<td colspan="5" class="text-right"><b>Jumlah</b></td>
-						<td class="text-right"><?php echo $total_harkat; ?></td>
+						<td class="text-right"><?php echo number_format($total_harkat,2,".",","); ?></td>
 					</tr>
 					<tr>
-						<td colspan="3"></td>
-						<td class="text-right"></td>
-						<td colspan="5" class="text-right"><b>Skor Mahasiswa</b></td>
+						<td colspan="9" class="text-right"><b>Skor Mahasiswa</b></td>
 						<?php
 							$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
 						?>
-						<td class="text-right"><?php echo $skor_mahasiswa ?></td>
+						<td class="text-right"><?php echo number_format($skor_mahasiswa,2,".",","); ?></td>
 					</tr>
 					<tr>
-						<td colspan="3"></td>
-						<td class="text-right"></td>
-						<td colspan="5" class="text-right"><b>Skor Maksimum</b></td>
-						<td class="text-right"><?php echo $skor_maks ?></td>
+						<td colspan="9" class="text-right"><b>Skor Maksimum</b></td>
+						<td class="text-right"><?php echo number_format($skor_maks,2,".",","); ?></td>
 					</tr>
 					<tr>
-						<td colspan="3"></td>
-						<td class="text-right"></td>
-						<td colspan="5" class="text-right"><b>Capaian Kompetensi</b></td>
+						<td colspan="9" class="text-right"><b>Capaian Kompetensi</b></td>
 						<?php
 							$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
 						?>
-						<td class="text-right"><?php echo $capaian.'%' ?></td>
+						<td class="text-right"><?php echo number_format($capaian,2,".",",").'%' ?></td>
 					</tr>
 				</tbody>
 			</table>
