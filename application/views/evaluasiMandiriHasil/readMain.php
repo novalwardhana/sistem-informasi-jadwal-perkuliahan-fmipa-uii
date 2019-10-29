@@ -45,6 +45,12 @@
 			</div>
 		</div>
 
+		<!-- Export PDF -->
+		<div class="col-md-12">
+			<button id="exportButtonPDF" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export PDF</button>
+			<br><br>
+		</div>
+
 		<!-- Tabel nilai CPL -->
 		<div class="col-md-12">
 			<div class="box box-primary">
