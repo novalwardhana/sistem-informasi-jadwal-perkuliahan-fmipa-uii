@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hasil Evaluasi Mandiri</title>
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<title>Laporan Hasil Evaluasi Mandiri</title>
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 	<style type="text/css">
 		body { font-family: Times !important; color: #222; }
 		.bagan-cpl { border: 1px solid #789; padding: 10px;margin-top: 5px; margin-bottom: 20px;width: 100% }
@@ -76,6 +76,92 @@
 		</thead>
 	</table>
 	<br>
+
+	<table class="tabel-cpl-detail" cellspacing="0">
+		<thead>
+			<tr>
+				<th class="text-center">No</th>
+				<th width="50%">Kompetensi</th>
+				<th class="text-right">Skor<br>Mahasiswa</th>
+				<th class="text-right">Skor<br>Maksimum</th>
+				<th class="text-right">Capaian<br>Kompetensi</th>
+				<th class="text-center">Keterangan</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+			$nomor = 1;
+			for($i=0; $i<count($data_laporan); $i++) {
+				$data_laporan_detail = $data_laporan[$i];
+				$cpl_nama = (isset($data_laporan_detail[0]['nama_cpl'])) ? $data_laporan_detail[0]['nama_cpl'] : ' ';
+				$cpl_deskripsi = (isset($data_laporan_detail[0]['deskripsi'])) ? $data_laporan_detail[0]['deskripsi'] : ' ';
+				
+				$cpl_nama_low = 'skor_maks_'.str_replace(' ','_',strtolower($cpl_nama));
+				$skor_maks = (isset($data_skor_maks[$cpl_nama_low])) ? $data_skor_maks[$cpl_nama_low] : 0;
+		?>
+				<tr>
+					<?php
+						$total_harkat = 0;
+						$total_sks = 0;
+						for($j=0; $j<count($data_laporan_detail); $j++) {
+
+							$nilai = '';
+							$harkat=0;
+
+							if ($data_laporan_detail[$j]['capaian_nilai_max']>=100) {
+
+								$nilai = 'A';
+								$harkat = 100;
+
+							} else {
+
+								for($k=0; $k<count($data_harkat); $k++) {
+									$batas_bawah = $data_harkat[$k]['batas_bawah'];
+									$batas_atas = $data_harkat[$k]['batas_atas'];
+									if ($data_laporan_detail[$j]['capaian_nilai_max']>=$batas_bawah 
+										&& 
+										$data_laporan_detail[$j]['capaian_nilai_max']<$batas_atas
+									) {
+										$nilai = $data_harkat[$k]['huruf'];
+										$harkat = $data_harkat[$k]['harkat'];
+									}
+								}
+
+							}
+							
+							$subtotal_harkat = $data_laporan_detail[$j]['mk_sks'] * $harkat*$data_laporan_detail[$j]['cpld_kontribusi'];
+							$total_harkat += $subtotal_harkat;
+							$total_sks += $data_laporan_detail[$j]['mk_sks'];
+						}
+						$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
+						$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
+						
+						$capaian_keterangan = '';
+						for($l=0; $l<count($data_klasifikasi); $l++) {
+							$batas_bawah = $data_klasifikasi[$l]['batas_bawah'];
+							$batas_atas = $data_klasifikasi[$l]['batas_atas'];
+							if ($capaian>=$batas_bawah 
+								&& 
+								$capaian<=$batas_atas
+							) {
+								$capaian_keterangan = $data_klasifikasi[$l]['predikat'];
+							}
+						}
+					?>
+					<td class="text-center"><?php echo $nomor; ?></td>
+					<td><?php echo $cpl_deskripsi; ?></td>
+					<td class="text-right"><?php echo number_format($skor_mahasiswa,2,".",","); ?></td>
+					<td class="text-right"><?php echo number_format($skor_maks,2,".",","); ?></td>
+					<td class="text-right"><?php echo number_format($capaian,2,".",","); ?></td>
+					<td class="text-center"><b><?php echo $capaian_keterangan; ?></b></td>
+				</tr>
+		<?php
+				$nomor++;
+			}
+		?>
+		</tbody>
+	</table>
+
 </body>
 </html>
 
