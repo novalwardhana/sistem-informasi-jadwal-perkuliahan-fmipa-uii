@@ -90,6 +90,14 @@
 						?>
 
 						<li class="menu-sidebar-master-cpl"><a href="<?php echo base_url('capaian-pembelajaran-lulusan') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
+
+						<?php
+							if (isset($dataSessionPermission['TahunAkademik'])) {
+						?>
+						<li class="menu-sidebar-master-tahun-akademik"><a href="<?php echo base_url('tahun-akademik') ?>" style="margin: 12px 5px;"><i class="fa fa-tag"></i> <span>Tahun Akademik</span></a></li>
+						<?php
+							}
+						?>
 					</ul>
         </li>
 				<?php

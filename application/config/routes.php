@@ -105,6 +105,12 @@ $route['capaian-pembelajaran-lulusan/create'] = 'CapaianPembelajaranLulusan/crea
 $route['capaian-pembelajaran-lulusan/update'] = 'CapaianPembelajaranLulusan/update';
 $route['capaian-pembelajaran-lulusan/delete'] = 'CapaianPembelajaranLulusan/delete';
 
+/* Router Master Tahun Akademik */
+$route['tahun-akademik'] = 'TahunAkademik';
+$route['tahun-akademik/create'] = 'TahunAkademik/create';
+$route['tahun-akademik/update'] = 'TahunAkademik/update';
+$route['tahun-akademik/delete'] = 'TahunAkademik/delete';
+
 /* Router Dosen Pengampu */
 $route['dosen-pengampu'] = 'DosenPengampu';
 $route['dosen-pengampu/detail'] = 'DosenPengampu/detail';
