@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/font-awesome/css/font-awesome.min.css')?>">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/Ionicons/css/ionicons.min.css')?>">
-  <!-- Theme style -->
+  <!-- Select 2-->
+	<link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/css/select2.min.css') ?>">
+	<!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/css/AdminLTE.min.css')?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   folder instead of downloading all of them to reduce the load. -->
@@ -55,6 +57,8 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/jquery-ui/jquery-ui.min.js')?>"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')?>"></script>
+<!-- Select 2-->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
 <!-- Morris.js charts -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/raphael/raphael.min.js')?>"></script>
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/morris.js/morris.min.js')?>"></script>
@@ -80,10 +84,39 @@
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js')?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/demo.js')?>"></script>
+<script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script type="text/javascript">
+	$(function() {
+		$('.selectTahunAkademik').select2({
+      placeholder: 'Pilih tahun akademik',
+      allowClear: true
+    });
+	});
 	$(document).ready(function () {
 		$(".menu-sidebar-user-management").addClass('active');
 		$(".menu-sidebar-user-management-pengaturan-sistem").addClass('active');
+
+		var responseModule="";
+		var responseModuleBackground="";
+		var responseModuleMsg="";
+		var responseModuleIcon="";
+		<?php
+		if ($this->session->flashdata('responseModule')) {
+		?>
+			responseModule="<?php echo $this->session->flashdata('responseModule') ?>";
+			responseModuleBackground="<?php echo $this->session->flashdata('responseModuleBackground') ?>";
+			responseModuleMsg="<?php echo $this->session->flashdata('responseModuleMsg') ?>";
+			responseModuleIcon="<?php echo $this->session->flashdata('responseModuleIcon') ?>";
+		<?php
+		}
+		?>
+		if (responseModule!="") {
+			$.toaster({ 
+				priority : responseModuleBackground, 
+				title : '<i class="'+responseModuleIcon+'"></i> Info', 
+				message : responseModuleMsg,
+			});
+		}
 	});
 </script>
 </body>

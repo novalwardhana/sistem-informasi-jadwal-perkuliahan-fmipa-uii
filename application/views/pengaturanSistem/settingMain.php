@@ -24,6 +24,20 @@
 								</div>
 
 								<div class="form-group">
+									<label>Tahun Akademik *</label>
+									<select class="selectTahunAkademik form-control" style="width: 100%;" name="id_tahun_akademik" required>
+										<option></option>
+										<?php
+										foreach($data_tahun_akademik as $key => $value) {
+										?>
+											<option value="<?php echo $value['id'] ?>"><?php echo $value['nama'] ?></option>
+										<?php
+										}
+										?>
+									</select>
+								</div>
+
+								<div class="form-group">
 									<label>Nama Kaprodi *</label>
 									<input type="text" value="<?php echo $data_pengaturan->nama_kaprodi  ?>" name="nama_kaprodi" class="form-control" placeholder="Nama kaprodi" required>
 								</div>
