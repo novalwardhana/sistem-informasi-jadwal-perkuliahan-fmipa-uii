@@ -49,7 +49,14 @@ class PengaturanSistem extends CI_Controller {
 			$params['nik_pembimbing_akademik'] = $_POST['nik_pembimbing_akademik'];
 			$hasil=$this->pengaturanSistemModel->create($params);
 		} else {
-			
+			$params = array();
+			$params['role'] = $_POST['role'];
+			$params['id_tahun_akademik'] = $_POST['id_tahun_akademik'];
+			$params['nama_kaprodi'] = $_POST['nama_kaprodi'];
+			$params['nik_kaprodi'] = $_POST['nik_kaprodi'];
+			$params['nama_pembimbing_akademik'] = $_POST['nama_pembimbing_akademik'];
+			$params['nik_pembimbing_akademik'] = $_POST['nik_pembimbing_akademik'];
+			$hasil=$this->pengaturanSistemModel->update($params);
 		}
 
 		if ($hasil===TRUE) {
