@@ -157,4 +157,7 @@ $route['user-permission/create'] = 'UserPermission/create';
 $route['user-permission/update'] = 'UserPermission/update';
 $route['user-permission/delete'] = 'UserPermission/delete';
 
+/* Router Pengaturan Sistem */
+$route['pengaturan-sistem'] = 'PengaturanSistem';
+
 

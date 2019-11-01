@@ -215,7 +215,7 @@
 				<!-- End Treeview Laporan -->
 
 				<?php
-					if (isset($dataSessionPermission['UserManagement']) || isset($dataSessionPermission['UserRole']) || isset($dataSessionPermission['UserPermission'])) {
+					if (isset($dataSessionPermission['UserManagement']) || isset($dataSessionPermission['UserRole']) || isset($dataSessionPermission['UserPermission']) || isset($dataSessionPermission['PengaturanSistem'])) {
 				?>
 				<li class="treeview menu-sidebar-user-management">
 					<a href="#">
@@ -246,6 +246,14 @@
 							if (isset($dataSessionPermission['UserPermission'])) {
 						?>
 						<li class="menu-sidebar-user-management-permission"><a href="<?php echo base_url('UserPermission') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-key"></i> <span>Permission</span></a></li>
+						<?php
+							}
+						?>
+
+						<?php
+							if (isset($dataSessionPermission['PengaturanSistem'])) {
+						?>
+						<li class="menu-sidebar-user-management-pengaturan-sistem"><a href="<?php echo base_url('pengaturan-sistem') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-cogs"></i> <span>Pengaturan Sistem</span></a></li>
 						<?php
 							}
 						?>
