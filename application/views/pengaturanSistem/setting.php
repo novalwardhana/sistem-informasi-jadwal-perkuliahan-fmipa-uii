@@ -93,6 +93,9 @@
     });
 	});
 	$(document).ready(function () {
+		var id_tahun_akademik = "<?php echo $data_pengaturan->id_tahun_akademik ?>";
+		id_tahun_akademik = (id_tahun_akademik != '') ? parseInt(id_tahun_akademik) : null;
+		$(".selectTahunAkademik").val(id_tahun_akademik).trigger("change");
 		$(".menu-sidebar-user-management").addClass('active');
 		$(".menu-sidebar-user-management-pengaturan-sistem").addClass('active');
 

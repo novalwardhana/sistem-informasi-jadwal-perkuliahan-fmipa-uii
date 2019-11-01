@@ -7,7 +7,7 @@ class PengaturanSistemModel extends CI_Model {
 	}
 
 	public function getPengaturanSistemData($role) {
-		$this->db->where('id', $role);
+		$this->db->where('role', $role);
 		$query=$this->db->get('pengaturan_sistem');
 		$row=$query->row();
 		return $row;

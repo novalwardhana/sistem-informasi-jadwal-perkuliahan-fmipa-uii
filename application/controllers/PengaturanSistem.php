@@ -49,7 +49,7 @@ class PengaturanSistem extends CI_Controller {
 			$params['nik_pembimbing_akademik'] = $_POST['nik_pembimbing_akademik'];
 			$hasil=$this->pengaturanSistemModel->create($params);
 		} else {
-
+			
 		}
 
 		if ($hasil===TRUE) {
