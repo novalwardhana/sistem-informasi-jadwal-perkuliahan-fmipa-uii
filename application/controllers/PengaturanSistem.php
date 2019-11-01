@@ -21,11 +21,11 @@ class PengaturanSistem extends CI_Controller {
 	public function index() {
 		$data = array();
 		$data['title'] = 'CPL - Pengaturan Sistem';
-		$data_pengaturan = $this->pengaturanSistemModel->getPengaturanSistemData('superadmin');
+		$data_pengaturan = $this->pengaturanSistemModel->getPengaturanSistemData('Superadmin');
 		$data_tahun_akademik = $this->pengaturanSistemModel->getListTahunAkademik();
 		if (!$data_pengaturan) {
 			$data_pengaturan = new StdClass();
-			$data_pengaturan->role='';
+			$data_pengaturan->role='Superadmin';
 			$data_pengaturan->id_tahun_akademik=null;
 			$data_pengaturan->nama_kaprodi='';
 			$data_pengaturan->nik_kaprodi='';
@@ -35,6 +35,15 @@ class PengaturanSistem extends CI_Controller {
 		$data['data_pengaturan'] = $data_pengaturan;
 		$data['data_tahun_akademik'] = $data_tahun_akademik;
 		$this->load->view('pengaturanSistem/setting', $data);
+	}
+
+	public function update() {
+		$cek_data = $this->pengaturanSistemModel->cekData('Superadmin');
+		if ($cek_data===0) {
+
+		} else {
+			
+		}
 	}
 
 }

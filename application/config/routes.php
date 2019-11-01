@@ -159,5 +159,4 @@ $route['user-permission/delete'] = 'UserPermission/delete';
 
 /* Router Pengaturan Sistem */
 $route['pengaturan-sistem'] = 'PengaturanSistem';
-
-
+$route['pengaturan-sistem/update'] = 'PengaturanSistem/update';

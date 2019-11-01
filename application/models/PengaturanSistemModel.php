@@ -24,4 +24,9 @@ class PengaturanSistemModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function cekData($role) {
+		$hasil = $this->db->where('role',$role)->from("pengaturan_sistem")->count_all_results();
+		return $hasil;
+	}
+
 }
