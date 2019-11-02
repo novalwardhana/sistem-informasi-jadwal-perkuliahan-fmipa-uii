@@ -29,8 +29,6 @@ class PengaturanSistem extends CI_Controller {
 			$data_pengaturan->id_tahun_akademik=null;
 			$data_pengaturan->nama_kaprodi='';
 			$data_pengaturan->nik_kaprodi='';
-			$data_pengaturan->nama_pembimbing_akademik='';
-			$data_pengaturan->nik_pembimbing_akademik='';
 		}
 		$data['data_pengaturan'] = $data_pengaturan;
 		$data['data_tahun_akademik'] = $data_tahun_akademik;
@@ -45,8 +43,6 @@ class PengaturanSistem extends CI_Controller {
 			$params['id_tahun_akademik'] = $_POST['id_tahun_akademik'];
 			$params['nama_kaprodi'] = $_POST['nama_kaprodi'];
 			$params['nik_kaprodi'] = $_POST['nik_kaprodi'];
-			$params['nama_pembimbing_akademik'] = $_POST['nama_pembimbing_akademik'];
-			$params['nik_pembimbing_akademik'] = $_POST['nik_pembimbing_akademik'];
 			$hasil=$this->pengaturanSistemModel->create($params);
 		} else {
 			$params = array();
@@ -54,8 +50,6 @@ class PengaturanSistem extends CI_Controller {
 			$params['id_tahun_akademik'] = $_POST['id_tahun_akademik'];
 			$params['nama_kaprodi'] = $_POST['nama_kaprodi'];
 			$params['nik_kaprodi'] = $_POST['nik_kaprodi'];
-			$params['nama_pembimbing_akademik'] = $_POST['nama_pembimbing_akademik'];
-			$params['nik_pembimbing_akademik'] = $_POST['nik_pembimbing_akademik'];
 			$hasil=$this->pengaturanSistemModel->update($params);
 		}
 

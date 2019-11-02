@@ -14,7 +14,12 @@ class NilaiMataKuliahExport extends CI_Controller {
 	}
 
 	public function exportPDF() {
-		$data=$this->nilaiMataKuliahExportModel->getListMahasiswaById($_GET['id_mahasiswa']);
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+		} else {
+			$id_mahasiswa = $_GET['id_mahasiswa'];
+		}
+		$data=$this->nilaiMataKuliahExportModel->getListMahasiswaById($id_mahasiswa);
 		$data_mahasiswa=array(
 			"id" => $data->id,
 			"nama" => $data->nama,
@@ -22,7 +27,7 @@ class NilaiMataKuliahExport extends CI_Controller {
 			"semester" => $data->semester
 		);
 
-		$data_mahasiswa_nilai=$this->nilaiMataKuliahExportModel->getListNilai($_GET['id_mahasiswa']);
+		$data_mahasiswa_nilai=$this->nilaiMataKuliahExportModel->getListNilai($id_mahasiswa);
 		$data_harkat=$this->nilaiMataKuliahExportModel->getListHarkat();
 		
 		
@@ -42,7 +47,12 @@ class NilaiMataKuliahExport extends CI_Controller {
 	}
 
 	public function exportExcel() {
-		$data=$this->nilaiMataKuliahExportModel->getListMahasiswaById($_GET['id_mahasiswa']);
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+		} else {
+			$id_mahasiswa = $_GET['id_mahasiswa'];
+		}
+		$data=$this->nilaiMataKuliahExportModel->getListMahasiswaById($id_mahasiswa);
 		$data_mahasiswa=array(
 			"id" => $data->id,
 			"nama" => $data->nama,
@@ -50,7 +60,7 @@ class NilaiMataKuliahExport extends CI_Controller {
 			"semester" => $data->semester
 		);
 
-		$data_mahasiswa_nilai=$this->nilaiMataKuliahExportModel->getListNilai($_GET['id_mahasiswa']);
+		$data_mahasiswa_nilai=$this->nilaiMataKuliahExportModel->getListNilai($id_mahasiswa);
 
 		$data_harkat=$this->nilaiMataKuliahExportModel->getListHarkat();
 		

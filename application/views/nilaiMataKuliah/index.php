@@ -38,11 +38,47 @@
   ?>
 
   <div class="content-wrapper">
-    <?php
-			$this->load->view('nilaiMataKuliah/readMain');
-		?>
+		<section class="content">
+			<div class="row">
+				<!-- Breadcrumbs -->
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li class="active">Laporan</li>
+						<li class="active">Nilai Mata Kuliah</li>
+						<li class="active">Form</li>
+					</ol>
+				</div>
+
+				<!-- Form -->
+				<div class="col-md-12">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">Form Nilai Mata Kuliah</h3>
+						</div>
+						<form role="form" method="post" action="<?php echo base_url('nilai-mata-kuliah/laporan') ?>">
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Pencarian</label>
+											<select class="mahasiswaselect form-control" name="id_mahasiswa" style="width: 100%;" required></select>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+											<a href="<?php echo base_url('nilai-mata-kuliah') ?>"><button type="button" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</section>
   </div>
-  <?php
+	<?php
 		$this->load->view('layout/footer');
   ?>
 </div>
@@ -72,72 +108,25 @@
 			$(".menu-sidebar-laporan-nilai-matkul").addClass('active');
 		});
 
-		var urlGetListNilai = "<?php echo base_url('NilaiMataKuliah/getListNilai') ?>";
-		var id_mahasiswa =parseInt("<?php echo $data_mahasiswa->id; ?>");
-		$('#listNilaiMahasiswa').DataTable({
-			"ordering": false,
-			"autoWidth": false,
-			"processing": true,
-			"serverSide": true,
-			"paging": false,
-			"ajax":{
-					"url": urlGetListNilai,
-					"dataType": "json",
-					"type": "POST",
-					"data": function(d){
-						d.id_mahasiswa = id_mahasiswa
-					}
-			},
-			"columns": [
-				{ "data": "nomor", "className": "text-center", "width": "8%",
-						render: function (data, type, row, meta) {
-							return meta.row + meta.settings._iDisplayStart + 1;
-						}
-				},
-				{ "data": "semester", "className": "text-center", "width": "8%", },
-				{ "data": "kode_mata_kuliah", "className": "text-center" },
-				{ "data": "mata_kuliah" },
-				{ "data": "nilai", "className": "cell-nowrap, text-right",
-					render: function (data, type, row, meta) {
-						let nilai = parseFloat(row.nilai);
-						//return nilai.toFixed(2).replace(".",",");
-						return nilai.toFixed(2);
-					}
-				},
-				{ "data": "harkat", "className": "cell-nowrap, text-center",
-					render: function (data, type, row, meta) {
-						
-						let nilai_akhir = parseFloat(row.nilai);
-						for(j=0; j<row.harkat.length; j++) {
-							let batas_bawah = parseFloat(row.harkat[j]['batas_bawah']);
-							let batas_atas = parseFloat(row.harkat[j]['batas_atas']);
-							if (nilai_akhir>=batas_bawah && nilai_akhir<batas_atas) {
-								return row.harkat[j]['huruf'];
-							}
-						}
-
-						if (nilai_akhir>=100) {
-								return 'A';
-						}
-						return "--";
-					}
-				}
-			]
-		});
-
-		$('#exportButtonPDF').click(function(){
-			let id_mahasiswa = parseInt("<?php echo $data_mahasiswa->id ?>");
-			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportPDF') ?>";
-			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
-			window.open(urlPrint, '_blank');
-		});
-
-		$('#exportButtonExcel').click(function(){
-			let id_mahasiswa = parseInt("<?php echo $data_mahasiswa->id ?>");
-			let urlPrint = "<?php echo base_url('NilaiMataKuliahExport/exportExcel') ?>";
-			urlPrint = urlPrint+'?id_mahasiswa='+id_mahasiswa;
-			window.open(urlPrint, '_blank');
-		});
+    $('.mahasiswaselect').select2({
+      placeholder: 'Select an item',
+      width: 'resolve',
+      ajax: {
+        url: "<?php echo base_url(); ?>NilaiMataKuliah/comboMahasiswa",
+        dataType: 'json',
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                return {
+                  text: item.name,
+                  id: item.id
+                }
+            })
+          };
+        },
+        cache: true
+      }
+    });
 </script>
 </body>
 </html>

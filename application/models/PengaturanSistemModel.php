@@ -43,8 +43,6 @@ class PengaturanSistemModel extends CI_Model {
 			'id_tahun_akademik' => $params['id_tahun_akademik'],
 			'nama_kaprodi' => $params['nama_kaprodi'],
 			'nik_kaprodi' => $params['nik_kaprodi'],
-			'nama_pembimbing_akademik' => $params['nama_pembimbing_akademik'],
-			'nik_pembimbing_akademik' => $params['nik_pembimbing_akademik'],
 		];
 		$this->db->where('role', $params['role']);
 		$query=$this->db->update('pengaturan_sistem', $data);

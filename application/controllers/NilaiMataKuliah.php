@@ -20,7 +20,10 @@ class NilaiMataKuliah extends CI_Controller {
 	public function index() {
 		$data = array();
 		$data['title'] = 'CPL - Laporan Nilai Mahasiswa';
-		$this->load->view('nilaiMataKuliah/read', $data);
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			redirect(base_url("nilai-mata-kuliah/laporan"));
+		}
+		$this->load->view('nilaiMataKuliah/index', $data);
 	}
 
 	public function comboMahasiswa() {
@@ -31,6 +34,18 @@ class NilaiMataKuliah extends CI_Controller {
 		}
 		$data = $this->nilaiMataKuliahModel->comboMahasiswa($search);
 		echo json_encode($data);
+	}
+
+	public function laporan() {
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+		} else {
+			$id_mahasiswa = $_POST['id_mahasiswa'];
+		}
+		$data['title'] = 'CPL - Laporan Nilai Mahasiswa';
+		$data_mahasiswa=$this->nilaiMataKuliahModel->getListMahasiswaById($id_mahasiswa);
+		$data['data_mahasiswa'] = $data_mahasiswa;
+		$this->load->view('nilaiMataKuliah/read', $data);
 	}
 
 	public function getListMahasiswaById() {

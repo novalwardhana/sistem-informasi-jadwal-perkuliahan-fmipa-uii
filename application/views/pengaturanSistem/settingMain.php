@@ -18,10 +18,7 @@
 						<div class="row">
 							<div class="col-md-6">
 
-								<div class="form-group">
-									<label>Role *</label>
-									<input type="text" value="<?php echo $data_pengaturan->role  ?>" name="role" class="form-control" placeholder="Role" required readonly>
-								</div>
+								<input type="hidden" value="<?php echo $data_pengaturan->role  ?>" name="role" class="form-control" placeholder="Role" required readonly>
 
 								<div class="form-group">
 									<label>Tahun Akademik *</label>
@@ -47,15 +44,15 @@
 									<input type="text" value="<?php echo $data_pengaturan->nik_kaprodi  ?>" name="nik_kaprodi" class="form-control" placeholder="NIK kaprodi" required>
 								</div>
 
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label>Nama Pembimbing Akademik *</label>
-									<input type="text" value="<?php echo $data_pengaturan->nama_pembimbing_akademik  ?>" name="nama_pembimbing_akademik" class="form-control" placeholder="Nama pembimbing akademik" required>
+									<input type="text" value="" name="nama_pembimbing_akademik" class="form-control" placeholder="Nama pembimbing akademik" required>
 								</div>
 
 								<div class="form-group">
 									<label>NIK Pembimbing Akademik *</label>
-									<input type="text" value="<?php echo $data_pengaturan->nik_pembimbing_akademik  ?>" name="nik_pembimbing_akademik" class="form-control" placeholder="NIK pembimbing akademik" required>
-								</div>
+									<input type="text" value="" name="nik_pembimbing_akademik" class="form-control" placeholder="NIK pembimbing akademik" required>
+								</div> -->
 
 								<div class="form-group">
 									<button type="submit" name="simpan" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
