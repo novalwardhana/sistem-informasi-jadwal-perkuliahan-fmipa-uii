@@ -22,6 +22,9 @@ class EvaluasiMandiri extends CI_Controller {
 		$data = array();
 		$data['title'] = 'CPL - Laporan Evaluasi Mandiri';
 
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			redirect(base_url("evaluasi-mandiri/laporan"));
+		}
 		$this->load->view('evaluasiMandiri/index', $data);
 	}
 
@@ -36,7 +39,11 @@ class EvaluasiMandiri extends CI_Controller {
 	}
 
 	public function laporan() {
-		$id_mahasiswa = $_POST['id_mahasiswa'];
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+		} else {
+			$id_mahasiswa = $_POST['id_mahasiswa'];
+		}
 
 		$data_laporan = array();
 		$data_cpl1 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 1');
@@ -70,7 +77,11 @@ class EvaluasiMandiri extends CI_Controller {
 	}
 
 	public function exportPDF() {
-		$id_mahasiswa = $_GET['id_mahasiswa'];
+		if ($this->session->userdata('role_user')==='Mahasiswa') {
+			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+		} else {
+			$id_mahasiswa = $_GET['id_mahasiswa'];
+		}
 
 		$data_laporan = array();
 		$data_cpl1 = $this->evaluasiMandiriModel->getListCpl($id_mahasiswa, 'CPL 1');
