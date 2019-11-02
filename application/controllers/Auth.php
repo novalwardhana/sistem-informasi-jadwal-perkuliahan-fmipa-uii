@@ -2,6 +2,7 @@
 	class Auth extends CI_Controller {
 
 		public $authModel=null;
+		private $pengaturanSistemModel;
 
 		public function __construct() {
 			parent::__construct();
@@ -35,8 +36,22 @@
 					"role_user" => $dataUser->role_user,
 					"status"=>"login"
 				);
+
 				$data_permission = $this->authModel->getListPermission($data_pengguna['id_role']);
 				$data_pengguna['permission'] = $data_permission;
+
+				$data_pengaturan_sistem = $this->authModel->getPengaturanSistemData('Superadmin');
+				if (!$data_pengaturan_sistem) {
+					$data_pengaturan_sistem = array(
+						'role' => 'Superadmin',
+						'id_tahun_akademik' => null,
+						'nama_kaprodi' => '',
+						'nik_kaprodi' => '',
+						'nama_pembimbing_akademik' => '',
+						'nik_pembimbing_akademik' => '',
+					);
+				}
+				$data_pengguna['pengaturan_sistem'] = $data_pengaturan_sistem;
 
 				$this->session->set_userdata($data_pengguna);
 				redirect(base_url("Dashboard"));

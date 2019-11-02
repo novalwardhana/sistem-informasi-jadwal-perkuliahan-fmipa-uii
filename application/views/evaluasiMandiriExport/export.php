@@ -16,8 +16,11 @@
 
 		.tabel-cpl-detail { width: 100%; border: 1px solid #789 }
 		.tabel-cpl-detail thead { display: table-row-group; }
-		.tabel-cpl-detail thead th{ border: 0.5px solid #789; padding: 8px 6px; font-size: 12px; vertical-align: top; background: #d2d6de; line-height: 1.8; }
-   	.tabel-cpl-detail tbody td{ border: 0.5px solid #789; padding: 8px 6px; font-size: 11px; vertical-align: top; line-height: 1.8; }
+		.tabel-cpl-detail thead th{ border: 0.5px solid #789; padding: 5px 6px; font-size: 12px; vertical-align: top; background: #d2d6de; line-height: 1.8; }
+   	.tabel-cpl-detail tbody td{ border: 0.5px solid #789; padding: 5px 6px; font-size: 11px; vertical-align: top; line-height: 1.8; }
+
+		.tabel-footer { width: 100% }
+		.tabel-footer thead th{ padding: 3px 6px; font-size: 12px; vertical-align: top; text-align: center; }
 
 		.text-center {
 			text-align: center;
@@ -195,5 +198,73 @@
 	<?php
 		}
 	?>
+
+	<br><br><br>
+	<table class="tabel-footer page-break">
+		<thead>
+			<tr>
+				<th style="width: 50%;">Mengetahui</th>
+				<th style="width: 50%">Yogyakarta, <?php echo $tanggal; ?> </th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">Dosen Pembimbing Akademik</th>
+				<th style="width: 50%">Mahasiswa</th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">&nbsp;</th>
+				<th style="width: 50%">&nbsp;</th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">&nbsp;</th>
+				<th style="width: 50%">&nbsp;</th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">&nbsp;</th>
+				<th style="width: 50%">&nbsp;</th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">&nbsp;</th>
+				<th style="width: 50%">&nbsp;</th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">..................................................</th>
+				<th style="width: 50%;"><?php echo $data_mahasiswa->nama ?></th>
+			</tr>
+			<tr>
+				<th style="width: 50%;">..................................................</th>
+				<th style="width: 50%;"><?php echo $data_mahasiswa->nim ?></th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">Ketua Program Studi DIII Analisis Kimia UII</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2">&nbsp;</th>
+			</tr>
+			<tr>
+				<th colspan="2"><?php echo $pengaturan_sistem['nama_kaprodi'] ?></th>
+			</tr>
+			<tr>
+				<th colspan="2"><?php echo $pengaturan_sistem['nik_kaprodi'] ?></th>
+			</tr>
+		</thead>
+	</table>
 </body>
 </html>

@@ -104,11 +104,33 @@ class EvaluasiMandiriHasil extends CI_Controller {
 		$data['data_laporan'] = $data_laporan;
 		$data['data_harkat'] = $this->evaluasiMandiriHasilModel->getListHarkat();
 		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
+		$data['pengaturan_sistem'] = $this->session->userdata('pengaturan_sistem');
+		$data['tanggal'] = $this->formatTanggal(date('Y-m-d'));
 
 		$this->load->library('Pdf');
 		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "Hasil_Evaluasi_Mandiri.pdf";
 		$this->pdf->load_view('evaluasiMandiriHasilExport/export', $data);
+	}
+
+	private function formatTanggal($tanggal){
+		$bulan = array (
+			1 => 'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+	 
+		return (int)$pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 	}
 
 }
