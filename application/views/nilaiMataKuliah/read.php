@@ -98,13 +98,14 @@
 							return meta.row + meta.settings._iDisplayStart + 1;
 						}
 				},
-				{ "data": "semester", "className": "text-center" },
+				{ "data": "semester", "className": "text-center", "width": "8%", },
 				{ "data": "kode_mata_kuliah", "className": "text-center" },
 				{ "data": "mata_kuliah" },
 				{ "data": "nilai", "className": "cell-nowrap, text-right",
 					render: function (data, type, row, meta) {
 						let nilai = parseFloat(row.nilai);
-						return nilai.toFixed(2).replace(".",",");
+						//return nilai.toFixed(2).replace(".",",");
+						return nilai.toFixed(2);
 					}
 				},
 				{ "data": "harkat", "className": "cell-nowrap, text-center",

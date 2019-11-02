@@ -23,17 +23,19 @@ class NilaiMataKuliahExport extends CI_Controller {
 		);
 
 		$data_mahasiswa_nilai=$this->nilaiMataKuliahExportModel->getListNilai($_GET['id_mahasiswa']);
-		
 		$data_harkat=$this->nilaiMataKuliahExportModel->getListHarkat();
+		
 		
 		$data = array(
 			'data_mahasiswa' => $data_mahasiswa,
 			'data_mahasiswa_nilai' => $data_mahasiswa_nilai,
-			'data_harkat' => $data_harkat
+			'data_harkat' => $data_harkat,
+			'tanggal' => $this->formatTanggal(date('Y-m-d')),
+			'pengaturan_sistem' => $this->session->userdata('pengaturan_sistem'),
 		);
 
 		$this->load->library('Pdf');
-		$this->pdf->setPaper('A4', 'landscape');
+		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "Nilai_Mahasiswa.pdf";
 		$this->pdf->load_view('nilaiMataKuliahExport/export', $data);
 		
@@ -193,6 +195,26 @@ class NilaiMataKuliahExport extends CI_Controller {
 		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output');
+	}
+
+	private function formatTanggal($tanggal){
+		$bulan = array (
+			1 => 'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+	 
+		return (int)$pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 	}
 
 }

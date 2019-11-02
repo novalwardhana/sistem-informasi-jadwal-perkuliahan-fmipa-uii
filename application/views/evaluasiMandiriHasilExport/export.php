@@ -26,6 +26,10 @@
 			text-align: center;
 		}
 
+		.text-justify {
+			text-align: justify;
+		}
+
 		.text-right {
 			text-align: right;
 		}
@@ -152,7 +156,7 @@
 						}
 					?>
 					<td class="text-center"><?php echo $nomor; ?></td>
-					<td><?php echo $cpl_deskripsi; ?></td>
+					<td class="text-justify"><?php echo $cpl_deskripsi; ?></td>
 					<td class="text-right"><?php echo number_format($skor_mahasiswa,2,".",","); ?></td>
 					<td class="text-right"><?php echo number_format($skor_maks,2,".",","); ?></td>
 					<td class="text-right"><?php echo number_format($capaian,2,".",","); ?></td>

@@ -14,12 +14,15 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border text-center">
-					<h3 class="box-title">
-						<b>Formulir Evaluasi Mandiri Pengukuran Capaian Pembelajaran</b>
-					</h3>
-					<h3 class="box-title">
-						<b>Program Studi DIII Analisis Kimia – FMIPA UII</b>
-					</h3>
+					<h5>
+						<b>Laporan Evaluasi Mandiri Pengukuran Capaian Pembelajaran</b>
+					</h5>
+					<h5>
+						<b>Program Studi DIII Analisis Kimia</b>
+					</h5>
+					<h5>
+						<b>Universitas Islam Indonesia</b>
+					</h5>
 				</div>
 				<div class="box-body">
 					<table class="tabel-informasi">
@@ -77,16 +80,16 @@
               <table class="table table-striped table-bordered table-condensed display nowrap" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Kode</th>
-										<th>Mata Kuliah</th>
-										<th class="text-right">SKS</th>
-										<th>Keterangan</th>
-										<th class="text-right">Nilai (Angka)</th>
-										<th class="text-center">Nilai</th>
-										<th class="text-right">Harkat</th>
-										<th class="text-right">Kontribusi</th>
-										<th class="text-right">Earned</th>
+                    <th class="text-center" style="width: 5%">No</th>
+                    <th class="text-center" style="width: 10%">Kode</th>
+										<th style="width: 20%">Mata Kuliah</th>
+										<th class="text-right" style="width: 5%">SKS</th>
+										<th  style="width: 8%">Ket</th>
+										<th class="text-right" style="width: 6%">Nilai<br>(Angka)</th>
+										<th class="text-center" style="width: 6%">Nilai</th>
+										<th class="text-right" style="width: 6%">Harkat</th>
+										<th class="text-right" style="width: 8%">Kontribusi</th>
+										<th class="text-right" style="width: 8%">Earned</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -125,8 +128,8 @@
                     $total_sks += $data_laporan_detail[$j]['mk_sks'];
                   ?>
                     <tr>
-                      <td><?php echo $nomor ?></td>
-                      <td><?php echo $data_laporan_detail[$j]['mk_kode'] ?></td>
+                      <td class="text-center"><?php echo $nomor ?></td>
+                      <td class="text-center"><?php echo $data_laporan_detail[$j]['mk_kode'] ?></td>
 											<td><?php echo $data_laporan_detail[$j]['mk_nama'] ?></td>
 											<td class="text-right"><?php echo $data_laporan_detail[$j]['mk_sks'] ?></td>
 											<td></td>
@@ -134,7 +137,7 @@
 											<td class="text-center"><?php echo $nilai; ?></td>
 											<td class="text-right"><?php echo $harkat; ?></td>
 											<td class="text-right"><?php echo $data_laporan_detail[$j]['cpld_kontribusi'] ?></td>
-											<td class="text-right"><?php echo $subtotal_harkat; ?></td>
+											<td class="text-right"><?php echo number_format($subtotal_harkat,2,".",","); ?></td>
                     </tr>
                   <?php
                     $nomor++;
@@ -142,9 +145,9 @@
                   ?>
                   <tr>
                     <td colspan="3"></td>
-                    <td class="text-right"><?php echo $total_sks; ?></td>
+                    <td class="text-right"><?php echo number_format($total_sks,2,".",","); ?></td>
                     <td colspan="5" class="text-right"><b>Jumlah</b></td>
-                    <td class="text-right"><?php echo $total_harkat; ?></td>
+                    <td class="text-right"><?php echo number_format($total_harkat,2,".",","); ?></td>
                   </tr>
                   <tr>
                     <td colspan="3"></td>
@@ -153,7 +156,7 @@
 										<?php
 											$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
 										?>
-                    <td class="text-right"><?php echo $skor_mahasiswa ?></td>
+                    <td class="text-right"><?php echo number_format($skor_mahasiswa,2,".",","); ?></td>
                   </tr>
                   <tr>
                     <td colspan="3"></td>

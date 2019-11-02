@@ -15,13 +15,15 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border text-center">
-					<h3 class="box-title"">
-						<b>Hasil Capaian Pembelajaran</b>
-					</h3>
-					<br>
-					<h3 class="box-title">
-						<b>Program Studi DIII Analisis Kimia – FMIPA UII</b>
-					</h3>
+					<h5>
+						<b>Laporan Hasil Evaluasi Mandiri Pengukuran Capaian Pembelajaran</b>
+					</h5>
+					<h5>
+						<b>Program Studi DIII Analisis Kimia</b>
+					</h5>
+					<h5>
+						<b>Universitas Islam Indonesia</b>
+					</h5>
 				</div>
 				<div class="box-body">
 					<table class="tabel-informasi">
@@ -58,12 +60,12 @@
 					<table class="table table-striped table-bordered table-condensed display nowrap" cellspacing="0">
 						<thead>
 							<tr>
-								<th class="text-center">No</th>
-								<th width="50%">Kompetensi</th>
-								<th class="text-center">Skor<br>Mahasiswa</th>
-								<th class="text-center">Skor<br>Maksimum</th>
-								<th class="text-center">Capaian<br>Kompetensi</th>
-								<th class="text-center">Keterangan</th>
+								<th class="text-center" style="padding: 5px 15px; line-height: 1.8">No</th>
+								<th width="50%" style="padding: 5px 15px; line-height: 1.8">Kompetensi</th>
+								<th class="text-right" style="padding: 5px 15px; line-height: 1.8">Skor<br>Mahasiswa</th>
+								<th class="text-right" style="padding: 5px 15px; line-height: 1.8">Skor<br>Maksimum</th>
+								<th class="text-right" style="padding: 5px 15px; line-height: 1.8">Capaian<br>Kompetensi</th>
+								<th class="text-center" style="padding: 5px 15px; line-height: 1.8">Keterangan</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -126,12 +128,12 @@
 											}
 										}
 									?>
-									<td class="text-center"><?php echo $nomor; ?></td>
-									<td><?php echo $cpl_deskripsi; ?></td>
-									<td class="text-center"><?php echo $skor_mahasiswa; ?></td>
-									<td class="text-center"><?php echo $skor_maks; ?></td>
-									<td class="text-center"><?php echo $capaian; ?></td>
-									<td class="text-center"><b><?php echo $capaian_keterangan; ?></b></td>
+									<td class="text-center" style="padding: 5px 15px; line-height: 1.8"><?php echo $nomor; ?></td>
+									<td class="text-justify" style="padding: 5px 15px; line-height: 1.8"><?php echo $cpl_deskripsi; ?></td>
+									<td class="text-right" style="padding: 5px 15px; line-height: 1.8"><?php echo number_format($skor_mahasiswa,2,".",","); ?></td>
+									<td class="text-right" style="padding: 5px 15px; line-height: 1.8"><?php echo number_format($skor_maks,2,".",","); ?></td>
+									<td class="text-right" style="padding: 5px 15px; line-height: 1.8"><?php echo number_format($capaian,2,".",","); ?></td>
+									<td class="text-center" style="padding: 5px 15px; line-height: 1.8"><b><?php echo $capaian_keterangan; ?></b></td>
 								</tr>
 						<?php
 								$nomor++;
