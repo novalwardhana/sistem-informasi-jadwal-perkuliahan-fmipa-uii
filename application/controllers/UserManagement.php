@@ -21,6 +21,9 @@ class UserManagement extends CI_Controller {
 	public function index() {
 		$data=array();
 		$data['title'] = 'CPL - User Management';
+		if ($this->session->userdata('role_user')!=='Superadmin') {
+			redirect(base_url("user-management/update"));
+		}
 		$this->load->view('userManagement/read', $data);
 	}
 
@@ -84,6 +87,9 @@ class UserManagement extends CI_Controller {
 	}
 
 	public function create() {
+		if ($this->session->userdata('role_user')!=='Superadmin') {
+			redirect(base_url("user-management/update"));
+		}
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$dataUserRole = $this->userManagementModel->getListUserRole();
@@ -125,7 +131,12 @@ class UserManagement extends CI_Controller {
 
 	public function update() {
 		if(!isset($_POST['simpan'])) {
-			$id=$_GET['id'];
+			if ($this->session->userdata('role_user')!=='Superadmin') {
+				$id =$this->session->userdata('id_user');
+			} else {
+				$id = $_GET['id'];
+			}
+
 			$dataUser=$this->userManagementModel->getListUserById($id);
 			$dataUserRole = $this->userManagementModel->getListUserRole();
 			$data=[];
@@ -168,6 +179,9 @@ class UserManagement extends CI_Controller {
 	}
 
 	public function delete() {
+		if ($this->session->userdata('role_user')!=='Superadmin') {
+			redirect(base_url("user-management/update"));
+		}
 		$params=[];
 		$id=$_GET['id'];
 		$params['id']=$id;

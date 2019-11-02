@@ -27,6 +27,7 @@
 				
 				$dataUser=$this->authModel->dataUser($params);
 				$data_pengguna=array(
+					"id_user"=>$dataUser->id,
 					"username"=>$params['username'],
 					"password"=>$params['password'],
 					"nama_user"=>$dataUser->nama_user,

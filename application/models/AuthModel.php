@@ -10,6 +10,7 @@
 
 		public function dataUser($params) {
 			$sql="SELECT 
+					a.id,
 					a.nama as nama_user,
 					a.id_role, 
 					a.id_dosen, 

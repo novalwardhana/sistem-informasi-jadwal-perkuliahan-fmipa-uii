@@ -17,14 +17,14 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-md-6">
-							<input type="hidden" name="id" value="<?php echo $dataUser->id ?>" class="form-control" placeholder="Nama lengkap pengguna" required>
+							<input type="hidden" name="id" value="<?php echo $dataUser->id ?>" class="form-control" placeholder="Nama lengkap pengguna" readonly required>
 								<div class="form-group">
 									<label>Nama *</label>
-									<input type="text" name="nama" value="<?php echo $dataUser->nama ?>" class="form-control" placeholder="Nama lengkap pengguna" required>
+									<input type="text" name="nama" value="<?php echo $dataUser->nama ?>" class="form-control" placeholder="Nama lengkap pengguna" readonly required>
 								</div>
 								<div class="form-group">
 									<label>Username *</label>
-									<input type="text" name="username" value="<?php echo $dataUser->username ?>" class="form-control" placeholder="Username" required>
+									<input type="text" name="username" value="<?php echo $dataUser->username ?>" class="form-control" placeholder="Username" readonly required>
 								</div>
 								<div class="form-group">
 									<label>Password *</label>
@@ -32,7 +32,7 @@
 								</div>
 								<div class="form-group">
 									<label>Role *</label>
-									<select class="selectUserRole form-control" style="width: 100%;" name="id_role" required>
+									<select class="selectUserRole form-control" style="width: 100%;" name="id_role" disabled required>
 										<option></option>
 										<?php
 										foreach($dataUserRole as $key => $value) {
