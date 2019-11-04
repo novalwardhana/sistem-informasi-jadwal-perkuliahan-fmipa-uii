@@ -57,7 +57,7 @@
 						<tr>
 							<th style="width: 35%">Kontribusi</th>
 							<th style="width: 5%">:</th>
-							<th><span><?php echo $detail_nilai->mata_kuliah_kontribusi ?> SKS</span></th>
+							<th><span><?php echo number_format($detail_nilai->mata_kuliah_kontribusi,0,".",","); ?> SKS</span></th>
 						</tr>
 					</table>
 					<br>
