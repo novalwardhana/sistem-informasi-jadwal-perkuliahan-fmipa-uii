@@ -106,7 +106,7 @@ class NilaiMataKuliah extends CI_Controller {
 
 				$nestedData['nomor'] = '';
 				$nestedData['aksi'] = "
-					<a href='".base_url('nilai-mata-kuliah/detail-nilai?id_mahasiswa=').$id_mahasiswa.'&kode_mata_kuliah='.$row->kode_mata_kuliah."'>
+					<a target='_blank' href='".base_url('nilai-mata-kuliah/detail-nilai?id_mahasiswa=').$id_mahasiswa.'&kode_mata_kuliah='.$row->kode_mata_kuliah."'>
 						<i class='fa fa-plus-circle text-blue'></i>
 					</a>
 				";
@@ -134,11 +134,18 @@ class NilaiMataKuliah extends CI_Controller {
 		$cekDetailNilai = $this->nilaiMataKuliahModel->cekDetailNilai($_GET);
 		if (!$cekDetailNilai) {
 			echo "Nilai bukan dari semester berjalan";
+			return false;
 		}
 
 		$id_mahasiswa_peserta_mata_kuliah = $cekDetailNilai->id;
-		$detailNilai = $this->nilaiMataKuliahModel->detailNilai($id_mahasiswa_peserta_mata_kuliah);
-		print_r($detailNilai);
+		$detail_nilai = $this->nilaiMataKuliahModel->detailNilai($id_mahasiswa_peserta_mata_kuliah);
+		
+		$data = array();
+		$data['detail_nilai'] = $detail_nilai;
+		$data['title'] ='Laporan Nilai Mahasiswa Detail';
+		$data['harkat'] = $this->nilaiMataKuliahModel->getListHarkat();
+		$this->load->view('nilaiMataKuliah/detailNilai', $data);
 	}
+
 
 }
