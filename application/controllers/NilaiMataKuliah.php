@@ -62,11 +62,12 @@ class NilaiMataKuliah extends CI_Controller {
 	public function getListNilai() {
 		$columns = array( 
 			0 =>'nomor', 
-			1 =>'semester', 
-			2 =>'kode_mata_kuliah',
-			3=> 'mata_kuliah',
-			4=> 'nilai',
-			5=> 'harkat'
+			1 => 'akis',
+			2 =>'semester', 
+			3 =>'kode_mata_kuliah',
+			4 => 'mata_kuliah',
+			5 => 'nilai',
+			6 => 'harkat'
 		);
 
 		if ($_POST['id_mahasiswa']==null || $_POST['id_mahasiswa']=='') {
@@ -104,6 +105,11 @@ class NilaiMataKuliah extends CI_Controller {
 			foreach ($getListMahasiswa as $row) {
 
 				$nestedData['nomor'] = '';
+				$nestedData['aksi'] = "
+					<a href='".base_url('nilai-mata-kuliah/detail-nilai?id_mahasiswa=').$id_mahasiswa.'&kode_mata_kuliah='.$row->kode_mata_kuliah."'>
+						<i class='fa fa-plus-circle text-blue'></i>
+					</a>
+				";
 				$nestedData['semester'] = $row->semester;
 				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
 				$nestedData['mata_kuliah'] = $row->mata_kuliah;
@@ -122,6 +128,17 @@ class NilaiMataKuliah extends CI_Controller {
 		);
 	
 		echo json_encode($json_data);
+	}
+
+	public function detailNilai() {
+		$cekDetailNilai = $this->nilaiMataKuliahModel->cekDetailNilai($_GET);
+		if (!$cekDetailNilai) {
+			echo "Nilai bukan dari semester berjalan";
+		}
+
+		$id_mahasiswa_peserta_mata_kuliah = $cekDetailNilai->id;
+		$detailNilai = $this->nilaiMataKuliahModel->detailNilai($id_mahasiswa_peserta_mata_kuliah);
+		print_r($detailNilai);
 	}
 
 }

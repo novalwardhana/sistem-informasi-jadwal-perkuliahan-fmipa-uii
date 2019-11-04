@@ -154,4 +154,75 @@ class NilaiMataKuliahModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function cekDetailNilai($params) {
+		$sql ="SELECT detail_nilai.* FROM
+			(SELECT
+				a.id,
+				sum(
+					(COALESCE(a.cpmk_1_nilai, 0)*COALESCE(b.cpmk_1_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_2_nilai, 0)*COALESCE(b.cpmk_2_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_3_nilai, 0)*COALESCE(b.cpmk_3_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_4_nilai, 0)*COALESCE(b.cpmk_4_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_5_nilai, 0)*COALESCE(b.cpmk_5_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_6_nilai, 0)*COALESCE(b.cpmk_6_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_7_nilai, 0)*COALESCE(b.cpmk_7_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_8_nilai, 0)*COALESCE(b.cpmk_8_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_9_nilai, 0)*COALESCE(b.cpmk_9_persentase, 0)/100)
+					+
+					(COALESCE(a.cpmk_10_nilai, 0)*COALESCE(b.cpmk_10_persentase, 0)/100)
+				) as nilai
+			FROM mahasiswa_peserta_mata_kuliah a
+			INNER JOIN dosen_pengampu_mata_kuliah b ON a.id_dosen_pengampu_mata_kuliah = b.id
+			INNER JOIN mata_kuliah c ON b.id_mata_kuliah = c.id
+			WHERE a.id_mahasiswa = '".$params['id_mahasiswa']."' AND c.kode='".$params['kode_mata_kuliah']."'
+			GROUP BY a.id
+		) AS detail_nilai
+		ORDER BY detail_nilai.nilai DESC ";
+		$query=$this->db->query($sql);
+		$row=$query->row();
+		return $row;
+	}
+
+	public function detailNilai($id_mahasiswa_peserta_mata_kuliah) {
+		$sql="SELECT
+				a.id_mahasiswa,
+				c.nama as mahasiswa_nama,
+				c.nim  as mahasiswa_nim,
+				c.semester as mahasiswa_semester,
+				d.nama as mata_kuliah_nama,
+				d.kode as mata_kuliah_kode,
+				d.semester as mata_kuliah_semester,
+				d.kontribusi as mata_kuliah_kontribusi,
+				e.nik as dosen_nik,
+				e.nama as dosen_nama,
+				a.cpmk_1_nilai, b.cpmk_1_kode, b.cpmk_1_keterangan, b.cpmk_1_persentase,
+				a.cpmk_2_nilai, b.cpmk_2_kode, b.cpmk_2_keterangan, b.cpmk_2_persentase,
+				a.cpmk_3_nilai, b.cpmk_3_kode, b.cpmk_3_keterangan, b.cpmk_3_persentase,
+				a.cpmk_4_nilai, b.cpmk_4_kode, b.cpmk_4_keterangan, b.cpmk_4_persentase,
+				a.cpmk_5_nilai, b.cpmk_5_kode, b.cpmk_5_keterangan, b.cpmk_5_persentase,
+				a.cpmk_6_nilai, b.cpmk_6_kode, b.cpmk_6_keterangan, b.cpmk_6_persentase,
+				a.cpmk_7_nilai, b.cpmk_7_kode, b.cpmk_7_keterangan, b.cpmk_7_persentase,
+				a.cpmk_8_nilai, b.cpmk_8_kode, b.cpmk_8_keterangan, b.cpmk_8_persentase,
+				a.cpmk_9_nilai, b.cpmk_9_kode, b.cpmk_9_keterangan, b.cpmk_9_persentase,
+				a.cpmk_10_nilai, b.cpmk_10_kode, b.cpmk_10_keterangan, b.cpmk_10_persentase
+			FROM mahasiswa_peserta_mata_kuliah a
+			LEFT JOIN dosen_pengampu_mata_kuliah b ON a.id_dosen_pengampu_mata_kuliah=b.id
+			LEFT JOIN mahasiswa c ON a.id_mahasiswa=c.id
+			LEFT JOIN mata_kuliah d ON b.id_mata_kuliah=d.id
+			LEFT JOIN dosen e ON b.id_dosen=e.id
+			WHERE a.id='".$id_mahasiswa_peserta_mata_kuliah."'
+			";
+		$query=$this->db->query($sql);
+		$row=$query->row();
+		return $row;
+	}
+
 }

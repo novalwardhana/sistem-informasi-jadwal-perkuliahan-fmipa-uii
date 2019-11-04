@@ -62,6 +62,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">No</th>
+									<th class="text-center">Aksi</th>
 									<th class="text-center">Semester</th>
 									<th class="text-center">Kode</th>
 									<th>Mata Kuliah</th>

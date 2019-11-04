@@ -94,6 +94,7 @@
 							return meta.row + meta.settings._iDisplayStart + 1;
 						}
 				},
+				{ "data": "aksi", "className": "text-center", "width": "8%", },
 				{ "data": "semester", "className": "text-center", "width": "8%", },
 				{ "data": "kode_mata_kuliah", "className": "text-center" },
 				{ "data": "mata_kuliah" },

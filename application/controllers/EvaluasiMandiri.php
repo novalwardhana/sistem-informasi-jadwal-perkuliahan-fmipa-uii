@@ -103,13 +103,25 @@ class EvaluasiMandiri extends CI_Controller {
 		$data_laporan[] = $data_cpl8;
 		$data_laporan[] = $data_cpl9;
 
+		$data_pengaturan_sistem = $this->evaluasiMandiriModel->getPengaturanSistemData('Superadmin');
+		if (!$data_pengaturan_sistem) {
+			$data_pengaturan_sistem = array(
+				'role' => 'Superadmin',
+				'id_tahun_akademik' => null,
+				'nama_kaprodi' => '',
+				'nik_kaprodi' => '',
+				'nama_pembimbing_akademik' => '',
+				'nik_pembimbing_akademik' => '',
+			);
+		}
+
 		$data = array();
 		$data['title'] = 'CPL - Laporan Evaluasi Mandiri Detail';
 		$data['data_mahasiswa'] = $this->evaluasiMandiriModel->getListMahasiswaById($id_mahasiswa);
 		$data['data_skor_maks'] = $this->evaluasiMandiriModel->getSkorMaks($data['data_mahasiswa']->semester);
 		$data['data_laporan'] = $data_laporan;
 		$data['data_harkat'] = $this->evaluasiMandiriModel->getListHarkat();
-		$data['pengaturan_sistem'] = $this->session->userdata('pengaturan_sistem');
+		$data['pengaturan_sistem'] = $data_pengaturan_sistem;
 		$data['tanggal'] = $this->formatTanggal(date('Y-m-d'));
 
 		$this->load->library('Pdf');

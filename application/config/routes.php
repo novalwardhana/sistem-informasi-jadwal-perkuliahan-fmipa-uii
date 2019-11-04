@@ -131,6 +131,7 @@ $route['khs-kumulatif-upload-nilai/process'] = 'KhsKumulatifUploadNilai/upload';
 /* Router Laporan Nilai Mata Kuliah */
 $route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
 $route['nilai-mata-kuliah/laporan'] = 'NilaiMataKuliah/laporan';
+$route['nilai-mata-kuliah/detail-nilai'] = 'NilaiMataKuliah/detailNilai';
 
 /* Laporan Evaluasi Mandiri */
 $route['evaluasi-mandiri'] = 'EvaluasiMandiri';

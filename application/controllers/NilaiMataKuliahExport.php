@@ -31,12 +31,24 @@ class NilaiMataKuliahExport extends CI_Controller {
 		$data_harkat=$this->nilaiMataKuliahExportModel->getListHarkat();
 		
 		
+		$data_pengaturan_sistem = $this->nilaiMataKuliahExportModel->getPengaturanSistemData('Superadmin');
+		if (!$data_pengaturan_sistem) {
+			$data_pengaturan_sistem = array(
+				'role' => 'Superadmin',
+				'id_tahun_akademik' => null,
+				'nama_kaprodi' => '',
+				'nik_kaprodi' => '',
+				'nama_pembimbing_akademik' => '',
+				'nik_pembimbing_akademik' => '',
+			);
+		}
+
 		$data = array(
 			'data_mahasiswa' => $data_mahasiswa,
 			'data_mahasiswa_nilai' => $data_mahasiswa_nilai,
 			'data_harkat' => $data_harkat,
 			'tanggal' => $this->formatTanggal(date('Y-m-d')),
-			'pengaturan_sistem' => $this->session->userdata('pengaturan_sistem'),
+			'pengaturan_sistem' => $data_pengaturan_sistem,
 		);
 
 		$this->load->library('Pdf');

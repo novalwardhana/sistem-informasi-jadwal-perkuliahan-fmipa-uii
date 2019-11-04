@@ -112,4 +112,11 @@ class EvaluasiMandiriHasilModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getPengaturanSistemData($role) {
+		$this->db->where('role', $role);
+		$query=$this->db->get('pengaturan_sistem');
+		$row=$query->row_array();
+		return $row;
+	}
+
 }
