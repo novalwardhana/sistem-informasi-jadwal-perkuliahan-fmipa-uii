@@ -93,11 +93,11 @@ class MahasiswaUpload extends CI_Controller {
 			redirect(base_url('mahasiswa/upload'));
 		}
 
-		if (count($data_mahasiswa)>40) {
+		if (count($data_mahasiswa)>60) {
 			$this->session->set_flashdata('responseModule', 'failed');
 			$this->session->set_flashdata('responseModuleBackground', 'danger');
 			$this->session->set_flashdata('responseModuleIcon', 'fa fa-times');
-			$this->session->set_flashdata('responseModuleMsg', '<br>Maksimal 40 data');
+			$this->session->set_flashdata('responseModuleMsg', '<br>Maksimal 60 data');
 			redirect(base_url('mahasiswa/upload'));
 		}
 		
