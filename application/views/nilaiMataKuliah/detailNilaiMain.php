@@ -25,10 +25,10 @@
 					</h5>
 				</div>
 				<div class="box-body">
-					<table class="tabel-informasi">
+					<table class="tabel-informasi" style="width: 100%">
 						<tr>
-							<th style="width: 35%">Nama</th>
-							<th style="width: 5%">:</th>
+							<th style="width: 12%">Nama</th>
+							<th style="width: 2%">:</th>
 							<th><span><?php echo $detail_nilai->mahasiswa_nama ?></span></th>
 						</tr>
 						<tr>
@@ -43,33 +43,33 @@
 						</tr>
 					</table>
 					<br>
-					<table class="tabel-informasi">
+					<table class="tabel-informasi" style="width: 100%">
 						<tr>
-							<th style="width: 35%">Kode Mata Kuliah</th>
-							<th style="width: 5%">:</th>
+							<th style="width: 12%">Kode Mata Kuliah</th>
+							<th style="width: 2%">:</th>
 							<th><span><?php echo $detail_nilai->mata_kuliah_kode ?></span></th>
 						</tr>
 						<tr>
-							<th style="width: 35%">Mata Kuliah</th>
-							<th style="width: 5%">:</th>
+							<th>Mata Kuliah</th>
+							<th>:</th>
 							<th><span><?php echo $detail_nilai->mata_kuliah_nama ?></span></th>
 						</tr>
 						<tr>
-							<th style="width: 35%">Kontribusi</th>
-							<th style="width: 5%">:</th>
+							<th>Kontribusi</th>
+							<th>:</th>
 							<th><span><?php echo number_format($detail_nilai->mata_kuliah_kontribusi,0,".",","); ?> SKS</span></th>
 						</tr>
 					</table>
 					<br>
-					<table class="tabel-informasi">
+					<table class="tabel-informasi" style="width: 100%">
 						<tr>
-							<th style="width: 35%">Dosen Pengampu</th>
-							<th style="width: 5%">:</th>
+							<th style="width: 12%">Dosen Pengampu</th>
+							<th style="width: 2%">:</th>
 							<th><span><?php echo $detail_nilai->dosen_nama ?></span></th>
 						</tr>
 						<tr>
-							<th style="width: 35%">NIK</th>
-							<th style="width: 5%">:</th>
+							<th>NIK</th>
+							<th>:</th>
 							<th><span><?php echo $detail_nilai->dosen_nik ?></span></th>
 						</tr>
 					</table>
@@ -99,23 +99,28 @@
 							$nilai_harkat = 'A';
 						}
 					?>
-					<table class="tabel-informasi">
+					<table class="tabel-informasi" style="width: 100%">
 						<tr>
-							<th style="width: 35%">Nilai Akhir</th>
-							<th style="width: 5%">:</th>
+							<th style="width: 12%">Nilai Akhir</th>
+							<th style="width: 2%">:</th>
 							<th><span><?php echo $nilai_akhir ?></span></th>
 						</tr>
 						<tr>
-							<th style="width: 35%">Harkat</th>
-							<th style="width: 5%">:</th>
+							<th>Harkat</th>
+							<th>:</th>
 							<th><span><?php echo $nilai_harkat ?></span></th>
+						</tr>
+						<tr>
+							<th>Keterangan Nilai</th>
+							<th>:</th>
+							<th><span class="label label-primary">Nilai berasal dari semester berjalan</span></th>
 						</tr>
 					</table>
 					<hr>
-					<table class="tabel-informasi">
+					<table class="tabel-informasi" style="width: 100%">
 						<tr>
-							<th style="width: 35%">Rincian Akhir</th>
-							<th style="width: 5%">:</th>
+							<th style="width: 12%">Rincian Akhir</th>
+							<th style="width: 2%">:</th>
 							<th><span>&nbsp;</span></th>
 						</tr>
 					</table>

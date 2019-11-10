@@ -225,4 +225,25 @@ class NilaiMataKuliahModel extends CI_Model {
 		return $row;
 	}
 
+	public function detailNilaiNonSB($params) {
+		$sql="SELECT
+				a.id_mahasiswa,
+				b.nama as mahasiswa_nama,
+				b.nim  as mahasiswa_nim,
+				b.semester as mahasiswa_semester,
+				c.nama as mata_kuliah_nama,
+				c.kode as mata_kuliah_kode,
+				c.semester as mata_kuliah_semester,
+				c.kontribusi as mata_kuliah_kontribusi,
+				a.nilai as nilai
+			FROM khs_kumulatif a
+			LEFT JOIN mahasiswa b ON a.id_mahasiswa=b.id
+			LEFT JOIN mata_kuliah c ON a.id_mata_kuliah=c.id
+			WHERE a.id_mahasiswa='".$params['id_mahasiswa']."' AND c.kode='".$params['kode_mata_kuliah']."'
+			ORDER BY a.nilai DESC";
+		$query=$this->db->query($sql);
+		$row=$query->row();
+		return $row;
+	}
+
 }

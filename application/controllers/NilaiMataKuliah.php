@@ -133,7 +133,11 @@ class NilaiMataKuliah extends CI_Controller {
 	public function detailNilai() {
 		$cekDetailNilai = $this->nilaiMataKuliahModel->cekDetailNilai($_GET);
 		if (!$cekDetailNilai) {
-			echo "Nilai bukan dari semester berjalan";
+			$detail_nilai = $this->nilaiMataKuliahModel->detailNilaiNonSB($_GET);
+			$data['detail_nilai'] = $detail_nilai;
+			$data['title'] ='Laporan Nilai Mahasiswa Detail';
+			$data['harkat'] = $this->nilaiMataKuliahModel->getListHarkat();
+			$this->load->view('nilaiMataKuliah/detailNilaiNonSB', $data);
 			return false;
 		}
 
