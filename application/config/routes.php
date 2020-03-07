@@ -141,6 +141,9 @@ $route['evaluasi-mandiri/laporan'] = 'EvaluasiMandiri/laporan';
 $route['hasil-evaluasi-mandiri'] = 'EvaluasiMandiriHasil';
 $route['hasil-evaluasi-mandiri/laporan'] = 'EvaluasiMandiriHasil/laporan';
 
+/* Laporan Rekap Evaluasi Mandiri */
+$route['rekap-evaluasi-mandiri'] = 'EvaluasiMandiriRekap';
+
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';
 $route['user-management/create'] = 'UserManagement/create';

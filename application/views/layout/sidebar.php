@@ -199,6 +199,14 @@
 						<?php
 							}
 						?>
+
+<?php
+						if (isset($dataSessionPermission['EvaluasiMandiriRekap'])) {
+						?>
+						<li class="menu-sidebar-laporan-rekap-evaluasi-mandiri"><a href="<?php echo base_url('rekap-evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Rekap Evaluasi Mandiri</span></a></li>
+						<?php
+							}
+						?>
 					</ul>
 				</li>
 				<?php
