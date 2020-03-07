@@ -14,18 +14,21 @@
 					<h3 class="box-title">Rekap Evaluasi Mandiri</h3>
 				</div>
 				<div class="box-body">
-					<table id="listMahasiswa" class="table table-bordered table-striped" style="width: 100%">
-						<thead>
-							<tr>
-								<th class="text-center">No</th>
-								<th class="text-center">Aksi</th>
-								<th>NIM</th>
-								<th>Nama</th>
-								<th>Semester</th>
-								<th>CPL 1</th>
-							</tr>
-						</thead>
-					</table>
+					<div class="table-responsive">
+						<table id="listMahasiswa" class="table table-bordered table-striped" style="width: 100%">
+							<thead>
+								<tr>
+									<th class="text-center" nowrap>No</th>
+									<th class="text-center" nowrap>Aksi</th>
+									<th class="text-left" nowrap>NIM</th>
+									<th class="text-left" nowrap>Nama</th>
+									<th class="text-center" nowrap>Semester</th>
+									<th class="text-right" nowrap>Rata-rata CPL</th>
+									<th class="text-left" nowrap>Keterangan</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

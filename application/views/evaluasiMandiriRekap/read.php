@@ -95,6 +95,7 @@
 			"autoWidth": false,
 			"processing": true,
 			"serverSide": true,
+			"lengthChange": false,
 			"ajax":{
 				//"url": "getListMahasiswa",
 				"url": urlGetListRekap,
@@ -110,11 +111,12 @@
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
 				},
-				{ "data": "aksi", "className": "text-center", "width": "12%"},
-				{ "data": "nim", "width": "15%" },
-				{ "data": "nama", "width": "25%" },
-				{ "data": "semester"},
-				{ "data": "cpl1"}
+				{ "data": "aksi", "className": "text-center", "width": "8%"},
+				{ "data": "nim", "width": "10%" },
+				{ "data": "nama", "width": "30%" },
+				{ "data": "semester","width": "10%", "className": 'cell-nowrap, text-center'},
+				{ "data": "cpl_rata_rata", "width": "10%", "className": 'cell-nowrap, text-right'},
+				{ "data": "keterangan", "width": "20%", "className": 'cell-nowrap, text-bold'},
 			]  
 		});
   });

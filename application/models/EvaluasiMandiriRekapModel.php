@@ -21,7 +21,7 @@ class EvaluasiMandiriRekapModel extends CI_Model {
 			(SELECT @rownum := 0) r
 			WHERE a.nama LIKE '%".$params['search']."%' OR
 				a.nim LIKE '%".$params['search']."%'
-			ORDER BY a.id DESC
+			ORDER BY a.nim ASC
 			LIMIT $limit OFFSET $start ";
 		$query=$this->db->query($sql);
 		$hasil=$query->result();
