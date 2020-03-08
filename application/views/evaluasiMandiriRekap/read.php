@@ -90,7 +90,7 @@
 		}
 
     var urlGetListRekap = "<?php echo base_url('EvaluasiMandiriRekap/getListRekap') ?>";
-		$('#listMahasiswa').DataTable({
+		var tabelListMahasiswa = $('#listMahasiswa').DataTable({
 			"ordering": false,
 			"autoWidth": false,
 			"processing": true,
@@ -119,6 +119,23 @@
 				{ "data": "keterangan", "width": "20%", "className": 'cell-nowrap, text-bold'},
 			]  
 		});
+
+		$('#exportButtonPDF').click(function(){
+			let start = tabelListMahasiswa.page.info().start;
+			let search = tabelListMahasiswa.search();
+			let urlPrint = "<?php echo base_url('EvaluasiMandiriRekap/exportPDF') ?>";
+			urlPrint = urlPrint+'?start='+start+'&search='+search;
+			window.open(urlPrint, '_blank');
+		});
+
+		$('#exportButtonExcel').click(function(){
+			let start = tabelListMahasiswa.page.info().start;
+			let search = tabelListMahasiswa.search();
+			let urlPrint = "<?php echo base_url('EvaluasiMandiriRekap/exportExcel') ?>";
+			urlPrint = urlPrint+'?start='+start+'&search='+search;
+			window.open(urlPrint, '_blank');
+		});
+
   });
 </script>
 </body>

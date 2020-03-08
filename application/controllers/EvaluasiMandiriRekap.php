@@ -199,4 +199,90 @@ class EvaluasiMandiriRekap extends CI_Controller {
 		$this->load->view('evaluasiMandiriHasil/read', $data);
 	}
 
+	public function exportPDF() {
+
+		if (isset($_GET["start"])) {
+			$start = $_GET["start"];
+		} else {
+			$start = 0;
+		}
+
+		if (isset($_GET["search"])) {
+			$search = $_GET["search"];
+		} else {
+			$search = '';
+		}
+
+		$data = $this->getExportData($start, $search);
+		print_r($data);
+		echo "Coming soon export pdf";
+	}
+
+	public function exportExcel() {
+
+		if (isset($_GET["start"])) {
+			$start = $_GET["start"];
+		} else {
+			$start = 0;
+		}
+
+		if (isset($_GET["search"])) {
+			$search = $_GET["search"];
+		} else {
+			$search = '';
+		}
+
+		$data = $this->getExportData($start, $search);
+		print_r($data);
+		echo "Coming soon export excel";
+	}
+
+	private function getExportData($start, $search) {
+		$limit = 10;
+		$order = 'id';
+		$dir = 'desc';
+
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search
+		);
+
+		$getListMahasiswa=$this->evaluasiMandiriRekapModel->getListMahasiswa($params);
+		$data_harkat = $this->evaluasiMandiriHasilModel->getListHarkat();
+		$data_klasifikasi = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
+
+		$data = array();
+		if(!empty($getListMahasiswa)) {
+			foreach ($getListMahasiswa as $row) {
+
+				$nestedData['nomor'] = $row->nomor;
+				$nestedData['nim'] = $row->nim;
+				$nestedData['nama'] = $row->nama;
+				$nestedData['semester'] = $row->semester;
+
+				$rata_rata_cpl = $this->rataRataCpl($row->id, $row->semester, $data_harkat);
+				$nestedData['cpl_rata_rata'] = $rata_rata_cpl;
+
+				$capaian_keterangan = '';
+				for($l=0; $l<count($data_klasifikasi); $l++) {
+					$batas_bawah = $data_klasifikasi[$l]['batas_bawah'];
+					$batas_atas = $data_klasifikasi[$l]['batas_atas'];
+					if ($rata_rata_cpl>=$batas_bawah 
+						&& 
+						$rata_rata_cpl<=$batas_atas
+					) {
+						$capaian_keterangan = $data_klasifikasi[$l]['predikat'];
+					}
+				}
+				$nestedData['keterangan'] = $capaian_keterangan;
+
+				$data[] = $nestedData;
+			}
+		}
+		return $data;
+	}
+
 }
