@@ -68,7 +68,7 @@ class EvaluasiMandiriRekap extends CI_Controller {
 
 				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<a href='#' target='_blank'>
+					<a href='".base_url('rekap-evaluasi-mandiri/detail?id=').$row->id."' target='_blank'>
 						<button class='btn btn-sm btn-primary'><i class='fa fa-search-plus'></i></button>
 					</a>
 					";
@@ -163,6 +163,40 @@ class EvaluasiMandiriRekap extends CI_Controller {
 		$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
 
 		return $capaian;
+	}
+
+	public function detailRekap() {
+		$id_mahasiswa=$_GET['id'];
+
+		$data_laporan = array();
+		$data_cpl1 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 1');
+		$data_cpl2 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 2');
+		$data_cpl3 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 3');
+		$data_cpl4 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 4');
+		$data_cpl5 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 5');
+		$data_cpl6 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 6');
+		$data_cpl7 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 7');
+		$data_cpl8 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 8');
+		$data_cpl9 = $this->evaluasiMandiriHasilModel->getListCpl($id_mahasiswa, 'CPL 9');
+		$data_laporan[] = $data_cpl1;
+		$data_laporan[] = $data_cpl2;
+		$data_laporan[] = $data_cpl3;
+		$data_laporan[] = $data_cpl4;
+		$data_laporan[] = $data_cpl5;
+		$data_laporan[] = $data_cpl6;
+		$data_laporan[] = $data_cpl7;
+		$data_laporan[] = $data_cpl8;
+		$data_laporan[] = $data_cpl9;
+
+		$data = array();
+		$data['title'] = 'CPL - Laporan Hasil Evaluasi Mandiri Detail';
+		$data['data_mahasiswa'] = $this->evaluasiMandiriHasilModel->getListMahasiswaById($id_mahasiswa);
+		$data['data_skor_maks'] = $this->evaluasiMandiriHasilModel->getSkorMaks($data['data_mahasiswa']->semester);
+		$data['data_laporan'] = $data_laporan;
+		$data['data_harkat'] = $this->evaluasiMandiriHasilModel->getListHarkat();
+		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
+
+		$this->load->view('evaluasiMandiriHasil/read', $data);
 	}
 
 }

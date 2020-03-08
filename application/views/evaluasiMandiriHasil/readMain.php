@@ -71,6 +71,7 @@
 						<tbody>
 						<?php
 							$nomor = 1;
+							$total_cpl = 0;
 							for($i=0; $i<count($data_laporan); $i++) {
 								$data_laporan_detail = $data_laporan[$i];
 								$cpl_nama = (isset($data_laporan_detail[0]['nama_cpl'])) ? $data_laporan_detail[0]['nama_cpl'] : ' ';
@@ -115,6 +116,7 @@
 										}
 										$skor_mahasiswa = ($total_sks!=0) ? round(($total_harkat/$total_sks), 2) : 0;
 										$capaian = ($skor_maks!=0) ? round((($skor_mahasiswa/$skor_maks)*100),2) : 0;
+										$total_cpl += $capaian;
 										
 										$capaian_keterangan = '';
 										for($l=0; $l<count($data_klasifikasi); $l++) {
@@ -139,6 +141,30 @@
 								$nomor++;
 							}
 						?>
+							<tr>
+								<td colspan="4" class="text-right bg-info" style="padding: 5px 15px; line-height: 1.8"><b>Total</b></td>
+								<td class="text-right bg-info" style="padding: 5px 15px; line-height: 1.8"><b><?php echo number_format($total_cpl, 2); ?></b></td>
+								<td class="text-right bg-info" style="padding: 5px 15px; line-height: 1.8"><b>&nbsp;</b></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="text-right bg-success" style="padding: 5px 15px; line-height: 1.8"><b>Rata-rata</b></td>
+								<?php
+									$rata_rata_cpl = round($total_cpl/9, 2);
+									$capaian_keseluruhan = '';
+									for($m=0; $m<count($data_klasifikasi); $m++) {
+										$batas_bawah = $data_klasifikasi[$m]['batas_bawah'];
+										$batas_atas = $data_klasifikasi[$m]['batas_atas'];
+										if ($rata_rata_cpl>=$batas_bawah 
+											&& 
+											$rata_rata_cpl<=$batas_atas
+										) {
+											$capaian_keseluruhan = $data_klasifikasi[$m]['predikat'];
+										}
+									}
+								?>
+								<td class="text-right bg-success" style="padding: 5px 15px; line-height: 1.8"><b><?php echo $rata_rata_cpl; ?></b></td>
+								<td class="text-center bg-success" style="padding: 5px 15px; line-height: 1.8"><b><?php echo $capaian_keseluruhan; ?></b></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
