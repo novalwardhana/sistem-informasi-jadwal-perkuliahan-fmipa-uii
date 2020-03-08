@@ -213,9 +213,17 @@ class EvaluasiMandiriRekap extends CI_Controller {
 			$search = '';
 		}
 
-		$data = $this->getExportData($start, $search);
-		print_r($data);
-		echo "Coming soon export pdf";
+		$data_rekap = $this->getExportData($start, $search);
+		$data = array();
+		$data['title'] = 'CPL - Laporan Rekap Evaluasi Mandiri';
+		$data['data_rekap'] = $data_rekap;
+		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
+		$data['start'] = $start;
+		
+		$this->load->library('Pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "Rekap_Evaluasi_Mandiri.pdf";
+		$this->pdf->load_view('evaluasiMandiriRekapExport/export', $data);
 	}
 
 	public function exportExcel() {
