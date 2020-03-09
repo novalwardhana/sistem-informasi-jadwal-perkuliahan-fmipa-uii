@@ -35,6 +35,10 @@
 			$this->load->view('evaluasiMandiriRekap/readMain');
 		?>
   </div>
+
+	<?php
+		$this->load->view('evaluasiMandiriRekap/modalPrint');
+	?>
   
 	<?php
 		$this->load->view('layout/footer');
@@ -120,15 +124,10 @@
 			]  
 		});
 
-		$('#exportButtonPDF').click(function(){
-			let start = tabelListMahasiswa.page.info().start;
-			let search = tabelListMahasiswa.search();
-			let urlPrint = "<?php echo base_url('EvaluasiMandiriRekap/exportPDF') ?>";
-			urlPrint = urlPrint+'?start='+start+'&search='+search;
-			window.open(urlPrint, '_blank');
-		});
-
 		$('#exportButtonExcel').click(function(){
+			console.log("Info halaman", tabelListMahasiswa.page.info());
+			$('#modalPrint').modal('show')
+			return;
 			let start = tabelListMahasiswa.page.info().start;
 			let search = tabelListMahasiswa.search();
 			let urlPrint = "<?php echo base_url('EvaluasiMandiriRekap/exportExcel') ?>";

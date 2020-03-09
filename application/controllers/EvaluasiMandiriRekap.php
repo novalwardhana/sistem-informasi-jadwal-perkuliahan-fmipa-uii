@@ -26,6 +26,9 @@ class EvaluasiMandiriRekap extends CI_Controller {
 	public function index() {
 		$data = array();
 		$data['title'] = 'CPL - Rekap Evaluasi Mandiri';
+		$total_data = $this->evaluasiMandiriRekapModel->getTotalData();
+		$data['total_data'] = $total_data;
+		$data['jumlah_halaman'] = ceil($total_data/10);
 		$this->load->view('evaluasiMandiriRekap/read', $data);
 	}
 
@@ -197,33 +200,6 @@ class EvaluasiMandiriRekap extends CI_Controller {
 		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
 
 		$this->load->view('evaluasiMandiriHasil/read', $data);
-	}
-
-	public function exportPDF() {
-
-		if (isset($_GET["start"])) {
-			$start = $_GET["start"];
-		} else {
-			$start = 0;
-		}
-
-		if (isset($_GET["search"])) {
-			$search = $_GET["search"];
-		} else {
-			$search = '';
-		}
-
-		$data_rekap = $this->getExportData($start, $search);
-		$data = array();
-		$data['title'] = 'CPL - Laporan Rekap Evaluasi Mandiri';
-		$data['data_rekap'] = $data_rekap;
-		$data['data_klasifikasi'] = $this->evaluasiMandiriHasilModel->getListKlasifikasi();
-		$data['start'] = $start;
-		
-		$this->load->library('Pdf');
-		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "Rekap_Evaluasi_Mandiri.pdf";
-		$this->pdf->load_view('evaluasiMandiriRekapExport/export', $data);
 	}
 
 	public function exportExcel() {

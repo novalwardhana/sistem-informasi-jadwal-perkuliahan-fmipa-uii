@@ -14,8 +14,7 @@
 					<h3 class="box-title">Rekap Evaluasi Mandiri</h3>
 				</div>
 				<div class="box-body">
-					<!-- <button id="exportButtonPDF" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export PDF</button>
-					<button id="exportButtonExcel" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Export Excel</button> -->
+					<button id="exportButtonExcel" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Export Excel</button>
 					<br><br>
 					<div class="table-responsive">
 						<table id="listMahasiswa" class="table table-bordered table-striped" style="width: 100%">
