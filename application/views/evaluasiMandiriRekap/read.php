@@ -18,7 +18,17 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/css/skins/_all-skins.min.css') ?>">
 
+	<link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/css/select2.min.css') ?>">
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<style type="text/css">
+		.select2-container--default .select2-selection--single {
+			background-color: #fff;
+			border: 1px solid #aaa;
+			border-radius: 1px;
+			height: 34px;
+		}
+	</style>
 </head>
 <body class="hold-transition skin-purple-light sidebar-mini">
 <div class="wrapper">
@@ -49,6 +59,8 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 <!-- DataTables -->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
+
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
 <!-- SlimScroll -->
@@ -65,6 +77,31 @@
 <script>
 	$('#confirm-delete').on('show.bs.modal', function(e) {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
+
+	var exportRekap = function() {
+		let fromPage = $("#fromPage").val();
+		let toPage = $("#toPage").val();
+		if (fromPage=="" || toPage=="") {
+			alert("Halaman awal dan halaman akhir harus diisi !");
+			return false;
+		}
+		let fromPageInt = parseInt(fromPage);
+		let toPageInt = parseInt(toPage);
+		if ((toPageInt - fromPageInt) < 0) {
+			alert("Halaman awal dan halaman akhir harus diisi !");
+			return false;
+		}
+		$("#modalPrint").modal("hide");
+	};
+
+	$(function() {
+		$('.selectPage').select2({
+      placeholder: 'Pilih halaman',
+      allowClear: true,
+      // width: 'resolve',
+      //theme: "bootstrap",
+    });
 	});
 
   $(document).ready(function () {
@@ -112,6 +149,7 @@
 			"columns": [
 				{ "data": "nomor", "className": "text-center", "width": "5%",
 					render: function (data, type, row, meta) {
+						console.log("abcde", meta)
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
 				},
