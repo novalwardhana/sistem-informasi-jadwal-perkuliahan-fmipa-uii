@@ -45,7 +45,7 @@
       <div class="modal-footer" style="border-top:none">
         <div class="row">
 					<center>
-					<button type="button" onclick="exportRekap()" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>                         
+					<button type="button" id="exportRekap" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>                         
 					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-minus-circle" aria-hidden="true"></i> Cancel</button>
 					</center>
         </div>

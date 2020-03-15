@@ -79,27 +79,6 @@
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
 
-	var exportRekap = function() {
-		let fromPage = $("#fromPage").val();
-		let toPage = $("#toPage").val();
-		if (fromPage=="" || toPage=="") {
-			alert("Halaman awal dan halaman akhir harus diisi !");
-			return false;
-		}
-		let fromPageInt = parseInt(fromPage);
-		let toPageInt = parseInt(toPage);
-		if ((toPageInt - fromPageInt) < 0) {
-			alert("Halaman awal dan halaman akhir harus diisi !");
-			return false;
-		}
-		$("#modalPrint").modal("hide");
-		let start = (fromPageInt - 1) * 10;
-		let limit = ((toPageInt - fromPageInt) + 1) * 10;
-		let search = document.getElementsByClassName("input-sm")[0].value;
-		let url = "<?php echo base_url('rekap-evaluasi-mandiri/export-excel') ?>"+"?start="+start+"&limit="+limit+"&search="+search;
-		window.open(url, '_blank');
-	};
-
 	$(function() {
 		$('.selectPage').select2({
       placeholder: 'Pilih halaman',
@@ -154,7 +133,6 @@
 			"columns": [
 				{ "data": "nomor", "className": "text-center", "width": "5%",
 					render: function (data, type, row, meta) {
-						console.log("abcde", meta)
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
 				},
@@ -168,14 +146,36 @@
 		});
 
 		$('#exportButtonExcel').click(function(){
-			console.log("Info halaman", tabelListMahasiswa.page.info());
 			$('#modalPrint').modal('show')
-			return;
-			let start = tabelListMahasiswa.page.info().start;
+		});
+
+		$("#exportRekap").click(function() {
+			let fromPage = $("#fromPage").val();
+			let toPage = $("#toPage").val();
+			if (fromPage=="" || toPage=="") {
+				alert("Halaman awal dan halaman akhir harus diisi !");
+				return false;
+			}
+			let fromPageInt = parseInt(fromPage);
+			let toPageInt = parseInt(toPage);
+			if ((toPageInt - fromPageInt) < 0) {
+				alert("Halaman harus diisi dengan benar !");
+				return false;
+			}
+			if (toPageInt > tabelListMahasiswa.page.info().pages) {
+				alert("Halaman harus diisi dengan benar !");
+				return false;
+			}
+			if ((toPageInt - fromPageInt) > 2) {
+				alert("Maksimal 3 halaman !");
+				return false;
+			}
+			$("#modalPrint").modal("hide");
+			let start = (fromPageInt - 1) * 10;
+			let limit = ((toPageInt - fromPageInt) + 1) * 10;
 			let search = tabelListMahasiswa.search();
-			let urlPrint = "<?php echo base_url('EvaluasiMandiriRekap/exportExcel') ?>";
-			urlPrint = urlPrint+'?start='+start+'&search='+search;
-			window.open(urlPrint, '_blank');
+			let url = "<?php echo base_url('rekap-evaluasi-mandiri/export-excel') ?>"+"?start="+start+"&limit="+limit+"&search="+search;
+			window.open(url, '_blank');
 		});
 
   });
