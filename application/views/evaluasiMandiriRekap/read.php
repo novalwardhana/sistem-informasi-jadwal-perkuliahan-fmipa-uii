@@ -93,6 +93,11 @@
 			return false;
 		}
 		$("#modalPrint").modal("hide");
+		let start = (fromPageInt - 1) * 10;
+		let limit = ((toPageInt - fromPageInt) + 1) * 10;
+		let search = document.getElementsByClassName("input-sm")[0].value;
+		let url = "<?php echo base_url('rekap-evaluasi-mandiri/export-excel') ?>"+"?start="+start+"&limit="+limit+"&search="+search;
+		window.open(url, '_blank');
 	};
 
 	$(function() {

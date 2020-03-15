@@ -1,5 +1,8 @@
 <?php
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class EvaluasiMandiriRekap extends CI_Controller {
 
 	private $evaluasiMandiriRekapModel;
@@ -216,15 +219,131 @@ class EvaluasiMandiriRekap extends CI_Controller {
 			$search = '';
 		}
 
-		$data = $this->getExportData($start, $search);
-		print_r($data);
-		echo "Coming soon export excel";
+		if (isset($_GET["limit"])) {
+			$limit = $_GET["limit"];
+		} else {
+			$limit = 0;
+		}
+
+		$data = $this->getExportData($start, $limit, $search);
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(8);
+		$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(10);
+		$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(40);
+		$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+		$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(12);
+		$spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+
+		$sheet->setCellValue('A1', 'Laporan Rekap Hasil Evalusi Mandiri');
+		$sheet->getStyle("A1")->getFont()->setBold(true);
+		$sheet->getStyle("A1")->getFont()->setSize(14);
+		$sheet->getStyle("A1")->getFont()->setName('times');
+		$sheet->mergeCells('A1:F1');
+
+		$sheet->setCellValue('A2', 'Program Studi DIII Analisis Kimia');
+		$sheet->getStyle("A2")->getFont()->setBold(true);
+		$sheet->getStyle("A2")->getFont()->setSize(13);
+		$sheet->getStyle("A2")->getFont()->setName('times');
+		$sheet->mergeCells('A2:F2');
+
+		$sheet->setCellValue('A3', 'Universitas Islam Indonesia');
+		$sheet->getStyle("A3")->getFont()->setBold(true);
+		$sheet->getStyle("A3")->getFont()->setSize(13);
+		$sheet->getStyle("A3")->getFont()->setName('times');
+		$sheet->mergeCells('A3:F3');
+
+		$spreadsheet->getActiveSheet()->getStyle('A5:F5')->getFill()
+			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+			->getStartColor()->setARGB('FFD2D2D2');
+
+		$sheet->setCellValue('A5', 'Nomor');
+		$sheet->getStyle("A5")->getFont()->setBold(true);
+		$sheet->getStyle("A5")->getFont()->setSize(12);
+		$sheet->getStyle('A5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("A5")->getFont()->setName('times');
+
+		$sheet->setCellValue('B5', 'NIM');
+		$sheet->getStyle("B5")->getFont()->setBold(true);
+		$sheet->getStyle("B5")->getFont()->setSize(12);
+		$sheet->getStyle('B5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("B5")->getFont()->setName('times');
+
+		$sheet->setCellValue('C5', 'Nama');
+		$sheet->getStyle("C5")->getFont()->setBold(true);
+		$sheet->getStyle("C5")->getFont()->setSize(12);
+		$sheet->getStyle('C5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+		$sheet->getStyle("C5")->getFont()->setName('times');
+
+		$sheet->setCellValue('D5', 'Semester');
+		$sheet->getStyle("D5")->getFont()->setBold(true);
+		$sheet->getStyle("D5")->getFont()->setSize(12);
+		$sheet->getStyle('D5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle("D5")->getFont()->setName('times');
+
+		$sheet->setCellValue('E5', 'Rata-rata CPL');
+		$sheet->getStyle("E5")->getFont()->setBold(true);
+		$sheet->getStyle("E5")->getFont()->setSize(12);
+		$sheet->getStyle('E5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+		//$sheet->getStyle('E5')->getAlignment()->setIndent(1);
+		$sheet->getStyle("E5")->getFont()->setName('times');
+
+		$sheet->setCellValue('F5', 'Keterangan');
+		$sheet->getStyle("F5")->getFont()->setBold(true);
+		$sheet->getStyle("F5")->getFont()->setSize(12);
+		$sheet->getStyle('F5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+		$sheet->getStyle("F5")->getFont()->setName('times');
+
+		$index=5;
+		$nomor=0;
+		foreach($data as $row) {
+			$index++;
+			$nomor++;
+
+			$sheet->setCellValue('A'.$index, $nomor);
+			$sheet->getStyle('A'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('A'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+			$sheet->getStyle('A'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('B'.$index, $row['nim']);
+			$sheet->getStyle('B'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('B'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+			$sheet->getStyle('B'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('C'.$index, $row['nama']);
+			$sheet->getStyle('C'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('C'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+			$sheet->getStyle('C'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('D'.$index, $row['semester']);
+			$sheet->getStyle('D'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('D'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+			$sheet->getStyle('D'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('E'.$index, $row['cpl_rata_rata']);
+			$sheet->getStyle('E'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('E'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+			//$sheet->getStyle('E'.$index)->getAlignment()->setIndent(1);
+			$sheet->getStyle('E'.$index)->getFont()->setName('times');
+
+			$sheet->setCellValue('F'.$index, $row['keterangan']);
+			$sheet->getStyle('F'.$index)->getFont()->setSize(12);
+			$sheet->getStyle('F'.$index)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+			$sheet->getStyle('F'.$index)->getFont()->setName('times');
+		}
+
+		$writer = new Xlsx($spreadsheet);
+		$filename = 'Laporan Rekap Hasil Evaluasi Mandiri';
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
 	}
 
-	private function getExportData($start, $search) {
-		$limit = 10;
-		$order = 'id';
-		$dir = 'desc';
+	private function getExportData($start, $limit, $search) {
+		$order = 'nim';
+		$dir = 'asc';
 
 		$params=array(
 			'limit' => $limit,
