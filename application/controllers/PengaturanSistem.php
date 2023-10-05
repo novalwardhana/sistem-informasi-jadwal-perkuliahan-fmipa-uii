@@ -7,7 +7,7 @@ class PengaturanSistem extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['PengaturanSistem'])) {
@@ -20,7 +20,7 @@ class PengaturanSistem extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'CPL - Pengaturan Sistem';
+		$data['title'] = 'SIJP - Pengaturan Sistem';
 		$data_pengaturan = $this->pengaturanSistemModel->getPengaturanSistemData('Superadmin');
 		$data_tahun_akademik = $this->pengaturanSistemModel->getListTahunAkademik();
 		if (!$data_pengaturan) {

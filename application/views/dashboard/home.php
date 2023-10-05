@@ -4,6 +4,7 @@
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $title; ?></title>
+  <link rel="icon" href="<?php echo base_url("assets/logo_uii_favicon.png") ?>" type="image/png">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -19,12 +20,14 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/css/skins/_all-skins.min.css') ?>">
+  <!-- Skin UII -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/skin-uii-light.css') ?>">
 
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple-light sidebar-mini fixed">
+<body class="hold-transition skin-uii-light sidebar-mini fixed">
 
 <div class="wrapper">
   <?php
@@ -40,6 +43,10 @@
         $this->load->view('dashboard/homeMain');
     ?>
   </div>
+
+  <?php
+		$this->load->view('layout/footer');
+  ?>
 </div>
 
 
@@ -61,9 +68,32 @@
 <!-- ChartJS -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/chart.js/Chart.js') ?>"></script>
 
+<script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".menu-sidebar-dashboard").addClass('active');
+
+    let responseModule="";
+    let responseModuleBackground="";
+    let responseModuleMsg="";
+    let responseModuleTitle="";
+    <?php
+        if ($this->session->flashdata('responseModule')) {
+    ?>
+        responseModule="<?php echo $this->session->flashdata('responseModule') ?>";
+        responseModuleBackground="<?php echo $this->session->flashdata('responseModuleBackground') ?>";
+        responseModuleMsg="<?php echo $this->session->flashdata('responseModuleMsg') ?>";
+        responseModuleTitle="<?php echo $this->session->flashdata('responseModuleTitle') ?>";
+    <?php
+        }
+    ?>
+    if (responseModule!="") {
+      $.toaster({ 
+        priority : responseModuleBackground, 
+        title : responseModuleTitle, 
+        message : responseModuleMsg,
+      });
+    }
 	});
 </script>
 </body>

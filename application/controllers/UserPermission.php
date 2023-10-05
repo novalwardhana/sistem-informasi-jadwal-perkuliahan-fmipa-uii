@@ -7,7 +7,7 @@ class UserPermission extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['UserPermission'])) {
@@ -20,7 +20,7 @@ class UserPermission extends CI_Controller {
 
 	public function index() {
 		$data=array();
-		$data['title'] = 'CPL - User Permission';
+		$data['title'] = 'SIJP - User Permission';
 		$this->load->view('userPermission/read', $data);
 	}
 
@@ -84,7 +84,7 @@ class UserPermission extends CI_Controller {
 	public function create() {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
-			$data['title'] = 'CPL - User Permission Create';
+			$data['title'] = 'SIJP - User Permission Create';
 			$this->load->view('userPermission/create', $data);
 		} else {
 			$params=array();
@@ -113,7 +113,7 @@ class UserPermission extends CI_Controller {
 			$data=array();
 			$dataPermission=$this->userPermissionModel->getListPermissionById($id);
 			$data['dataPermission'] = $dataPermission;
-			$data['title'] = 'CPL - User Permission Update';
+			$data['title'] = 'SIJP - User Permission Update';
 			$this->load->view('userPermission/update', $data);
 		} else {
 			$params=array(

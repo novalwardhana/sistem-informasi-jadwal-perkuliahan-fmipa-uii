@@ -53,98 +53,72 @@ $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['nilai-mata-kuliah-by-mahasiswa'] = 'NilaiMataKuliahByMahasiswa/index';
+/* Route auth */
+$route['auth'] = 'Auth';
+$route['auth/logout'] = 'Auth/logout';
+$route['auth/proses-login'] = 'Auth/prosesLogin';
 
-/* Router Master Mahasiswa */
-$route['mahasiswa'] = 'Mahasiswa';
-$route['mahasiswa/create'] = 'Mahasiswa/create';
-$route['mahasiswa/upload'] = 'MahasiswaUpload';
-$route['mahasiswa/upload-process'] = 'MahasiswaUpload/create';
-$route['mahasiswa/update'] = 'Mahasiswa/update';
-$route['mahasiswa/delete'] = 'Mahasiswa/delete';
+/* Route dashboard */
 
-/* Router Master Matakuliah */
-$route['mata-kuliah'] = 'MataKuliah';
-$route['mata-kuliah/create'] = 'MataKuliah/create';
-$route['mata-kuliah/update'] = 'MataKuliah/update';
-$route['mata-kuliah/delete'] = 'MataKuliah/delete';
+/* Router Master Periode */
+$route['master-periode'] = 'MasterPeriode';
+$route['master-periode/get-data'] = 'MasterPeriode/getData';
+$route['master-periode/create'] = 'MasterPeriode/create';
+$route['master-periode/update'] = 'MasterPeriode/update';
+$route['master-periode/delete'] = 'MasterPeriode/delete';
 
-/* Router Master Dosen */
-$route['dosen'] = 'Dosen';
-$route['dosen/create'] = 'Dosen/create';
-$route['dosen/update'] = 'Dosen/update';
-$route['dosen/delete'] = 'Dosen/delete';
+/* Router Master Prodi */
+$route['master-prodi'] = 'MasterProdi';
+$route['master-prodi/get-data'] = 'MasterProdi/getData';
+$route['master-prodi/create'] = 'MasterProdi/create';
+$route['master-prodi/update'] = 'MasterProdi/update';
+$route['master-prodi/delete'] = 'MasterProdi/delete';
 
-/* Router Master Skor Maks */
-$route['skor-maks'] = 'SkorMaks';
-$route['skor-maks/create'] = 'SkorMaks/create';
-$route['skor-maks/update'] = 'SkorMaks/update';
-$route['skor-maks/delete'] = 'SkorMaks/delete';
+/* Router Master Ruang */
+$route['master-ruang'] = 'MasterRuang';
+$route['master-ruang/get-data'] = 'MasterRuang/getData';
+$route['master-ruang/create'] = 'MasterRuang/create';
+$route['master-ruang/update'] = 'MasterRuang/update';
+$route['master-ruang/delete'] = 'MasterRuang/delete';
 
-/* Router Master Klasifikasi */
-$route['klasifikasi'] = 'Klasifikasi';
-$route['klasifikasi/create'] = 'Klasifikasi/create';
-$route['klasifikasi/update'] = 'Klasifikasi/update';
-$route['klasifikasi/delete'] = 'Klasifikasi/delete';
-
-/* Router Master Harkat */
-$route['harkat'] = 'Harkat';
-$route['harkat/create'] = 'Harkat/create';
-$route['harkat/update'] = 'Harkat/update';
-$route['harkat/delete'] = 'Harkat/delete';
+/* Router Master Mata Kuliah */
+$route['master-mata-kuliah'] = 'MasterMataKuliah';
+$route['master-mata-kuliah/get-data'] = 'MasterMataKuliah/getData';
+$route['master-mata-kuliah/create'] = 'MasterMataKuliah/create';
+$route['master-mata-kuliah/update'] = 'MasterMataKuliah/update';
+$route['master-mata-kuliah/delete'] = 'MasterMataKuliah/delete';
 
 /* Router Master Kelas */
-$route['kelas'] = 'Kelas';
-$route['kelas/create'] = 'Kelas/create';
-$route['kelas/update'] = 'Kelas/update';
-$route['kelas/delete'] = 'Kelas/delete';
+$route['master-kelas'] = 'MasterKelas';
+$route['master-kelas/get-data'] = 'MasterKelas/getData';
+$route['master-kelas/create'] = 'MasterKelas/create';
+$route['master-kelas/update'] = 'MasterKelas/update';
+$route['master-kelas/delete'] = 'MasterKelas/delete';
 
-/* Router Master Capaian Pembelajaran Lulusan */
-$route['capaian-pembelajaran-lulusan'] = 'CapaianPembelajaranLulusan';
-$route['capaian-pembelajaran-lulusan/create'] = 'CapaianPembelajaranLulusan/create';
-$route['capaian-pembelajaran-lulusan/update'] = 'CapaianPembelajaranLulusan/update';
-$route['capaian-pembelajaran-lulusan/delete'] = 'CapaianPembelajaranLulusan/delete';
+/* Router Master Dosen */
+$route['master-dosen'] = 'MasterDosen';
+$route['master-dosen/get-data'] = 'MasterDosen/getData';
+$route['master-dosen/create'] = 'MasterDosen/create';
+$route['master-dosen/update'] = 'MasterDosen/update';
+$route['master-dosen/delete'] = 'MasterDosen/delete';
 
-/* Router Master Tahun Akademik */
-$route['tahun-akademik'] = 'TahunAkademik';
-$route['tahun-akademik/create'] = 'TahunAkademik/create';
-$route['tahun-akademik/update'] = 'TahunAkademik/update';
-$route['tahun-akademik/delete'] = 'TahunAkademik/delete';
-
-/* Router Dosen Pengampu */
-$route['dosen-pengampu'] = 'DosenPengampu';
-$route['dosen-pengampu/detail'] = 'DosenPengampu/detail';
+/* Router Penawaran Mata Kuliah */
+$route["penawaran-mata-kuliah"] = 'PenawaranMataKuliah';
+$route["penawaran-mata-kuliah/get-data"] = 'PenawaranMataKuliah/getData';
+$route["penawaran-mata-kuliah/create"] = 'PenawaranMataKuliah/create';
+$route["penawaran-mata-kuliah/delete"] = 'PenawaranMataKuliah/delete';
+$route["penawaran-mata-kuliah/detail"] = 'PenawaranMataKuliah/detail';
+$route["penawaran-mata-kuliah/add-kontrak-penawaran-mata-kuliah"] = "PenawaranMataKuliah/addKontrakPenawaranMataKuliah";
+$route["penawaran-mata-kuliah/get-data-detail"] = 'PenawaranMataKuliah/getDataDetail';
+$route["penawaran-mata-kuliah/delete-detail"] = 'PenawaranMataKuliah/deleteDetail';
+$route["penawaran-mata-kuliah/edit-kontrak-penawaran-mata-kuliah"] = 'PenawaranMataKuliah/editKontrakPenawaranMataKuliah';
 
 /* Router Jadwal Perkuliahan */
 $route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';
-$route['jadwal-perkuliahan/detail'] = 'JadwalPerkuliahan/detail';
-$route['jadwal-perkuliahan/upload-nilai'] = 'JadwalPerkuliahanUploadNilai';
-$route['jadwal-perkuliahan/upload-nilai-process'] = 'JadwalPerkuliahanUploadNilai/create';
-
-/* Router Khs Kumulatif */
-$route['khs-kumulatif'] = 'KhsKumulatif';
-
-/* Router Khs Kumulatif Upload Nilai */
-$route['khs-kumulatif-upload-nilai'] = 'KhsKumulatifUploadNilai';
-$route['khs-kumulatif-upload-nilai/process'] = 'KhsKumulatifUploadNilai/upload';
-
-/* Router Laporan Nilai Mata Kuliah */
-$route['nilai-mata-kuliah'] = 'NilaiMataKuliah';
-$route['nilai-mata-kuliah/laporan'] = 'NilaiMataKuliah/laporan';
-$route['nilai-mata-kuliah/detail-nilai'] = 'NilaiMataKuliah/detailNilai';
-
-/* Laporan Evaluasi Mandiri */
-$route['evaluasi-mandiri'] = 'EvaluasiMandiri';
-$route['evaluasi-mandiri/laporan'] = 'EvaluasiMandiri/laporan';
-
-/* Laporan Hasil Evaluasi Mandiri */
-$route['hasil-evaluasi-mandiri'] = 'EvaluasiMandiriHasil';
-$route['hasil-evaluasi-mandiri/laporan'] = 'EvaluasiMandiriHasil/laporan';
-
-/* Laporan Rekap Evaluasi Mandiri */
-$route['rekap-evaluasi-mandiri'] = 'EvaluasiMandiriRekap';
-$route['rekap-evaluasi-mandiri/detail'] = 'EvaluasiMandiriRekap/detailRekap';
-$route['rekap-evaluasi-mandiri/export-excel'] = 'EvaluasiMandiriRekap/exportExcel';
+$route['jadwal-perkuliahan/get-jadwal'] = 'JadwalPerkuliahan/getListJadwal';
+$route['jadwal-perkuliahan/create'] = 'JadwalPerkuliahan/create';
+$route['matriks-jadwal-perkuliahan'] = 'MatriksJadwalPerkuliahan';
+$route['matriks-jadwal-perkuliahan/get-data-ruang'] = "MatriksJadwalPerkuliahan/getDataRuang";
 
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';
@@ -163,7 +137,3 @@ $route['user-permission'] = 'UserPermission';
 $route['user-permission/create'] = 'UserPermission/create';
 $route['user-permission/update'] = 'UserPermission/update';
 $route['user-permission/delete'] = 'UserPermission/delete';
-
-/* Router Pengaturan Sistem */
-$route['pengaturan-sistem'] = 'PengaturanSistem';
-$route['pengaturan-sistem/update'] = 'PengaturanSistem/update';

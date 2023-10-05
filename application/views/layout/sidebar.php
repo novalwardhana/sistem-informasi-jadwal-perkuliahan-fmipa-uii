@@ -4,264 +4,169 @@
 <aside class="main-sidebar">
     <section class="sidebar">
 			
-			<div class="user-panel">
-        <div class="pull-left image">
-          <img src="https://placehold.it/160x160/00a65a/ffffff/&text=<?php echo substr($this->session->userdata('nama_user'), 0, 1); ?>" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo $this->session->userdata('nama_user'); ?></p>
-					<a href="#"><i class="fa fa-user text-success"></i> <?php echo $this->session->userdata('username'); ?></a>
-					<a href="#"><i class="fa fa-certificate text-success"></i> <?php echo $this->session->userdata('role_user'); ?></a>
-				</div>
+		<div class="user-panel">
+			<div class="pull-left image">
+			<img src="https://eu.ui-avatars.com/api/?name=<?php echo substr($this->session->userdata('nama_user'), 0, 1); ?>&size=250" class="img-circle" alt="User Image">
 			</div>
+			<div class="pull-left info">
+			<p><?php echo $this->session->userdata('nama_user'); ?></p>
+				<a href="#"><i class="fa fa-user text-success"></i> <?php echo $this->session->userdata('username'); ?></a>
+				<a href="#"><i class="fa fa-certificate text-success"></i> <?php echo $this->session->userdata('role_user'); ?></a>
+			</div>
+		</div>
 			
-      <ul class="sidebar-menu" data-widget="tree">
-				
-        <li class="menu-sidebar-dashboard"><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        
-				<!-- Treeview Master Data -->
-				<?php
-					if (isset($dataSessionPermission['Mahasiswa']) || isset($dataSessionPermission['MataKuliah']) || isset($dataSessionPermission['Dosen']) || isset($dataSessionPermission['SkorMaks']) || isset($dataSessionPermission['Klasifikasi']) || isset($dataSessionPermission['Harkat']) || isset($dataSessionPermission['Kelas'])) {
-				?>
-				<li class="treeview menu-sidebar-master">
-          <a href="#">
-            <i class="fa fa-cubes"></i>
-            <span>Master</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+      	<ul class="sidebar-menu" data-widget="tree">
 
-						<?php
-							if (isset($dataSessionPermission['Mahasiswa'])) {
-						?>
-						<li class="menu-sidebar-master-mahasiswa"><a href="<?php echo base_url('mahasiswa') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-graduation-cap"></i> <span>Mahasiswa</span></a></li>
-						<?php
-							}
-						?>
-            
-						<?php
-							if (isset($dataSessionPermission['MataKuliah'])) {
-						?>
-            <li class="menu-sidebar-master-mata-kuliah"><a href="<?php echo base_url('mata-kuliah') ?>" style="margin: 12px 5px;"><i class="fa fa-book"></i> <span>Mata Kuliah</span></a></li>
-						<?php
-							}
-						?>
+			<!-- Dashboard -->
+			<li class="menu-sidebar-dashboard"><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+					
+			<!-- Treeview Master Data -->
+			<?php
+				if (isset($dataSessionPermission['MasterPeriode']) || isset($dataSessionPermission['MasterProdi']) || isset($dataSessionPermission['MasterRuang']) || isset($dataSessionPermission['MasterMataKuliah']) || isset($dataSessionPermission['MasterKelas']) || isset($dataSessionPermission['MasterDosen'])) {
+			?>
+			<li class="treeview menu-sidebar-master">
+				<a href="#">
+					<i class="fa fa-cubes"></i>
+					<span>Master</span>
+					<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+					<?php
+						if (isset($dataSessionPermission['MasterPeriode'])) {
+					?>
+					<li class="menu-sidebar-master-periode"><a href="<?php echo base_url('master-periode') ?>" style="margin: 12px 5px 12px 21px;"><span>Periode</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MasterProdi'])) {
+					?>
+					<li class="menu-sidebar-master-prodi"><a href="<?php echo base_url('master-prodi') ?>" style="margin: 12px 5px 12px 21px;"><span>Prodi</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MasterDosen'])) {
+					?>
+					<li class="menu-sidebar-master-dosen"><a href="<?php echo base_url('master-dosen') ?>" style="margin: 12px 5px 12px 21px;"><span>Dosen</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MasterMataKuliah'])) {
+					?>
+					<li class="menu-sidebar-master-mata-kuliah"><a href="<?php echo base_url('master-mata-kuliah') ?>" style="margin: 12px 5px 12px 21px;"><span>Mata Kuliah</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MasterRuang'])) {
+					?>
+					<li class="menu-sidebar-master-ruang"><a href="<?php echo base_url('master-ruang') ?>" style="margin: 12px 5px 12px 21px;"><span>Ruang</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MasterKelas'])) {
+					?>
+					<li class="menu-sidebar-master-kelas"><a href="<?php echo base_url('master-kelas') ?>" style="margin: 12px 5px 12px 21px;"><span>Kelas</span></a></li>
+					<?php
+						}
+					?>
+				</ul>
+			</li>
+			<?php
+				}
+			?>
+			<!-- End Treeview Master Data -->
 
-						<?php
-							if (isset($dataSessionPermission['Dosen'])) {
-						?>
-						<li class="menu-sidebar-master-dosen"><a href="<?php echo base_url('dosen') ?>" style="margin: 12px 5px;"><i class="fa fa-slideshare"></i> <span>Dosen</span></a></li>
-            <?php
-							}
-						?>
-						
-						<?php
-							if (isset($dataSessionPermission['SkorMaks'])) {
-						?>
-						<li class="menu-sidebar-master-skor-maks"><a href="<?php echo base_url('skor-maks') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Skor Maks Config</span></a></li>
-						<?php
-							}
-						?>
-						
-						<?php
-							if (isset($dataSessionPermission['Klasifikasi'])) {
-						?>
-						<li class="menu-sidebar-master-klasifikasi"><a href="<?php echo base_url('klasifikasi') ?>" style="margin: 12px 5px;"><i class="fa fa-pie-chart"></i> <span>Klasifikasi</span></a></li>
-            <?php
-							}
-						?>
-						
-						<?php
-							if (isset($dataSessionPermission['Harkat'])) {
-						?>
-						<li class="menu-sidebar-master-harkat"><a href="<?php echo base_url('harkat') ?>" style="margin: 12px 5px;"><i class="fa fa-tags"></i> <span>Harkat</span></a></li>
-						<?php
-							}
-						?>
-						
-						<?php
-							if (isset($dataSessionPermission['Kelas'])) {
-						?>
-						<li class="menu-sidebar-master-kelas"><a href="<?php echo base_url('kelas') ?>" style="margin: 12px 5px;"><i class="fa fa-building"></i> <span>Kelas</span></a></li>
-						<?php
-							}
-						?>
+			<!-- Treeview Penawaran Mata Kuliah -->
+			<?php
+				if (isset($dataSessionPermission['PenawaranMataKuliah']) || isset($dataSessionPermission['PenawaranMataKuliah'])) {
+			?>
+			<li class="menu-sidebar-penawaran-mata-kuliah">
+				<a href="<?php echo base_url('penawaran-mata-kuliah') ?>">
+					<i class="fa fa-pencil-square-o"></i>
+					<span>Penawaran Mata Kuliah</span>
+				</a>
+			</li>
+			<?php
+				}
+			?>
+			<!-- End Treeview Penawaran Mata Kuliah -->
 
-						<li class="menu-sidebar-master-cpl"><a href="<?php echo base_url('capaian-pembelajaran-lulusan') ?>" style="margin: 12px 5px;"><i class="fa fa-tasks"></i> <span>Capaian Pembelajaran</span></a></li>
+			<!-- Treeview Jadwal Perkuliahan -->
+			<?php
+				if (isset($dataSessionPermission['JadwalPerkuliahan']) || isset($dataSessionPermission['MatriksJadwalPerkuliahan'])) {
+			?>
+			<li class="treeview menu-sidebar-jadwal-perkuliahan">
+				<a href="#">
+					<i class="fa fa-calendar"></i>
+					<span>Jadwal Perkuliahan</span>
+					<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+					<?php
+						if (isset($dataSessionPermission['JadwalPerkuliahan'])) {
+					?>
+					<li class="menu-sidebar-jadwal-perkuliahan-jadwal"><a href="<?php echo base_url('jadwal-perkuliahan') ?>" style="margin: 12px 5px 12px 21px;"><span>Jadwal</span></a></li>
+					<?php
+						}
+					?>
+					<?php
+						if (isset($dataSessionPermission['MatriksJadwalPerkuliahan'])) {
+					?>
+					<li class="menu-sidebar-matriks-jadwal-perkuliahan"><a href="<?php echo base_url('matriks-jadwal-perkuliahan') ?>" style="margin: 12px 5px 12px 21px;"><span>Matriks</span></a></li>
+					<?php
+						}
+					?>
+				</ul>
+			</li>
+			<?php
+				}
+			?>
+			<!-- Treeview End Jadwal Perkuliahan -->
 
-						<?php
-							if (isset($dataSessionPermission['TahunAkademik'])) {
-						?>
-						<li class="menu-sidebar-master-tahun-akademik"><a href="<?php echo base_url('tahun-akademik') ?>" style="margin: 12px 5px;"><i class="fa fa-tag"></i> <span>Tahun Akademik</span></a></li>
-						<?php
-							}
-						?>
-					</ul>
-        </li>
-				<?php
-					}
-				?>
-				<!-- End Treeview Master Data -->
-
-				<!-- Treeview Agenda Perkuliahan -->
-				<?php
-					if (isset($dataSessionPermission['DosenPengampu']) || isset($dataSessionPermission['JadwalPerkuliahan'])) {
-				?>
-				<li class="treeview menu-sidebar-agenda-perkuliahan">
-					<a href="#">
-						<i class="fa fa-calendar-check-o"></i>
-						<span>Agenda Perkuliahan</span>
-						<span class="pull-right-container">
-							<i class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-						<?php
-							if (isset($dataSessionPermission['DosenPengampu'])) {
-						?>
-						<li class="menu-sidebar-agenda-perkuliahan-pengampu"><a href="<?php echo base_url('dosen-pengampu') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-address-card"></i> <span>Pengampu Mata Kuliah</span></a></li>
-						<?php
-							}
-						?>
-
-						<?php
-							if (isset($dataSessionPermission['JadwalPerkuliahan'])) {
-						?>
-						<li class="menu-sidebar-agenda-perkuliahan-jadwal"><a href="<?php echo base_url('jadwal-perkuliahan') ?>" style="margin: 12px 5px;"><i class="fa fa-calendar"></i> <span>Jadwal Perkuliahan</span></a></li>
-						<?php
-							}
-						?>
-						
-					</ul>
-				</li>
-				<?php
-					}
-				?>
-				<!-- End Treeview Agenda Perkuliahan -->
-
-				<!-- Treeview KHS Kumulatif -->
-				<?php
-					if (isset($dataSessionPermission['KhsKumulatif']) || isset($dataSessionPermission['KhsKumulatifUploadNilai'])) {
-				?>
-				<li class="treeview menu-sidebar-khs-kumulatif">
-					<a href="#">
-            <i class="fa fa-file-text"></i>
-            <span>KHS Kumulatif</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-						<li class="menu-sidebar-khs-kumulatif-list"><a href="<?php echo base_url('khs-kumulatif') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file"></i> <span>KHS Kumulatif</span></a></li>
-						<li class="menu-sidebar-khs-kumulatif-upload-nilai"><a href="<?php echo base_url('khs-kumulatif-upload-nilai') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-upload"></i> <span>Upload Nilai</span></a></li>
-					</ul>
-				</li>
-				<?php
-					}
-				?>
-				<!-- End Treeview KHS Kumulatif -->
-
-				<!-- Treeview Laporan -->
-				<?php
-					if (isset($dataSessionPermission['NilaiMataKuliah']) || isset($dataSessionPermission['EvaluasiMandiri']) || isset($dataSessionPermission['EvaluasiMandiriHasil'])) {
-				?>
-				<li class="treeview menu-sidebar-laporan">
-					<a href="#">
-            <i class="fa fa-clipboard"></i>
-            <span>Laporan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-						<?php
-							if (isset($dataSessionPermission['NilaiMataKuliah'])) {
-						?>
-						<li class="menu-sidebar-laporan-nilai-matkul"><a href="<?php echo base_url('nilai-mata-kuliah') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Nilai Mahasiswa</span></a></li>
-						<?php
-							}
-						?>
-
-						<?php
-							if (isset($dataSessionPermission['EvaluasiMandiri'])) {
-						?>
-						<li class="menu-sidebar-laporan-evaluasi-mandiri"><a href="<?php echo base_url('evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Evaluasi Mandiri</span></a></li>
-						<?php
-							}
-						?>
-
-						<?php
-							if (isset($dataSessionPermission['EvaluasiMandiriHasil'])) {
-						?>
-						<li class="menu-sidebar-laporan-hasil-evaluasi-mandiri"><a href="<?php echo base_url('hasil-evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Hasil Evaluasi Mandiri</span></a></li>
-						<?php
-							}
-						?>
-
-<?php
-						if (isset($dataSessionPermission['EvaluasiMandiriRekap'])) {
-						?>
-						<li class="menu-sidebar-laporan-rekap-evaluasi-mandiri"><a href="<?php echo base_url('rekap-evaluasi-mandiri') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-file-text"></i> <span>Rekap Evaluasi Mandiri</span></a></li>
-						<?php
-							}
-						?>
-					</ul>
-				</li>
-				<?php
-					}
-				?>
-				<!-- End Treeview Laporan -->
-
-				<?php
-					if (isset($dataSessionPermission['UserManagement']) || isset($dataSessionPermission['UserRole']) || isset($dataSessionPermission['UserPermission']) || isset($dataSessionPermission['PengaturanSistem'])) {
-				?>
-				<li class="treeview menu-sidebar-user-management">
-					<a href="#">
-            <i class="fa fa-users"></i>
-            <span>User Management</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-					<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-						<?php
-							if (isset($dataSessionPermission['UserManagement'])) {
-						?>
-						<li class="menu-sidebar-user-management-user"><a href="<?php echo base_url('user-management') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-user"></i> <span>Users</span></a></li>
-						<?php
-							}
-						?>
-
-						<?php
-							if (isset($dataSessionPermission['UserRole'])) {
-						?>
-						<li class="menu-sidebar-user-management-role"><a href="<?php echo base_url('UserRole') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-certificate"></i> <span>Role</span></a></li>
-						<?php
-							}
-						?>
-						
-						<?php
-							if (isset($dataSessionPermission['UserPermission'])) {
-						?>
-						<li class="menu-sidebar-user-management-permission"><a href="<?php echo base_url('UserPermission') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-key"></i> <span>Permission</span></a></li>
-						<?php
-							}
-						?>
-
-						<?php
-							if (isset($dataSessionPermission['PengaturanSistem'])) {
-						?>
-						<li class="menu-sidebar-user-management-pengaturan-sistem"><a href="<?php echo base_url('pengaturan-sistem') ?>" style="margin: 1px 5px 12px 5px;"><i class="fa fa-cogs"></i> <span>Pengaturan Sistem</span></a></li>
-						<?php
-							}
-						?>
-					</ul>
-				</li>
-				<?php
-					}
-				?>
+			<!-- Treeview User Management -->
+			<?php
+				if (isset($dataSessionPermission['UserManagement']) || isset($dataSessionPermission['UserRole']) || isset($dataSessionPermission['UserPermission'])) {
+			?>
+			<li class="treeview menu-sidebar-user-management">
+				<a href="#">
+					<i class="fa fa-users"></i>
+					<span>User Management</span>
+					<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
+					<?php
+						if (isset($dataSessionPermission['UserManagement'])) {
+					?>
+					<li class="menu-sidebar-user-management-user"><a href="<?php echo base_url('user-management') ?>" style="margin: 12px 5px 12px 21px;"><span>User</span></a></li>
+					<?php
+						}
+						if (isset($dataSessionPermission['UserRole'])) {
+					?>
+					<li class="menu-sidebar-user-management-role"><a href="<?php echo base_url('UserRole') ?>" style="margin: 12px 5px 12px 21px;"><span>Role</span></a></li>
+					<?php
+						}
+						if (isset($dataSessionPermission['UserPermission'])) {
+					?>
+					<li class="menu-sidebar-user-management-permission"><a href="<?php echo base_url('UserPermission') ?>" style="margin: 12px 5px 12px 21px;"><span>Permission</span></a></li>
+					<?php
+						}
+					?>
+				</ul>
+			</li>
+			<?php
+				}
+			?>
+			<!-- End Treeview User Management -->
       </ul>
     </section>
     <!-- /.sidebar -->

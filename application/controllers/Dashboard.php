@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$this->load->model('DashboardModel');
 		$this->dashboardModel=$this->DashboardModel;
@@ -14,16 +14,16 @@ class Dashboard extends CI_Controller {
 
 	public function index() {
 
-		$totalMahasiswa = $this->dashboardModel->getTotalMahasiswa();
 		$totalDosen = $this->dashboardModel->getTotalDosen();
 		$totalMataKuliah = $this->dashboardModel->getTotalMataKuliah();
+		$totalRuang = $this->dashboardModel->getTotalRuang();
 		$totalKelas = $this->dashboardModel->getTotalKelas();
 
 		$data=array(
-			'title' => 'CPL - Dashboard',
-			'totalMahasiswa' => $totalMahasiswa,
+			'title' => 'SIJP - Dashboard',
 			'totalDosen'=> $totalDosen,
 			'totalMataKuliah' => $totalMataKuliah,
+			'totalRuang' => $totalRuang,
 			'totalKelas' => $totalKelas
 		);
 			

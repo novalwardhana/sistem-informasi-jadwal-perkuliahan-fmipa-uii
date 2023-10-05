@@ -7,7 +7,7 @@ class MataKuliah extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['MataKuliah'])) {
@@ -20,7 +20,7 @@ class MataKuliah extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'CPL - Master Mata Kuliah';
+		$data['title'] = 'SIJP - Master Mata Kuliah';
 		$this->load->view('masterMataKuliah/read', $data);
 	}
 
@@ -89,7 +89,7 @@ class MataKuliah extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data = array();
-			$data['title'] = 'CPL - Master Mata Kuliah Create';
+			$data['title'] = 'SIJP - Master Mata Kuliah Create';
 			$this->load->view('masterMataKuliah/create', $data);
 		} else {
 			$params=array();
@@ -122,7 +122,7 @@ class MataKuliah extends CI_Controller {
 			$dataMataKuliah=$this->mataKuliahModel->getListMataKuliahById($id);
 			$data=[];
 			$data['dataMataKuliah']=$dataMataKuliah;
-			$data['title'] = 'CPL - Master Mata Kuliah Update';
+			$data['title'] = 'SIJP - Master Mata Kuliah Update';
 			$this->load->view('masterMataKuliah/update', $data);
 		} else {
 			$params=$_POST;

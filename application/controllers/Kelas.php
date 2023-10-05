@@ -7,7 +7,7 @@ class Kelas extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-				redirect(base_url("Auth"));
+				redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['Kelas'])) {
@@ -20,7 +20,7 @@ class Kelas extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'CPL - Master Kelas';
+		$data['title'] = 'SIJP - Master Kelas';
 		$this->load->view('masterKelas/read', $data);
 	}
 
@@ -83,7 +83,7 @@ class Kelas extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
-			$data['title'] = 'CPL - Master Kelas Create';
+			$data['title'] = 'SIJP - Master Kelas Create';
 			$this->load->view('masterKelas/create', $data);
 		} else {
 			$params=array();
@@ -111,7 +111,7 @@ class Kelas extends CI_Controller {
 			$dataKelas=$this->kelasModel->getListKelasById($id);
 			$data=[];
 			$data['dataKelas']=$dataKelas;
-			$data['title'] = 'CPL - Master Kelas Update';
+			$data['title'] = 'SIJP - Master Kelas Update';
 			$this->load->view('masterKelas/update', $data);
 		} else {
 			$params=$_POST;

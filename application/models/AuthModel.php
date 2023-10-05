@@ -8,7 +8,14 @@
 			return $hasil;
 		}
 
-		public function dataUser($params) {
+		public function getUserData($params) {
+			$sql="SELECT a.* FROM user a WHERE a.username='".$params['username']."' ";
+			$query=$this->db->query($sql);
+			$result = $query->first_row();
+			return $result;
+		}
+
+		public function getUserDataWithRole($params) {
 			$sql="SELECT 
 					a.id,
 					a.nama as nama_user,

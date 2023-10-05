@@ -3,7 +3,7 @@
 		<div class="col-md-12">
 			<ol class="breadcrumb">
 				<li><a href="<?php echo base_url() ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">Agenda Perkuliahan</li>
+				<li class="active">Jadwal</li>
 				<li class="active">Jadwal Perkuliahan</li>
 				<li class="active">List</li>
 			</ol>
@@ -11,26 +11,26 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">
-					List Jadwal Perkuliahan
-					</h3>
+					<h3 class="box-title">List Jadwal Perkuliahan</h3>
 				</div>
 				<div class="box-body">
-					<div class="table-responsive">
-						<table id="listDosen" class="table table-bordered table-striped" style="width: 100%">
-							<thead>
-								<tr>
-									<th class="text-center">No</th>
-									<th class="text-center">Aksi</th>
-									<th>NIK</th>
-									<th>Dosen</th>
-									<th>Kode Mata Kuliah</th>
-									<th>Mata Kuliah</th>
-									<th class="text-center">Kelas</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
+					<a href="<?php echo base_url('jadwal-perkuliahan/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					<br><br>
+					<table id="listJadwalPerkuliahan" class="table table-bordered table-striped" style="width: 100%">
+						<thead>
+							<tr>
+								<th class="text-center">No</th>
+								<th class="text-center">Aksi</th>
+								<th>Ruang</th>
+								<th>Mata Kuliah</th>
+								<th>Dosen</th>
+								<th>Kelas</th>
+								<th>Jadwal Mulai</th>
+								<th>Jadwal Selesai</th>
+								<th>Kode Warna Bagan</th>
+							</tr>
+						</thead>
+					</table>
 				</div>
 			</div>
 		</div>

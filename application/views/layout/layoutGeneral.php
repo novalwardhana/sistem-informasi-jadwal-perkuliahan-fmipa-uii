@@ -29,8 +29,10 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')?>">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Skin UII -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/skin-uii-light.css') ?>">
 </head>
-<body class="hold-transition skin-purple-light sidebar-mini">
+<body class="hold-transition skin-uii-light sidebar-mini">
 <div class="wrapper">
   <?php
     require_once('header.php');

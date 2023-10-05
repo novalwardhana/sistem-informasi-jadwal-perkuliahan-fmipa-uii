@@ -7,7 +7,7 @@ class UserRole extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['UserRole'])) {
@@ -20,7 +20,7 @@ class UserRole extends CI_Controller {
 
 	public function index() {
 		$data=array();
-		$data['title'] = 'CPL - User Role';
+		$data['title'] = 'SIJP - User Role';
 		$this->load->view('userRole/read', $data);
 	}
 
@@ -82,7 +82,7 @@ class UserRole extends CI_Controller {
 	public function create() {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
-			$data['title'] = 'CPL - User Role Create';
+			$data['title'] = 'SIJP - User Role Create';
 			$this->load->view('userRole/create', $data);
 		} else {
 			$params=array();
@@ -114,7 +114,7 @@ class UserRole extends CI_Controller {
 			$data['dataRole'] = $dataRole;
 			$data['checkboxPermission'] = $checkboxPermission;
 			$data['dataRolePermission'] = json_encode($dataRolePermission);
-			$data['title'] = 'CPL - User Role Update';
+			$data['title'] = 'SIJP - User Role Update';
 			$this->load->view('userRole/update', $data);
 		} else {
 			$params=array(

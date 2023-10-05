@@ -7,7 +7,7 @@ class Dosen extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['Dosen'])) {
@@ -20,7 +20,7 @@ class Dosen extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['title'] = 'CPL - Master Dosen';
+		$data['title'] = 'SIJP - Master Dosen';
 		$this->load->view('masterDosen/read', $data);
 	}
 
@@ -86,13 +86,13 @@ class Dosen extends CI_Controller {
 		$data=array();
 		if(!isset($_POST['simpan'])) {
 			$data=array();
-			$data['title'] = 'CPL - Master Dosen Create';
+			$data['title'] = 'SIJP - Master Dosen Create';
 			$this->load->view('masterDosen/create', $data);
 		} else {
 			$params=array();
 			$params['nik']=$_POST['nik'];
 			$params['nama']=$_POST['nama'];
-      $params['password']='1234';
+      		$params['password']='1234';
       
 			$validationNIK = $this->dosenModel->validationNIK($params['nik']);
 			if ($validationNIK>=1) {
@@ -146,7 +146,7 @@ class Dosen extends CI_Controller {
 			$dataDosen=$this->dosenModel->getListDosenById($id);
 			$data=[];
 			$data['dataDosen']=$dataDosen;
-			$data['title'] = 'CPL - Master Dosen Update';
+			$data['title'] = 'SIJP - Master Dosen Update';
 			$this->load->view('masterDosen/update', $data);
 		} else {
 			$params=$_POST;

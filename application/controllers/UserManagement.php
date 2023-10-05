@@ -7,7 +7,7 @@ class UserManagement extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+			redirect(base_url("auth"));
 		}
 		$dataSessionPermission = $this->session->userdata('permission');
 		if (!isset($dataSessionPermission['UserManagement'])) {
@@ -20,7 +20,7 @@ class UserManagement extends CI_Controller {
 
 	public function index() {
 		$data=array();
-		$data['title'] = 'CPL - User Management';
+		$data['title'] = 'SIJP - User Management';
 		if ($this->session->userdata('role_user')!=='Superadmin') {
 			redirect(base_url("user-management/update"));
 		}
@@ -94,7 +94,7 @@ class UserManagement extends CI_Controller {
 		if(!isset($_POST['simpan'])) {
 			$dataUserRole = $this->userManagementModel->getListUserRole();
 			$data['dataUserRole'] = $dataUserRole;
-			$data['title'] = 'CPL - User Management Create';
+			$data['title'] = 'SIJP - User Management Create';
 			$this->load->view('userManagement/create', $data);
 		} else {
 			$params=array();
@@ -142,7 +142,7 @@ class UserManagement extends CI_Controller {
 			$data=[];
 			$data['dataUser']=$dataUser;
 			$data['dataUserRole']=$dataUserRole;
-			$data['title'] = 'CPL - User Management Update';
+			$data['title'] = 'SIJP - User Management Update';
 			$this->load->view('userManagement/update', $data);
 		} else {
 			$params=array(

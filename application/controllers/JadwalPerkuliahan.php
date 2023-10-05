@@ -1,43 +1,40 @@
 <?php
-class JadwalPerkuliahan extends CI_controller {
 
-	private $jadwalPerkuliahanModel;
+class JadwalPerkuliahan extends CI_Controller {
 
-	public function __construct() {
-		parent::__construct();
-		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
-		}
-		$dataSessionPermission = $this->session->userdata('permission');
-		if (!isset($dataSessionPermission['JadwalPerkuliahan'])) {
-			redirect(base_url());
-		}
-		$this->load->library('session');
+    private $jadwalPerkuliahanModel;
 
-		$this->load->model('JadwalPerkuliahanModel');
-		$this->jadwalPerkuliahanModel=$this->JadwalPerkuliahanModel;
-	}
+    public function __construct() {
+        parent::__construct();
+        if($this->session->userdata('status') != "login") {
+            redirect(base_url("auth"));
+        }
+        $dataSessionPermission = $this->session->userdata('permission');
+        if (!isset($dataSessionPermission["JadwalPerkuliahan"])) {
+            redirect(base_url());
+        }
+        $this->load->library('session');
+        $this->load->model('JadwalPerkuliahanModel');
+        $this->jadwalPerkuliahanModel = $this->JadwalPerkuliahanModel;
+    }
 
-	public function index() {
-		$data = array();
-		$data['title'] = 'CPL - Jadwal Perkuliahan';
-		$this->load->view('jadwalPerkuliahan/read', $data);
-	}
+    public function index() {
+        $data = array();
+        $data["title"] = "SIJP - Jadwal Perkuliahan";
+        $this->load->view('jadwalPerkuliahan/read', $data);
+    }
 
-	public function getListDosenPengampu() {
+    public function getListJadwal() {
 		$columns = array( 
-			0 => 'nomor', 
-			1 => 'aksi', 
-			2 => 'nik',
-			3 => 'dosen',
-			4 => 'kode_mata_kuliah',
-			5 => 'mata_kuliah',
-			6 => 'kelas'
+			0 =>'nomor', 
+			1 =>'aksi', 
+			2 =>'nik',
+			3=> 'nama',
 		);
-
+			
 		//Get total data
-		$totalData = $this->jadwalPerkuliahanModel->getTotalDataDosenPengampu();
-
+		$totalData = $this->jadwalPerkuliahanModel->getTotalData();
+			
 		$limit = $_POST['length'];
 		$start = $_POST['start'];
 		$order = 'id';
@@ -52,296 +49,63 @@ class JadwalPerkuliahan extends CI_controller {
 			'search' => $search
 		);
 
-		$getListDosenPengampu=$this->jadwalPerkuliahanModel->getListDosenPengampu($params);
-		$totalFiltered=$this->jadwalPerkuliahanModel->getListDosenPengampuCount($params);
-		
+		$getListJadwalPerkuliahan=$this->jadwalPerkuliahanModel->getListJadwalPerkuliahan($params);
+		$totalFiltered=$this->jadwalPerkuliahanModel->getListJadwalPerkuliahanCount($params);
+			
 		$data = array();
-		if(!empty($getListDosenPengampu)) {
-			foreach ($getListDosenPengampu as $row) {
-				$nestedData['nomor'] = " ";
+		if(!empty($getListJadwalPerkuliahan)) {
+			foreach ($getListJadwalPerkuliahan as $row) {
+
+				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<a href='".base_url('jadwal-perkuliahan/detail?id=').$row->id."'>
-						<button class='btn btn-sm btn-primary'><i class='fa fa-search-plus'></i></button>
+					<a href='".base_url('jadwal-perkuliahan/update?id=').$row->id."'>
+						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
 					</a>
-				";
-				$nestedData['nik'] = $row->nik;
-				$nestedData['dosen'] = $row->dosen;
-				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
-				$nestedData['mata_kuliah'] = $row->mata_kuliah;
-				$nestedData['kelas'] = $row->kelas;
-				$nestedData['jam_mulai'] = $row->jam_mulai;
-				$nestedData['jam_selesai'] = $row->jam_selesai;
-				$nestedData['ruang'] = $row->ruang;
-				$data[] = $nestedData;
-			}
-		}
-
-		$json_data = array(
-			"draw"            => intval($_POST['draw']),  
-			"recordsTotal"    => intval($totalData),  
-			"recordsFiltered" => intval($totalFiltered), 
-			"data"            => $data   
-			);
-
-		echo json_encode($json_data);
-	}
-
-	public function detail() {
-		$dataPengampu = $this->jadwalPerkuliahanModel->getListDosenPengampuById($_GET['id']);
-
-		//Validasi role user dosen
-		if ($this->session->userdata('role_user')==='Dosen') {
-			if (isset($dataPengampu->id_dosen)) {
-				if ($dataPengampu->id_dosen != $this->session->userdata('id_dosen')) {
-					redirect(base_url("jadwal-perkuliahan"));
-				}
-			} else {
-				redirect(base_url("jadwal-perkuliahan"));
-			}
-		}
-
-		$data=[];
-		$data['dataPengampu'] = $dataPengampu;
-		$data['title'] = 'CPL - Jadwal Perkuliahan Detail';
-	
-		$this->load->view('jadwalPerkuliahan/readDetail', $data);
-	}
-
-	public function getListMahasiswa() {
-		$columns = array( 
-			0 =>    'checkbox',
-			1 =>    'nomor', 
-			2 =>    'nim',
-			3 =>    'nama',
-			4 =>    'semester',
-		);
-
-		$id_dosen_pengampu_mata_kuliah=$_POST['id_dosen_pengampu_mata_kuliah'];
-
-		$dataMahasiswaPesertaArray = $this->jadwalPerkuliahanModel->getListMahasiswaPeserta($id_dosen_pengampu_mata_kuliah);
-		$dataMahasiswaPeserta=[];
-		for($i=0; $i<count($dataMahasiswaPesertaArray); $i++) {
-			$dataMahasiswaPeserta[$i]=$dataMahasiswaPesertaArray[$i]['id_mahasiswa'];
-		}
-		
-		//Get total data
-		$totalData = $this->jadwalPerkuliahanModel->getTotalDataMahasiswa($dataMahasiswaPeserta);
-
-		$limit = $_POST['length'];
-		$start = $_POST['start'];
-		$order = 'id';
-		$dir = 'desc';
-		$search=$_POST['search']['value'];
-
-		$params=array(
-			'limit' => $limit,
-			'start' => $start,
-			'order' => $order,
-			'dir' => $dir,
-			'search' => $search,
-			'dataMahasiswaPeserta' => $dataMahasiswaPeserta
-		);
-
-		$getListMahasiswa=$this->jadwalPerkuliahanModel->getListMahasiswa($params);
-		$totalFiltered=$this->jadwalPerkuliahanModel->getListMahasiswaCount($params);
-
-		$data = array();
-		if(!empty($getListMahasiswa)) {
-			foreach ($getListMahasiswa as $row) {
-				$nestedData['checkbox'] = "<input type='checkbox' class='checkbox1' id='chk' name='check[]' value='".$row->id."'/>";
-				$nestedData['nomor'] = " ";
-				$nestedData['nim'] = $row->nim;
-				$nestedData['nama'] = $row->nama;
-				$nestedData['semester'] = $row->semester;
-
-				$data[] = $nestedData;
-			}
-		}
-
-		$json_data = array(
-			"draw"            => intval($_POST['draw']),  
-			"recordsTotal"    => intval($totalData),  
-			"recordsFiltered" => intval($totalFiltered), 
-			"data"            => $data   
-			);
-
-		echo json_encode($json_data);
-	}
-
-	public function addMahasiswaPeserta() {
-		$id_dosen_pengampu_mata_kuliah = $_POST['id_dosen_pengampu_mata_kuliah'];
-		$dataMahasiswa = $_POST['array_id_mahasiswa'];
-
-		try {
-			for($i=0; $i<count($dataMahasiswa); $i++) {
-				$params=array(
-					'id_dosen_pengampu_mata_kuliah' => $id_dosen_pengampu_mata_kuliah,
-					'id_mahasiswa' => $dataMahasiswa[$i]
-				);
-				$hasil = $this->jadwalPerkuliahanModel->addMahasiswaPeserta($params);
-				if (!$hasil) {
-					throw new Exception("Configuration file not found.");
-				}
-			}
-			$data = [
-				'success' => true,
-				'message' => 'Peserta mata kuliah berhasil ditambahkan'
-			];
-			echo json_encode($data);
-		} catch (Exception $e) {
-			$data = [
-				'success' => false,
-				'message' => $e->getMessage()
-			];
-			echo json_encode($data);
-		}
-	}
-
-	public function getListPeserta() {
-		$columns = array(
-			0 =>    'nomor', 
-			1 =>    'aksi',
-			2 =>   'id_peserta',
-			3 =>    'nama',
-			4 =>    'nim',
-			5 =>    'semester',
-			6 =>    'kp_komponen_penilaian_1',
-			7 =>    'kp_komponen_penilaian_2',
-			8 =>    'kp_komponen_penilaian_3',
-			9 =>    'kp_komponen_penilaian_4',
-			10 =>   'kp_komponen_penilaian_5',
-			11 =>   'kp_komponen_penilaian_6',
-			12 =>   'kp_komponen_penilaian_7',
-			13 =>   'kp_komponen_penilaian_8',
-			14 =>   'kp_komponen_penilaian_9',
-			15 =>   'kp_komponen_penilaian_10',
-			16 =>   'nilai_akhir',
-			17 =>   'harkat'
-		);
-
-		//Get total data
-		$totalData = $this->jadwalPerkuliahanModel->getTotalDataPeserta($_POST['id_dosen_pengampu_mata_kuliah']);
-		
-		$limit = $_POST['length'];
-		$start = $_POST['start'];
-		$order = 'id';
-		$dir = 'desc';
-		$search=$_POST['search']['value'];
-
-		$params=array(
-			'limit' => $limit,
-			'start' => $start,
-			'order' => $order,
-			'dir' => $dir,
-			'search' => $search,
-			'id_dosen_pengampu_mata_kuliah' => $_POST['id_dosen_pengampu_mata_kuliah']
-		);
-
-		$getListPeserta=$this->jadwalPerkuliahanModel->getListPeserta($params);
-		$totalFiltered=$this->jadwalPerkuliahanModel->getListPesertaCount($params);
-
-		$data = array();
-		if(!empty($getListPeserta)) {
-
-			$data_harkat = $this->jadwalPerkuliahanModel->getListHarkat();
-			foreach ($getListPeserta as $row) {
-				$nestedData['nomor'] = " ";
-				$nestedData['aksi'] = "
-					<button class='btn btn-sm btn-danger' onclick='deletePeserta($row->id)'>
-						<i class='fa fa-trash'></i>
+						
+					<button class='btn btn-sm btn-danger' data-href='".base_url('jadwal-perkuliahan/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
+							<i class='fa fa-trash'></i>
 					</button>
-				";
-				$nestedData['id_peserta'] = $row->id;
-				$nestedData['nim'] = $row->nim;
-				$nestedData['nama'] = $row->mahasiswa;
-				$nestedData['semester'] = $row->semester;
-				$nestedData['kp_komponen_penilaian_1'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk1-$row->id' name='input-penilaian-cpmk1-$row->id' value='$row->cpmk_1_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_2'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk2-$row->id' name='input-penilaian-cpmk2-$row->id' value='$row->cpmk_2_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100 '>";
-				$nestedData['kp_komponen_penilaian_3'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk3-$row->id' name='input-penilaian-cpmk3-$row->id' value='$row->cpmk_3_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_4'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk4-$row->id' name='input-penilaian-cpmk4-$row->id' value='$row->cpmk_4_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_5'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk5-$row->id' name='input-penilaian-cpmk5-$row->id' value='$row->cpmk_5_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_6'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk6-$row->id' name='input-penilaian-cpmk6-$row->id' value='$row->cpmk_6_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_7'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk7-$row->id' name='input-penilaian-cpmk7-$row->id' value='$row->cpmk_7_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_8'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk8-$row->id' name='input-penilaian-cpmk8-$row->id' value='$row->cpmk_8_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_9'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk9-$row->id' name='input-penilaian-cpmk9-$row->id' value='$row->cpmk_9_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['kp_komponen_penilaian_10'] = "<input type='number' step='0.01' min='0' max='100' id='input-penilaian-cpmk10-$row->id' name='input-penilaian-cpmk10-$row->id' value='$row->cpmk_10_nilai' class='form-control' style='text-align:right; width: 100%' placeholder='0 - 100'>";
-				$nestedData['nilai_akhir'] = [$row->cpmk_1_nilai, $row->cpmk_2_nilai, $row->cpmk_3_nilai, $row->cpmk_4_nilai, $row->cpmk_5_nilai, $row->cpmk_6_nilai, $row->cpmk_7_nilai, $row->cpmk_8_nilai, $row->cpmk_9_nilai, $row->cpmk_10_nilai];
-				$nestedData['harkat'] = $data_harkat;
-
-					$data[] = $nestedData;
+					";
+				$nestedData['ruang'] = $row->ruang;
+				$nestedData['mata_kuliah'] = $row->mata_kuliah;
+                $nestedData['dosen'] = $row->dosen;
+                $nestedData['kelas'] = $row->kelas;
+                $nestedData['jadwal_mulai'] = $row->jadwal_mulai;
+                $nestedData['jadwal_selesai'] = $row->jadwal_selesai;
+                $nestedData['kode_warna_bagan'] = $row->kode_warna_bagan;
+				$data[] = $nestedData;
 			}
 		}
-
+			
 		$json_data = array(
 			"draw"            => intval($_POST['draw']),  
 			"recordsTotal"    => intval($totalData),  
 			"recordsFiltered" => intval($totalFiltered), 
 			"data"            => $data   
-			);
-
+		);
+	
 		echo json_encode($json_data);
 	}
 
-	public function deleteMahasiswaPeserta() {
-		$id_mahasiswa_peserta_mata_kuliah = $_POST['id_mahasiswa_peserta_mata_kuliah'];
-		$hapus = $this->jadwalPerkuliahanModel->delete($id_mahasiswa_peserta_mata_kuliah);
-		if($hapus) {
-			$json_data = array(
-				'success' => true,
-				'message' => 'Data berhasil di hapus'
-			);
+	public function create() {
+		$data=array();
+
+		if(!isset($_POST['simpan'])) {
+			$listRuang = $this->JadwalPerkuliahanModel->getListRuang();
+			$listMataKuliah = $this->JadwalPerkuliahanModel->getListMataKuliah();
+			$listDosen = $this->JadwalPerkuliahanModel->getListDosen();
+			$listKelas = $this->JadwalPerkuliahanModel->getListKelas();
+			$data['title'] = 'SIJP - Jadwal Perkuliahan Create';
+			$data["listRuang"] = $listRuang;
+			$data["listMataKuliah"] = $listMataKuliah;
+			$data["listDosen"] = $listDosen;
+			$data["listKelas"] = $listKelas;
+			$this->load->view('jadwalPerkuliahan/create', $data);
+			
 		} else {
-			$json_data = array(
-				'success' => false,
-				'message' => 'Data tidak berhasil di hapus'
-			);
+
+
+
 		}
-		echo json_encode($json_data);
 	}
-
-	public function updateNilai() {
-
-		$data_peserta = json_decode($_POST['data_peserta'], true);
-
-		try {
-
-			for($i=0; $i<count($data_peserta); $i++) {
-				$data = array(
-					'cpmk_1_nilai' => ($data_peserta[$i]['cpmk_1']!=null) ? $data_peserta[$i]['cpmk_1'] : NULL,
-					'cpmk_2_nilai' => ($data_peserta[$i]['cpmk_2']!=null) ? $data_peserta[$i]['cpmk_2'] : NULL,
-					'cpmk_3_nilai' => ($data_peserta[$i]['cpmk_3']!=null) ? $data_peserta[$i]['cpmk_3'] : NULL,
-					'cpmk_4_nilai' => ($data_peserta[$i]['cpmk_4']!=null) ? $data_peserta[$i]['cpmk_4'] : NULL,
-					'cpmk_5_nilai' => ($data_peserta[$i]['cpmk_5']!=null) ? $data_peserta[$i]['cpmk_5'] : NULL,
-					'cpmk_6_nilai' => ($data_peserta[$i]['cpmk_6']!=null) ? $data_peserta[$i]['cpmk_6'] : NULL,
-					'cpmk_7_nilai' => ($data_peserta[$i]['cpmk_7']!=null) ? $data_peserta[$i]['cpmk_7'] : NULL,
-					'cpmk_8_nilai' => ($data_peserta[$i]['cpmk_8']!=null) ? $data_peserta[$i]['cpmk_8'] : NULL,
-					'cpmk_9_nilai' => ($data_peserta[$i]['cpmk_9']!=null) ? $data_peserta[$i]['cpmk_9'] : NULL,
-					'cpmk_10_nilai' => ($data_peserta[$i]['cpmk_10']!=null) ? $data_peserta[$i]['cpmk_10'] : NULL,
-				);
-				$params = array(
-					"id_peserta" => $data_peserta[$i]['id_peserta'],
-					"data" => $data
-				);
-
-				$hasil = $this->jadwalPerkuliahanModel->updateNilai($params);
-				if (!$hasil) {
-					throw new Exception("Data gagal di update");
-				}
-			}
-			$data = [
-				'success' => true,
-				'message' => 'Nilai mahasiswa berhasil di update'
-			];
-			echo json_encode($data);
-
-		} catch (Exception $e) {
-			$data = [
-				'success' => false,
-				'message' => $e->getMessage()
-			];
-			echo json_encode($data);
-		}
-
-	}
-
 }
