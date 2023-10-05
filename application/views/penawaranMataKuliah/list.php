@@ -51,6 +51,9 @@
 	<?php
 		$this->load->view('layout/footer');
   ?>
+<?php
+	$this->load->view('penawaranMataKuliah/listTambahPenawaran');
+?>
 
 <?php
 	$this->load->view('penawaranMataKuliah/deleteModal');
@@ -110,21 +113,6 @@
     
 	$(document).ready(function () {
 		$(".menu-sidebar-penawaran-mata-kuliah").addClass('active');
-
-        const showAddDataButton = () => {
-            const elements =document.querySelectorAll(".addDataButton")
-            elements.forEach(elem => {
-                elem.style.display = 'inline-block'
-            })
-        }
-        const addDataButtons = document.getElementsByClassName("addDataButton")
-        const addDataButton =addDataButtons[0]
-        addDataButton.addEventListener("click", (event) => {
-            const elements =document.querySelectorAll(".formPenawaranMataKuliah")
-            elements.forEach(elem => {
-                elem.style.display = 'block'
-            })
-        })
 
         /* Hapus data penawaran mata kuliah */
         const deleteDatas = document.getElementsByClassName("deletePenawaranMataKuliah")
@@ -222,7 +210,6 @@
             let id_periode = parseInt(document.forms["formData"]["id_periode"].value)
             $(".selectPeriode2").val(id_periode).trigger("change")
             showDataTable()
-            showAddDataButton()
             loadDataTable(id_periode)
         });
 
@@ -259,13 +246,15 @@
                         $.toaster({ message : 'Berhasil input data', title : 'Success', priority : 'success' });
                         $(".selectProdi").val([]).trigger("change");
                         loadDataTable(id_periode)
+                        document.forms["formDataPenawaranMataKuliah"]["id_prodi"].value = null
+                        $("#add-penawaran-mata-kuliah").modal('hide')
                         return
                     } else {
                         $.toaster({ message : 'Gagal input data', title : 'Warning', priority : 'warning' });
                     }
                 },
                 error: function() {
-                $.toaster({ message : 'Gagal input data', title : 'Failed', priority : 'danger' });
+                    $.toaster({ message : 'Gagal input data', title : 'Failed', priority : 'danger' });
                 }
             });
         });
@@ -282,7 +271,8 @@
         });
         $('.selectProdi').select2({
             placeholder: 'Pilih mata kuliah',
-            allowClear: true
+            allowClear: true,
+            dropdownParent: $('#add-penawaran-mata-kuliah')
         });
         
 	});
