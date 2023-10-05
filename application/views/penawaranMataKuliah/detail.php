@@ -284,7 +284,8 @@
         /* Combobox */
         $('.selectMataKuliah').select2({
             placeholder: 'Pilih mata kuliah',
-            allowClear: true
+            allowClear: true,
+            dropdownParent: $('#add-mata-kuliah')
         });
         $('.selectMataKuliahEdit').select2({
             placeholder: 'Pilih mata kuliah',
@@ -293,7 +294,8 @@
         });
         $('.selectDosen').select2({
             placeholder: 'Pilih Dosen',
-            allowClear: true
+            allowClear: true,
+            dropdownParent: $('#add-mata-kuliah')
         });
         $('.selectDosenEdit').select2({
             placeholder: 'Pilih Dosen',
@@ -302,11 +304,13 @@
         });
         $('.selectKelas').select2({
             placeholder: 'Pilih kelas',
-            allowClear: true
+            allowClear: true,
+            dropdownParent: $('#add-mata-kuliah')
         });
         $('.selectKelasEdit').select2({
             placeholder: 'Pilih kelas',
-            allowClear: true
+            allowClear: true,
+            dropdownParent: $('#edit-mata-kuliah')
         });
         
 	});
