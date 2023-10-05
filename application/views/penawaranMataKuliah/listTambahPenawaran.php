@@ -38,7 +38,7 @@
 								</select>
 							</div>	
                             <div class="form-group">
-                            <button type="submit" id="addPenawaranMataKuliah" name="addPenawaranMataKuliah" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
+                                <button type="submit" id="addPenawaranMataKuliah" name="addPenawaranMataKuliah" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Simpan</button>
                             </div>
                         </div>
                     </div>
