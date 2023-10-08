@@ -140,6 +140,14 @@ class PenawaranMataKuliah extends CI_Controller {
 			$data["id_penawaran_mata_kuliah"] = intval($params["id_penawaran_mata_kuliah"]);
 			$data["id_mata_kuliah"] = intval($params["id_mata_kuliah"]);
 			$data["id_dosen"] = intval($params["id_dosen"]);
+			$data["id_dosen_tim_1"] = intval($params["id_dosen_tim_1"]);
+			if ($data["id_dosen_tim_1"] == 0) {
+				$data["id_dosen_tim_1"] = null;
+			}
+			$data["id_dosen_tim_2"] = intval($params["id_dosen_tim_2"]);
+			if ($data["id_dosen_tim_2"] == 0) {
+				$data["id_dosen_tim_2"] = null;
+			}
 			$data["id_kelas"] = intval($params["id_kelas"]);
 			$data["kapasitas"] = intval($params["kapasitas"]);
 			$result = $this->penawaranMataKuliahModel->addKontrakPenawaranMataKuliah($data);
@@ -176,9 +184,15 @@ class PenawaranMataKuliah extends CI_Controller {
         $data = array();
 		if(!empty($listData)) {
 			foreach ($listData as $row) {
+				if ($row->id_dosen_tim_1 == null) {
+					$row->id_dosen_tim_1 = 0;
+				}
+				if ($row->id_dosen_tim_2 == null) {
+					$row->id_dosen_tim_2 = 0;
+				}
 				$nestedData['nomor'] = $row->nomor;
 				$nestedData['aksi'] = "
-					<button class='btn btn-sm btn-primary editKontrakPenawaranMatkul' onclick='editKontrakPenawaranMatkul(".$row->id.",".$row->id_penawaran_mata_kuliah.",".$row->id_mata_kuliah.",".$row->id_dosen.",".$row->id_kelas.",".$row->kapasitas.")' data-toggle='modal' data-target='#edit-mata-kuliah' data-href='".base_url('penawaran-mata-kuliah/update-detail?id=').$row->id."'>
+					<button class='btn btn-sm btn-primary editKontrakPenawaranMatkul' onclick='editKontrakPenawaranMatkul(".$row->id.",".$row->id_penawaran_mata_kuliah.",".$row->id_mata_kuliah.",".$row->id_dosen.",".$row->id_kelas.",".$row->kapasitas.",".$row->id_dosen_tim_1.",".$row->id_dosen_tim_2.")' data-toggle='modal' data-target='#edit-mata-kuliah' data-href='".base_url('penawaran-mata-kuliah/update-detail?id=').$row->id."'>
 						<i class='fa fa-pencil'></i>
 					</button>
 					<button class='btn btn-sm btn-danger' data-href='".base_url('penawaran-mata-kuliah/delete-detail?id=').$row->id."&id_penawaran_mata_kuliah=".$row->id_penawaran_mata_kuliah."' data-toggle='modal' data-target='#confirm-delete'>
@@ -187,8 +201,12 @@ class PenawaranMataKuliah extends CI_Controller {
 				";
 				$nestedData['kode_mata_kuliah'] = $row->kode_mata_kuliah;
                 $nestedData['mata_kuliah'] = $row->mata_kuliah;
-                $nestedData['nik_dosen'] = $row->nik_dosen;
+                // $nestedData['nik_dosen'] = $row->nik_dosen;
 				$nestedData['dosen'] = $row->dosen;
+				// $nestedData['nik_dosen_tim_1'] = $row->nik_dosen_tim_1;
+				$nestedData['dosen_tim_1'] = $row->dosen_tim_1;
+				// $nestedData['nik_dosen_tim_2'] = $row->nik_dosen_tim_2;
+				$nestedData['dosen_tim_2'] = $row->dosen_tim_2;
 				$nestedData['kelas'] = $row->kelas;
 				$nestedData['kapasitas'] = $row->kapasitas;
 				$data[] = $nestedData;
@@ -241,6 +259,14 @@ class PenawaranMataKuliah extends CI_Controller {
 			$data["id_penawaran_mata_kuliah"] = intval($params["id_penawaran_mata_kuliah"]);
 			$data["id_mata_kuliah"] = intval($params["id_mata_kuliah"]);
 			$data["id_dosen"] = intval($params["id_dosen"]);
+			$data["id_dosen_tim_1"] = intval($params["id_dosen_tim_1"]);
+			if ($data["id_dosen_tim_1"] == 0) {
+				$data["id_dosen_tim_1"] = null;
+			}
+			$data["id_dosen_tim_2"] = intval($params["id_dosen_tim_2"]);
+			if ($data["id_dosen_tim_2"] == 0) {
+				$data["id_dosen_tim_2"] = null;
+			}
 			$data["id_kelas"] = intval($params["id_kelas"]);
 			$data["kapasitas"] = intval($params["kapasitas"]);
 			$result = $this->penawaranMataKuliahModel->editKontrakPenawaranMataKuliah($data);

@@ -117,11 +117,21 @@
     $('#confirm-delete').on('show.bs.modal', function(e) {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
-    const editKontrakPenawaranMatkul = function(id, id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_kelas, kapasitas) {  
+    const editKontrakPenawaranMatkul = function(id, id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_kelas, kapasitas, id_dosen_tim_1, id_dosen_tim_2) {  
         document.forms["formEditMataKuliah"]["id"].value = id
         document.forms["formEditMataKuliah"]["id_penawaran_mata_kuliah"].value = id_penawaran_mata_kuliah
         $(".selectMataKuliahEdit").val(id_mata_kuliah).trigger("change")
         $(".selectDosenEdit").val(id_dosen).trigger("change")
+        if (id_dosen_tim_1 !== 0) {
+            $(".selectDosenEditTim1").val(id_dosen_tim_1).trigger("change")
+        } else {
+            $(".selectDosenEditTim1").val(null).trigger("change")
+        }
+        if (id_dosen_tim_2 !== 0) {
+            $(".selectDosenEditTim2").val(id_dosen_tim_2).trigger("change")
+        } else {
+            $(".selectDosenEditTim2").val(null).trigger("change")
+        }
         $(".selectKelasEdit").val(id_kelas).trigger("change")
         document.forms["formEditMataKuliah"]["kapasitas"].value = kapasitas
     }
@@ -158,12 +168,42 @@
             const idPenawaranMataKuliah = parseInt(document.forms["formAddMataKuliah"]["id_penawaran_mata_kuliah"].value)
             const idMataKuliah = parseInt(document.forms["formAddMataKuliah"]["id_mata_kuliah"].value)
             const idDosen = parseInt(document.forms["formAddMataKuliah"]["id_dosen"].value)
+            let idDosenTim1 = parseInt(document.forms["formAddMataKuliah"]["id_dosen_tim_1"].value)
+            let idDosenTim2 = parseInt(document.forms["formAddMataKuliah"]["id_dosen_tim_2"].value)
+            if (idDosenTim1 === 0 || idDosenTim1 === null) {
+                idDosenTim1 = null
+            }
+            if (idDosenTim2 === 0 || idDosenTim2 === null) {
+                idDosenTim2 = null
+            }
+            if (idDosenTim1 !== null) {
+                if (idDosen == idDosenTim1) {
+                    $.toaster({ message : 'Dosen utama dengan dosen tim 1 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+                if (idDosenTim1 ==  idDosenTim2) {
+                    $.toaster({ message : 'Dosen tim 1 dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+            }
+            if (idDosenTim2 !== null) {
+                if (idDosen == idDosenTim2) {
+                    $.toaster({ message : 'Dosen utama dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+                if (idDosenTim1 ==  idDosenTim2) {
+                    $.toaster({ message : 'Dosen tim 1 dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+            }
             const idKelas = parseInt(document.forms["formAddMataKuliah"]["id_kelas"].value)
             const kapasitas = parseInt(document.forms["formAddMataKuliah"]["kapasitas"].value)
             const dataBody = {
                 "id_penawaran_mata_kuliah": idPenawaranMataKuliah,
                 "id_mata_kuliah":idMataKuliah,
                 "id_dosen": idDosen,
+                "id_dosen_tim_1":idDosenTim1,
+                "id_dosen_tim_2":idDosenTim2,
                 "id_kelas":idKelas,
                 "kapasitas":kapasitas
             }
@@ -204,6 +244,34 @@
             const idPenawaranMataKuliah = parseInt(document.forms["formEditMataKuliah"]["id_penawaran_mata_kuliah"].value)
             const idMataKuliah = parseInt(document.forms["formEditMataKuliah"]["id_mata_kuliah"].value)
             const idDosen = parseInt(document.forms["formEditMataKuliah"]["id_dosen"].value)
+            let idDosenTim1 = parseInt(document.forms["formEditMataKuliah"]["id_dosen_tim_1"].value)
+            let idDosenTim2 = parseInt(document.forms["formEditMataKuliah"]["id_dosen_tim_2"].value)
+            if (idDosenTim1 === 0 || idDosenTim1 === null) {
+                idDosenTim1 = null
+            }
+            if (idDosenTim2 === 0 || idDosenTim2 === null) {
+                idDosenTim2 = null
+            }
+            if (idDosenTim1 !== null) {
+                if (idDosen == idDosenTim1) {
+                    $.toaster({ message : 'Dosen utama dengan dosen tim 1 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+                if (idDosenTim1 ==  idDosenTim2) {
+                    $.toaster({ message : 'Dosen tim 1 dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+            }
+            if (idDosenTim2 !== null) {
+                if (idDosen == idDosenTim2) {
+                    $.toaster({ message : 'Dosen utama dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+                if (idDosenTim1 ==  idDosenTim2) {
+                    $.toaster({ message : 'Dosen tim 1 dengan dosen tim 2 tidak boleh sama', title : 'Warning', priority : 'warning' });
+                    return
+                }
+            }
             const idKelas = parseInt(document.forms["formEditMataKuliah"]["id_kelas"].value)
             const kapasitas = parseInt(document.forms["formEditMataKuliah"]["kapasitas"].value)
             const dataBody = {
@@ -211,6 +279,8 @@
                 "id_penawaran_mata_kuliah": idPenawaranMataKuliah,
                 "id_mata_kuliah":idMataKuliah,
                 "id_dosen": idDosen,
+                "id_dosen_tim_1":idDosenTim1,
+                "id_dosen_tim_2":idDosenTim2,
                 "id_kelas":idKelas,
                 "kapasitas":kapasitas
             }
@@ -254,6 +324,8 @@
             "bDestroy": true,
             "searching": false,
             "paging": false,
+            "scrollX": true,
+            "responsive": true,
             "ajax":{
                 "url": urlGetListDataDetail,
                 "dataType": "json",
@@ -268,11 +340,15 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                { "data": "aksi", "className": "text-center", "width": "5%"},
+                { "data": "aksi", "className": "text-center", "width": "2%"},
                 { "data": "kode_mata_kuliah", "width": "7%" },
                 { "data": "mata_kuliah", "width": "15%" },
-                { "data": "nik_dosen", "width": "7%" },
+                // { "data": "nik_dosen", "width": "7%" },
                 { "data": "dosen", "width": "15%" },
+                // { "data": "nik_dosen_tim_1", "width": "7%" },
+                { "data": "dosen_tim_1", "width": "15%" },
+                // { "data": "nik_dosen_tim_2", "width": "7%" },
+                { "data": "dosen_tim_2", "width": "15%" },
                 { "data": "kelas", "width": "4%" },
                 { "data": "kapasitas", "width": "5%" },
             ],
@@ -298,6 +374,16 @@
             dropdownParent: $('#add-mata-kuliah')
         });
         $('.selectDosenEdit').select2({
+            placeholder: 'Pilih Dosen',
+            allowClear: true,
+            disabled: true
+        });
+        $('.selectDosenEditTim1').select2({
+            placeholder: 'Pilih Dosen',
+            allowClear: true,
+            disabled: true
+        });
+        $('.selectDosenEditTim2').select2({
             placeholder: 'Pilih Dosen',
             allowClear: true,
             disabled: true

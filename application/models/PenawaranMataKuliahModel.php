@@ -43,7 +43,6 @@ class PenawaranMataKuliahModel extends CI_Model {
 		$sql="SELECT 
 				*
 			FROM master_dosen a
-			WHERE a.id_prodi = $idProdi
 			ORDER BY a.id ASC";
 		$query=$this->db->query($sql);
 		$hasil=$query->result();
@@ -157,10 +156,12 @@ class PenawaranMataKuliahModel extends CI_Model {
             $params['id_penawaran_mata_kuliah'],
 			$params['id_mata_kuliah'],
 			$params['id_dosen'],
+			$params["id_dosen_tim_1"],
+			$params["id_dosen_tim_2"],
 			$params['id_kelas'],
 			$params['kapasitas'],
 		];
-		$sql = "insert into penawaran_mata_kuliah_detail (id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_kelas, kapasitas) values(?, ?, ?, ?, ?)";
+		$sql = "insert into penawaran_mata_kuliah_detail (id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_dosen_tim_1, id_dosen_tim_2, id_kelas, kapasitas) values(?, ?, ?, ?, ?, ?, ?)";
 		$query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;
@@ -181,12 +182,20 @@ class PenawaranMataKuliahModel extends CI_Model {
 				pmkd.id_dosen,
 				md.nik as nik_dosen,
 				md.nama as dosen,
+				pmkd.id_dosen_tim_1,
+				md_tim_1.nik as nik_dosen_tim_1,
+				md_tim_1.nama as dosen_tim_1,
+				pmkd.id_dosen_tim_2,
+				md_tim_2.nik as nik_dosen_tim_2,
+				md_tim_2.nama as dosen_tim_2,
 				pmkd.id_kelas,
 				mk.kode as kelas,
 				pmkd.kapasitas
 			FROM penawaran_mata_kuliah_detail pmkd
 			left join master_mata_kuliah mmk on pmkd.id_mata_kuliah = mmk.id
 			left join master_dosen md on pmkd.id_dosen = md.id 
+			left join master_dosen md_tim_1 on pmkd.id_dosen_tim_1 = md_tim_1.id
+			left join master_dosen md_tim_2 on pmkd.id_dosen_tim_2 = md_tim_2.id 
 			left join master_kelas mk on pmkd.id_kelas = mk.id
 			WHERE pmkd.id_penawaran_mata_kuliah = $id_penawaran_mata_kuliah ";
 		$query=$this->db->query($sql);
@@ -207,12 +216,20 @@ class PenawaranMataKuliahModel extends CI_Model {
 				pmkd.id_dosen,
 				md.nik as nik_dosen,
 				md.nama as dosen,
+				pmkd.id_dosen_tim_1,
+				md_tim_1.nik as nik_dosen_tim_1,
+				md_tim_1.nama as dosen_tim_1,
+				pmkd.id_dosen_tim_2,
+				md_tim_2.nik as nik_dosen_tim_2,
+				md_tim_2.nama as dosen_tim_2,
 				pmkd.id_kelas,
 				mk.kode as kelas,
 				pmkd.kapasitas
 			FROM penawaran_mata_kuliah_detail pmkd
 			left join master_mata_kuliah mmk on pmkd.id_mata_kuliah = mmk.id
 			left join master_dosen md on pmkd.id_dosen = md.id 
+			left join master_dosen md_tim_1 on pmkd.id_dosen_tim_1 = md_tim_1.id
+			left join master_dosen md_tim_2 on pmkd.id_dosen_tim_2 = md_tim_2.id 
 			left join master_kelas mk on pmkd.id_kelas = mk.id,
 			(SELECT @rownum := 0) r
 			WHERE pmkd.id_penawaran_mata_kuliah = $id_penawaran_mata_kuliah
@@ -239,11 +256,13 @@ class PenawaranMataKuliahModel extends CI_Model {
 		$data = [
 			$params['id_mata_kuliah'],
 			$params['id_dosen'],
+			$params["id_dosen_tim_1"],
+			$params["id_dosen_tim_2"],
 			$params['id_kelas'],
 			$params['kapasitas'],
 			$params["id"],
 		];
-		$sql = "update penawaran_mata_kuliah_detail set id_mata_kuliah = ?, id_dosen = ?, id_kelas = ?, kapasitas = ? where id = ?";
+		$sql = "update penawaran_mata_kuliah_detail set id_mata_kuliah = ?, id_dosen = ?, id_dosen_tim_1 = ?, id_dosen_tim_2 = ?, id_kelas = ?, kapasitas = ? where id = ?";
 		$query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;

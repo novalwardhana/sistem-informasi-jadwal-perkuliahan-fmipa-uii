@@ -40,20 +40,23 @@
                 <div class="box-body">
                     <button type="button" class="btn btn-sm btn-success" data-toggle='modal' data-target='#add-mata-kuliah'><i class='fa fa-plus'></i> Tambah Kontrak Penawaran Mata Kuliah</button>
 					<br><br>
-                    <table id="listDataTable" class="table table-bordered table-striped" style="width: 100%">
-						<thead>
-							<tr>
-								<th class="text-center">No</th>
-								<th class="text-center">Aksi</th>
-								<th>Kode Mata Kuliah</th>
-                                <th>Mata Kuliah</th>
-                                <th>NIK Dosen</th>
-								<th>Dosen</th>
-                                <th>Kelas</th>
-                                <th>Kapasitas</th>
-							</tr>
-						</thead>
-					</table>
+                    <div class="table-responsive">
+                        <table id="listDataTable" class="table table-bordered table-striped display nowrap" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Aksi</th>
+                                    <th>Kode</th>
+                                    <th>Mata Kuliah</th>
+                                    <th>Dosen Utama</th>
+                                    <th>Dosen Tim 1</th>
+                                    <th>Dosen Tim 2</th>
+                                    <th>Kelas</th>
+                                    <th>Kuota Kelas</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
