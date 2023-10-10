@@ -56,6 +56,20 @@
 									</select>
 								</div>
 
+								<div class="form-group">
+									<label>Tipe Mata Kuliah *</label>
+									<select class="selectTipeMataKuliah form-control" style="width: 100%;" name="tipe" required>
+										<option></option>
+										<?php
+										foreach($listTipeMataKuliah as $key => $data) {
+										?>
+											<option value="<?php echo $data["value"] ?>"><?php echo $data["label"] ?></option>
+										<?php
+										}
+										?>
+									</select>
+								</div>
+
                                 <div class="form-group">
 									<label>Kontribusi SKS *</label>
                                     <input type="number" min=0 name="kontribusi_sks" class="form-control" placeholder="Kontribusi SKS" required>

@@ -114,12 +114,13 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                { "data": "aksi", "className": "text-center", "width": "8%"},
-                { "data": "prodi", "width": "15%" },
-                { "data": "kode", "width": "25%" },
-                { "data": "nama", "width": "15%" },
-                { "data": "semester", "width": "15%" },
-                { "data": "kontribusi_sks", "width": "15%" },
+                { "data": "aksi", "className": "text-center", "width": "6%"},
+                { "data": "prodi", "width": "10%" },
+                { "data": "kode", "width": "6%" },
+                { "data": "nama", "width": "25%" },
+                { "data": "semester", "width": "6%" },
+                { "data": "kontribusi_sks", "width": "6%" },
+                { "data": "tipe", "width": "10%" },
             ]  
         });
     });

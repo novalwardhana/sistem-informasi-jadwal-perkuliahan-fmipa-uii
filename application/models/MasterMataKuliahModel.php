@@ -69,9 +69,10 @@ class MasterMataKuliahModel extends CI_Model {
 			$this->db->escape_like_str($params['kode']), 
 			$this->db->escape_like_str($params['nama']), 
 			$params['semester'],
+			$params['tipe'],
             $params['kontribusi_sks'],
 		];
-        $sql = "insert into master_mata_kuliah (id_prodi, kode, nama, semester, kontribusi_sks) values(?, ?, ?, ?, ?)";
+        $sql = "insert into master_mata_kuliah (id_prodi, kode, nama, semester, tipe, kontribusi_sks) values(?, ?, ?, ?, ?, ?)";
         $query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;
@@ -107,9 +108,10 @@ class MasterMataKuliahModel extends CI_Model {
 			$this->db->escape_like_str($params['nama']), 
             $params['semester'],
 			$params['kontribusi_sks'],
+			$params['tipe'],
             $params['id']
 		];
-		$sql = "update master_mata_kuliah set id_prodi = ?, kode = ?, nama = ?, semester = ?, kontribusi_sks = ? where id = ?";
+		$sql = "update master_mata_kuliah set id_prodi = ?, kode = ?, nama = ?, semester = ?, kontribusi_sks = ?, tipe = ? where id = ?";
 		$query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;

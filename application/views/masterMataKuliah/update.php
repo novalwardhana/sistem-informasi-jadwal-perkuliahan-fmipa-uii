@@ -106,6 +106,8 @@
         $(".selectProgramStudi").val(idProdi).trigger("change")
         let semester = "<?php echo $dataMataKuliah->semester ?>"
         $(".selectSemester").val(semester).trigger("change")
+        let tipe = "<?php echo $dataMataKuliah->tipe ?>"
+        $(".selectTipeMataKuliah").val(tipe).trigger("change")
 
         document.forms["formData"].addEventListener("submit", (event) => {
             event.preventDefault()
@@ -118,6 +120,7 @@
             let kode = document.forms["formData"]["kode"].value
             let nama = document.forms["formData"]["nama"].value
             let semester = parseInt(document.forms["formData"]["semester"].value)
+            let tipe = document.forms["formData"]["tipe"].value
             let kontribusiSks = parseInt(document.forms["formData"]["kontribusi_sks"].value)
             const dataBody = {
                 "id": id,
@@ -125,6 +128,7 @@
                 "kode": kode,
                 "nama": nama,
                 "semester": semester,
+                "tipe": tipe,
                 "kontribusi_sks": kontribusiSks,
                 "simpan": true
             }
@@ -160,6 +164,10 @@
 
         $('.selectProgramStudi').select2({
             placeholder: 'Pilih program studi',
+            allowClear: true
+        });
+        $('.selectTipeMataKuliah').select2({
+            placeholder: 'Pilih tipe mata kuliah',
             allowClear: true
         });
         $('.selectSemester').select2({

@@ -112,12 +112,18 @@
             let kode = document.forms["formData"]["kode"].value
             let nama = document.forms["formData"]["nama"].value
             let semester = parseInt(document.forms["formData"]["semester"].value)
+            let tipe = document.forms["formData"]["tipe"].value
+            if (tipe !== "wajib" && tipe !== "konsentrasi") {
+              $.toaster({ message : 'Gagal input data, parameter tipe mata kuliah tidak valid', title : 'Warning', priority : 'warning' });
+              return
+            }
             let kontribusiSks = parseInt(document.forms["formData"]["kontribusi_sks"].value)
             const dataBody = {
                 "id_prodi": id_prodi,
                 "kode": kode,
                 "nama": nama,
                 "semester": semester,
+                "tipe": tipe,
                 "kontribusi_sks": kontribusiSks,
                 "simpan": true
             }
@@ -157,6 +163,10 @@
         });
         $('.selectSemester').select2({
             placeholder: 'Pilih semester',
+            allowClear: true
+        });
+        $('.selectTipeMataKuliah').select2({
+            placeholder: 'Pilih tipe mata kuliah',
             allowClear: true
         });
        

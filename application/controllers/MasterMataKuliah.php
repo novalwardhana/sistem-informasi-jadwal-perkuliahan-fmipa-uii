@@ -70,6 +70,7 @@ class MasterMataKuliah extends CI_Controller {
                 $nestedData['nama'] = $row->nama;
                 $nestedData['semester'] = $row->semester;
                 $nestedData['kontribusi_sks'] = $row->kontribusi_sks;
+				$nestedData['tipe'] = ucfirst($row->tipe);
 				$data[] = $nestedData;
 			}
 		}
@@ -98,6 +99,7 @@ class MasterMataKuliah extends CI_Controller {
 					$data["kode"] = $params["kode"];
                     $data["nama"] = $params["nama"];
                     $data["semester"] = $params["semester"];
+					$data["tipe"] = $params["tipe"];
                     $data["kontribusi_sks"] = $params["kontribusi_sks"];
                     $result = $this->masterMataKuliahModel->create($data);
                     if ($result != 1) {
@@ -120,7 +122,17 @@ class MasterMataKuliah extends CI_Controller {
                 $data['title'] = 'SIJP - Master Mata Kuliah Create';
                 $data['listSemester'] = [1, 2, 3, 4, 5, 6, 7, 8];
                 $data["listProdi"] = $this->masterMataKuliahModel->getListProdi();
-                $this->load->view('masterMataKuliah/create', $data);
+                $data['listTipeMataKuliah'] = [
+					[
+						"value" => "wajib",
+						"label" => "Wajib"
+					],
+					[
+						"value" => "konsentrasi",
+						"label" => "Konsentrasi"
+					]
+				];
+				$this->load->view('masterMataKuliah/create', $data);
                 break;
             default:
         }
@@ -168,6 +180,7 @@ class MasterMataKuliah extends CI_Controller {
                     $data["kode"] = $params["kode"];
                     $data["nama"] = $params["nama"];
                     $data["semester"] = $params["semester"];
+					$data["tipe"] = $params["tipe"];
                     $data["kontribusi_sks"] = $params["kontribusi_sks"];
                     $result = $this->masterMataKuliahModel->update($data);
                     if ($result != 1) {
@@ -199,7 +212,17 @@ class MasterMataKuliah extends CI_Controller {
                 $data["dataMataKuliah"] = $this->masterMataKuliahModel->getMasterMataKuliahByID($id);
                 $data['listSemester'] = [1, 2, 3, 4, 5, 6, 7, 8];
                 $data["listProdi"] = $this->masterMataKuliahModel->getListProdi();
-                $this->load->view('masterMataKuliah/update', $data);
+                $data['listTipeMataKuliah'] = [
+					[
+						"value" => "wajib",
+						"label" => "Wajib"
+					],
+					[
+						"value" => "konsentrasi",
+						"label" => "Konsentrasi"
+					]
+				];
+				$this->load->view('masterMataKuliah/update', $data);
                 break;
             default:
         }

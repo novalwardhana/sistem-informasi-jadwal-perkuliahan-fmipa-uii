@@ -26,6 +26,7 @@
                                 <th>Nama</th>
                                 <th>Semester</th>
                                 <th>Kontribusi SKS</th>
+								<th>Tipe</th>
 							</tr>
 						</thead>
 					</table>
