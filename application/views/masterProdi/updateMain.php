@@ -30,9 +30,14 @@
 									<input type="text" name="nama" value="<?php echo $dataProdi->nama; ?>" class="form-control" placeholder="Nama prodi" required>
 								</div>
                                 
-                                <div class="form-group">
+								<div class="form-group">
 									<label>Kode Warna *</label>
-									<input type="text" name="kode_warna_bagan" value="<?php echo $dataProdi->kode_warna_bagan; ?>" class="form-control" placeholder="Kode warna bagan" required>
+									<div class="input-group form-input-colorpicker">
+										<input type="text" name="kode_warna_bagan" value="<?php echo $dataProdi->kode_warna_bagan; ?>" placeholder="Kode warna bagan" class="form-control" required>
+										<div class="input-group-addon">
+											<i></i>
+										</div>
+									</div>
 								</div>
 
 								<div class="form-group">

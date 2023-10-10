@@ -12,7 +12,7 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Input Periode</h3>
+					<h3 class="box-title">Input Prodi</h3>
 				</div>
 				<form role="form" name="formData">
 					<div class="box-body">
@@ -31,7 +31,12 @@
                                 
                                 <div class="form-group">
 									<label>Kode Warna *</label>
-									<input type="text" name="kode_warna_bagan" class="form-control" placeholder="Kode warna bagan" required>
+									<div class="input-group form-input-colorpicker">
+										<input type="text" name="kode_warna_bagan" placeholder="Kode warna bagan" class="form-control" required>
+										<div class="input-group-addon">
+											<i></i>
+										</div>
+									</div>
 								</div>
 
 								<div class="form-group">

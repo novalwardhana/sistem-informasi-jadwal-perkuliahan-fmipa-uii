@@ -33,6 +33,8 @@
   <!-- bootstrap datepicker -->
   <!-- <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"> -->
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') ?>">
 </head>
 <body class="hold-transition skin-uii-light sidebar-mini">
 <div class="wrapper">
@@ -95,9 +97,11 @@
 <!-- bootstrap datepicker -->
 <!-- <script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>"></script>
-
+<!-- bootstrap color picker -->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')?>"></script>
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script type="text/javascript">
+  $('.form-input-colorpicker').colorpicker()
 	$(document).ready(function () {
 		$(".menu-sidebar-master").addClass('active');
 		$(".menu-sidebar-master-prodi").addClass('active');
