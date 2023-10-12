@@ -21,13 +21,9 @@
 							<tr>
 								<th class="text-center">No</th>
 								<th class="text-center">Aksi</th>
-								<th>Ruang</th>
-								<th>Mata Kuliah</th>
-								<th>Dosen</th>
-								<th>Kelas</th>
-								<th>Jadwal Mulai</th>
-								<th>Jadwal Selesai</th>
-								<th>Kode Warna Bagan</th>
+								<th>Tahun Akademik</th>
+								<th>Semester</th>
+								<th>Prodi</th>
 							</tr>
 						</thead>
 					</table>

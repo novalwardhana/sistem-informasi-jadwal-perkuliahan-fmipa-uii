@@ -7,7 +7,7 @@ class JadwalPerkuliahanModel extends CI_Model {
     }
 
     public function getTotalData() {
-		$hasil=$this->db->count_all('jadwal_perkuliahan');
+		$hasil=$this->db->count_all('master_periode');
 		return $hasil;
 	}
 
@@ -15,24 +15,26 @@ class JadwalPerkuliahanModel extends CI_Model {
         $limit=(int)$params['limit'];
 		$start=(int)$params['start'];
 
-        $sql = "SELECT 
-                @rownum := @rownum + 1 AS nomor,
-                jp.id as id,
-                r.kode as ruang,
-                CONCAT(mk.kode, ' - ', mk.nama) mata_kuliah,
-                CONCAT(d.nik, ' - ', d.nama) as dosen,
-                k.kode  as kelas,
-                jp.jadwal_mulai,
-                jp.jadwal_selesai,
-                jp.kode_warna_bagan
-            from jadwal_perkuliahan jp 
-            inner join ruang r on jp.id_ruang = r.id
-            inner join mata_kuliah mk on jp.id_mata_kuliah = mk.id 
-            inner join dosen d on jp.id_dosen  = d.id 
-            inner join kelas k on jp.id_kelas = k.id,
-            (SELECT @rownum := 0) r
-            ORDER BY id DESC
-            LIMIT $limit OFFSET $start ";
+        $sql = "with pmk as (
+            select 
+                pmk.id,
+                pmk.id_periode,
+                pmk.id_prodi,
+                mpr.nama as prodi
+            from penawaran_mata_kuliah pmk
+            left join master_prodi mpr on pmk.id_prodi = mpr.id
+        )
+        select 
+            p.id,
+            p.tahun_akademik,
+            p.semester,
+            json_arrayagg(pmk.id_prodi) as list_id_prodi,
+            json_arrayagg(pmk.prodi) as list_prodi
+        from master_periode p
+        left join pmk on p.id = pmk.id_periode
+        group by p.id, p.tahun_akademik, p.semester
+        order by p.tahun_akademik desc, semester desc
+        LIMIT $limit OFFSET $start ";
         
         $query=$this->db->query($sql);
 		$hasil=$query->result();
@@ -40,70 +42,28 @@ class JadwalPerkuliahanModel extends CI_Model {
     }
 
     public function getListJadwalPerkuliahanCount($params) {
-		$sql="SELECT 
-                @rownum := @rownum + 1 AS nomor,
-                jp.*
-            from jadwal_perkuliahan jp
-            inner join ruang r on jp.id_ruang = r.id
-            inner join mata_kuliah mk on jp.id_mata_kuliah = mk.id 
-            inner join dosen d on jp.id_dosen  = d.id 
-            inner join kelas k on jp.id_kelas = k.id,
-            (SELECT @rownum := 0) r";
+		$sql="with pmk as (
+            select 
+                pmk.id,
+                pmk.id_periode,
+                pmk.id_prodi,
+                mpr.nama as prodi
+            from penawaran_mata_kuliah pmk
+            left join master_prodi mpr on pmk.id_prodi = mpr.id
+        )
+        select 
+            p.id,
+            p.tahun_akademik,
+            p.semester,
+            json_arrayagg(pmk.id_prodi) as list_id_prodi,
+            json_arrayagg(pmk.prodi) as list_prodi
+        from master_periode p
+        left join pmk on p.id = pmk.id_periode
+        group by p.id, p.tahun_akademik, p.semester";
+        
 		$query=$this->db->query($sql);
 		$hasil=$query->num_rows();
 		return $hasil;
 	}
-
-    public function getListRuang() {
-		$sql = "SELECT 
-                a.id,
-                a.kode,
-                a.nama,
-                a.kapasitas
-            FROM ruang a
-            ORDER BY a.id ASC";
-		$query=$this->db->query($sql);
-		$hasil=$query->result_array();
-		return $hasil;
-	}
-
-    public function getListMataKuliah() {
-        $sql = "SELECT 
-                mk.id,
-                mk.kode,
-                mk.nama,
-                mk.semester,
-                concat(mk.kode, ' - ', mk.nama) as label
-            FROM mata_kuliah mk
-            ORDER BY mk.id ASC";
-        $query=$this->db->query($sql);
-		$hasil=$query->result_array();
-		return $hasil;
-    }
-
-    public function getListDosen() {
-        $sql = "SELECT 
-                d.id,
-                d.nik,
-                d.nama,
-                concat(d.nik, ' - ', d.nama) as label
-            FROM dosen d
-            ORDER BY d.id ASC";
-        $query=$this->db->query($sql);
-		$hasil=$query->result_array();
-		return $hasil;
-    }
-
-    public function getListKelas() {
-        $sql = "SELECT 
-                k.id,
-                k.kode
-            FROM kelas k
-            ORDER BY k.id ASC";
-         $query=$this->db->query($sql);
-         $hasil=$query->result_array();
-         return $hasil;
-    }
-
 
 }

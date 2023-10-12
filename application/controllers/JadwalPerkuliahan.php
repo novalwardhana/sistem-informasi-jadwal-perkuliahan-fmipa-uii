@@ -55,24 +55,17 @@ class JadwalPerkuliahan extends CI_Controller {
 		$data = array();
 		if(!empty($getListJadwalPerkuliahan)) {
 			foreach ($getListJadwalPerkuliahan as $row) {
-
-				$nestedData['nomor'] = $row->nomor;
-				$nestedData['aksi'] = "
-					<a href='".base_url('jadwal-perkuliahan/update?id=').$row->id."'>
-						<button class='btn btn-sm btn-primary'><i class='fa fa-pencil'></i></button>
-					</a>
-						
-					<button class='btn btn-sm btn-danger' data-href='".base_url('jadwal-perkuliahan/delete?id=').$row->id."' data-toggle='modal' data-target='#confirm-delete'>
-							<i class='fa fa-trash'></i>
-					</button>
-					";
-				$nestedData['ruang'] = $row->ruang;
-				$nestedData['mata_kuliah'] = $row->mata_kuliah;
-                $nestedData['dosen'] = $row->dosen;
-                $nestedData['kelas'] = $row->kelas;
-                $nestedData['jadwal_mulai'] = $row->jadwal_mulai;
-                $nestedData['jadwal_selesai'] = $row->jadwal_selesai;
-                $nestedData['kode_warna_bagan'] = $row->kode_warna_bagan;
+				$listProdi = "";
+				foreach(json_decode($row->list_prodi) as $value) {
+					if ($value != null) {
+						$listProdi .= "<span style='color: green'><i class='fa fa-check-square'></i></span> ".$value. "<br>";
+					}
+				}
+				$nestedData['nomor'] = "";
+				$nestedData['aksi'] = "";
+				$nestedData['tahun_akademik'] = $row->tahun_akademik;
+				$nestedData['semester'] = ucfirst($row->semester);
+				$nestedData['list_prodi'] = $listProdi;
 				$data[] = $nestedData;
 			}
 		}
@@ -85,27 +78,5 @@ class JadwalPerkuliahan extends CI_Controller {
 		);
 	
 		echo json_encode($json_data);
-	}
-
-	public function create() {
-		$data=array();
-
-		if(!isset($_POST['simpan'])) {
-			$listRuang = $this->JadwalPerkuliahanModel->getListRuang();
-			$listMataKuliah = $this->JadwalPerkuliahanModel->getListMataKuliah();
-			$listDosen = $this->JadwalPerkuliahanModel->getListDosen();
-			$listKelas = $this->JadwalPerkuliahanModel->getListKelas();
-			$data['title'] = 'SIJP - Jadwal Perkuliahan Create';
-			$data["listRuang"] = $listRuang;
-			$data["listMataKuliah"] = $listMataKuliah;
-			$data["listDosen"] = $listDosen;
-			$data["listKelas"] = $listKelas;
-			$this->load->view('jadwalPerkuliahan/create', $data);
-			
-		} else {
-
-
-
-		}
 	}
 }

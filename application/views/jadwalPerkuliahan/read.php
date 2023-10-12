@@ -111,14 +111,10 @@
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
 				},
-				{ "data": "aksi", "className": "text-center", "width": "8%"},
-				{ "data": "ruang", "width": "5%" },
-				{ "data": "mata_kuliah", "width": "15%" },
-                { "data": "dosen", "width": "15%" },
-                { "data": "kelas", "width": "5%" },
-                { "data": "jadwal_mulai", "width": "10%" },
-                { "data": "jadwal_selesai", "width": "10%" },
-                { "data": "kode_warna_bagan", "width": "10%" },
+				{ "data": "aksi", "className": "text-center", "width": "5%"},
+				{ "data": "tahun_akademik", "width": "15%" },
+				{ "data": "semester", "width": "10%" },
+                { "data": "list_prodi", "width": "30%" },
 			]  
 		});
   });
