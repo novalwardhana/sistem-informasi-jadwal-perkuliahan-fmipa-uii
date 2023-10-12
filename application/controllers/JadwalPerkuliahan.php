@@ -62,7 +62,10 @@ class JadwalPerkuliahan extends CI_Controller {
 					}
 				}
 				$nestedData['nomor'] = "";
-				$nestedData['aksi'] = "";
+				$nestedData['aksi'] = "
+					<a href='".base_url('matriks-jadwal-perkuliahan?id=').$row->id."' target='_blank'>
+						<button class='btn btn-sm btn-primary'><i class='fa fa-search-plus'></i></button>
+					</a>";
 				$nestedData['tahun_akademik'] = $row->tahun_akademik;
 				$nestedData['semester'] = ucfirst($row->semester);
 				$nestedData['list_prodi'] = $listProdi;

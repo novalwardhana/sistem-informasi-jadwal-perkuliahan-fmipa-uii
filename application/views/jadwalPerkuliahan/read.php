@@ -106,15 +106,15 @@
 				}
 			},
 			"columns": [
-				{ "data": "nomor", "className": "text-center", "width": "5%",
+				{ "data": "nomor", "className": "text-center", "width": "3%",
 					render: function (data, type, row, meta) {
 						return meta.row + meta.settings._iDisplayStart + 1;
 					}
 				},
 				{ "data": "aksi", "className": "text-center", "width": "5%"},
 				{ "data": "tahun_akademik", "width": "15%" },
-				{ "data": "semester", "width": "10%" },
-                { "data": "list_prodi", "width": "30%" },
+				{ "data": "semester", "width": "15%" },
+                { "data": "list_prodi", "width": "50%" },
 			]  
 		});
   });
