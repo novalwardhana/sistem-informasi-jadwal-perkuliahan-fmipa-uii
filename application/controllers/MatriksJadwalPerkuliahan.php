@@ -31,9 +31,36 @@ class MatriksJadwalPerkuliahan extends CI_Controller {
         $resp["data"] = array();
         $resp["data"]["ruang"] = $this->matriksJadwalPerkuliahanModel->getDataRuang();
         $resp["data"]["jadwal_perkuliahan"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahan();
-        print_r($resp);
-        exit();
         echo json_encode($resp);
+    }
+
+    public function matriksJadwalPerkuliahan() {
+        $data = array();
+        $data["title"] = "SIJP - Matriks Jadwal Perkuliahan";
+
+        /* Set id */
+        $id = (int)$this->input->get("id");
+        $data["id"] = $id;
+
+        /* Get ID penawaran mata kuliah */
+        $listIDPenawaranMataKuliah = array();
+        $listIDPenawaranMataKuliah[] = 0;
+        $IDPenawaranMataKuliah = $this->matriksJadwalPerkuliahanModel->getIDPenawaranMataKuliah($id);
+        foreach ($IDPenawaranMataKuliah as $row) {
+            $listIDPenawaranMataKuliah[] = $row->id;
+        }
+        $data["list_id_penawaran_mata_kuliah"] = $listIDPenawaranMataKuliah;
+
+        /* Get data jadwal perkuliahan by ID */
+        $data["jadwal_perkuliahan_senin"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "senin");
+        $data["jadwal_perkuliahan_selasa"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "selasa");
+        $data["jadwal_perkuliahan_rabu"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "rabu");
+        $data["jadwal_perkuliahan_kamis"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "kamis");
+        $data["jadwal_perkuliahan_jumat"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "jumat");
+        $data["jadwal_perkuliahan_sabtu"] = $this->matriksJadwalPerkuliahanModel->getDataJadwalPerkuliahanByID($listIDPenawaranMataKuliah, "sabtu");
+
+        print_r($data);
+        //$this->load->view('matriksJadwalPerkuliahan/read', $data);
     }
 
 }
