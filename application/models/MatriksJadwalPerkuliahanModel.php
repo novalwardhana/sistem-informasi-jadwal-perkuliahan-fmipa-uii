@@ -64,7 +64,7 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
         return $result;
     }
 
-    public function countListDataJadwalPerkuliahan($listIDPenawaranMataKuliah) {
+    public function getTotalDataJadwalPerkuliahan($listIDPenawaranMataKuliah) {
         $sql = "SELECT 
                 count(*) as total
             from penawaran_mata_kuliah_detail pmkd 
@@ -86,6 +86,8 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
         $sql = "SELECT 
                 pmkd.id,
                 pmkd.id_penawaran_mata_kuliah,
+                mk.kode as kode_mata_kuliah,
+	            mk.nama as mata_kuliah,
                 pmkd.id_dosen,
                 md.nik as nik_dosen,
                 md.nama as dosen,
@@ -100,8 +102,8 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
                 pmkd.id_kelas,
                 mk.kode as kelas,
                 pmkd.id_ruang,
-                mr.kode,
-                mr.nama,
+                mr.kode as kode_ruang,
+                mr.nama as ruang,
                 pmkd.kapasitas
             from penawaran_mata_kuliah_detail pmkd 
             inner join master_mata_kuliah mk on pmkd.id_mata_kuliah = mk.id 

@@ -41,7 +41,8 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No</th>
-                                                <th class="text-center">Mata Kuliah</th>
+                                                <th class="text-center">Aksi</th>
+                                                <th>Mata Kuliah</th>
                                                 <th>Dosen Utama</th>
                                                 <th>Dosen Tim 1</th>
                                                 <th>Dosen Tim 2</th>

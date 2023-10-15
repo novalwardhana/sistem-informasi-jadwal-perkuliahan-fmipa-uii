@@ -69,7 +69,7 @@ class MatriksJadwalPerkuliahan extends CI_Controller {
             
             /* Get list jadwal perkuliahan */
             $data["list_jadwal_perkuliahan"] = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah);
-            $data["count_list_data_jadwal_perkuliahan"] = intval($this->matriksJadwalPerkuliahanModel->countListDataJadwalPerkuliahan($listIDPenawaranMataKuliah));
+            $data["count_list_data_jadwal_perkuliahan"] = intval($this->matriksJadwalPerkuliahanModel->getTotalDataJadwalPerkuliahan($listIDPenawaranMataKuliah));
 
             $resp["code"] = 200;
             $resp["message"] = "Success";
@@ -81,6 +81,51 @@ class MatriksJadwalPerkuliahan extends CI_Controller {
             $resp["data"] = $data;
             echo json_encode($resp);
         }
+    }
+
+    public function getListMatriks() {
+       
+        /* Get list id penaawaran mata kuliah */
+        $id = (int)$this->input->get("id");
+        $listIDPenawaranMataKuliah = array();
+        $listIDPenawaranMataKuliah[] = 0;
+        $IDPenawaranMataKuliah = $this->matriksJadwalPerkuliahanModel->getIDPenawaranMataKuliah($id);
+        foreach ($IDPenawaranMataKuliah as $row) {
+            $listIDPenawaranMataKuliah[] = $row->id;
+        }
+
+        /* Get data */
+        $totalData = $this->matriksJadwalPerkuliahanModel->getTotalDataJadwalPerkuliahan($listIDPenawaranMataKuliah);
+        $listDataJadwalPerkuliahan = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah);
+        $totalFiltered = $totalData;
+
+        /* Compose data */
+        $data = array();
+        if (!empty($listDataJadwalPerkuliahan)) {
+            foreach ($listDataJadwalPerkuliahan as $row) {
+                $nestedData['nomor'] = "";
+                $nestedData['aksi'] = "";
+                $nestedData['mata_kuliah'] = $row->kode_mata_kuliah." - ".$row->mata_kuliah;
+                $nestedData['dosen'] = $row->dosen;
+                $nestedData["dosen_tim_1"] = $row->dosen_tim_1;
+                $nestedData["dosen_tim_2"] = $row->dosen_tim_2;
+                $nestedData['jadwal_mulai'] = $row->jadwal_mulai;
+                $nestedData["jadwal_selesai"] = $row->jadwal_selesai;
+                $nestedData["kelas"] = $row->kelas;
+                $nestedData["ruang"] = $row->ruang;
+                $nestedData["kapasitas"] = $row->kapasitas;
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+			"draw"            => intval($_POST['draw']),  
+			"recordsTotal"    => intval($totalData),  
+			"recordsFiltered" => intval($totalFiltered), 
+			"data"            => $data   
+		);
+        echo json_encode($json_data);
+
     }
 
 }

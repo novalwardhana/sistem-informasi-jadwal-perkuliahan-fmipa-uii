@@ -73,6 +73,41 @@
         $(".menu-sidebar-jadwal-perkuliahan").addClass('active');
         $(".menu-sidebar-matriks-jadwal-perkuliahan").addClass('active');
 
+        /* Get list matriks */
+        let urlGetListMatriks = "<?php echo base_url('matriks-jadwal-perkuliahan/get-list-matriks')."?id=".$id ?>";
+        $('#listDataTable').DataTable({
+            "ordering": false,
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": urlGetListMatriks,
+                "dataType": "json",
+                "type": "POST",
+                "data":{   
+                }
+            },
+            "columns": [
+                { "data": "nomor", "className": "text-center", "width": "5%",
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                { "data": "aksi", "className": "text-center", "width": "5%"},
+                { "data": "mata_kuliah", "width": "15%" },
+                { "data": "dosen", "width": "15%" },
+                { "data": "dosen_tim_1", "width": "15%" },
+                { "data": "dosen_tim_2", "width": "15%" },
+                { "data": "jadwal_mulai", "width": "7%" },
+                { "data": "jadwal_selesai", "width": "7%" },
+                { "data": "kelas", "width": "7%" },
+                { "data": "ruang", "width": "7%" },
+                { "data": "kapasitas", "width": "8%" },
+            ]  
+        });
+
+
+        /* Get data matriks */
         let listRuang = []
         let listJadwalKuliahSenin = []
         let listJadwalKuliahSelasa = []
@@ -111,6 +146,7 @@
         }
         getDataMatriks()
 
+        /* Render matriks function */
         let renderMatriks = function(listRuang, listJadwalKuliah, domID) {
             var calendarEl = document.getElementById(domID);
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -159,6 +195,7 @@
             calendar.render();
         }
 
+        /* Render tab matriks jadwal perkuliahan */
         $('.jadwalPerkuliahanSenin').click(function(){
             setTimeout(function(){
                 renderMatriks(listRuang, listJadwalKuliahSenin, "matriksSenin")
