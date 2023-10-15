@@ -117,8 +117,8 @@ $route["penawaran-mata-kuliah/edit-kontrak-penawaran-mata-kuliah"] = 'PenawaranM
 $route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';
 $route['jadwal-perkuliahan/get-jadwal'] = 'JadwalPerkuliahan/getListJadwal';
 $route['jadwal-perkuliahan/create'] = 'JadwalPerkuliahan/create';
-$route['matriks-jadwal-perkuliahan'] = 'MatriksJadwalPerkuliahan/matriksJadwalPerkuliahan';
-$route['matriks-jadwal-perkuliahan/get-data-ruang'] = "MatriksJadwalPerkuliahan/getDataRuang";
+$route['matriks-jadwal-perkuliahan'] = 'MatriksJadwalPerkuliahan';
+$route['matriks-jadwal-perkuliahan/get-data-matriks'] = "MatriksJadwalPerkuliahan/getDataMatriks";
 
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';
