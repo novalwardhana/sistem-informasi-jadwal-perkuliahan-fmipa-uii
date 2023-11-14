@@ -120,6 +120,7 @@ $route['jadwal-perkuliahan/create'] = 'JadwalPerkuliahan/create';
 $route['matriks-jadwal-perkuliahan'] = 'MatriksJadwalPerkuliahan';
 $route['matriks-jadwal-perkuliahan/get-data-matriks'] = "MatriksJadwalPerkuliahan/getDataMatriks";
 $route['matriks-jadwal-perkuliahan/get-list-matriks'] = "MatriksJadwalPerkuliahan/getListMatriks";
+$route['matriks-jadwal-perkuliahan/set-jadwal'] = "MatriksJadwalPerkuliahan/setJadwal";
 
 /* Router Master User Management */
 $route['user-management'] = 'UserManagement';

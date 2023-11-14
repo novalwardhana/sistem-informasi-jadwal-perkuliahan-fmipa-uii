@@ -99,32 +99,13 @@
 
 			<!-- Treeview Jadwal Perkuliahan -->
 			<?php
-				if (isset($dataSessionPermission['JadwalPerkuliahan']) || isset($dataSessionPermission['MatriksJadwalPerkuliahan'])) {
+				if (isset($dataSessionPermission['JadwalPerkuliahan'])) {
 			?>
-			<li class="treeview menu-sidebar-jadwal-perkuliahan">
-				<a href="#">
+			<li class="menu-sidebar-jadwal-perkuliahan">
+				<a href="<?php echo base_url('jadwal-perkuliahan') ?>">
 					<i class="fa fa-calendar"></i>
 					<span>Jadwal Perkuliahan</span>
-					<span class="pull-right-container">
-					<i class="fa fa-angle-left pull-right"></i>
-					</span>
 				</a>
-				<ul class="treeview-menu" style="padding-top: 3px; padding-bottom: 3px;">
-					<?php
-						if (isset($dataSessionPermission['JadwalPerkuliahan'])) {
-					?>
-					<li class="menu-sidebar-jadwal-perkuliahan-jadwal"><a href="<?php echo base_url('jadwal-perkuliahan') ?>" style="margin: 12px 5px 12px 21px;"><span>Jadwal</span></a></li>
-					<?php
-						}
-					?>
-					<?php
-						if (isset($dataSessionPermission['MatriksJadwalPerkuliahan'])) {
-					?>
-					<li class="menu-sidebar-matriks-jadwal-perkuliahan"><a href="<?php echo base_url('matriks-jadwal-perkuliahan') ?>" style="margin: 12px 5px 12px 21px;"><span>Matriks</span></a></li>
-					<?php
-						}
-					?>
-				</ul>
 			</li>
 			<?php
 				}

@@ -14,8 +14,6 @@
 					<h3 class="box-title">List Jadwal Perkuliahan</h3>
 				</div>
 				<div class="box-body">
-					<a href="<?php echo base_url('jadwal-perkuliahan/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
-					<br><br>
 					<table id="listJadwalPerkuliahan" class="table table-bordered table-striped" style="width: 100%">
 						<thead>
 							<tr>

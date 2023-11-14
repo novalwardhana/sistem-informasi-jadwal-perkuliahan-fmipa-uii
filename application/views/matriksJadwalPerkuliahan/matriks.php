@@ -20,7 +20,9 @@
   <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/css/skins/_all-skins.min.css') ?>">
   <!-- Skin UII -->
   <link rel="stylesheet" href="<?php echo base_url('assets/skin-uii-light.css') ?>">
-
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/css/select2.min.css') ?>">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-uii-light sidebar-mini">
@@ -38,6 +40,11 @@
 			$this->load->view('matriksjadwalPerkuliahan/matriksMain');
 		?>
     </div>
+
+    <?php
+        $this->load->view('matriksjadwalPerkuliahan/matriksMainEdit');
+    ?>
+
     <?php
         $this->load->view('layout/footer');
     ?>
@@ -58,9 +65,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/dist/js/demo.js') ?>"></script>
 <!-- page script -->
-
+<!-- Select 2 -->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/bower_components/select2/dist/js/select2.full.min.js') ?>"></script>
 <!-- fullcalendar timeline -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.8/index.global.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         console.info("add event")
@@ -69,6 +78,23 @@
 
 <script src="<?php echo base_url('assets/toast/jquery.toaster.js') ?>"></script>
 <script>
+
+    $('#dit-jadwal-perkuliahan').on('show.bs.modal', function(e) {});
+    const editJadwalPerkuliahan = function(mataKuliah, dosen, dosenTambahan1, dosenTambahan2, kelas, kapasitas, idRuang, hari, jadwalMulai, jadwalSelesai, id, idPeriode) {
+        document.forms["formEditJadwalPerkuliahan"]["mata_kuliah"].value = mataKuliah
+        document.forms["formEditJadwalPerkuliahan"]["dosen"].value = dosen
+        document.forms["formEditJadwalPerkuliahan"]["dosen_tambahan_1"].value = dosenTambahan1
+        document.forms["formEditJadwalPerkuliahan"]["dosen_tambahan_2"].value = dosenTambahan2
+        document.forms["formEditJadwalPerkuliahan"]["kelas"].value = kelas
+        document.forms["formEditJadwalPerkuliahan"]["kapasitas"].value = kapasitas
+        $(".selectRuang").val(idRuang).trigger("change")
+        $(".selectHari").val(hari).trigger("change")
+        document.forms["formEditJadwalPerkuliahan"]["jadwal_mulai"].value = jadwalMulai
+        document.forms["formEditJadwalPerkuliahan"]["jadwal_selesai"].value = jadwalSelesai
+        document.forms["formEditJadwalPerkuliahan"]["id"].value = parseInt(id)
+        document.forms["formEditJadwalPerkuliahan"]["id_periode"].value = parseInt(idPeriode)
+    }
+
     $(document).ready(function () {
         $(".menu-sidebar-jadwal-perkuliahan").addClass('active');
         $(".menu-sidebar-matriks-jadwal-perkuliahan").addClass('active');
@@ -94,13 +120,14 @@
                     }
                 },
                 { "data": "aksi", "className": "text-center", "width": "5%"},
-                { "data": "mata_kuliah", "width": "15%" },
+                { "data": "mata_kuliah", "width": "10%" },
+                { "data": "kelas", "width": "7%" },
                 { "data": "dosen", "width": "15%" },
                 { "data": "dosen_tim_1", "width": "15%" },
                 { "data": "dosen_tim_2", "width": "15%" },
+                { "data": "hari", "width": "7%" },
                 { "data": "jadwal_mulai", "width": "7%" },
                 { "data": "jadwal_selesai", "width": "7%" },
-                { "data": "kelas", "width": "7%" },
                 { "data": "ruang", "width": "7%" },
                 { "data": "kapasitas", "width": "8%" },
             ]  
@@ -152,12 +179,12 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 initialView: 'resourceTimeline',
-                resourceAreaWidth: "20%",
+                resourceAreaWidth: "15%",
                 eventMinWidth: 170,
                 height: 650,
                 contentHeight: 600,
-                slotMinTime: "06:00:00",
-                slotMaxTime: "21:00:00",
+                slotMinTime: "07:00:00",
+                slotMaxTime: "18:30:00",
                 slotMinWidth: 50,
                 slotLabelFormat: {
                     hour: 'numeric',
@@ -169,7 +196,7 @@
                 titleFormat: {
                     hour12: false,
                 },
-                slotDuration: "00:10:00",
+                slotDuration: "00:15:00",
                 slotLabelInterval: "00:30",
                 aspectRatio: 5, 
                 editable: true,
@@ -226,6 +253,86 @@
                 renderMatriks(listRuang, listJadwalKuliahSabtu, "matriksSabtu")
             }, 500);
         });
+
+        $('.selectHari').select2({
+            placeholder: 'Pilih hari',
+            allowClear: true,
+            dropdownParent: $('#edit-jadwal-perkuliahan')
+        });
+        $('.selectRuang').select2({
+            placeholder: 'Pilih ruang',
+            allowClear: true,
+            dropdownParent: $('#edit-jadwal-perkuliahan')
+        });
+        $('.jadwalMulai').timepicker({
+            timeFormat: 'HH:mm:ss',
+            interval: 30,
+            minTime: '10',
+            maxTime: '6:00pm',
+            defaultTime: '11',
+            startTime: '09:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+        $('.jadwalSelesai').timepicker({
+            timeFormat: 'HH:mm:ss',
+            interval: 30,
+            minTime: '10',
+            maxTime: '6:00pm',
+            defaultTime: '11',
+            startTime: '09:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true,
+        });
+
+        /* Simpan perubahan jadwal perkuliahan */
+        document.forms["formEditJadwalPerkuliahan"].addEventListener("submit", (event) => {
+            event.preventDefault()
+            const id = parseInt(document.forms["formEditJadwalPerkuliahan"]["id"].value)
+            const idPeriode = parseInt(document.forms["formEditJadwalPerkuliahan"]["id_periode"].value)
+            const hari = document.forms["formEditJadwalPerkuliahan"]["hari"].value
+            const jadwalMulai = document.forms["formEditJadwalPerkuliahan"]["jadwal_mulai"].value
+            const jadwalSelesai = document.forms["formEditJadwalPerkuliahan"]["jadwal_selesai"].value
+            const idRuang = parseInt(document.forms["formEditJadwalPerkuliahan"]["id_ruang"].value)
+            const dataBody = {
+                "id": id,
+                "id_periode":idPeriode,
+                "hari": hari,
+                "jadwal_mulai": jadwalMulai,
+                "jadwal_selesai": jadwalSelesai,
+                "id_ruang": idRuang,
+            }
+            
+            const url = "<?php echo base_url('matriks-jadwal-perkuliahan/set-jadwal') ?>";
+            $.ajax({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(dataBody),
+                async: false,
+                success: function(result) {
+                    if (result.code === 200) {
+                        $.toaster({ message : 'Berhasil set jadwal perkuliahan', title : 'Success', priority : 'success' });
+                        setTimeout(function(){
+                            const redirectURL = "<?php echo base_url('matriks-jadwal-perkuliahan?id=') ?>" +idPeriode
+                            window.location.assign(redirectURL);
+                        }, 1000);
+                        return
+                    } else {
+                        $.toaster({ message : result.message, title : 'Warning', priority : 'warning' });
+                    }
+                },
+                error: function() {
+                    $.toaster({ message : 'Gagal set jadwal perkuliahan', title : 'Failed', priority : 'danger' });
+                }
+            });
+        })
 
     });
 </script>

@@ -8,6 +8,35 @@
 				<li class="active">List</li>
 			</ol>
 		</div>
+        
+        <!-- Header -->
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Matriks Jadwal Perkuliahan</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tahun Akademik</label>
+                                <input type="text" name="tahun_akademik" value="<?php echo $periode->tahun_akademik; ?>" class="form-control" placeholder="Periode" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Semester</label>
+                                <input type="text" name="periode" value="<?php echo ucfirst($periode->semester); ?>" class="form-control" placeholder="Program Studi" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Prodi</label><br>
+                                <?php echo $prodi; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matriks -->
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-header with-border">
@@ -37,18 +66,20 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="listJadwalPerkuliahan">
+                                    <br>
                                     <table id="listDataTable" class="table table-bordered table-striped" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No</th>
                                                 <th class="text-center">Aksi</th>
                                                 <th>Mata Kuliah</th>
+                                                <th>Kelas</th>
                                                 <th>Dosen Utama</th>
-                                                <th>Dosen Tim 1</th>
-                                                <th>Dosen Tim 2</th>
+                                                <th>Dosen Tambahan 1</th>
+                                                <th>Dosen Tambahan 2</th>
+                                                <th>Hari</th>
                                                 <th>Jam Mulai</th>
                                                 <th>Jam Selesai</th>
-                                                <th>Kelas</th>
                                                 <th>Ruang</th>
                                                 <th>Kapasitas</th>
                                             </tr>
