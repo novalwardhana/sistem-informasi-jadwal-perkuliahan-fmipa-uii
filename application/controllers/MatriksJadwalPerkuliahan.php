@@ -141,6 +141,7 @@ class MatriksJadwalPerkuliahan extends CI_Controller
                         <i class='fa fa-pencil'></i>
                     </button>
                 ";
+                $nestedData['prodi'] = $row->prodi;
                 $nestedData['mata_kuliah'] = $row->kode_mata_kuliah . " - " . $row->mata_kuliah;
                 $nestedData["kelas"] = $row->kelas;
                 $nestedData['dosen'] = $row->dosen;

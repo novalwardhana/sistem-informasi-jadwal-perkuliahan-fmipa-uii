@@ -14,6 +14,10 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Matriks Jadwal Perkuliahan</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -39,9 +43,6 @@
         <!-- Matriks -->
 		<div class="col-md-12">
 			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">Matriks Jadwal Perkuliahan</h3>
-				</div>
 				<div class="box-body">
 
                     <!-- card -->
@@ -72,6 +73,7 @@
                                             <tr>
                                                 <th class="text-center">No</th>
                                                 <th class="text-center">Aksi</th>
+                                                <th>Program Studi</th>
                                                 <th>Mata Kuliah</th>
                                                 <th>Kelas</th>
                                                 <th>Dosen Utama</th>

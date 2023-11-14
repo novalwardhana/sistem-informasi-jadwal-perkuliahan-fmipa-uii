@@ -120,6 +120,7 @@
                     }
                 },
                 { "data": "aksi", "className": "text-center", "width": "5%"},
+                { "data": "prodi", "width": "10%" },
                 { "data": "mata_kuliah", "width": "10%" },
                 { "data": "kelas", "width": "7%" },
                 { "data": "dosen", "width": "15%" },
@@ -181,7 +182,7 @@
                 initialView: 'resourceTimeline',
                 resourceAreaWidth: "15%",
                 eventMinWidth: 170,
-                height: 650,
+                height: 670,
                 contentHeight: 600,
                 slotMinTime: "07:00:00",
                 slotMaxTime: "18:30:00",

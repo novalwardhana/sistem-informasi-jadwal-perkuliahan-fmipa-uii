@@ -141,7 +141,8 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
                 coalesce(pmkd.id_ruang, 0) as id_ruang,
                 mr.kode as kode_ruang,
                 mr.nama as ruang,
-                coalesce(pmkd.kapasitas, 0) as kapasitas
+                coalesce(pmkd.kapasitas, 0) as kapasitas,
+                mp.nama as prodi
             from penawaran_mata_kuliah_detail pmkd 
             left join master_mata_kuliah mk on pmkd.id_mata_kuliah = mk.id 
             left join master_dosen d on pmkd.id_dosen  = d.id 
@@ -150,6 +151,7 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
             left join master_dosen md_tim_2 on pmkd.id_dosen_tim_2 = md_tim_2.id 
             left join master_kelas k on pmkd.id_kelas = k.id
             left join master_ruang mr on pmkd.id_ruang = mr.id
+            left join master_prodi mp on mk.id_prodi  = mp.id
             where 
                 pmkd.id_penawaran_mata_kuliah in (".implode(",", $listIDPenawaranMataKuliah).")";
         $query=$this->db->query($sql);
