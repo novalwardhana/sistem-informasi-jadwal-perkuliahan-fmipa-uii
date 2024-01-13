@@ -43,7 +43,7 @@
   </div>
   <div class="login-header-custom">
       <img src="<?php echo base_url('assets/logo_uii.png') ?>" width="75" height="100">
-      <h4 class="login-header-custom-text"><b>Sistem Informasi Jadwal Perkuliahan</b></h4>
+      <h4 class="login-header-custom-text"><b>Test Noval</b></h4>
 		  <h4><b style="text-align: center">FMIPA UII</b><h4>
   </div>
   <!-- /.login-logo -->
