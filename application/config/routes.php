@@ -85,6 +85,7 @@ $route['master-ruang/delete'] = 'MasterRuang/delete';
 $route['master-mata-kuliah'] = 'MasterMataKuliah';
 $route['master-mata-kuliah/get-data'] = 'MasterMataKuliah/getData';
 $route['master-mata-kuliah/create'] = 'MasterMataKuliah/create';
+$route['master-mata-kuliah/upload-from-excel'] = 'MasterMataKuliah/uploadFromExcel';
 $route['master-mata-kuliah/update'] = 'MasterMataKuliah/update';
 $route['master-mata-kuliah/delete'] = 'MasterMataKuliah/delete';
 
@@ -112,6 +113,7 @@ $route["penawaran-mata-kuliah/add-kontrak-penawaran-mata-kuliah"] = "PenawaranMa
 $route["penawaran-mata-kuliah/get-data-detail"] = 'PenawaranMataKuliah/getDataDetail';
 $route["penawaran-mata-kuliah/delete-detail"] = 'PenawaranMataKuliah/deleteDetail';
 $route["penawaran-mata-kuliah/edit-kontrak-penawaran-mata-kuliah"] = 'PenawaranMataKuliah/editKontrakPenawaranMataKuliah';
+$route["penawaran-mata-kuliah/upload-penawaran-mata-kuliah"] = 'PenawaranMataKuliah/uploadPenawaranMataKuliah';
 
 /* Router Jadwal Perkuliahan */
 $route['jadwal-perkuliahan'] = 'JadwalPerkuliahan';

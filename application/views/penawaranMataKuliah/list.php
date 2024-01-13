@@ -110,6 +110,14 @@
     $('#confirm-delete').on('show.bs.modal', function(e) {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
+
+    /* Upload penawaran mata kuliah */
+    const uploadPenawaranMataKuliah = function() {
+        console.info("Kompiang")
+        const id_periode = parseInt(document.forms["formData"]["id_periode"].value);
+        const redirectURL = "<?php echo base_url('penawaran-mata-kuliah/upload-penawaran-mata-kuliah?id_periode=') ?>" + id_periode;
+        window.location.assign(redirectURL);
+    }
     
 	$(document).ready(function () {
 		$(".menu-sidebar-penawaran-mata-kuliah").addClass('active');

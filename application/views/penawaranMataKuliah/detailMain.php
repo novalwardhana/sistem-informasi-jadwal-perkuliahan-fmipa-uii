@@ -51,6 +51,7 @@
                                     <th>Dosen Utama</th>
                                     <th>Dosen Tim 1</th>
                                     <th>Dosen Tim 2</th>
+                                    <th>Dosen Tim 3</th>
                                     <th>Kelas</th>
                                     <th>Kuota Kelas</th>
                                 </tr>

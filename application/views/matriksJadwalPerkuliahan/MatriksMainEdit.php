@@ -23,12 +23,16 @@
                                 <input type="text" name="dosen" class="form-control" placeholder="Dosen" readonly> 
                             </div>
                             <div class="form-group">
-                                <label>Dosen Tambahan 1</label>
+                                <label>Dosen Tim 1</label>
                                 <input type="text" name="dosen_tambahan_1" class="form-control" placeholder="-" readonly> 
                             </div>
                             <div class="form-group">
-                                <label>Dosen Tambahan 2</label>
+                                <label>Dosen Tim 2</label>
                                 <input type="text" name="dosen_tambahan_2" class="form-control" placeholder="-" readonly> 
+                            </div>
+                            <div class="form-group">
+                                <label>Dosen Tim 3</label>
+                                <input type="text" name="dosen_tambahan_3" class="form-control" placeholder="-" readonly> 
                             </div>
 
                            
@@ -82,7 +86,7 @@
                                     <?php
 										foreach($data_ruang_combobox as $key => $value) {
 									?>
-											<option value="<?php echo $value->id ?>"><?php echo $value->nama ?></option>
+											<option value="<?php echo $value->id ?>"><?php echo $value->ruang ?></option>
                                     <?php
                                         }
                                     ?>

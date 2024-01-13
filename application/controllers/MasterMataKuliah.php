@@ -138,6 +138,78 @@ class MasterMataKuliah extends CI_Controller {
         }
     }
 
+	public function uploadFromExcel() {
+		$data=array();
+
+		$simpan = false;
+		if(isset($_POST["simpan"])) {
+			$simpan = true;
+		}
+		switch ($simpan) {
+			case true:
+				try {
+					$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+					if ($extension != "xlsx") {
+						throw new Exception("Ekstensi file tidak sesuai");
+					}
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+					$uploadDatas = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+					if (count($uploadDatas) < 2) {
+						throw new Exception("Data belum diisi");
+					}
+					$params = [];
+					for ($i = 2; $i <= count($uploadDatas); $i++) {
+						$param = [];
+						$param["kode_program_studi"] = $uploadDatas[$i]["A"];
+						$checkProgramStudi = $this->masterMataKuliahModel->getProgramStudiByKode($param["kode_program_studi"]);
+						if (!$checkProgramStudi) {
+							throw new Exception("Kode program studi tidak valid (data baris ke-$i)");
+						}
+						$idProgramStudi = (int) $checkProgramStudi->id;
+						$param["id_program_studi"] = $idProgramStudi;
+						$param["kode_mata_kuliah"] = $uploadDatas[$i]["B"];
+						$param["nama"] = $uploadDatas[$i]["C"];
+						$param["semester"] = (int) $uploadDatas[$i]["D"];
+						if ($param["semester"]  <= 0) {
+							throw new Exception("Semester tidak valid (data baris ke-$i)");
+						}
+						$param["kontribusi"] = (int) $uploadDatas[$i]["E"];
+						if ($param["kontribusi"]  <= 0) {
+							throw new Exception("Kontribusi tidak valid (data baris ke-$i)");
+						}
+						$param["tipe"] = strtolower($uploadDatas[$i]["F"]);
+						if ($param["tipe"] != "wajib" && $param["tipe"] != "konsentrasi" && $param["tipe"] != "pilihan") {
+							throw new Exception("Tipe mata kuliah tidak valid (data baris ke-$i)");
+						}
+						$params[] = $param;
+					}
+					$insertMultiple = $this->masterMataKuliahModel->insertMultiple($params);
+					if (!$insertMultiple) {
+						throw new Exception("Gagal upload data");
+					}
+					$response = array();
+					$response["code"] = 200;
+					$response["message"] = "success";
+					$response["data"] = null;
+					echo json_encode($response);
+				} catch(Exception $e) {
+					$response = array();
+					$response["code"] = 400;
+					$response["message"] = $e->getMessage();
+					$response["data"] = null;
+					echo json_encode($response);
+				}
+				break;
+
+			case false:
+				$data['title'] = 'SIJP - Master Mata Kuliah Upload';
+				$this->load->view('masterMataKuliah/upload', $data);
+				break;
+			default:
+		}
+	}
+
     public function delete() {
 		try {
 			$params = [];

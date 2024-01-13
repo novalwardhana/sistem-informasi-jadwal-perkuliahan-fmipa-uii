@@ -47,7 +47,10 @@
         <div class="col-md-12 listPenawaranMataKuliah" style="display: none;">
             <div class="box box-primary">
                 <div class="box-body">
-					<button type="button" class="btn btn-sm btn-success" data-toggle='modal' data-target='#add-penawaran-mata-kuliah'><i class='fa fa-plus'></i>Tambah Penawaran Mata Kuliah</button>
+					<button type="button" class="btn btn-sm btn-success" data-toggle='modal' data-target='#add-penawaran-mata-kuliah'><i class='fa fa-plus'></i> Tambah Penawaran Mata Kuliah</button>
+					&nbsp;
+					<button type="button" class="btn btn-sm btn-success" onclick="uploadPenawaranMataKuliah()"><i class='fa fa-file'></i> Upload Penawaran Mata Kuliah</button>
+					<!-- <a href="<?php echo base_url('master-mata-kuliah/upload-from-excel') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-file'></i> Upload Penawaran Mata Kuliah</button></a> -->
 					<br><br>
                     <table id="listDataTable" class="table table-bordered table-striped" style="width: 100%">
 						<thead>

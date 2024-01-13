@@ -81,6 +81,51 @@ class MasterMataKuliahModel extends CI_Model {
 		}
     }
 
+	public function checkProgramStudi($kodeProdi) {
+        $this->db->where([
+			"kode" => $kodeProdi
+		]);
+        $query = $this->db->get('master_prodi');
+        return $query->num_rows() > 0;
+    }
+
+	public function getProgramStudiByKode($kodeProdi) {
+        $sql = "SELECT 
+                id,
+                kode,
+				nama
+            from master_prodi
+            where kode = $kodeProdi";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function insertMultiple($params) {
+		$this->db->trans_begin();
+
+		for ($i = 0; $i < count($params); $i++) {
+			$param = [
+				$params[$i]['id_program_studi'],
+				$params[$i]['kode_mata_kuliah'], 
+				$params[$i]['nama'], 
+				$params[$i]['semester'],
+				$params[$i]['tipe'],
+				$params[$i]['kontribusi']
+			];
+			$sql = "insert into master_mata_kuliah (id_prodi, kode, nama, semester, tipe, kontribusi_sks) values(?, ?, ?, ?, ?, ?)";
+        	$this->db->query($sql, $param);
+		}
+
+		if ($this->db->trans_status() === FALSE) {
+        	$this->db->trans_rollback();
+			return false;
+		}
+		$this->db->trans_commit();
+
+		return true;
+	}
+
     public function delete($params) {
         $data = [
             $params['id']

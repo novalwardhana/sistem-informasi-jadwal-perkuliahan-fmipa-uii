@@ -66,6 +66,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Dosen Tim 3</label>
+                                <select class="selectDosenEditTim3 form-control" style="width: 100%;" name="id_dosen_tim_3">
+                                    <option></option>
+                                    <?php
+                                    foreach($listDosen as $key => $value) {
+                                    ?>
+                                        <option value="<?php echo $value->id ?>"><?php echo $value->nik." - ".$value->nama ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Kelas *</label>
                                 <select class="selectKelasEdit form-control" style="width: 100%;" name="id_kelas" required>
                                     <option></option>

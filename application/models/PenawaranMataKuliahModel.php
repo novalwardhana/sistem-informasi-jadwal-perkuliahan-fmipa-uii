@@ -17,6 +17,13 @@ class PenawaranMataKuliahModel extends CI_Model {
 		return $hasil;
 	}
 
+	public function getListPeriodeById($id_periode) {
+		$this->db->where('id', $id_periode);
+		$query=$this->db->get('master_periode');
+		$row=$query->row();
+		return $row;
+	}
+
     public function getListProdi() {
 		$sql="SELECT 
 				a.id,
@@ -119,6 +126,88 @@ class PenawaranMataKuliahModel extends CI_Model {
 		}
     }
 
+	public function getProgramStudiByKode($kodeProdi) {
+        $sql = "SELECT 
+                id,
+                kode,
+				nama
+            from master_prodi
+            where kode = $kodeProdi";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function getPenawaranMataKuliahByPeriode($id_periode, $id_prodi) {
+        $sql = "SELECT 
+                id,
+				id_periode,
+				id_prodi
+            from penawaran_mata_kuliah
+            where id_periode = $id_periode and id_prodi = $id_prodi ";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function getMataKuliahByKode($id_prodi, $kode) {
+		$sql = "SELECT 
+				*
+			FROM master_mata_kuliah
+			where id_prodi = $id_prodi and kode = '$kode' ";
+		$query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+	}
+	
+	public function getDosenByKode($kode) {
+        $sql = "SELECT 
+                *
+            from master_dosen
+            where nik = $kode";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function getKelasByKode($kode) {
+        $sql = "SELECT 
+                *
+            from master_kelas
+            where kode = '$kode'";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function insertMultiple($params) {
+		$this->db->trans_begin();
+
+		for ($i = 0; $i < count($params); $i++) {
+			$param = [
+				$params[$i]['id_penawaran_mata_kuliah'],
+				$params[$i]['id_mata_kuliah'],
+				$params[$i]['id_dosen'],
+				$params[$i]['id_dosen_tim_1'],
+				$params[$i]['id_dosen_tim_2'],
+				$params[$i]['id_dosen_tim_3'],
+				$params[$i]['id_kelas'],
+				$params[$i]['kapasitas'],
+			];
+			$sql = "insert into penawaran_mata_kuliah_detail (id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_dosen_tim_1, id_dosen_tim_2, id_dosen_tim_3, id_kelas, kapasitas) values(?, ?, ?, ?, ?, ?, ?, ?)";
+			$this->db->query($sql, $param);
+		}
+
+		if ($this->db->trans_status() === FALSE) {
+			print_r($this->db->error());
+        	$this->db->trans_rollback();
+			return false;
+		}
+		$this->db->trans_commit();
+
+		return true;
+	}
+
 	public function delete($params) {
         $data = [
             $params['id']
@@ -158,10 +247,11 @@ class PenawaranMataKuliahModel extends CI_Model {
 			$params['id_dosen'],
 			$params["id_dosen_tim_1"],
 			$params["id_dosen_tim_2"],
+			$params["id_dosen_tim_3"],
 			$params['id_kelas'],
 			$params['kapasitas'],
 		];
-		$sql = "insert into penawaran_mata_kuliah_detail (id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_dosen_tim_1, id_dosen_tim_2, id_kelas, kapasitas) values(?, ?, ?, ?, ?, ?, ?)";
+		$sql = "insert into penawaran_mata_kuliah_detail (id_penawaran_mata_kuliah, id_mata_kuliah, id_dosen, id_dosen_tim_1, id_dosen_tim_2, id_dosen_tim_3, id_kelas, kapasitas) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		$query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;
@@ -222,6 +312,9 @@ class PenawaranMataKuliahModel extends CI_Model {
 				pmkd.id_dosen_tim_2,
 				md_tim_2.nik as nik_dosen_tim_2,
 				md_tim_2.nama as dosen_tim_2,
+				pmkd.id_dosen_tim_3,
+				md_tim_3.nik as nik_dosen_tim_3,
+				md_tim_3.nama as dosen_tim_3,
 				pmkd.id_kelas,
 				mk.kode as kelas,
 				pmkd.kapasitas
@@ -230,6 +323,7 @@ class PenawaranMataKuliahModel extends CI_Model {
 			left join master_dosen md on pmkd.id_dosen = md.id 
 			left join master_dosen md_tim_1 on pmkd.id_dosen_tim_1 = md_tim_1.id
 			left join master_dosen md_tim_2 on pmkd.id_dosen_tim_2 = md_tim_2.id 
+			left join master_dosen md_tim_3 on pmkd.id_dosen_tim_3 = md_tim_3.id 
 			left join master_kelas mk on pmkd.id_kelas = mk.id,
 			(SELECT @rownum := 0) r
 			WHERE pmkd.id_penawaran_mata_kuliah = $id_penawaran_mata_kuliah
@@ -258,11 +352,12 @@ class PenawaranMataKuliahModel extends CI_Model {
 			$params['id_dosen'],
 			$params["id_dosen_tim_1"],
 			$params["id_dosen_tim_2"],
+			$params["id_dosen_tim_3"],
 			$params['id_kelas'],
 			$params['kapasitas'],
 			$params["id"],
 		];
-		$sql = "update penawaran_mata_kuliah_detail set id_mata_kuliah = ?, id_dosen = ?, id_dosen_tim_1 = ?, id_dosen_tim_2 = ?, id_kelas = ?, kapasitas = ? where id = ?";
+		$sql = "update penawaran_mata_kuliah_detail set id_mata_kuliah = ?, id_dosen = ?, id_dosen_tim_1 = ?, id_dosen_tim_2 = ?, id_dosen_tim_3 = ?, id_kelas = ?, kapasitas = ? where id = ?";
 		$query = $this->db->query($sql, $data);
 		if ($query) {
 			return true;
