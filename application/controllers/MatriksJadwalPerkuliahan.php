@@ -112,7 +112,7 @@ class MatriksJadwalPerkuliahan extends CI_Controller
             $data["list_ruang"] = $this->matriksJadwalPerkuliahanModel->getDataRuang();
 
             /* Get list jadwal perkuliahan */
-            $data["list_jadwal_perkuliahan"] = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, null, null, null, null, null, null, null, null, null, null);
+            $data["list_jadwal_perkuliahan"] = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, null, null, null, null, null, null, null, null, null, null, null);
             $data["count_list_data_jadwal_perkuliahan"] = intval($this->matriksJadwalPerkuliahanModel->getTotalDataJadwalPerkuliahan($listIDPenawaranMataKuliah, null, null, null, null, null, null, null, null, null, null));
 
             $resp["code"] = 200;
@@ -181,9 +181,22 @@ class MatriksJadwalPerkuliahan extends CI_Controller
             $listIDPenawaranMataKuliah[] = $row->id;
         }
 
+        $limit = $this->input->post('length');
+		$start = $this->input->post('start');
+		$order = 'id';
+		$dir = 'desc';
+		$search= $this->input->post('search')['value'];
+		$params=array(
+			'limit' => $limit,
+			'start' => $start,
+			'order' => $order,
+			'dir' => $dir,
+			'search' => $search
+		);
+
         /* Get data */
         $totalData = $this->matriksJadwalPerkuliahanModel->getTotalDataJadwalPerkuliahan($listIDPenawaranMataKuliah, $id_prodi, $id_mata_kuliah, $id_kelas, $id_dosen, $hari, $id_ruang, $kapasitas_awal, $kapasitas_akhir, $jam_mulai, $jam_selesai);
-        $listDataJadwalPerkuliahan = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, $id_prodi, $id_mata_kuliah, $id_kelas, $id_dosen, $hari, $id_ruang, $kapasitas_awal, $kapasitas_akhir, $jam_mulai, $jam_selesai);
+        $listDataJadwalPerkuliahan = $this->matriksJadwalPerkuliahanModel->getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, $id_prodi, $id_mata_kuliah, $id_kelas, $id_dosen, $hari, $id_ruang, $kapasitas_awal, $kapasitas_akhir, $jam_mulai, $jam_selesai, $params);
         $totalFiltered = $totalData;
         /* Compose data */
         $data = array();

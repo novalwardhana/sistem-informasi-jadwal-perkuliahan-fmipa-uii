@@ -150,7 +150,8 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
         return $result->total;
     }
 
-    public function getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, $id_prodi, $id_mata_kuliah, $id_kelas, $id_dosen, $hari, $id_ruang, $kapasitas_awal, $kapasitas_akhir, $jam_mulai, $jam_selesai) {
+    public function getListDataJadwalPerkuliahan($listIDPenawaranMataKuliah, $id_prodi, $id_mata_kuliah, $id_kelas, $id_dosen, $hari, $id_ruang, $kapasitas_awal, $kapasitas_akhir, $jam_mulai, $jam_selesai, $params) {
+        
         $sql = "SELECT 
             coalesce(pmkd.id, 0) as id,
             coalesce(pmkd.id_penawaran_mata_kuliah, 0) as id_penawaran_mata_kuliah,
@@ -189,7 +190,7 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
         left join master_ruang mr on pmkd.id_ruang = mr.id
         left join master_prodi mp on mk.id_prodi  = mp.id
         where 
-            pmkd.id_penawaran_mata_kuliah in (".implode(",", $listIDPenawaranMataKuliah).")";
+            pmkd.id_penawaran_mata_kuliah in (".implode(",", $listIDPenawaranMataKuliah).") ";
             
         if ($id_prodi != "" && $id_prodi != null) {
             $sql .= " AND mp.id = $id_prodi ";
@@ -214,6 +215,12 @@ class MatriksJadwalPerkuliahanModel extends CI_Model {
         }
         if ($kapasitas_awal != null && $kapasitas_akhir != null) {
             $sql .= " AND pmkd.kapasitas >= $kapasitas_awal and  pmkd.kapasitas <= $kapasitas_akhir ";
+        }
+
+        if ($params != null) {
+            $limit = (int)$params['limit'];
+            $start = (int)$params['start'];
+            $sql .= " ORDER BY pmkd.id DESC LIMIT $limit OFFSET $start ";
         }
 
         $query=$this->db->query($sql);
