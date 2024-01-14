@@ -118,6 +118,73 @@ class MasterDosen extends CI_Controller {
         }
     }
 
+	public function uploadFromExcel() {
+		$data=array();
+
+		$simpan = false;
+		if(isset($_POST["simpan"])) {
+			$simpan = true;
+		}
+		switch ($simpan) {
+			case true:
+				try {
+					$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+					if ($extension != "xlsx") {
+						throw new Exception("Ekstensi file tidak sesuai");
+					}
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+					$uploadDatas = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+					if (count($uploadDatas) < 2) {
+						throw new Exception("Data belum diisi");
+					}
+					$params = [];
+					for ($i = 2; $i <= count($uploadDatas); $i++) {
+						$param = [];
+						$param["kode_program_studi"] = $uploadDatas[$i]["A"];
+						$checkProgramStudi = $this->masterDosenModel->getProgramStudiByKode($param["kode_program_studi"]);
+						if (!$checkProgramStudi) {
+							throw new Exception("Kode program studi tidak valid: $param[kode_program_studi] (data baris ke-$i)");
+						}
+						$idProgramStudi = (int) $checkProgramStudi->id;
+						$param["id_program_studi"] = $idProgramStudi;
+						$param["nik"] = $uploadDatas[$i]["B"];
+						if ($param["nik"] == "" || $param["nik"] == null) {
+							throw new Exception("NIK dosen harus diisi (data baris ke-$i)");
+						}
+						$param["nama"] = $uploadDatas[$i]["C"];
+						if ($param["nama"] == "" || $param["nama"] == null) {
+							throw new Exception("Nama dosen harus diisi (data baris ke-$i)");
+						}
+						$params[] = $param;
+					}
+					$insertMultiple = $this->masterDosenModel->insertMultiple($params);
+					if (!$insertMultiple) {
+						throw new Exception("Gagal upload data");
+					}
+					$response = array();
+					$response["code"] = 200;
+					$response["message"] = "success";
+					$response["data"] = null;
+					echo json_encode($response);
+
+				} catch(Exception $e) {
+					$response = array();
+					$response["code"] = 400;
+					$response["message"] = $e->getMessage();
+					$response["data"] = null;
+					echo json_encode($response);
+				}
+				break;
+			
+			case false:
+				$data['title'] = 'SIJP - Master Dosen Upload';
+				$this->load->view('masterDosen/upload', $data);
+				break;
+			default:
+		}
+	}
+
     public function delete() {
 		try {
 			$params = [];

@@ -78,6 +78,7 @@ $route['master-prodi/delete'] = 'MasterProdi/delete';
 $route['master-ruang'] = 'MasterRuang';
 $route['master-ruang/get-data'] = 'MasterRuang/getData';
 $route['master-ruang/create'] = 'MasterRuang/create';
+$route['master-ruang/upload-from-excel'] = 'MasterRuang/uploadFromExcel';
 $route['master-ruang/update'] = 'MasterRuang/update';
 $route['master-ruang/delete'] = 'MasterRuang/delete';
 
@@ -100,6 +101,7 @@ $route['master-kelas/delete'] = 'MasterKelas/delete';
 $route['master-dosen'] = 'MasterDosen';
 $route['master-dosen/get-data'] = 'MasterDosen/getData';
 $route['master-dosen/create'] = 'MasterDosen/create';
+$route['master-dosen/upload-from-excel'] = 'MasterDosen/uploadFromExcel';
 $route['master-dosen/update'] = 'MasterDosen/update';
 $route['master-dosen/delete'] = 'MasterDosen/delete';
 

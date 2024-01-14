@@ -15,6 +15,8 @@
 				</div>
 				<div class="box-body">
 					<a href="<?php echo base_url('master-ruang/create') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-plus'></i> Tambah</button></a>
+					&nbsp;
+					<a href="<?php echo base_url('master-ruang/upload-from-excel') ?>"><button type="button" class="btn btn-sm btn-success"><i class='fa fa-file'></i> Upload from Excel</button></a>
 					<br><br>
 					<table id="listDataTable" class="table table-bordered table-striped" style="width: 100%">
 						<thead>

@@ -78,6 +78,39 @@ class MasterDosenModel extends CI_Model {
 		}
     }
 
+	public function getProgramStudiByKode($kodeProdi) {
+        $sql = "SELECT 
+                id,
+                kode,
+				nama
+            from master_prodi
+            where kode = '$kodeProdi' ";
+        $query=$this->db->query($sql);
+        $result=$query->row();
+        return $result;
+    }
+
+	public function insertMultiple($params) {
+		$this->db->trans_begin();
+		for ($i = 0; $i < count($params); $i++) {
+			$param = [
+				$params[$i]['id_program_studi'],
+				$params[$i]['nik'], 
+				$params[$i]['nama']
+			];
+			$sql = "insert into master_dosen (id_prodi, nik, nama) values(?, ?, ?)";
+			$this->db->query($sql, $param);
+		}
+
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			return false;
+		}
+		$this->db->trans_commit();
+
+		return true;
+	}
+
     public function delete($params) {
         $data = [
             $params['id']

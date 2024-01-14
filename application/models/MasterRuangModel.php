@@ -61,6 +61,29 @@ class MasterRuangModel extends CI_Model {
 		}
 	}
 
+	public function insertMultiple($params) {
+		$this->db->trans_begin();
+
+
+		for ($i = 0; $i < count($params); $i++) {
+			$param = [
+				$params[$i]['kode'],
+				$params[$i]['nama'], 
+				$params[$i]['kapasitas']
+			];
+			$sql = "insert into master_ruang (kode, nama, kapasitas) values(?, ?, ?)";
+        	$this->db->query($sql, $param);
+		}
+
+		if ($this->db->trans_status() === FALSE) {
+        	$this->db->trans_rollback();
+			return false;
+		}
+		$this->db->trans_commit();
+
+		return true;
+	}
+
     public function delete($params) {
         $data = [
             $params['id']

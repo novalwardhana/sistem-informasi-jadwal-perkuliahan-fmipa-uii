@@ -119,6 +119,75 @@ class MasterRuang extends CI_Controller {
         }
     }
 
+	public function uploadFromExcel() {
+		$data=array();
+
+		$simpan = false;
+		if(isset($_POST["simpan"])) {
+			$simpan = true;
+		}
+		switch ($simpan) {
+			case true:
+				try {
+					$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+					if ($extension != "xlsx") {
+						throw new Exception("Ekstensi file tidak sesuai");
+					}
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+					$uploadDatas = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+					if (count($uploadDatas) < 2) {
+						throw new Exception("Data belum diisi");
+					}
+					$params = [];
+					for ($i = 2; $i <= count($uploadDatas); $i++) {
+						$param = [];
+						$param["kode"] = $uploadDatas[$i]["A"];
+						if ($param["kode"] == "" || $param["kode"] == null) {
+							throw new Exception("Kode ruang tidak valid (data baris ke-$i)");
+						}
+						$param["nama"] = $uploadDatas[$i]["B"];
+						if ($param["nama"] == "" || $param["nama"] == null) {
+							throw new Exception("Nama ruang tidak valid (data baris ke-$i)");
+						}
+						$param["kapasitas"] = $uploadDatas[$i]["C"];
+						if ($param["kapasitas"] == "" || $param["kapasitas"] == null) {
+							throw new Exception("Kapasitas ruang tidak valid (data baris ke-$i)");
+						}
+						$param["kapasitas"] = (int) $param["kapasitas"];
+						if ($param["kapasitas"] <= 0) {
+							throw new Exception("Kapasitas ruang tidak valid (data baris ke-$i)");
+						}
+						$params[] = $param;
+					}
+					$insertMultiple = $this->masterRuangModel->insertMultiple($params);
+					if (!$insertMultiple) {
+						throw new Exception("Gagal upload data");
+					}
+					$response = array();
+					$response["code"] = 200;
+					$response["message"] = "success";
+					$response["data"] = null;
+					echo json_encode($response);
+
+
+				} catch(Exception $e) {
+					$response = array();
+					$response["code"] = 400;
+					$response["message"] = $e->getMessage();
+					$response["data"] = null;
+					echo json_encode($response);
+				}
+				break;
+
+			case false:
+				$data['title'] = 'SIJP - Master Ruang Upload';
+				$this->load->view('masterRuang/upload', $data);
+				break;
+			default:
+		}
+	}
+
     public function delete() {
 		try {
 			$params = [];
