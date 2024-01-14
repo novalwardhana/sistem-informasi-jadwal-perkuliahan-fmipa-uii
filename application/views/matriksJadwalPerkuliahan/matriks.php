@@ -234,6 +234,18 @@
         $(".menu-sidebar-jadwal-perkuliahan").addClass('active');
         $(".menu-sidebar-matriks-jadwal-perkuliahan").addClass('active');
 
+        $('.timepicker').timepicker({
+            timeFormat: 'HH:mm:ss',
+            interval: 30,
+            minTime: '7',
+            maxTime: '7:00pm',
+            defaultTime: '11',
+            startTime: '07:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+
         /* Get list matriks */
         $('#listDataTable').DataTable({
             "ordering": false,

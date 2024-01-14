@@ -129,10 +129,10 @@
                                 <label>Jam</label>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="jam_mulai" class="form-control" placeholder="Jam mulai">
+                                        <input type="text" name="jam_mulai" class="form-control timepicker" placeholder="Jam mulai">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="jam_selesai" class="form-control" placeholder="Jam selesai">
+                                        <input type="text" name="jam_selesai" class="form-control timepicker" placeholder="Jam selesai">
                                     </div>
                                 </div>
                             </div>
