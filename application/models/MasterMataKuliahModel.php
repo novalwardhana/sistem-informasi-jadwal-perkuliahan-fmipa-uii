@@ -95,7 +95,7 @@ class MasterMataKuliahModel extends CI_Model {
                 kode,
 				nama
             from master_prodi
-            where kode = $kodeProdi";
+            where kode = '$kodeProdi' ";
         $query=$this->db->query($sql);
         $result=$query->row();
         return $result;
